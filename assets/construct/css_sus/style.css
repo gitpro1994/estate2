@@ -1,0 +1,36 @@
+#board .content #newsletter-holder .top img{
+	top: -30px;
+}
+
+ul li{
+	list-style: none;
+}
+@media all and (min-width: 680px){
+	.logo-img{
+		position: absolute;
+	    top: -64px;
+	    margin-top: -18px;
+	    left: 7%;
+	}
+}
+@media all and (max-width: 679px){
+	.logo-img{
+		margin: 0 auto;
+	    padding: 10px 0px 10px 0px;
+	}
+}
+
+#board header img{
+	display: block;
+}
+
+#board header h1{
+	background-color: #F5F5F5;
+}
+
+#board .content .date{
+	text-align: center;
+}
+#bg-image{
+	width: 100%;
+}

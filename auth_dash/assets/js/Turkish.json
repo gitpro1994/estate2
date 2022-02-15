@@ -1,0 +1,26 @@
+
+
+{
+	"sDecimal":        ",",
+	"sEmptyTable":     "Cədvəldə hər hansı bir məlumat mövcud deyil",
+	"sInfo":           "_TOTAL_ nəticədən _START_ - _END_ arasındakı nəticələr göstərilir",
+	"sInfoEmpty":      "Nəticə yoxdu",
+	"sInfoFiltered":   "(_MAX_ nəticə içərisində tapılıb)",
+	"sInfoPostFix":    "",
+	"sInfoThousands":  ".",
+	"sLengthMenu":     "Səhifədə _MENU_ nəticə göstər",
+	"sLoadingRecords": "Yüklənir...",
+	"sProcessing":     "Sorğu işləyir...",
+	"sSearch":         "Axtar:",
+	"sZeroRecords":    "Uyğunlaşan nəticə tapılmadı",
+	"oPaginate": {
+		"sFirst":    "İlk",
+		"sLast":     "Son",
+		"sNext":     "Sonraki",
+		"sPrevious": "Öncəki"
+	},
+	"oAria": {
+		"sSortAscending":  ": artan sütun sıralamasını aktifleştir",
+		"sSortDescending": ": azalan sütun soralamasını aktifleştir"
+	}
+}
