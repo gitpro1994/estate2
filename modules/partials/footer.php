@@ -7,9 +7,7 @@
                   <div class="item-logo">
                      <img src="<?= site_url()?>/assets/uploads/logo/<?= settings('logo') ?>" width="157" height="40" alt="logo" class="img-fluid">
                   </div>
-                  <p>Corem ipsum dolor sit amet consecte turad
-                     pisicing elit, sed do eiusmod tempor inci
-                     didunt ut labore et dolor.pisicing elit, sed do eiusmod tempor inci
+                  <p>Cavid & Karim
                   </p>
                   <div class="item-social">
                      <ul>
