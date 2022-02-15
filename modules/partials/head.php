@@ -64,6 +64,7 @@
     <link rel="stylesheet" href="<?= site_url()?>assets/vendors/iconfonts/flag-icon-css/css/flag-icon.min.css" />
     <link rel="stylesheet" href="<?= site_url()?>assets/css/iziModal.min.css" type="text/css">
     <link rel="stylesheet" href="<?= site_url()?>assets/style.css">   
+    <link rel="stylesheet" href="<?= site_url()?>assets/css/yeni.css">   
     <link rel="preconnect" href="https://fonts.googleapis.com/">
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;family=Ubuntu:wght@400;500;700&amp;display=swap" rel="stylesheet">
@@ -87,6 +88,24 @@ else
     $_SESSION['set_lang'] = $set_lang;
 }
 ?> 
+<div class="telefon"> 
+    <a href="tel:<?= contact('mobile_phone') ?>" title="Phone" alt="Phone">
+        <i class="fas fa-phone"></i>
+    </a> 
+    <span class="tooltiptext">Phone</span> 
+</div>
+<div class="whatsapp"> 
+    <a href="https://api.whatsapp.com/send?phone=<?= contact('mobile_phone') ?>" target="_blank" title="WhatsApp" alt="WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a> 
+    <span class="tooltiptext">WhatsApp</span> 
+</div>
+<div class="instagram"> 
+    <a href="<?= social('instagram') ?>" target="_blank" title="Instagram" alt="Instagram">
+        <i class="fab fa-instagram"></i>
+    </a> 
+    <span class="tooltiptext">İnstagram</span> 
+</div>
 <div class="diller">
     <a data-toggle="modal" data-target="#lang" class="trigger-link" title="<?= translate('select_language') ?>" alt="<?= translate('select_language') ?>">
       <i class="flag-icon rounded-25 flag-icon-<?= (isset($_SESSION['lang_flag'])) ? $_SESSION['lang_flag'] : select_flag($_SESSION['set_lang']) ?>"></i>

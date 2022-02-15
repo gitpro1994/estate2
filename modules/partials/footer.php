@@ -200,7 +200,7 @@
 <script src="<?= site_url() ?>assets/js/masked_input.js"></script>
 <script src="<?= site_url()?>assets/js/iziModal.min.js"></script>
 <script type="text/javascript">
-$(document).ready(function() {
+$(document).ready(function() {  
    let url = $("#base_url").val();
    //Phone mask
    if ($("#phone_number").length > 0) 
