@@ -1,5 +1,4 @@
 <div class="wrapper" id="wrapper">
-
 <header class="rt-header sticky-on">
         <div id="sticky-placeholder"></div>
         <div id="navbar-wrap" class="header-menu menu-layout1 header-menu menu-layout3">

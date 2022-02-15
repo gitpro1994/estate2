@@ -23,7 +23,7 @@
             <div class="col-xl-2 col-lg-2 col-md-6 col-sm-6">
                <div class="footer-link footer-link-style-2">
                   <div class="footer-title footer-title-style2">
-                     <h3>Quick Links</h3>
+                     <h3>Linkler</h3>
                   </div>
                   <div class="item-link">
                      <ul>
