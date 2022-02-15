@@ -55,7 +55,7 @@
     <link rel="stylesheet" href="<?= site_url()?>assets/vendor/owlcarousel/owl.theme.default.min.css">
     <link rel="stylesheet" href="<?= site_url()?>assets/css/swiper-bundle.min.css" />
     <link rel="stylesheet" href="<?= site_url()?>assets/css/flaticon/font/flaticon.css">
-    <link rel="stylesheet" href="<?= site_url()?>assets/css/nice-select.css">
+    <!-- <link rel="stylesheet" href="assets/css/nice-select.css"> -->
     <link rel="stylesheet" href="<?= site_url()?>assets/css/animate.min.css">
     <link rel="stylesheet" href="<?= site_url()?>assets/css/magnific-popup.css">
     <link rel="stylesheet" href="<?= site_url()?>assets/css/all.min.css">

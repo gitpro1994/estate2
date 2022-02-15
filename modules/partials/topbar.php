@@ -149,8 +149,8 @@
                                                                 Error Page</a>
                                                         </li>
                                                         <li>
-                                                            <a href="contact.html">
-                                                                <i class="fas fa-spinner"></i>Contact Page</a>
+                                                            <a href="<?= site_url() ?>/contact">
+                                                                <i class="fas fa-spinner"></i><?= translate('contact') ?></a>
                                                         </li>
                                                     </ul>
                                                 </div>
