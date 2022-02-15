@@ -46,7 +46,7 @@
                         <li>
                            <div class="item-img">
                               <a href="https://www.instagram.com/" class="insta-pic">
-                              <img src="img/instagram/insta1.jpg" width="86" height="73"
+                              <img src="<?= site_url() ?>assets/img/instagram/insta1.jpg" width="86" height="73"
                                  alt="instagram">
                               </a>
                               <div class="item-overlay">
@@ -59,7 +59,7 @@
                         <li>
                            <div class="item-img">
                               <a href="https://www.instagram.com/" class="insta-pic">
-                              <img src="img/instagram/insta2.jpg" width="86" height="73"
+                              <img src="<?= site_url() ?>assets/img/instagram/insta2.jpg" width="86" height="73"
                                  alt="instagram">
                               </a>
                               <div class="item-overlay">
@@ -72,7 +72,7 @@
                         <li>
                            <div class="item-img">
                               <a href="https://www.instagram.com/" class="insta-pic">
-                              <img src="img/instagram/insta3.jpg" width="86" height="73"
+                              <img src="<?= site_url() ?>assets/img/instagram/insta3.jpg" width="86" height="73"
                                  alt="instagram">
                               </a>
                               <div class="item-overlay">
@@ -85,7 +85,7 @@
                         <li>
                            <div class="item-img">
                               <a href="https://www.instagram.com/" class="insta-pic">
-                              <img src="img/instagram/insta4.jpg" width="86" height="73"
+                              <img src="<?= site_url() ?>assets/img/instagram/insta4.jpg" width="86" height="73"
                                  alt="instagram">
                               </a>
                               <div class="item-overlay">
@@ -98,7 +98,7 @@
                         <li>
                            <div class="item-img">
                               <a href="https://www.instagram.com/" class="insta-pic">
-                              <img src="img/instagram/insta5.jpg" width="86" height="73"
+                              <img src="<?= site_url() ?>assets/img/instagram/insta5.jpg" width="86" height="73"
                                  alt="instagram">
                               </a>
                               <div class="item-overlay">
@@ -111,7 +111,7 @@
                         <li>
                            <div class="item-img">
                               <a href="https://www.instagram.com/" class="insta-pic">
-                              <img src="img/instagram/insta6.jpg" width="86" height="73"
+                              <img src="<?= site_url() ?>assets/img/instagram/insta6.jpg" width="86" height="73"
                                  alt="instagram">
                               </a>
                               <div class="item-overlay">
@@ -128,16 +128,13 @@
             <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
                <div class="footer-contact footer-contact-style-2">
                   <div class="footer-title footer-title-style2">
-                     <h3>Contact</h3>
+                     <h3><?= translate('contact') ?></h3>
                   </div>
                   <div class="footer-location">
                      <ul>
-                        <li class="item-map"><i class="fas fa-map-marker-alt"></i>121 King St, Melbourne
-                           den
-                           3000, Australia
-                        </li>
-                        <li><a href="mailto:info@example.com"><i class="fas fa-envelope"></i>info@example.com</a></li>
-                        <li><a href="tel:+123596000"><i class="fas fa-phone-alt"></i>(+123) 596 000</a></li>
+                        <li class="item-map"><i class="fas fa-map-marker-alt"></i> <?= contact('address') ?></li>
+                        <li><a href="mailto:<?= contact('email') ?>"><i class="fas fa-envelope"></i><?= contact('email') ?></a></li>
+                        <li><a href="tel:<?= contact('mobile_phone') ?>"><i class="fas fa-phone-alt"></i><?= contact('mobile_phone') ?></a></li>
                      </ul>
                   </div>
                </div>
@@ -148,7 +145,7 @@
    <div class="footer-bottom footer-bottom-style-2">
       <div class="container">
          <div class="row justify-content-center">
-            <div class="col-lg-6 col-md-6">
+            <div class="col-lg-4 col-md-4">
                <div class="copyright-area1">
                   <ul>
                      <li><a href="about-1.html">Terms of Use</a></li>
@@ -156,9 +153,9 @@
                   </ul>
                </div>
             </div>
-            <div class="col-lg-6 col-md-6">
+            <div class="col-lg-8 col-md-8">
                <div class="copyright-area2">
-                  <p>2022© All rightre served by RadiusTheme</p>
+                  <p><?= settings("frontend_footer_text") ?></p>
                </div>
             </div>
          </div>
@@ -221,7 +218,6 @@ $(document).ready(function() {
       {
          event.preventDefault()
          event.stopPropagation()
-         console.log("salam");
       }
       form.addClass('was-validated');
 
