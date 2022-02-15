@@ -12,18 +12,6 @@ $keyw  = settings('seo_keyword');
     <?php include_once "partials/topbar.php"; ?>
     <!-- END  -->
 
-    <!-- START  -->
-    <?php include_once "partials/menu.php"; ?>
-    <!-- END  -->
-    
-    <!-- START  -->
-    <?php include_once "partials/sidebar.php"; ?>
-    <!-- END  -->
-
-    <!-- START  -->
-    <?php include_once "partials/modal.php"; ?>
-    <!-- END  -->
-
 <div class="page-title-area" style="background-image: url(<?= site_url() ?>/assets/uploads/backgrounds/contact/<?= back_photo('contact') ?>)">
 	<div class="d-table">
 		<div class="d-table-cell">
