@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 15, 2022 at 05:07 AM
+-- Generation Time: Feb 16, 2022 at 07:42 AM
 -- Server version: 10.4.22-MariaDB
--- PHP Version: 8.0.14
+-- PHP Version: 8.0.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -57,10 +57,6 @@ CREATE TABLE `ads` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- RELATIONSHIPS FOR TABLE `ads`:
---
-
---
 -- Dumping data for table `ads`
 --
 
@@ -87,10 +83,6 @@ CREATE TABLE `ads_users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- RELATIONSHIPS FOR TABLE `ads_users`:
---
-
---
 -- Dumping data for table `ads_users`
 --
 
@@ -115,10 +107,6 @@ CREATE TABLE `apis_settings` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- RELATIONSHIPS FOR TABLE `apis_settings`:
---
-
---
 -- Dumping data for table `apis_settings`
 --
 
@@ -138,15 +126,12 @@ CREATE TABLE `background_images` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- RELATIONSHIPS FOR TABLE `background_images`:
---
-
---
 -- Dumping data for table `background_images`
 --
 
 INSERT INTO `background_images` (`id`, `page`, `photo`) VALUES
-(1, 'login', 'login473.jpg');
+(1, 'login', 'login473.jpg'),
+(2, 'contact', 'contact936.jpg');
 
 -- --------------------------------------------------------
 
@@ -163,10 +148,6 @@ CREATE TABLE `cities` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- RELATIONSHIPS FOR TABLE `cities`:
---
 
 --
 -- Dumping data for table `cities`
@@ -260,10 +241,6 @@ CREATE TABLE `contact_settings` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- RELATIONSHIPS FOR TABLE `contact_settings`:
---
-
---
 -- Dumping data for table `contact_settings`
 --
 
@@ -282,10 +259,6 @@ CREATE TABLE `floors` (
   `status` int(11) NOT NULL DEFAULT 1,
   `updated_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- RELATIONSHIPS FOR TABLE `floors`:
---
 
 --
 -- Dumping data for table `floors`
@@ -318,10 +291,6 @@ CREATE TABLE `floor_numbers` (
   `status` int(11) NOT NULL DEFAULT 1,
   `updated_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- RELATIONSHIPS FOR TABLE `floor_numbers`:
---
 
 --
 -- Dumping data for table `floor_numbers`
@@ -376,15 +345,11 @@ CREATE TABLE `global_settings` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- RELATIONSHIPS FOR TABLE `global_settings`:
---
-
---
 -- Dumping data for table `global_settings`
 --
 
 INSERT INTO `global_settings` (`id`, `logo`, `mail_logo`, `favicon`, `watermark`, `color_1`, `color_2`, `color_3`, `color_4`, `site_url`, `dash_url`, `site_title`, `slider_type`, `seo_keywords`, `seo_description`, `dashboard_footer_text`, `frontend_footer_text`, `timezone`, `translation`, `date_format`, `currency_symbol`, `updated_at`) VALUES
-(1, 'logo354.png', 'mail_logo810.png', 'favicon421.png', 'signature496.png', '#000000', '#f99b65', '#c15b30', '#6070f9', 'http://localhost/estate2/', 'auth_dash', 'Frame', 1, 'keywords,metin,kerim', 'description', 'Copyright © 2021. Hazırladı Ağakərim Kərimov', 'Copyright © 2021. Bütün hüquqlar qorunur. Kopyalama, çoxaltma və yayma halında qanuni hüquqlarımız həyata keçiriləcəkdir.', 'Asia/Baku', 'azerbaijan', 'd.m.Y', '₼', '0000-00-00 00:00:00');
+(1, 'logo354.png', 'mail_logo810.png', 'favicon421.png', 'signature496.png', '#000000', '#f99b65', '#c15b30', '#6070f9', 'http://127.0.0.1:8080/estate2/', 'auth_dash', 'Frame', 1, 'keywords,metin,kerim', 'description', 'Copyright © 2021. Hazırladı Ağakərim Kərimov', 'Copyright © 2021. Bütün hüquqlar qorunur. Kopyalama, çoxaltma və yayma halında qanuni hüquqlarımız həyata keçiriləcəkdir.', 'Asia/Baku', 'azerbaijan', 'd.m.Y', '₼', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -402,10 +367,6 @@ CREATE TABLE `hashtags` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- RELATIONSHIPS FOR TABLE `hashtags`:
---
 
 --
 -- Dumping data for table `hashtags`
@@ -432,10 +393,6 @@ CREATE TABLE `languages` (
   `italy` text COLLATE utf8_unicode_ci NOT NULL,
   `saudia_arabian` text COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- RELATIONSHIPS FOR TABLE `languages`:
---
 
 --
 -- Dumping data for table `languages`
@@ -855,7 +812,29 @@ INSERT INTO `languages` (`id`, `word`, `english`, `azerbaijan`, `turkish`, `russ
 (411, 'enter_phone_number', 'Enter phone number', '', '', '', '', '', '', ''),
 (412, 'enter_your_name_and_surname', 'Enter your name and surname', '', '', '', '', '', '', ''),
 (413, 'enter_room_count', 'Enter room count', '', '', '', '', '', '', ''),
-(414, 'please_select_language', 'Please select language', '', '', '', '', '', '', '');
+(414, 'please_select_language', 'Please select language', '', '', '', '', '', '', ''),
+(415, 'contact', 'Contact', '', '', '', '', '', '', ''),
+(416, 'login_page_background', 'Login page background', '', '', '', '', '', '', ''),
+(417, 'cookies_page', 'Cookies page', '', '', '', '', '', '', ''),
+(418, 'contact_page', 'Contact page', '', '', '', '', '', '', ''),
+(419, 'about_page', 'About page', '', '', '', '', '', '', ''),
+(420, 'photo_gallery_page', 'Photo gallery page', '', '', '', '', '', '', ''),
+(421, 'homepage_why_us', 'Homepage why us', '', '', '', '', '', '', ''),
+(422, 'contact_in_homepage', 'Contact in homepage', '', '', '', '', '', '', ''),
+(423, 'office_information', 'Office information', '', '', '', '', '', '', ''),
+(424, 'real_estate_agency', 'Real estate agency', '', '', '', '', '', '', ''),
+(425, 'contact_form', 'Contact form', '', '', '', '', '', '', ''),
+(426, 'contact_description', 'Contact description', '', '', '', '', '', '', ''),
+(427, 'enter_name', 'Enter name', '', '', '', '', '', '', ''),
+(428, 'message', 'Message', '', '', '', '', '', '', ''),
+(429, 'enter_message', 'Enter message', '', '', '', '', '', '', ''),
+(430, 'send_message', 'Send message', '', '', '', '', '', '', ''),
+(431, 'about_us', 'About us', '', '', '', '', '', '', ''),
+(432, 'sale', 'Sale', '', '', '', '', '', '', ''),
+(433, 'rent', 'Rent', '', '', '', '', '', '', ''),
+(434, 'phone_number_or_email', 'Phone number or email', '', '', '', '', '', '', ''),
+(435, 'forgot_your_password', 'Forgot your password', '', '', '', '', '', '', ''),
+(436, 'contac', 'Contac', '', '', '', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -873,10 +852,6 @@ CREATE TABLE `language_list` (
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- RELATIONSHIPS FOR TABLE `language_list`:
---
 
 --
 -- Dumping data for table `language_list`
@@ -909,10 +884,6 @@ CREATE TABLE `login_attempts` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- RELATIONSHIPS FOR TABLE `login_attempts`:
---
-
---
 -- Dumping data for table `login_attempts`
 --
 
@@ -943,15 +914,11 @@ CREATE TABLE `login_credentials` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- RELATIONSHIPS FOR TABLE `login_credentials`:
---
-
---
 -- Dumping data for table `login_credentials`
 --
 
 INSERT INTO `login_credentials` (`id`, `name`, `surname`, `email`, `username`, `password`, `second_password`, `avatar`, `last_login`, `last_visited_page`, `ip`, `soft`, `status`, `recovery_text`) VALUES
-(1, 'Ağakərim', 'Kərimov', 'admin@gmail.com', 'admin', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', 'bf2c47223aeab03eb14749cc1a07fddffaa208f4158ca9a486a30f36118f83e0', 'avatar686.png', '2022-02-13 14:31:03', 'http://localhost/estate2//auth_dash/moduls', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.82 Safari/537.36', 1, '2DDF575071031B4BAE68F0BF76AF7703D55489542A31873483374EBBE8C04366C0B779C9583B4CC0377EE8FD57C4116321BD5F341E92052D0AE6EF74F9D8A3C9');
+(1, 'Ağakərim', 'Kərimov', 'admin@gmail.com', 'admin', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', 'bf2c47223aeab03eb14749cc1a07fddffaa208f4158ca9a486a30f36118f83e0', 'avatar686.png', '2022-02-15 21:25:49', 'http://127.0.0.1:8080/estate2//auth_dash/background_images', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.82 Safari/537.36', 1, '2DDF575071031B4BAE68F0BF76AF7703D55489542A31873483374EBBE8C04366C0B779C9583B4CC0377EE8FD57C4116321BD5F341E92052D0AE6EF74F9D8A3C9');
 
 -- --------------------------------------------------------
 
@@ -969,10 +936,6 @@ CREATE TABLE `menus` (
   `status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
---
--- RELATIONSHIPS FOR TABLE `menus`:
---
-
 -- --------------------------------------------------------
 
 --
@@ -988,10 +951,6 @@ CREATE TABLE `metros` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- RELATIONSHIPS FOR TABLE `metros`:
---
 
 --
 -- Dumping data for table `metros`
@@ -1037,10 +996,6 @@ CREATE TABLE `modul_functionalities` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- RELATIONSHIPS FOR TABLE `modul_functionalities`:
---
-
---
 -- Dumping data for table `modul_functionalities`
 --
 
@@ -1062,10 +1017,6 @@ CREATE TABLE `passwords_changes` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- RELATIONSHIPS FOR TABLE `passwords_changes`:
---
-
---
 -- Dumping data for table `passwords_changes`
 --
 
@@ -1084,10 +1035,6 @@ CREATE TABLE `password_blacklist` (
   `bad_pass` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `status` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- RELATIONSHIPS FOR TABLE `password_blacklist`:
---
 
 --
 -- Dumping data for table `password_blacklist`
@@ -1237,10 +1184,6 @@ CREATE TABLE `realty_kinds` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- RELATIONSHIPS FOR TABLE `realty_kinds`:
---
-
---
 -- Dumping data for table `realty_kinds`
 --
 
@@ -1263,10 +1206,6 @@ CREATE TABLE `realty_types` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- RELATIONSHIPS FOR TABLE `realty_types`:
---
 
 --
 -- Dumping data for table `realty_types`
@@ -1301,10 +1240,6 @@ CREATE TABLE `regions` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- RELATIONSHIPS FOR TABLE `regions`:
---
-
---
 -- Dumping data for table `regions`
 --
 
@@ -1336,10 +1271,6 @@ CREATE TABLE `rooms` (
   `updated_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
---
--- RELATIONSHIPS FOR TABLE `rooms`:
---
-
 -- --------------------------------------------------------
 
 --
@@ -1356,10 +1287,6 @@ CREATE TABLE `settlements` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- RELATIONSHIPS FOR TABLE `settlements`:
---
 
 --
 -- Dumping data for table `settlements`
@@ -1399,10 +1326,6 @@ CREATE TABLE `site_status` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- RELATIONSHIPS FOR TABLE `site_status`:
---
-
---
 -- Dumping data for table `site_status`
 --
 
@@ -1425,40 +1348,36 @@ CREATE TABLE `site_visitor` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- RELATIONSHIPS FOR TABLE `site_visitor`:
---
-
---
 -- Dumping data for table `site_visitor`
 --
 
 INSERT INTO `site_visitor` (`id`, `ip`, `soft`, `visit_date`, `visitor_info`, `count`) VALUES
-(1, '127.0.0.1', '', '2022-01-26 15:14:11', '{\"success\":false,\"error\":{\"code\":104,\"type\":\"usage_limit_reached\",\"info\":\"Your monthly usage limit has been reached. Please upgrade your Subscription Plan.\"}}', 3076),
-(2, '127.0.0.1', '', '2022-01-26 15:14:18', '{\"success\":false,\"error\":{\"code\":104,\"type\":\"usage_limit_reached\",\"info\":\"Your monthly usage limit has been reached. Please upgrade your Subscription Plan.\"}}', 3076),
-(3, '127.0.0.1', '', '2022-01-26 15:14:25', '{\"success\":false,\"error\":{\"code\":104,\"type\":\"usage_limit_reached\",\"info\":\"Your monthly usage limit has been reached. Please upgrade your Subscription Plan.\"}}', 3076),
-(4, '127.0.0.1', '', '2022-01-26 15:22:24', '{\"success\":false,\"error\":{\"code\":104,\"type\":\"usage_limit_reached\",\"info\":\"Your monthly usage limit has been reached. Please upgrade your Subscription Plan.\"}}', 3076),
-(5, '127.0.0.1', '', '2022-01-26 15:26:46', '{\"success\":false,\"error\":{\"code\":104,\"type\":\"usage_limit_reached\",\"info\":\"Your monthly usage limit has been reached. Please upgrade your Subscription Plan.\"}}', 3076),
-(6, '127.0.0.1', '', '2022-01-26 15:26:49', '{\"success\":false,\"error\":{\"code\":104,\"type\":\"usage_limit_reached\",\"info\":\"Your monthly usage limit has been reached. Please upgrade your Subscription Plan.\"}}', 3076),
-(7, '127.0.0.1', '', '2022-01-26 15:26:56', '{\"success\":false,\"error\":{\"code\":104,\"type\":\"usage_limit_reached\",\"info\":\"Your monthly usage limit has been reached. Please upgrade your Subscription Plan.\"}}', 3076),
-(8, '127.0.0.1', '', '2022-01-26 15:27:49', '{\"success\":false,\"error\":{\"code\":104,\"type\":\"usage_limit_reached\",\"info\":\"Your monthly usage limit has been reached. Please upgrade your Subscription Plan.\"}}', 3076),
-(9, '127.0.0.1', '', '2022-01-26 15:28:15', '{\"success\":false,\"error\":{\"code\":104,\"type\":\"usage_limit_reached\",\"info\":\"Your monthly usage limit has been reached. Please upgrade your Subscription Plan.\"}}', 3076),
-(10, '127.0.0.1', '', '2022-01-26 15:36:39', '{\"success\":false,\"error\":{\"code\":104,\"type\":\"usage_limit_reached\",\"info\":\"Your monthly usage limit has been reached. Please upgrade your Subscription Plan.\"}}', 3076),
-(11, '127.0.0.1', '', '2022-01-26 15:36:44', '{\"success\":false,\"error\":{\"code\":104,\"type\":\"usage_limit_reached\",\"info\":\"Your monthly usage limit has been reached. Please upgrade your Subscription Plan.\"}}', 3076),
-(12, '127.0.0.1', '', '2022-01-26 15:37:04', '{\"success\":false,\"error\":{\"code\":104,\"type\":\"usage_limit_reached\",\"info\":\"Your monthly usage limit has been reached. Please upgrade your Subscription Plan.\"}}', 3076),
-(13, '127.0.0.1', '', '2022-01-26 15:37:22', '{\"success\":false,\"error\":{\"code\":104,\"type\":\"usage_limit_reached\",\"info\":\"Your monthly usage limit has been reached. Please upgrade your Subscription Plan.\"}}', 3076),
-(14, '127.0.0.1', '', '2022-01-26 15:38:12', '{\"success\":false,\"error\":{\"code\":104,\"type\":\"usage_limit_reached\",\"info\":\"Your monthly usage limit has been reached. Please upgrade your Subscription Plan.\"}}', 3076),
-(15, '127.0.0.1', '', '2022-01-26 15:42:59', '{\"success\":false,\"error\":{\"code\":104,\"type\":\"usage_limit_reached\",\"info\":\"Your monthly usage limit has been reached. Please upgrade your Subscription Plan.\"}}', 3076),
-(16, '127.0.0.1', '', '2022-01-26 15:45:02', '{\"success\":false,\"error\":{\"code\":104,\"type\":\"usage_limit_reached\",\"info\":\"Your monthly usage limit has been reached. Please upgrade your Subscription Plan.\"}}', 3076),
-(17, '127.0.0.1', '', '2022-01-26 15:45:12', '{\"success\":false,\"error\":{\"code\":104,\"type\":\"usage_limit_reached\",\"info\":\"Your monthly usage limit has been reached. Please upgrade your Subscription Plan.\"}}', 3076),
-(18, '127.0.0.1', '', '2022-01-26 15:46:53', '{\"success\":false,\"error\":{\"code\":104,\"type\":\"usage_limit_reached\",\"info\":\"Your monthly usage limit has been reached. Please upgrade your Subscription Plan.\"}}', 3076),
-(19, '127.0.0.1', '', '2022-01-26 15:46:54', '{\"success\":false,\"error\":{\"code\":104,\"type\":\"usage_limit_reached\",\"info\":\"Your monthly usage limit has been reached. Please upgrade your Subscription Plan.\"}}', 3076),
-(20, '127.0.0.1', '', '2022-01-26 15:46:55', '{\"success\":false,\"error\":{\"code\":104,\"type\":\"usage_limit_reached\",\"info\":\"Your monthly usage limit has been reached. Please upgrade your Subscription Plan.\"}}', 3076),
-(21, '127.0.0.1', '', '2022-01-26 15:47:17', '{\"success\":false,\"error\":{\"code\":104,\"type\":\"usage_limit_reached\",\"info\":\"Your monthly usage limit has been reached. Please upgrade your Subscription Plan.\"}}', 3076),
-(22, '127.0.0.1', '', '2022-01-26 15:47:18', '{\"success\":false,\"error\":{\"code\":104,\"type\":\"usage_limit_reached\",\"info\":\"Your monthly usage limit has been reached. Please upgrade your Subscription Plan.\"}}', 3076),
-(23, '127.0.0.1', '', '2022-01-26 15:47:19', '{\"success\":false,\"error\":{\"code\":104,\"type\":\"usage_limit_reached\",\"info\":\"Your monthly usage limit has been reached. Please upgrade your Subscription Plan.\"}}', 3076),
-(24, '127.0.0.1', '', '2022-01-26 16:00:05', '{\"success\":false,\"error\":{\"code\":104,\"type\":\"usage_limit_reached\",\"info\":\"Your monthly usage limit has been reached. Please upgrade your Subscription Plan.\"}}', 3076),
-(25, '127.0.0.1', '', '2022-01-27 09:53:19', '{\"success\":false,\"error\":{\"code\":104,\"type\":\"usage_limit_reached\",\"info\":\"Your monthly usage limit has been reached. Please upgrade your Subscription Plan.\"}}', 3076),
-(26, '127.0.0.1', '', '2022-01-27 15:41:26', '{\"success\":false,\"error\":{\"code\":104,\"type\":\"usage_limit_reached\",\"info\":\"Your monthly usage limit has been reached. Please upgrade your Subscription Plan.\"}}', 3076);
+(1, '127.0.0.1', '', '2022-01-26 15:14:11', '{\"success\":false,\"error\":{\"code\":104,\"type\":\"usage_limit_reached\",\"info\":\"Your monthly usage limit has been reached. Please upgrade your Subscription Plan.\"}}', 3185),
+(2, '127.0.0.1', '', '2022-01-26 15:14:18', '{\"success\":false,\"error\":{\"code\":104,\"type\":\"usage_limit_reached\",\"info\":\"Your monthly usage limit has been reached. Please upgrade your Subscription Plan.\"}}', 3185),
+(3, '127.0.0.1', '', '2022-01-26 15:14:25', '{\"success\":false,\"error\":{\"code\":104,\"type\":\"usage_limit_reached\",\"info\":\"Your monthly usage limit has been reached. Please upgrade your Subscription Plan.\"}}', 3185),
+(4, '127.0.0.1', '', '2022-01-26 15:22:24', '{\"success\":false,\"error\":{\"code\":104,\"type\":\"usage_limit_reached\",\"info\":\"Your monthly usage limit has been reached. Please upgrade your Subscription Plan.\"}}', 3185),
+(5, '127.0.0.1', '', '2022-01-26 15:26:46', '{\"success\":false,\"error\":{\"code\":104,\"type\":\"usage_limit_reached\",\"info\":\"Your monthly usage limit has been reached. Please upgrade your Subscription Plan.\"}}', 3185),
+(6, '127.0.0.1', '', '2022-01-26 15:26:49', '{\"success\":false,\"error\":{\"code\":104,\"type\":\"usage_limit_reached\",\"info\":\"Your monthly usage limit has been reached. Please upgrade your Subscription Plan.\"}}', 3185),
+(7, '127.0.0.1', '', '2022-01-26 15:26:56', '{\"success\":false,\"error\":{\"code\":104,\"type\":\"usage_limit_reached\",\"info\":\"Your monthly usage limit has been reached. Please upgrade your Subscription Plan.\"}}', 3185),
+(8, '127.0.0.1', '', '2022-01-26 15:27:49', '{\"success\":false,\"error\":{\"code\":104,\"type\":\"usage_limit_reached\",\"info\":\"Your monthly usage limit has been reached. Please upgrade your Subscription Plan.\"}}', 3185),
+(9, '127.0.0.1', '', '2022-01-26 15:28:15', '{\"success\":false,\"error\":{\"code\":104,\"type\":\"usage_limit_reached\",\"info\":\"Your monthly usage limit has been reached. Please upgrade your Subscription Plan.\"}}', 3185),
+(10, '127.0.0.1', '', '2022-01-26 15:36:39', '{\"success\":false,\"error\":{\"code\":104,\"type\":\"usage_limit_reached\",\"info\":\"Your monthly usage limit has been reached. Please upgrade your Subscription Plan.\"}}', 3185),
+(11, '127.0.0.1', '', '2022-01-26 15:36:44', '{\"success\":false,\"error\":{\"code\":104,\"type\":\"usage_limit_reached\",\"info\":\"Your monthly usage limit has been reached. Please upgrade your Subscription Plan.\"}}', 3185),
+(12, '127.0.0.1', '', '2022-01-26 15:37:04', '{\"success\":false,\"error\":{\"code\":104,\"type\":\"usage_limit_reached\",\"info\":\"Your monthly usage limit has been reached. Please upgrade your Subscription Plan.\"}}', 3185),
+(13, '127.0.0.1', '', '2022-01-26 15:37:22', '{\"success\":false,\"error\":{\"code\":104,\"type\":\"usage_limit_reached\",\"info\":\"Your monthly usage limit has been reached. Please upgrade your Subscription Plan.\"}}', 3185),
+(14, '127.0.0.1', '', '2022-01-26 15:38:12', '{\"success\":false,\"error\":{\"code\":104,\"type\":\"usage_limit_reached\",\"info\":\"Your monthly usage limit has been reached. Please upgrade your Subscription Plan.\"}}', 3185),
+(15, '127.0.0.1', '', '2022-01-26 15:42:59', '{\"success\":false,\"error\":{\"code\":104,\"type\":\"usage_limit_reached\",\"info\":\"Your monthly usage limit has been reached. Please upgrade your Subscription Plan.\"}}', 3185),
+(16, '127.0.0.1', '', '2022-01-26 15:45:02', '{\"success\":false,\"error\":{\"code\":104,\"type\":\"usage_limit_reached\",\"info\":\"Your monthly usage limit has been reached. Please upgrade your Subscription Plan.\"}}', 3185),
+(17, '127.0.0.1', '', '2022-01-26 15:45:12', '{\"success\":false,\"error\":{\"code\":104,\"type\":\"usage_limit_reached\",\"info\":\"Your monthly usage limit has been reached. Please upgrade your Subscription Plan.\"}}', 3185),
+(18, '127.0.0.1', '', '2022-01-26 15:46:53', '{\"success\":false,\"error\":{\"code\":104,\"type\":\"usage_limit_reached\",\"info\":\"Your monthly usage limit has been reached. Please upgrade your Subscription Plan.\"}}', 3185),
+(19, '127.0.0.1', '', '2022-01-26 15:46:54', '{\"success\":false,\"error\":{\"code\":104,\"type\":\"usage_limit_reached\",\"info\":\"Your monthly usage limit has been reached. Please upgrade your Subscription Plan.\"}}', 3185),
+(20, '127.0.0.1', '', '2022-01-26 15:46:55', '{\"success\":false,\"error\":{\"code\":104,\"type\":\"usage_limit_reached\",\"info\":\"Your monthly usage limit has been reached. Please upgrade your Subscription Plan.\"}}', 3185),
+(21, '127.0.0.1', '', '2022-01-26 15:47:17', '{\"success\":false,\"error\":{\"code\":104,\"type\":\"usage_limit_reached\",\"info\":\"Your monthly usage limit has been reached. Please upgrade your Subscription Plan.\"}}', 3185),
+(22, '127.0.0.1', '', '2022-01-26 15:47:18', '{\"success\":false,\"error\":{\"code\":104,\"type\":\"usage_limit_reached\",\"info\":\"Your monthly usage limit has been reached. Please upgrade your Subscription Plan.\"}}', 3185),
+(23, '127.0.0.1', '', '2022-01-26 15:47:19', '{\"success\":false,\"error\":{\"code\":104,\"type\":\"usage_limit_reached\",\"info\":\"Your monthly usage limit has been reached. Please upgrade your Subscription Plan.\"}}', 3185),
+(24, '127.0.0.1', '', '2022-01-26 16:00:05', '{\"success\":false,\"error\":{\"code\":104,\"type\":\"usage_limit_reached\",\"info\":\"Your monthly usage limit has been reached. Please upgrade your Subscription Plan.\"}}', 3185),
+(25, '127.0.0.1', '', '2022-01-27 09:53:19', '{\"success\":false,\"error\":{\"code\":104,\"type\":\"usage_limit_reached\",\"info\":\"Your monthly usage limit has been reached. Please upgrade your Subscription Plan.\"}}', 3185),
+(26, '127.0.0.1', '', '2022-01-27 15:41:26', '{\"success\":false,\"error\":{\"code\":104,\"type\":\"usage_limit_reached\",\"info\":\"Your monthly usage limit has been reached. Please upgrade your Subscription Plan.\"}}', 3185);
 
 -- --------------------------------------------------------
 
@@ -1477,10 +1396,6 @@ CREATE TABLE `smtp_settings` (
   `receiver_email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `updated_at` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- RELATIONSHIPS FOR TABLE `smtp_settings`:
---
 
 --
 -- Dumping data for table `smtp_settings`
@@ -1505,10 +1420,6 @@ CREATE TABLE `social_media_settings` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- RELATIONSHIPS FOR TABLE `social_media_settings`:
---
-
---
 -- Dumping data for table `social_media_settings`
 --
 
@@ -1531,10 +1442,6 @@ CREATE TABLE `system_bans` (
   `status` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
---
--- RELATIONSHIPS FOR TABLE `system_bans`:
---
-
 -- --------------------------------------------------------
 
 --
@@ -1553,10 +1460,6 @@ CREATE TABLE `system_logs` (
   `status` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
---
--- RELATIONSHIPS FOR TABLE `system_logs`:
---
-
 -- --------------------------------------------------------
 
 --
@@ -1568,10 +1471,6 @@ CREATE TABLE `theme_settings` (
   `theme_mode` varchar(6) COLLATE utf8_unicode_ci NOT NULL,
   `updated_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- RELATIONSHIPS FOR TABLE `theme_settings`:
---
 
 --
 -- Dumping data for table `theme_settings`
@@ -1797,7 +1696,7 @@ ALTER TABLE `apis_settings`
 -- AUTO_INCREMENT for table `background_images`
 --
 ALTER TABLE `background_images`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `cities`
@@ -1839,7 +1738,7 @@ ALTER TABLE `hashtags`
 -- AUTO_INCREMENT for table `languages`
 --
 ALTER TABLE `languages`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=415;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=437;
 
 --
 -- AUTO_INCREMENT for table `language_list`
