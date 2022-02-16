@@ -1,4 +1,4 @@
-<div class="wrapper" id="wrapper">
+    <div class="wrapper" id="wrapper">
 <header class="rt-header sticky-on">
         <div id="sticky-placeholder"></div>
         <div id="navbar-wrap" class="header-menu menu-layout1 header-menu menu-layout3">
@@ -24,6 +24,12 @@
                                     <a href="<?= site_url() ?>rent" data-bs-toggle="tooltip" data-bs-placement="bottom"
                                         title="<?= translate('rent') ?>">
                                         <i class="fa fa-retweet icon-round"></i>
+                                    </a>
+                                </li>
+                                <li class="action-item-style left-right-btn">
+                                    <a href="<?= site_url() ?>contact" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                        title="<?= translate('contac') ?>">
+                                        <i class="fa fa-address-book icon-round"></i>
                                     </a>
                                 </li>
                                 <li class="action-item-style left-right-btn">
