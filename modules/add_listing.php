@@ -75,7 +75,7 @@ $keyw  = settings('seo_keywords');
 
                   <div class="col-md-12 rtcl-login-form-wrap" id="estate_section" style="display:none;">
                      
-                     <div class="mb-3 row" id="kind_id_div">
+                     <div class="mb-3 row">
                        <label for="kind_id" class="col-sm-4 col-form-label"><?= translate('realty_kinds') ?></label>
                         <div class="col-sm-8">
                            <select required name="kind_id" id="kind_id" class="form-control">
@@ -93,7 +93,7 @@ $keyw  = settings('seo_keywords');
                         </div>
                      </div>
 
-                     <div class="mb-3 row" id="type_id_div">
+                     <div class="mb-3 row">
                        <label for="type_id" class="col-sm-4 col-form-label"><?= translate('realty_types') ?></label>
                         <div class="col-sm-8">
                            <select required name="type_id" id="type_id" class="form-control">
@@ -142,14 +142,14 @@ $keyw  = settings('seo_keywords');
                      </div>
 
                       <div class="mb-3 row" id="area_div">
-                       <label for="area" class="col-sm-4 col-form-label"><?= translate('area') ?><span class="dec-icon"><i class="far fa-warehouse"></i></span></label>
+                       <label for="area" class="col-sm-4 col-form-label"><?= translate('area') ?> <span id="square"></span><span class="dec-icon"><i class="far fa-warehouse"></i></span></label>
                        <div class="col-sm-8">
                            <input  name="area" type="text" id="area" class="form-control" placeholder="<?= translate("enter_area") ?>" required>
                         </div>
                      </div>
                      
                      <div class="mb-3 row" id="space_div">
-                       <label for="space" class="col-sm-4 col-form-label"><?= translate('space') ?><span class="dec-icon"><i class="far fa-warehouse"></i></span></label>
+                       <label for="space" class="col-sm-4 col-form-label"><?= translate('space') ?> <span>(sot)</span><span class="dec-icon"><i class="far fa-warehouse"></i></span></label>
                        <div class="col-sm-8">
                            <input  name="space" type="text" id="space" class="form-control" placeholder="<?= translate("enter_space") ?>" required>
                         </div>
@@ -187,6 +187,7 @@ $keyw  = settings('seo_keywords');
                        <label for="price" class="col-sm-4 col-form-label"><?= translate('price') ?><span class="dec-icon"><i class="far fa-warehouse"></i></span></label>
                        <div class="col-sm-8">
                            <input  name="price" type="text" id="price" class="form-control" placeholder="<?= translate("enter_price") ?>" required>
+
                         </div>
                      </div>
 
@@ -200,6 +201,94 @@ $keyw  = settings('seo_keywords');
                            </select>
                         </div>
                      </div>
+
+                     <div class="mb-3 row" id="mortgage_div">
+                        <label for="payment_method" class="col-sm-4 col-form-label"><?= translate('mortgage') ?></label>
+                        <div class="col-sm-8">
+                           <label class="form-check-label" for="defaultCheck1">
+                           <input class="form-radio-input" name="mortgage" required type="radio" value="0" id="ipoteka">
+                            <?= translate('ipoteka') ?>
+                           </label>
+                           <br>                           
+                           <label class="form-check-label" for="defaultCheck1">
+                           <input class="form-radio-input" name="mortgage" required type="radio" value="1" id="kupcha">
+                            <?= translate('kupcha') ?>
+                          </label>
+                       </div>
+                     </div>
+
+                      <div class="mb-3 row" id="address_div">
+                       <label for="address" class="col-sm-4 col-form-label"><?= translate('address') ?><span class="dec-icon"><i class="far fa-warehouse"></i></span></label>
+                       <div class="col-sm-8">
+                           <input  name="address" type="text" id="address" class="form-control" placeholder="<?= translate("enter_address") ?>" required>
+                        </div>
+                     </div>
+
+                     <div class="mb-3 row" id="regions_div">
+                        <label for="city_id" class="col-sm-4 col-form-label"><?= translate('regions') ?></label>
+                        <div class="col-sm-8">
+                           <select required name="region_id" id="region_id" class="form-control">
+                              <option value=""><?= translate('please_select_one_item') ?></option>
+                              <?php 
+                                 $rk  = "SELECT * FROM regions WHERE status=1";
+                                 $rkr = mysqli_query($conn,$rk);
+                                 while ($rayon = mysqli_fetch_array($rkr)) {
+                                     ?>
+                              <option value="<?= $rayon['id'] ?>">
+                                 <?= translate($rayon['region_name']) ?>
+                              </option>
+                              <?php } ?>
+                           </select>
+                        </div>
+                     </div>
+
+                     <div class="mb-3 row" id="hashtags_div">
+                        <label for="city_id" class="col-sm-4 col-form-label"><?= translate('hashtags') ?></label>
+                        <div class="col-sm-8">
+                           <select required name="hashtag_id" id="hashtag_id" class="form-control">
+                              <option value=""><?= translate('please_select_one_item') ?></option>
+                              <?php 
+                                 $rk  = "SELECT * FROM hashtags WHERE status=1";
+                                 $rkr = mysqli_query($conn,$rk);
+                                 while ($settlement = mysqli_fetch_array($rkr)) {
+                                     ?>
+                              <option value="<?= $settlement['id'] ?>">
+                                 <?= translate($settlement['hashtag_name']) ?>
+                              </option>
+                              <?php } ?>
+                           </select>
+                        </div>
+                     </div>
+
+                     <div class="mb-3 row" id="settlements_div">
+                        <label for="city_id" class="col-sm-4 col-form-label"><?= translate('settlements') ?></label>
+                        <div class="col-sm-8">
+                           <select required name="settlement_id" id="settlement_id" class="form-control">
+                              <option value=""><?= translate('please_select_one_item') ?></option>
+                              <?php 
+                                 $rk  = "SELECT * FROM settlements WHERE status=1";
+                                 $rkr = mysqli_query($conn,$rk);
+                                 while ($hashtag = mysqli_fetch_array($rkr)) {
+                                     ?>
+                              <option value="<?= $hashtag['id'] ?>">
+                                 <?= translate($hashtag['settlement_name']) ?>
+                              </option>
+                              <?php } ?>
+                           </select>
+                        </div>
+                     </div>
+
+                     <div class="mb-3 row" id="settlements_div">
+                        <label for="images" class="col-sm-4 col-form-label"><?= translate('images') ?></label>
+                        <div class="col-sm-8">
+                           <input type="hidden" name="estate_photos" id="foto">
+                                 <input id="uplbtn" type="button" value="Şəkil əlavə et!"><br>
+                                 <pform action="uploadfile" class="dropzone dz-clickable" id="my-dropzone">
+                                    <div class="dz-default dz-message"><span></span></div>
+                                 </pform>
+                        </div>
+                     </div>
+
 
                      <div class="mb-3 row">
                        <div class="col-sm-8 float-right">
