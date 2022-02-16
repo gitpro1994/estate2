@@ -140,11 +140,64 @@ $keyw  = settings('seo_keywords');
                            </select>
                         </div>
                      </div>
+
+                      <div class="mb-3 row" id="area_div">
+                       <label for="area" class="col-sm-4 col-form-label"><?= translate('area') ?><span class="dec-icon"><i class="far fa-warehouse"></i></span></label>
+                       <div class="col-sm-8">
+                           <input  name="area" type="text" id="area" class="form-control" placeholder="<?= translate("enter_area") ?>" required>
+                        </div>
+                     </div>
                      
-                     <div class="mb-3 row">
+                     <div class="mb-3 row" id="space_div">
+                       <label for="space" class="col-sm-4 col-form-label"><?= translate('space') ?><span class="dec-icon"><i class="far fa-warehouse"></i></span></label>
+                       <div class="col-sm-8">
+                           <input  name="space" type="text" id="space" class="form-control" placeholder="<?= translate("enter_space") ?>" required>
+                        </div>
+                     </div>
+
+                     <div class="mb-3 row" id="rooms_div">
                        <label for="rooms" class="col-sm-4 col-form-label"><?= translate('rooms') ?><span class="dec-icon"><i class="far fa-warehouse"></i></span></label>
                        <div class="col-sm-8">
                            <input  name="rooms" type="text" id="rooms" class="form-control" placeholder="<?= translate("enter_room_count") ?>" required>
+                        </div>
+                     </div>
+
+                     <div class="mb-3 row" id="floor_div">
+                       <label for="floor_no" class="col-sm-4 col-form-label"><?= translate('floor_no') ?><span class="dec-icon"><i class="far fa-warehouse"></i></span></label>
+                       <div class="col-sm-8">
+                           <input  name="floor_no" type="text" id="floor_no" class="form-control" placeholder="<?= translate("enter_floor_number") ?>" required>
+                        </div>
+                     </div>
+
+                     <div class="mb-3 row" id="building_floor_div">
+                       <label for="building_floor_no" class="col-sm-4 col-form-label"><?= translate('building_floor_no') ?><span class="dec-icon"><i class="far fa-warehouse"></i></span></label>
+                       <div class="col-sm-8">
+                           <input  name="building_floor_no" type="text" id="building_floor_no" class="form-control" placeholder="<?= translate("enter_building_floor_no") ?>" required>
+                        </div>
+                     </div>
+
+                     <div class="mb-3 row">
+                       <label for="description" class="col-sm-4 col-form-label"><?= translate('description') ?><span class="dec-icon"><i class="far fa-warehouse"></i></span></label>
+                       <div class="col-sm-8">
+                           <textarea class="form-control" id="description" name="description" required></textarea>
+                        </div>
+                     </div>
+
+                     <div class="mb-3 row" id="price_div">
+                       <label for="price" class="col-sm-4 col-form-label"><?= translate('price') ?><span class="dec-icon"><i class="far fa-warehouse"></i></span></label>
+                       <div class="col-sm-8">
+                           <input  name="price" type="text" id="price" class="form-control" placeholder="<?= translate("enter_price") ?>" required>
+                        </div>
+                     </div>
+
+                     <div class="mb-3 row" id="payment_method_div">
+                        <label for="payment_method" class="col-sm-4 col-form-label"><?= translate('payment_method') ?></label>
+                        <div class="col-sm-8">
+                           <select required name="payment_method" id="payment_method" class="form-control">
+                              <option value=""><?= translate('please_select_one_item') ?></option>
+                              <option value="0">Gündəlik</option>
+                              <option value="1">Aylıq</option>
+                           </select>
                         </div>
                      </div>
 
