@@ -185,7 +185,6 @@
 <script src="<?= site_url() ?>assets/js/swiper-bundle.min.js"></script>
 <script src="<?= site_url() ?>assets/js/jquery.appear.min.js"></script>
 <script src="<?= site_url() ?>assets/js/jquery.magnific-popup.min.js"></script>
-<!-- <script src="assets/js/jquery.nice-select.min.js"></script> -->
 <script src="<?= site_url() ?>assets/js/parallaxie.js"></script>
 <script src="<?= site_url() ?>assets/js/tween-max.js"></script>
 <script src="<?= site_url() ?>assets/js/appear.min.js"></script>
@@ -199,6 +198,56 @@
 <script src="<?= site_url() ?>assets/js/main.js"></script>
 <script src="<?= site_url() ?>assets/js/masked_input.js"></script>
 <script src="<?= site_url()?>assets/js/iziModal.min.js"></script>
+<script src="<?= site_url()?>/assets/js/dropzone.js"></script>
+
+<script type="text/javascript">
+
+ //##################### LOGIN #####################
+
+ 
+  $(document).ready(function() {
+            $('#login').click(function(e) {
+               $("#error-msg").hide();
+                let self = $(this);
+                e.preventDefault(); // prevent default submit behavior
+                self.prop('disabled', true);
+                let url = "<?= site_url() ?>";
+                var data = $('#login-form').serialize(); // get form data
+                // sending ajax request to login.php file, it will process login request and give response.
+
+                $.ajax({
+                    url: url + '/core/ajax/login.php',
+                    type: "POST",
+                    data: data,
+                }).done(function(res) {
+                    res = JSON.parse(res);
+                    // if login successful redirect user to secure.php page.
+                    if (res['status']) 
+                    {
+                        location.href = "dashboard"; // redirect user to secure.php location/page.
+                    } else {
+                        var errorMessage = '';
+                        // if there is any errors convert array of errors into html string, 
+                        //here we are wrapping errors into a paragraph tag.
+                        $.each(res['msg'], function(index, message) {
+                            errorMessage += '<div>' + message + '</div>';
+                        });
+                        
+                        $("#error-msg").html(errorMessage);
+                        $("#error-msg").show();
+                        self.prop('disabled', false);
+                        // location.reload(true);
+                    }
+                }).fail(function() {
+                    alert("error");
+                }).always(function() {
+                    self.prop('disabled', false);
+                });
+            });
+         });
+
+</script>
+
 <script type="text/javascript">
 $(document).ready(function() {  
    let url = $("#base_url").val();

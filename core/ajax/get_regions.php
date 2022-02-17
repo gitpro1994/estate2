@@ -23,22 +23,21 @@ if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && !empty($_SERVER['HTTP_X_REQUESTED
 
   $city_id      = clean($_POST['city_id']); 
 
-  $data = array();
+  $data = [];
   $statement  = "SELECT * FROM regions WHERE city_id = '".$city_id."' ";
-    $execute    = mysqli_query($conn,$statement);
-    $cnt    	= mysqli_num_rows($execute);
+  $execute    = mysqli_query($conn,$statement);
+  $cnt    	  = mysqli_num_rows($execute);
     
 
     if ($cnt > 0) 
     { 
-
-      while($bax = mysqli_fetch_array($execute)){
-        $data[] = array(
-        'id'    => $bax['id'],
+      while($bax = mysqli_fetch_array($execute))
+      {
+        $data = [
+        'id'            => $bax['id'],
         'region_name'   => $bax['region_name']
-        );
+        ];
       }
-    	
     	echo json_encode($data);
     } 
     else 

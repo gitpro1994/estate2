@@ -26,7 +26,7 @@ $keyw  = settings('seo_keywords');
       <div class="row">
          <div class="col-lg-7 col-sm-12 col-12">
             <div class="page-content-block">
-               <form id="add_listing_form" class="form-horizontal" method="POST">
+               <form id="add_listing_form" class="form-horizontal" method="POST" enctype="multipart/form-data">
                   <div class="col-md-12 rtcl-login-form-wrap" id="contact_section">
                      <h4><?= translate('add_listing') ?></h4>
                      <hr>
@@ -205,12 +205,12 @@ $keyw  = settings('seo_keywords');
                      <div class="mb-3 row" id="mortgage_div">
                         <label for="payment_method" class="col-sm-4 col-form-label"><?= translate('mortgage') ?></label>
                         <div class="col-sm-8">
-                           <label class="form-check-label" for="defaultCheck1">
+                           <label class="form-check-label" for="ipoteka">
                            <input class="form-radio-input" name="mortgage" required type="radio" value="0" id="ipoteka">
                             <?= translate('ipoteka') ?>
                            </label>
                            <br>                           
-                           <label class="form-check-label" for="defaultCheck1">
+                           <label class="form-check-label" for="kupcha">
                            <input class="form-radio-input" name="mortgage" required type="radio" value="1" id="kupcha">
                             <?= translate('kupcha') ?>
                           </label>
@@ -225,7 +225,7 @@ $keyw  = settings('seo_keywords');
                      </div>
 
                      <div class="mb-3 row" id="regions_div">
-                        <label for="city_id" class="col-sm-4 col-form-label"><?= translate('regions') ?></label>
+                        <label for="region_id" class="col-sm-4 col-form-label"><?= translate('regions') ?></label>
                         <div class="col-sm-8">
                            <select required name="region_id" id="region_id" class="form-control">
                               <option value=""><?= translate('please_select_one_item') ?></option>
@@ -243,37 +243,21 @@ $keyw  = settings('seo_keywords');
                      </div>
 
                      <div class="mb-3 row" id="hashtags_div">
-                        <label for="city_id" class="col-sm-4 col-form-label"><?= translate('hashtags') ?></label>
+                        <label for="hashtags" class="col-sm-4 col-form-label"><?= translate('hashtags') ?></label>
                         <div class="col-sm-8">
                            <select required name="hashtag_id" id="hashtag_id" class="form-control">
                               <option value=""><?= translate('please_select_one_item') ?></option>
-                              <?php 
-                                 $rk  = "SELECT * FROM hashtags WHERE status=1";
-                                 $rkr = mysqli_query($conn,$rk);
-                                 while ($settlement = mysqli_fetch_array($rkr)) {
-                                     ?>
-                              <option value="<?= $settlement['id'] ?>">
-                                 <?= translate($settlement['hashtag_name']) ?>
-                              </option>
-                              <?php } ?>
+                             
                            </select>
                         </div>
                      </div>
 
                      <div class="mb-3 row" id="settlements_div">
-                        <label for="city_id" class="col-sm-4 col-form-label"><?= translate('settlements') ?></label>
+                        <label for="settlements" class="col-sm-4 col-form-label"><?= translate('settlements') ?></label>
                         <div class="col-sm-8">
                            <select required name="settlement_id" id="settlement_id" class="form-control">
                               <option value=""><?= translate('please_select_one_item') ?></option>
-                              <?php 
-                                 $rk  = "SELECT * FROM settlements WHERE status=1";
-                                 $rkr = mysqli_query($conn,$rk);
-                                 while ($hashtag = mysqli_fetch_array($rkr)) {
-                                     ?>
-                              <option value="<?= $hashtag['id'] ?>">
-                                 <?= translate($hashtag['settlement_name']) ?>
-                              </option>
-                              <?php } ?>
+                              
                            </select>
                         </div>
                      </div>
@@ -281,8 +265,8 @@ $keyw  = settings('seo_keywords');
                      <div class="mb-3 row" id="settlements_div">
                         <label for="images" class="col-sm-4 col-form-label"><?= translate('images') ?></label>
                         <div class="col-sm-8">
-                           <input type="hidden" name="estate_photos" id="foto">
-                                 <input id="uplbtn" type="button" value="Şəkil əlavə et!"><br>
+                              <input type="hidden" name="estate_photos" id="foto">
+                                 <input id="uplbtn" class="col-12" required type="button" value="<?= translate('add_images') ?>" multiple><br>
                                  <pform action="uploadfile" class="dropzone dz-clickable" id="my-dropzone">
                                     <div class="dz-default dz-message"><span></span></div>
                                  </pform>
@@ -661,12 +645,16 @@ error: function( jqXHR, textStatus, errorThrown ){
         },
         success: function(data) {
            data_parsed = JSON.parse(data);
-           $.each(data_parsed, function(i, value) {
-             $('#region_id').append('<option value='+data_parsed.id+'>'+data_parsed.region_name+'</option>');
-          });
-
-           $('#regions_div').fadeIn("slow");
-        }
+               
+              $('#regions_div').fadeIn("slow"); 
+              for (var i = 0; i < data_parsed.length; i++)
+               {
+              // $.each(data_parsed, function(i, value) {
+                $('#region_id').append('<option value='+data_parsed[i].id+'>'+data_parsed[i].region_name+'</option>');
+              // });
+               }
+            }
+        
      });
 
     } else {
@@ -684,15 +672,18 @@ error: function( jqXHR, textStatus, errorThrown ){
          region_id:region_id
       },
       success: function(data) {
-         data_settlement_parsed = JSON.parse(data);
-         console.log(data_settlement_parsed);
-         if(data_settlement_parsed.content_settlement == 'yes')
+         settlement = JSON.parse(data);
+         console.log(settlement);
+         if(settlement.length != 0)
          {
-           $.each(data_settlement_parsed, function(i, value) {
-             $('#settlements_div').fadeIn("slow");
-             $('#settlement_id').append('<option value='+data_settlement_parsed.settlement_id+'>'+data_settlement_parsed.settlement_name+'</option>');
-          });
-        } 
+           $('#settlements_div').fadeIn("slow");
+           for (var i = 0; i < settlement.length; i++)
+            {
+           // $.each(settlement, function(i, value) {
+            $('#settlement_id').append('<option value='+settlement[i].settlement_id+'>'+settlement[i].settlement_name+'</option>');
+           // });
+            }
+         } 
         else 
         {
            $('#settlements_div').fadeOut("slow");
@@ -713,22 +704,20 @@ error: function( jqXHR, textStatus, errorThrown ){
          region_id:region_id
       },
       success: function(data) {
-         data_settlement_parsed = JSON.parse(data);
-         console.log(data_settlement_parsed);
-
-
-         if(data_settlement_parsed.content_hashtag == 'yes')
+         hashtags = JSON.parse(data);
+         console.log(hashtags);
+         if(hashtags.length != 0)
          {
-           $.each(data_settlement_parsed, function(i, value) {
-             $('#hashtags_div').fadeIn("slow");
-             $('#hashtag_id').append('<option value='+data_settlement_parsed.hashtag_id+'>'+data_settlement_parsed.hashtag_id+'</option>');
-          });
-        } 
+         $('#hashtags_div').fadeIn('slow');
+          for (var i = 0; i < hashtags.length; i++)
+         {
+         $('#hashtag_id').append('<option value'+hashtags[i].hashtag_id+'>'+hashtags[i].hashtag_name+'</option>');
+         } 
+         }
         else 
         {
            $('#hashtags_div').fadeOut("slow");
         }
-
 
      }
   });

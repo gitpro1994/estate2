@@ -21,10 +21,7 @@ if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && !empty($_SERVER['HTTP_X_REQUESTED
     exit;
   }
 
-  $region_id      = clean($_POST['region_id']); 
-
-  $data_hashtag = [];
-  
+  $region_id      = clean($_POST['region_id']);   
 
   $hashtags  		= "SELECT * FROM hashtags WHERE region_id = '".$region_id."' ";
   $execute_qry  = mysqli_query($conn,$hashtags);
@@ -33,24 +30,19 @@ if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && !empty($_SERVER['HTTP_X_REQUESTED
 
     if ($cnt_hash > 0) 
     { 
-
-      while($bax = mysqli_fetch_array($execute_qry)){
-        $data_hashtag = [
-        'content_hashtag'   => 'yes',
-        'hashtag'           => 'yes',
-        'hashtag_id'    			      => $bax['id'],
+      while($bax = mysqli_fetch_array($execute_qry))
+      {
+        $data_hashtag[] = [
+        'hashtag_id'    	  => $bax['id'],
         'hashtag_name'      => $bax['hashtag_name']
         ];
       }
-    	
     	echo json_encode($data_hashtag);
     } 
     else 
     {
 
-    	$data_hashtag = [
-        'content_hashtag' => 'empty'
-      ];
+    	$data_hashtag = [];
 
     	echo json_encode($data_hashtag);
     }

@@ -47,7 +47,7 @@
     <meta property="og:url" content="<?= site_url()?>" />
     <meta property="og:image" content="<?= site_url()?>/assets/uploads/logo/<?= settings('logo') ?>" />
     <link rel="shortcut icon" type="image/jpg" href="<?= site_url()?>/assets/uploads/favicon/<?= settings('favicon') ?>"/>
-    <link rel="shortcut icon" type="image/x-icon" href="img/favicon-homlisti.svg">
+    <!-- <link rel="shortcut icon" type="image/x-icon" href="img/favicon-homlisti.svg"> -->
     <link rel="stylesheet" href="<?= site_url()?>assets/css/jquery-ui.css">
     <link rel="stylesheet" href="<?= site_url()?>assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?= site_url()?>assets/css/animate.min.css">
@@ -65,7 +65,9 @@
     <link rel="stylesheet" href="<?= site_url()?>assets/css/iziModal.min.css" type="text/css">
     <link rel="stylesheet" href="<?= site_url()?>assets/style.css">   
     <link rel="stylesheet" href="<?= site_url()?>assets/css/yeni.css">   
+    <link rel="stylesheet" href="<?= site_url()?>assets/css/dropzone.css">   
     <link rel="preconnect" href="https://fonts.googleapis.com/">
+
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;family=Ubuntu:wght@400;500;700&amp;display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com/">
@@ -108,7 +110,7 @@ else
 </div>
 <div class="diller">
     <a data-toggle="modal" data-target="#lang" class="trigger-link" title="<?= translate('select_language') ?>" alt="<?= translate('select_language') ?>">
-      <i class="flag-icon rounded-25 flag-icon-<?= (isset($_SESSION['lang_flag'])) ? $_SESSION['lang_flag'] : select_flag($_SESSION['set_lang']) ?>"></i>
+      <i class="flag-icon rounded-25 flag-icon-<?= (isset($_SESSION['lang_flag'])) ? $_SESSION['lang_flag'] : strtolower(select_flag($_SESSION['set_lang'])) ?>"></i>
     </a>
     <span class="tooltiptext"><?= translate('select_language') ?></span>
 </div>
