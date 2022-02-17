@@ -261,7 +261,7 @@ $(document).ready(function() {
    $("#check_number").click(function() {
       $('#check_number').prop("disabled",true);
 
-      var form = $("#add_listing_form")
+      var form = $("#add_new_listing")
 
       if (form[0].checkValidity() === false) 
       {
@@ -269,7 +269,7 @@ $(document).ready(function() {
          event.stopPropagation()
       }
       form.addClass('was-validated');
-
+      $("#estate_section").hide(1000);
       var phone_number = $('#phone_number').val();
         $.ajax({
           url: url + "core/ajax/get_user.php",
