@@ -34,9 +34,9 @@ $keyw  = settings('seo_keywords');
                         </div>
                         <div class="col-lg-6 col-md-7 col-sm-12">
                             <div class="isotope-classes-tab">
-                                <a class="current nav-item" data-filter="*">All Types</a>
-                                <a class="nav-item" data-filter=".for-sell">For Sell</a>
-                                <a class="nav-item" data-filter=".for-rent">For Rent</a>
+                                <a class="current nav-item" data-filter="*"><?= translate('all_types') ?></a>
+                                <a class="nav-item" data-filter=".for-sell"><?= translate('for_sell') ?></a>
+                                <a class="nav-item" data-filter=".for-rent"><?= translate('for_rent') ?></a>
                             </div>
                         </div>
                     </div>
@@ -48,7 +48,7 @@ $keyw  = settings('seo_keywords');
                         {
                             // dd($nn);
                          ?>
-                        <div class="col-xl-4 col-lg-6 col-md-6 for-sell">
+                        <div class="col-xl-4 col-lg-6 col-md-6 <?= ($nn['kind_id']==1) ? 'for-sell' : 'for_rent' ?> ">
                             <div class="property-box2 wow animated fadeInUp" data-wow-delay=".3s">
                                 <div class="item-img">
                                     <a href="single-listing1.html"><img src="<?= site_url() ?>assets/img/blog/blog4.jpg" alt="blog" width="510" height="340"></a>
@@ -62,16 +62,31 @@ $keyw  = settings('seo_keywords');
                                         <ul>
                                             <li>
                                                 <a href="favourite.html" data-bs-toggle="tooltip" data-bs-placement="top"
-                                                    title="Favourites">
+                                                    title="<?= translate('favourite') ?>">
                                                     <i class="flaticon-heart"></i>
                                                 </a>
                                             </li>
-                                            <li>
-                                                <a href="compare.html" data-bs-toggle="tooltip" data-bs-placement="top"
-                                                    title="Compare">
-                                                    <i class="flaticon-left-and-right-arrows"></i>
-                                                </a>
-                                            </li>
+                                           
+                                           <?php if($nn['kind_id']==1 AND $nn['mortgage']!=NULL){ ?>
+                                            <?php if ($nn['mortgage']==0) { ?>
+                                                <li>
+                                                    <a href="#" data-bs-toggle="tooltip" data-bs-placement="top"
+                                                        title="<?= translate('mortgage') ?>">
+                                                        <i class="fa fa-percent"></i>
+                                                    </a>
+                                                </li>
+                                           <?php }elseif ($nn['mortgage']==1) { ?>
+                                                <li>
+                                                    <a href="#" data-bs-toggle="tooltip" data-bs-placement="top"
+                                                        title="<?= translate('chixarish') ?>">
+                                                        <i class="fa fa-file"></i>
+                                                    </a>
+                                                </li>
+                                            <?php }else{ ?>
+
+                                            <?php } ?>
+                                            <?php } ?>
+                                           
                                         </ul>
                                     </div>
                                 </div>

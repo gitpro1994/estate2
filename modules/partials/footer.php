@@ -1,155 +1,12 @@
 <footer class="footer-area">
-   <div class="footer-top footer-top-style">
-      <div class="container">
-         <div class="row justify-content-between">
-            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
-               <div class="footer-logo-area footer-logo-area-2">
-                  <div class="item-logo">
-                     <img src="<?= site_url()?>/assets/uploads/logo/<?= settings('logo') ?>" width="157" height="40" alt="logo" class="img-fluid">
-                  </div>
-                  <p>Cavid & Karim
-                  </p>
-                  <div class="item-social">
-                     <ul>
-                        <li><a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
-                        <li><a href="https://twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a></li>
-                        <li><a href="https://vimeo.com/" target="_blank"><i class="fab fa-vimeo-v"></i></a></li>
-                        <li><a href="https://www.pinterest.com/" target="_blank"><i class="fab fa-pinterest-p"></i></a></li>
-                        <li><a href="https://web.whatsapp.com/" target="_blank"><i class="fab fa-whatsapp"></i></a></li>
-                     </ul>
-                  </div>
-               </div>
-            </div>
-            <div class="col-xl-2 col-lg-2 col-md-6 col-sm-6">
-               <div class="footer-link footer-link-style-2">
-                  <div class="footer-title footer-title-style2">
-                     <h3>Linkler</h3>
-                  </div>
-                  <div class="item-link">
-                     <ul>
-                        <li><a href="about-1.html">About Us </a></li>
-                        <li><a href="blog-details1.html">Blogs & Articles </a></li>
-                        <li><a href="about-1.html">Terms & Conditions</a></li>
-                        <li><a href="about-1.html">Privacy Policy </a></li>
-                        <li><a href="contact.html">Contact Us </a></li>
-                     </ul>
-                  </div>
-               </div>
-            </div>
-            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
-               <div class="footer-insta">
-                  <div class="footer-title footer-title-style2">
-                     <h3>Instagram</h3>
-                  </div>
-                  <div class="insta-link">
-                     <ul>
-                        <li>
-                           <div class="item-img">
-                              <a href="https://www.instagram.com/" class="insta-pic">
-                              <img src="<?= site_url() ?>assets/img/instagram/insta1.jpg" width="86" height="73"
-                                 alt="instagram">
-                              </a>
-                              <div class="item-overlay">
-                                 <a href="https://www.instagram.com/" target="_blank">
-                                 <i class="fab fa-instagram"></i>
-                                 </a>
-                              </div>
-                           </div>
-                        </li>
-                        <li>
-                           <div class="item-img">
-                              <a href="https://www.instagram.com/" class="insta-pic">
-                              <img src="<?= site_url() ?>assets/img/instagram/insta2.jpg" width="86" height="73"
-                                 alt="instagram">
-                              </a>
-                              <div class="item-overlay">
-                                 <a href="https://www.instagram.com/" target="_blank">
-                                 <i class="fab fa-instagram"></i>
-                                 </a>
-                              </div>
-                           </div>
-                        </li>
-                        <li>
-                           <div class="item-img">
-                              <a href="https://www.instagram.com/" class="insta-pic">
-                              <img src="<?= site_url() ?>assets/img/instagram/insta3.jpg" width="86" height="73"
-                                 alt="instagram">
-                              </a>
-                              <div class="item-overlay">
-                                 <a href="https://www.instagram.com/" target="_blank">
-                                 <i class="fab fa-instagram"></i>
-                                 </a>
-                              </div>
-                           </div>
-                        </li>
-                        <li>
-                           <div class="item-img">
-                              <a href="https://www.instagram.com/" class="insta-pic">
-                              <img src="<?= site_url() ?>assets/img/instagram/insta4.jpg" width="86" height="73"
-                                 alt="instagram">
-                              </a>
-                              <div class="item-overlay">
-                                 <a href="https://www.instagram.com/" target="_blank">
-                                 <i class="fab fa-instagram"></i>
-                                 </a>
-                              </div>
-                           </div>
-                        </li>
-                        <li>
-                           <div class="item-img">
-                              <a href="https://www.instagram.com/" class="insta-pic">
-                              <img src="<?= site_url() ?>assets/img/instagram/insta5.jpg" width="86" height="73"
-                                 alt="instagram">
-                              </a>
-                              <div class="item-overlay">
-                                 <a href="https://www.instagram.com/" target="_blank">
-                                 <i class="fab fa-instagram"></i>
-                                 </a>
-                              </div>
-                           </div>
-                        </li>
-                        <li>
-                           <div class="item-img">
-                              <a href="https://www.instagram.com/" class="insta-pic">
-                              <img src="<?= site_url() ?>assets/img/instagram/insta6.jpg" width="86" height="73"
-                                 alt="instagram">
-                              </a>
-                              <div class="item-overlay">
-                                 <a href="https://www.instagram.com/" target="_blank">
-                                 <i class="fab fa-instagram"></i>
-                                 </a>
-                              </div>
-                           </div>
-                        </li>
-                     </ul>
-                  </div>
-               </div>
-            </div>
-            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
-               <div class="footer-contact footer-contact-style-2">
-                  <div class="footer-title footer-title-style2">
-                     <h3><?= translate('contact') ?></h3>
-                  </div>
-                  <div class="footer-location">
-                     <ul>
-                        <li class="item-map"><i class="fas fa-map-marker-alt"></i> <?= contact('address') ?></li>
-                        <li><a href="mailto:<?= contact('email') ?>"><i class="fas fa-envelope"></i><?= contact('email') ?></a></li>
-                        <li><a href="tel:<?= contact('mobile_phone') ?>"><i class="fas fa-phone-alt"></i><?= contact('mobile_phone') ?></a></li>
-                     </ul>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
-   </div>
    <div class="footer-bottom footer-bottom-style-2">
       <div class="container">
          <div class="row justify-content-center">
             <div class="col-lg-4 col-md-4">
                <div class="copyright-area1">
                   <ul>
-                     <li><a href="about-1.html">Terms of Use</a></li>
-                     <li><a href="about-1.html">Privacy Policy</a></li>
+                     <li><a href="#"><?= translate('terms_&_conditions') ?></a></li>
+                     <li><a href="#"><?= translate('privacy_policy') ?></a></li>
                   </ul>
                </div>
             </div>
@@ -170,8 +27,8 @@
 </div>
 <div id="template-search" class="template-search">
    <button type="button" class="close">×</button>
-   <form class="search-form">
-      <input type="search" value="" placeholder="Search" />
+   <form class="search-form" id="mobile_search">
+      <input type="search" value="" placeholder="<?= translate('search_with_estate_number') ?>" />
       <button type="submit" class="search-btn btn-ghost style-1">
       <i class="flaticon-search"></i>
       </button>

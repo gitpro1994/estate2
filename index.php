@@ -39,7 +39,7 @@ $massiv = [
 				'menu',
 				(site_status('status')==1) ? 'construct' : '',
 				'cookies',
-				'set_language',
+				(modul_functionalities('language')!=0) ? 'set_language' : '',
 				'cp_policy'
 			];
 
