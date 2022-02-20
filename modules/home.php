@@ -42,7 +42,7 @@ $keyw  = settings('seo_keywords');
                     </div>
                     <div class="row featuredContainer">
                         <?php                         
-                        $sel = "SELECT * FROM ads AS a INNER JOIN cities AS c ON a.city_id=c.id INNER JOIN realty_kinds AS rk ON a.kind_id=rk.id INNER JOIN realty_types AS rt ON a.type_id=rt.id ORDER BY a.id DESC LIMIT 100";
+                        $sel = "SELECT * FROM ads AS a INNER JOIN cities AS c ON a.city_id=c.id LEFT JOIN regions AS r ON a.regions=r.id INNER JOIN realty_kinds AS rk ON a.kind_id=rk.id INNER JOIN realty_types AS rt ON a.type_id=rt.id GROUP BY a.id ORDER BY a.id DESC LIMIT 100";
                         $run = mysqli_query($conn,$sel);
                         while ($nn = mysqli_fetch_array($run)) 
                         {
@@ -55,8 +55,7 @@ $keyw  = settings('seo_keywords');
                                         <div class="item-category"><?= $nn['kind_name'] ?></div>
                                     </div>
                                     <div class="rent-price">
-                                        <div class="item-price">₼ <?= $nn['price'] ?> 
-                                    </div>
+                                        <div class="item-price">₼ <?= $nn['price'] ?> <?php if($nn['payment_method']=="1"){ echo '<span><i>/</i>'.translate('monthly').'</span>'; }elseif($nn['payment_method']=="0"){ echo '<span><i>/</i>'.translate('monthly').'</span>'; } ?></div>
                                     </div>
                                     <div class="react-icon">
                                         <ul>
@@ -95,7 +94,7 @@ $keyw  = settings('seo_keywords');
                                     <div class="verified-area">
                                         <h3 class="item-title"><a href="single-listing1.html">Ofis satilir</a></h3>
                                     </div>
-                                    <div class="location-area"><i class="flaticon-maps-and-flags"></i><?= $nn['city_name'] ?>, <?= $nn['region_name'] ?></div>
+                                    <div class="location-area"><i class="flaticon-maps-and-flags"></i><?= $nn['city_name'] ?> <?= (!empty($nn['region_name'])) ? ',' : '' ?> <?= $nn['region_name'] ?></div>
                                     <div class="item-categoery3">
                                         <ul>
                                             <li><i class="flaticon-bed"></i><?= translate('room') ?>: <?= $nn['rooms'] ?></li>
@@ -107,21 +106,10 @@ $keyw  = settings('seo_keywords');
                             </div>
                         </div>
                         <?php } ?>
-                   
                     </div>
                 </div>
             </div>
         </section>
-
-
-
-
-
-
-
-
-
-
 
 <!-- START FOOTER -->
 <?php include_once "partials/footer.php"; ?>

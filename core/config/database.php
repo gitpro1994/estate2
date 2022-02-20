@@ -2,7 +2,10 @@
 	ob_start();
 	session_start();
 	define("ENVIRONMENT", "development");
-	(ENVIRONMENT == "production") ?	error_reporting(0) : error_reporting(1);		
+	ini_set('display_errors', 1);
+	ini_set('display_startup_errors', 1);
+	error_reporting(E_ALL);
+	// (ENVIRONMENT == "production") ?	error_reporting(0) : error_reporting(1);		
 	$now   = date("Y-m-d H:i:s");
 	$date  = date("Y-m-d");
 	$host  = 'localhost';   // Host adı

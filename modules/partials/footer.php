@@ -152,7 +152,7 @@ $(document).ready(function() {
                     icon: data['icon'],
                     title: data['message']
                 })
-              }  else if(data['status']==200){
+              }  else if(data['status']==204){
                   $("#name").val();
                   $("#email").val();
                   $("#name").attr("disabled",false);
@@ -170,7 +170,7 @@ $(document).ready(function() {
                   $("#name").attr("disabled",false);
                   $("#email").attr("disabled",false);
                   $('#check_number').prop("disabled",false);
-                  $("#estate_section").show(1000);
+                  $("#estate_section").hide(1000);
                   Toast.fire({
                     icon: data['icon'],
                     title: data['message']

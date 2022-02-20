@@ -5,6 +5,8 @@ ini_set('display_startup_errors', TRUE);
 if (isset($_GET['kind']))
 {
 	$var = clean($_GET['kind']);
+	echo $var;
+	die();
 	$select_kind = "SELECT * FROM realty_kinds WHERE seo_link='".$var."' AND status=1";
 	$run_select = mysqli_query($conn,$select_kind);
 	$bax = mysqli_fetch_array($run_select);
