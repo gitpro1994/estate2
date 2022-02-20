@@ -15,13 +15,13 @@
                         <div class="header-action-layout1">
                             <ul class="action-list">
                                  <li class="action-item-style left-right-btn">
-                                    <a href="<?= site_url() ?>sale" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                    <a href="<?= site_url() ?>items/sell" data-bs-toggle="tooltip" data-bs-placement="bottom"
                                         title="<?= translate('sale') ?>">
                                         <i class="fa fa-coins icon-round"></i>
                                     </a>
                                 </li>
                                 <li class="action-item-style left-right-btn">
-                                    <a href="<?= site_url() ?>rent" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                    <a href="<?= site_url() ?>items/rent" data-bs-toggle="tooltip" data-bs-placement="bottom"
                                         title="<?= translate('rent') ?>">
                                         <i class="fa fa-retweet icon-round"></i>
                                     </a>
