@@ -3,6 +3,8 @@
 if (isset($_GET['kind']))
 {
 	$var = clean($_GET['kind']);
+	echo $var;
+	die();
 	$select_kind = "SELECT * FROM realty_kinds WHERE seo_link='".$var."' AND status=1";
 	$run = mysqli_query($conn,$select_kind);
 	$count = mysqli_num_rows($run);

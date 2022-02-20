@@ -144,35 +144,35 @@ $keyw  = settings('seo_keywords');
 <div class="mb-3 row" id="area_div">
   <label for="area" class="col-sm-4 col-form-label"><?= translate('area') ?> <span id="square"></span><span class="dec-icon"><i class="far fa-warehouse"></i></span></label>
   <div class="col-sm-8">
-   <input  name="area" type="text" id="area" class="form-control" placeholder="<?= translate("enter_area") ?>" required>
+   <input  name="area" type="text" id="area" class="form-control" placeholder="<?= translate("enter_area") ?>">
 </div>
 </div>
 
 <div class="mb-3 row" id="space_div">
   <label for="space" class="col-sm-4 col-form-label"><?= translate('space') ?> <span>(sot)</span><span class="dec-icon"><i class="far fa-warehouse"></i></span></label>
   <div class="col-sm-8">
-   <input  name="space" type="text" id="space" class="form-control" placeholder="<?= translate("enter_space") ?>" required>
+   <input  name="space" type="text" id="space" class="form-control" placeholder="<?= translate("enter_space") ?>">
 </div>
 </div>
 
 <div class="mb-3 row" id="rooms_div">
   <label for="rooms" class="col-sm-4 col-form-label"><?= translate('rooms') ?><span class="dec-icon"><i class="far fa-warehouse"></i></span></label>
   <div class="col-sm-8">
-   <input  name="rooms" type="text" id="rooms" class="form-control" placeholder="<?= translate("enter_room_count") ?>" required>
+   <input  name="rooms" type="text" id="rooms" class="form-control" placeholder="<?= translate("enter_room_count") ?>">
 </div>
 </div>
 
 <div class="mb-3 row" id="floor_div">
   <label for="floor_no" class="col-sm-4 col-form-label"><?= translate('floor_no') ?><span class="dec-icon"><i class="far fa-warehouse"></i></span></label>
   <div class="col-sm-8">
-   <input  name="floor_no" type="text" id="floor_no" class="form-control" placeholder="<?= translate("enter_floor_number") ?>" required>
+   <input  name="floor_no" type="text" id="floor_no" class="form-control" placeholder="<?= translate("enter_floor_number") ?>">
 </div>
 </div>
 
 <div class="mb-3 row" id="building_floor_div">
   <label for="building_floor_no" class="col-sm-4 col-form-label"><?= translate('building_floor_no') ?><span class="dec-icon"><i class="far fa-warehouse"></i></span></label>
   <div class="col-sm-8">
-   <input  name="building_floor_no" type="text" id="building_floor_no" class="form-control" placeholder="<?= translate("enter_building_floor_no") ?>" required>
+   <input  name="building_floor_no" type="text" id="building_floor_no" class="form-control" placeholder="<?= translate("enter_building_floor_no") ?>" >
 </div>
 </div>
 
@@ -206,12 +206,12 @@ $keyw  = settings('seo_keywords');
    <label for="mortgage" class="col-sm-4 col-form-label"><?= translate('mortgage') ?></label>
    <div class="col-sm-8">
       <label class="form-check-label" for="ipoteka">
-         <input class="form-radio-input" name="mortgage" required type="radio" value="0" id="mortgage">
+         <input class="form-radio-input" name="mortgage" type="radio" value="0" id="mortgage">
          <?= translate('ipoteka') ?>
       </label>
       <br>                           
       <label class="form-check-label" for="kupcha">
-         <input class="form-radio-input" name="mortgage" required type="radio" value="1" id="mortgage">
+         <input class="form-radio-input" name="mortgage" type="radio" value="1" id="mortgage">
          <?= translate('kupcha') ?>
       </label>
    </div>
@@ -227,7 +227,7 @@ $keyw  = settings('seo_keywords');
 <div class="mb-3 row" id="regions_div">
    <label for="region_id" class="col-sm-4 col-form-label"><?= translate('regions') ?></label>
    <div class="col-sm-8">
-      <select required name="region_id" id="region_id" class="form-control">
+      <select name="region_id" id="region_id" class="form-control">
          <option value=""><?= translate('please_select_one_item') ?></option>
          <?php 
          $rk  = "SELECT * FROM regions WHERE status=1";
@@ -245,7 +245,7 @@ $keyw  = settings('seo_keywords');
 <div class="mb-3 row" id="hashtags_div">
    <label for="hashtags" class="col-sm-4 col-form-label"><?= translate('hashtags') ?></label>
    <div class="col-sm-8">
-      <select required name="hashtag_id" id="hashtag_id" class="form-control">
+      <select  name="hashtag_id" id="hashtag_id" class="form-control">
          <option value=""><?= translate('please_select_one_item') ?></option>
       </select>
    </div>
@@ -254,7 +254,7 @@ $keyw  = settings('seo_keywords');
 <div class="mb-3 row" id="settlements_div">
    <label for="settlements" class="col-sm-4 col-form-label"><?= translate('settlements') ?></label>
    <div class="col-sm-8">
-      <select required name="settlement_id" id="settlement_id" class="form-control">
+      <select name="settlement_id" id="settlement_id" class="form-control">
          <option value=""><?= translate('please_select_one_item') ?></option>
       </select>
    </div>
@@ -303,50 +303,7 @@ $keyw  = settings('seo_keywords');
 <?php include_once "partials/footer.php"; ?>
 <!-- END  -->
 <script type="text/javascript">
- $('#add_new').click(function (e) {
-   $('#add_new').prop("disabled","true");
-   loadphoto();
-   e.preventDefault();
-
-   var form = $("#add_new_listing");
-   $.ajax
-   ({
-     type: "POST",
-     url: "core/ajax/add_listing.php",
-     data: form.serialize(),
-     dataType: "json",
-     success: function (data) {
-        if(data.status == 200)
-        {
-          $('.loader').hide();
-          $.toast({
-            heading: 'Uğurlu!',
-            text: data.message,
-            showHideTransition: 'slide',
-            icon: 'success',
-            loaderBg: '#fff',
-            position: 'top-right'
-         })
-       }
-       else if(data.status == 204)
-       {
-        $('.loader').hide();
-        $.toast({
-          heading: data.title,
-          text: data.message,
-          showHideTransition: 'slide',
-          icon: 'error',
-          loaderBg: '#fff',
-          position: 'top-right'
-       })
-     }
-  }
-});
-});
-
-
-
-
+ 
  $('.upload').click(function(){
   var n = $('.img-box').length;
   if(n<21){
@@ -378,11 +335,18 @@ $keyw  = settings('seo_keywords');
       }
       loadphoto();
    }
-   else
+   else if(n>=5)
    {
       Toast.fire({
        icon: 'warning',
        title: 'Maksimum şəkil limitini doldurdunuz.'
+    })
+   }
+   else
+   {
+      Toast.fire({
+       icon: 'warning',
+       title: 'Zəhmət olmasa şəkil seçin.'
     })
    }   
 
@@ -772,7 +736,57 @@ error: function( jqXHR, textStatus, errorThrown ){
 
   });
 
+   $('#add_new').click(function (e) {
+   
+   var is_empty = false;
+   $('[required]').each( function(idx, elem) {
+       is_empty = is_empty || ($(elem).val() == '');
+   });
+   if ( ! is_empty) {
+      $('#add_new').prop("disabled","true");
+      loadphoto();
+      e.preventDefault();
 
+      var form = $("#add_new_listing");
+   $.ajax
+   ({
+     type: "POST",
+     url: "core/ajax/add_listing.php",
+     data: form.serialize(),
+     dataType: "json",
+     success: function (data) {
+        if(data.status == 200)
+        {
+          $('.loader').hide();
+          $.toast({
+            heading: 'Uğurlu!',
+            text: data.message,
+            showHideTransition: 'slide',
+            icon: 'success',
+            loaderBg: '#fff',
+            position: 'top-right'
+         })
+       }
+       else if(data.status == 204)
+       {
+        $('.loader').hide();
+        $.toast({
+          heading: data.title,
+          text: data.message,
+          showHideTransition: 'slide',
+          icon: 'error',
+          loaderBg: '#fff',
+          position: 'top-right'
+       })
+     }
+  }
+});
+}
+else
+{
+   console.log("BOSDUR");
+}
+});
 
    
    
