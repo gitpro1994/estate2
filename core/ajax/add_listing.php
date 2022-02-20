@@ -46,8 +46,6 @@ if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && !empty($_SERVER['HTTP_X_REQUESTED
 	    	$insert_user = mysqli_query($conn,"INSERT INTO ads_users (name,email,phone_number,user_type,avatar,username,password,status)
 	    	VALUES ('".$name."','".$email."','".$phone_number."','".$user_kind."','".$avatar."','".$username."','".$hash."','".$status."') ");
 	    	$user_id = mysqli_insert_id($conn);
-
-				// dd($user_id);
 	    	if($insert_user)
 	    	{
 	    		$sql = "INSERT INTO ads (
