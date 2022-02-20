@@ -5,15 +5,22 @@ ini_set('display_startup_errors', TRUE);
 if (isset($_GET['kind']))
 {
 	$var = clean($_GET['kind']);
-	echo $var;
-	die();
 	$select_kind = "SELECT * FROM realty_kinds WHERE seo_link='".$var."' AND status=1";
 	$run_select = mysqli_query($conn,$select_kind);
 	$bax = mysqli_fetch_array($run_select);
 	$count = mysqli_num_rows($run_select);
+	$kind_adi = ($count!=0) ? $bax['seo_link'] : 'all';
 	if ($count != 0 AND $count == 1) 
 	{
-		$sel = "SELECT * FROM ads AS a INNER JOIN cities AS c ON a.city_id=c.id INNER JOIN realty_kinds AS rk ON a.kind_id=rk.id INNER JOIN realty_types AS rt ON a.type_id=rt.id WHERE a.kind_id='".$bax['id']."' ORDER BY a.id DESC LIMIT 100";
+		$rowperpage = 5;
+
+		// counting total number of ADS
+		$allcount_query = "SELECT count(*) as allcount FROM ads WHERE kind_id='".$bax['id']."' AND status=1";
+		$allcount_result = mysqli_query($conn,$allcount_query);
+		$allcount_fetch = mysqli_fetch_array($allcount_result);
+		$allcount = $allcount_fetch['allcount'];
+
+		$sel = "SELECT * FROM ads AS a INNER JOIN cities AS c ON a.city_id=c.id INNER JOIN realty_kinds AS rk ON a.kind_id=rk.id INNER JOIN realty_types AS rt ON a.type_id=rt.id WHERE a.kind_id='".$bax['id']."' ORDER BY a.id DESC LIMIT 0,".$rowperpage."";
 		$run = mysqli_query($conn,$sel);
 		$run1 = mysqli_query($conn,$sel);
 		$count_r = mysqli_num_rows($run);
@@ -65,6 +72,7 @@ $keyw  = settings('seo_keywords');
 					<h3 class="widget-subtitle"><?= translate('advanced_search') ?></h3>
 					<form action="https://radiustheme.com/demo/html/homlisti/index.html" class="map-forms map-form-style-2">
 						<input type="text" class="form-control" placeholder="What are you looking for?">
+						<input type="hidden" name="kind_adi" id="kind_adi" value="<?= $kind_adi ?>">
 						<div class="row">
 							<div class="col-lg-12 pl-15 mb-0">
 								<div class="rld-single-select">
@@ -175,7 +183,7 @@ $keyw  = settings('seo_keywords');
 						<div class="col-lg-12 col-md-12">
 							<div class="item-shorting-box">
 								<div class="shorting-title">
-									<h4 class="item-title"><?= $count_r ?> <?php translate('Search_Results_Found') ?></h4>
+									<h4 class="item-title"><?= $allcount ?> <?= translate('search_results_found') ?></h4>
 								</div>
 								<div class="item-shorting-box-2">
 									<div class="by-shorting">
@@ -185,14 +193,14 @@ $keyw  = settings('seo_keywords');
 											<option value="2"><?= translate('cheap_firstly') ?></option>
 											<option value="3"><?= translate('expensive_firstly') ?></option>
 										</select>
-									</div>
+									</div>	
 									<div class="grid-button">
 										<ul class="nav nav-tabs" role="tablist">
 											<li class="nav-item">
-												<a class="nav-link active" data-bs-toggle="tab" href="#mylisting"><i class="fas fa-th"></i></a>
+												<a class="listTab nav-link active" data-bs-toggle="tab" data-id="1" href="#mylisting"><i class="fas fa-th"></i></a>
 											</li>
 											<li class="nav-item">
-												<a class="nav-link" data-bs-toggle="tab" href="#reviews"><i class="fas fa-list-ul"></i></a>
+												<a class="listTab nav-link" data-bs-toggle="tab" data-id="2" href="#reviews"><i class="fas fa-list-ul"></i></a>
 											</li>
 										</ul>
 									</div>
@@ -205,7 +213,7 @@ $keyw  = settings('seo_keywords');
 							<div class="tab-pane fade show active" id="mylisting" role="tabpanel">
 								<div class="row">
 									<?php while($nn = mysqli_fetch_array($run)) { ?>
-										<div class="col-lg-6 col-md-6">
+										<div class="col-lg-6 col-md-6 items">
 											<div class="property-box2 wow animated fadeInUp" data-wow-delay=".3s">
 												<div class="item-img">
 													<a href="single-listing1.html"><img src="<?= site_url() ?>/assets/img/blog/blog5.jpg" alt="blog" width="510" height="340"></a>
@@ -213,24 +221,38 @@ $keyw  = settings('seo_keywords');
 														<div class="item-category">For Rent</div>
 													</div>
 													<div class="rent-price">
-														<div class="item-price">$15,000<span><i>/</i>mo</span></div>
-													</div>
+			                                        <div class="item-price">₼ <?= $nn['price'] ?> <?php if($nn['payment_method']=="1"){ echo '<span><i>/</i>'.translate('monthly').'</span>'; }elseif($nn['payment_method']=="0"){ echo '<span><i>/</i>'.translate('monthly').'</span>'; } ?></div>
+			                                    </div>
 													<div class="react-icon">
-														<ul>
-															<li>
-																<a href="favourite.html" data-bs-toggle="tooltip" data-bs-placement="top"
-																title="Favourites">
-																<i class="flaticon-heart"></i>
-															</a>
-														</li>
-														<li>
-															<a href="compare.html" data-bs-toggle="tooltip" data-bs-placement="top"
-															title="Compare">
-															<i class="flaticon-left-and-right-arrows"></i>
-														</a>
-													</li>
-												</ul>
-											</div>
+				                                        <ul>
+				                                            <li>
+				                                                <a href="favourite.html" data-bs-toggle="tooltip" data-bs-placement="top"
+				                                                    title="<?= translate('favourite') ?>">
+				                                                    <i class="flaticon-heart"></i>
+				                                                </a>
+				                                            </li>
+				                                           
+				                                           <?php if($nn['kind_id']==1 AND $nn['mortgage']!=NULL){ ?>
+				                                            <?php if ($nn['mortgage']==0) { ?>
+				                                                <li>
+				                                                    <a href="#" data-bs-toggle="tooltip" data-bs-placement="top"
+				                                                        title="<?= translate('mortgage') ?>">
+				                                                        <i class="fa fa-percent"></i>
+				                                                    </a>
+				                                                </li>
+				                                           <?php }elseif ($nn['mortgage']==1) { ?>
+				                                                <li>
+				                                                    <a href="#" data-bs-toggle="tooltip" data-bs-placement="top"
+				                                                        title="<?= translate('chixarish') ?>">
+				                                                        <i class="fa fa-file"></i>
+				                                                    </a>
+				                                                </li>
+				                                            <?php }else{ ?>
+
+				                                            <?php } ?>
+				                                            <?php } ?>
+				                                        </ul>
+				                                    </div>
 										</div>
 										<div class="item-category10"><a href="single-listing1.html">Appartment</a></div>
 										<div class="item-content">
@@ -249,6 +271,9 @@ $keyw  = settings('seo_keywords');
 									</div>
 								</div>
 							<?php } ?>
+							<input type="hidden" id="row" value="0">
+							<input type="hidden" id="design" value="horizontal">
+							<input type="hidden" id="all" value="<?php echo $allcount; ?>">
 						</div>
 
 					</div>
@@ -256,7 +281,7 @@ $keyw  = settings('seo_keywords');
 					<div class="tab-pane fade" id="reviews" role="tabpanel">
 						<div class="row">
 						<?php while($bb = mysqli_fetch_array($run1)) { ?>
-						<div class="col-lg-12">
+						<div class="col-lg-12 vertical">
 							<div class="property-box2 property-box4 wow animated fadeInUp" data-wow-delay=".6s">
 								<div class="item-img">
 									<a href="single-listing1.html"><img src="<?= site_url() ?>/assets/img/blog/blog18.jpg" alt="blog" width="250" height="200"></a>
@@ -310,3 +335,53 @@ $keyw  = settings('seo_keywords');
 <!-- START FOOTER -->
 <?php include_once "partials/footer.php"; ?>
 <!-- END FOOTER -->
+<script type="text/javascript">
+$(document).ready(function(){
+	 $(window).scroll(function(){
+	 	var position = $(window).scrollTop();
+        var bottom   = $(document).height() - $(window).height();
+		    	// console.log(position);
+        if( position != bottom )
+        {
+        	let listTab  =  $("a.active").data("id");
+        	if (listTab==1) 
+        	{
+        		$("#design").val('horizontal');
+        	}
+        	else
+        	{
+        		$("#design").val('vertical');
+        	}
+        	let design = $("#design").val();
+		         console.log(design);
+
+		    let kind_adi = $("#kind_adi").val();
+		    
+		    // console.log(design);
+		    var row = Number($('#row').val());
+		    var allcount = Number($('#all').val());
+		    var rowperpage = 3;
+		    row = row + rowperpage;
+		    if(row <= allcount)
+		    {
+		        $('#row').val(row);
+		        $.ajax({
+		            url: url+ 'core/ajax/get_items.php',
+		            type: 'post',
+		            data: {row:row,kind_adi:kind_adi,design_type:design},
+		            success: function(response)
+		            {
+		            	
+		                	$(".items:last").after(response).show().fadeIn("slow");
+		            	
+		                	$(".vertical:last").after(response).show().fadeIn("slow");
+		            	
+		            }
+		        });
+		    }
+    	}
+
+	});
+
+});
+</script>

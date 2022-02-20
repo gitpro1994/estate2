@@ -58,7 +58,7 @@
 <script src="<?= site_url()?>/assets/js/dropzone.js"></script>
 
 <script type="text/javascript">
-
+let url = $("#base_url").val();
  //##################### LOGIN #####################
 
  
@@ -206,5 +206,7 @@ $("#modal-demo").iziModal({
 /******************************/
 })
 </script>
+
+
 </body>
 </html>
