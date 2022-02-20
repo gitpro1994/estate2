@@ -78,6 +78,7 @@
 </head>
 <body class="sticky-header">
 <input type="hidden" name="base_url" id="base_url" value="<?= site_url() ?>">
+<?php  if(modul_functionalities('language')!=0){ ?>
 <?php
 if (isset($_SESSION['set_lang'])) 
 {
@@ -90,24 +91,7 @@ else
     $_SESSION['set_lang'] = $set_lang;
 }
 ?> 
-<div class="telefon"> 
-    <a href="tel:<?= contact('mobile_phone') ?>" title="Phone" alt="Phone">
-        <i class="fas fa-phone"></i>
-    </a> 
-    <span class="tooltiptext">Phone</span> 
-</div>
-<div class="whatsapp"> 
-    <a href="https://api.whatsapp.com/send?phone=<?= contact('mobile_phone') ?>" target="_blank" title="WhatsApp" alt="WhatsApp">
-        <i class="fab fa-whatsapp"></i>
-    </a> 
-    <span class="tooltiptext">WhatsApp</span> 
-</div>
-<div class="instagram"> 
-    <a href="<?= social('instagram') ?>" target="_blank" title="Instagram" alt="Instagram">
-        <i class="fab fa-instagram"></i>
-    </a> 
-    <span class="tooltiptext">İnstagram</span> 
-</div>
+
 <div class="diller">
     <a data-toggle="modal" data-target="#lang" class="trigger-link" title="<?= translate('select_language') ?>" alt="<?= translate('select_language') ?>">
       <i class="flag-icon rounded-25 flag-icon-<?= (isset($_SESSION['lang_flag'])) ? $_SESSION['lang_flag'] : strtolower(select_flag($_SESSION['set_lang'])) ?>"></i>
@@ -131,6 +115,27 @@ else
         <div class="clear"></div>
     </div>
 </div>
+<?php } ?>
+<?php  if(modul_functionalities('left_icons')!=0){ ?>
+<div class="telefon"> 
+    <a href="tel:<?= contact('mobile_phone') ?>" title="Phone" alt="Phone">
+        <i class="fas fa-phone"></i>
+    </a> 
+    <span class="tooltiptext">Phone</span> 
+</div>
+<div class="whatsapp"> 
+    <a href="https://api.whatsapp.com/send?phone=<?= contact('mobile_phone') ?>" target="_blank" title="WhatsApp" alt="WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a> 
+    <span class="tooltiptext">WhatsApp</span> 
+</div>
+<div class="instagram"> 
+    <a href="<?= social('instagram') ?>" target="_blank" title="Instagram" alt="Instagram">
+        <i class="fab fa-instagram"></i>
+    </a> 
+    <span class="tooltiptext">İnstagram</span> 
+</div>
+<?php } ?>
 <?php 
     if(modul_functionalities('loader')!=0){
  ?>
