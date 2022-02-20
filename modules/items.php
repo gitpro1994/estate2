@@ -183,7 +183,7 @@ $keyw  = settings('seo_keywords');
                                                     <option value="2">High Price</option>
                                                     <option value="3">Medium Price</option>
                                                     <option value="3">Low Price</option>
-                                                </select><div class="nice-select select single-select mr-0" tabindex="0"><span class="current">Default</span><ul class="list"><li data-value="1" class="option selected">Default</li><li data-value="2" class="option">High Price</li><li data-value="3" class="option">Medium Price</li><li data-value="3" class="option">Low Price</li></ul></div>
+                                                </select><div class="select single-select mr-0" tabindex="0"><span class="current">Default</span><ul class="list"><li data-value="1" class="option selected">Default</li><li data-value="2" class="option">High Price</li><li data-value="3" class="option">Medium Price</li><li data-value="3" class="option">Low Price</li></ul></div>
                                             </div>
                                             <div class="grid-button">
                                                 <ul class="nav nav-tabs" role="tablist">
