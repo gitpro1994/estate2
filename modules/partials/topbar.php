@@ -14,18 +14,19 @@
                     <div class="col-xl-10 col-lg-10 d-flex justify-content-end">
                         <div class="header-action-layout1">
                             <ul class="action-list">
-                                 <li class="action-item-style left-right-btn">
-                                    <a href="<?= site_url() ?>items/sell" data-bs-toggle="tooltip" data-bs-placement="bottom"
-                                        title="<?= translate('sale') ?>">
-                                        <i class="fa fa-coins icon-round"></i>
-                                    </a>
-                                </li>
-                                <li class="action-item-style left-right-btn">
-                                    <a href="<?= site_url() ?>items/rent" data-bs-toggle="tooltip" data-bs-placement="bottom"
-                                        title="<?= translate('rent') ?>">
-                                        <i class="fa fa-retweet icon-round"></i>
-                                    </a>
-                                </li>
+                                <?php 
+                                        $rk  = "SELECT * FROM realty_kinds WHERE status=1";
+                                        $rkr = mysqli_query($conn,$rk);
+                                        while ($bax = mysqli_fetch_array($rkr)) {
+                                            ?>
+                                            <li class="action-item-style left-right-btn">
+                                                <a href="<?= site_url() ?>items/<?= $bax['seo_link'] ?>" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                                    title="<?= translate($bax['kind_name']) ?>">
+                                                    <i class="<?= $bax['icons'] ?>"></i>
+                                                </a>
+                                            </li>
+                                <?php } ?>
+                                
                                 <li class="action-item-style left-right-btn">
                                     <a href="<?= site_url() ?>contact" data-bs-toggle="tooltip" data-bs-placement="bottom"
                                         title="<?= translate('contac') ?>">
