@@ -5,8 +5,6 @@ ini_set('display_startup_errors', TRUE);
 if (isset($_GET['kind']))
 {
 	$var = clean($_GET['kind']);
-	echo $var;
-	die();
 	$select_kind = "SELECT * FROM realty_kinds WHERE seo_link='".$var."' AND status=1";
 	$run_select = mysqli_query($conn,$select_kind);
 	$bax = mysqli_fetch_array($run_select);
@@ -175,7 +173,7 @@ $keyw  = settings('seo_keywords');
 						<div class="col-lg-12 col-md-12">
 							<div class="item-shorting-box">
 								<div class="shorting-title">
-									<h4 class="item-title"><?= $count_r ?> <?php translate('Search_Results_Found') ?></h4>
+									<h4 class="item-title"><?= $count_r ?> <?= translate('search_results_found') ?></h4>
 								</div>
 								<div class="item-shorting-box-2">
 									<div class="by-shorting">
@@ -189,10 +187,10 @@ $keyw  = settings('seo_keywords');
 									<div class="grid-button">
 										<ul class="nav nav-tabs" role="tablist">
 											<li class="nav-item">
-												<a class="nav-link active" data-bs-toggle="tab" href="#mylisting"><i class="fas fa-th"></i></a>
+												<a class="listTab nav-link active" data-bs-toggle="tab" data-id="1" href="#mylisting"><i class="fas fa-th"></i></a>
 											</li>
 											<li class="nav-item">
-												<a class="nav-link" data-bs-toggle="tab" href="#reviews"><i class="fas fa-list-ul"></i></a>
+												<a class="listTab nav-link" data-bs-toggle="tab" data-id="2" href="#reviews"><i class="fas fa-list-ul"></i></a>
 											</li>
 										</ul>
 									</div>
@@ -299,9 +297,9 @@ $keyw  = settings('seo_keywords');
 					<?php } ?>
 					</div>
 				</div>
-</div>
-</div>
-</div>
+			</div>
+		</div>
+	</div>
 </div>
 </div>
 </div>
