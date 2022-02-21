@@ -70,7 +70,7 @@ $keyw  = settings('seo_keywords');
 			<div class="col-lg-4 widget-break-lg sidebar-widget">
 				<div class="widget widget-advanced-search">
 					<h3 class="widget-subtitle"><?= translate('advanced_search') ?></h3>
-					<form action="https://radiustheme.com/demo/html/homlisti/index.html" class="map-forms map-form-style-2">
+					<form action="#" class="map-forms map-form-style-2">
 						<input type="text" class="form-control" placeholder="What are you looking for?">
 						<input type="hidden" name="kind_adi" id="kind_adi" value="<?= $kind_adi ?>">
 						<div class="row">
@@ -124,7 +124,7 @@ $keyw  = settings('seo_keywords');
 					<div class="banner-search-wrap banner-search-wrap-2">
 						<div class="rld-main-search rld-main-search3">
 							<div class="filter-button">
-								<a href="single-listing1.html" class="filter-btn1 search-btn"><?= translate('search') ?><i class="fas fa-search"></i></a>
+								<a href="#" class="filter-btn1 search-btn"><?= translate('search') ?><i class="fas fa-search"></i></a>
 							</div>
 						</div>
 						<!--/ End Search Form -->
@@ -279,7 +279,6 @@ $keyw  = settings('seo_keywords');
 
 					</div>
 
-<<<<<<< HEAD
 					<div class="tab-pane fade" id="reviews" role="tabpanel">
 						<div class="row">
 						<?php while($bb = mysqli_fetch_array($run1)) { ?>
@@ -329,11 +328,10 @@ $keyw  = settings('seo_keywords');
 			</div>
 		</div>
 	</div>
-=======
+
 </div>
 </div>
 </div>
->>>>>>> 213511ada83bf21d36f4b1c6692af6d6ff0bf389
 </div>
 </div>
 </div>

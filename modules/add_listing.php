@@ -26,7 +26,7 @@ $keyw  = settings('seo_keywords');
       <div class="row">
          <div class="col-lg-7 col-sm-12 col-12">
             <div class="page-content-block">
-               <form id="add_new_listing" class="form-horizontal" method="POST" enctype="multipart/form-data">
+               <form id="add_new_listing" class="forms-sample" method="POST" enctype="multipart/form-data">
                   <div class="col-md-12 rtcl-login-form-wrap" id="contact_section">
                      <h4><?= translate('add_listing') ?></h4>
                      <hr>
@@ -54,10 +54,10 @@ $keyw  = settings('seo_keywords');
              </div>
           </div>
 
-          <div class="mb-3 row">
+          <div class="form-group mb-3 row">
            <label for="type" class="col-sm-4 col-form-label">Əlaqədar şəxs</label>
            <div class="col-sm-8">
-              <select id="type" name="user_kind" class="form-control" required>
+              <select class="js-example-basic-single" id="type" name="user_kind" style="width:100%"  required>
                  <option value=""><?= translate('please_select_one_item') ?></option>
                  <option value="0"><?= translate('share_my_listing') ?></option>
                  <option value="1"><?= translate('a_rielitor') ?></option>
@@ -78,7 +78,7 @@ $keyw  = settings('seo_keywords');
       <div class="mb-3 row">
         <label for="kind_id" class="col-sm-4 col-form-label"><?= translate('realty_kinds') ?></label>
         <div class="col-sm-8">
-         <select required name="kind_id" id="kind_id" class="form-control">
+         <select required name="kind_id" id="kind_id"  class="js-example-basic-single">
             <option value=""><?= translate('please_select_one_item') ?></option>
             <?php 
             $rk  = "SELECT * FROM realty_kinds WHERE status=1";
@@ -96,7 +96,7 @@ $keyw  = settings('seo_keywords');
 <div class="mb-3 row">
   <label for="type_id" class="col-sm-4 col-form-label"><?= translate('realty_types') ?></label>
   <div class="col-sm-8">
-   <select required name="type_id" id="type_id" class="form-control">
+   <select required name="type_id" id="type_id"  class="js-example-basic-single" >
       <option value=""><?= translate('please_select_one_item') ?></option>
       <?php 
       $rk  = "SELECT * FROM realty_types WHERE status=1";
@@ -114,7 +114,7 @@ $keyw  = settings('seo_keywords');
 <div class="mb-3 row" id="cities_div">
    <label for="city_id" class="col-sm-4 col-form-label"><?= translate('cities') ?></label>
    <div class="col-sm-8">
-      <select required name="city_id" id="city_id" class="form-control">
+      <select required name="city_id" id="city_id"  class="js-example-basic-single">
          <option value=""><?= translate('please_select_one_item') ?></option>
          <?php 
          $rk  = "SELECT * FROM cities WHERE status=1";
@@ -132,7 +132,7 @@ $keyw  = settings('seo_keywords');
 <div class="mb-3 row" id="office_kind_div">
    <label for="office_kind" class="col-sm-4 col-form-label"><?= translate('office_kind') ?></label>
    <div class="col-sm-8">
-      <select required name="office_kind" id="office_kind" class="form-control">
+      <select required name="office_kind" id="office_kind" class="js-example-basic-single" >
          <option value=""><?= translate('please_select_one_item') ?></option>
          <option value="0">Biznes mərkəzi</option>
          <option value="1">Ev / Mənzil</option>
