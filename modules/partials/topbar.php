@@ -1,8 +1,4 @@
 <?php 
-
-$user_data = mysqli_query($conn,"SELECT * FROM ads_users WHERE email='".$_SESSION['mail']."' ");
-$bax       = mysqli_fetch_array($user_data);
-
 // $pass = password_generate();
 // $hash = hash_password($pass);
 // echo "<pre>";
@@ -11,10 +7,7 @@ $bax       = mysqli_fetch_array($user_data);
 // echo $hash;
 // echo "</pre>";
 // die();
-
 ?>
-
-
 <div class="wrapper" id="wrapper">
     <header class="rt-header sticky-on">
         <div id="sticky-placeholder"></div>

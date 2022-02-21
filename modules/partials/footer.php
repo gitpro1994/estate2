@@ -58,6 +58,19 @@
 <script src="<?= site_url()?>/assets/js/dropzone.js"></script>
 
 <script type="text/javascript">
+
+    const Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+     toast.addEventListener('mouseenter', Swal.stopTimer)
+     toast.addEventListener('mouseleave', Swal.resumeTimer)
+  }
+})
+   
 let url = $("#base_url").val();
  //##################### LOGIN #####################
 
@@ -88,7 +101,7 @@ let url = $("#base_url").val();
                         //here we are wrapping errors into a paragraph tag.
                         $.each(res['msg'], function(index, message) {
                             Toast.fire({
-                               icon: 'warning',
+                               icon: res['icon'],
                                title: res['message'],
                             });
                         });
