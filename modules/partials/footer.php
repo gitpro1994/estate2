@@ -56,9 +56,14 @@
 <script src="<?= site_url() ?>assets/js/masked_input.js"></script>
 <script src="<?= site_url()?>assets/js/iziModal.min.js"></script>
 <script src="<?= site_url()?>/assets/js/dropzone.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 <script type="text/javascript">
-
+    $(document).ready(function() {
+        $('.js-example-basic-single').select2({
+            placeholder: '<?= translate('select_an_option') ?>'
+        });
+    });
     const Toast = Swal.mixin({
     toast: true,
     position: 'top-end',
@@ -75,43 +80,41 @@ let url = $("#base_url").val();
  //##################### LOGIN #####################
 
  
-  $(document).ready(function() {
-            $('#login').click(function(e) {
+ $(document).ready(function() {
+            $("#login").click(function(e) {
                 e.preventDefault();
                 let self = $(this);
-                e.preventDefault(); // prevent default submit behavior
-                self.prop('disabled', true);
+                e.preventDefault(); 
+                self.prop("disabled", true);
                 let url = "<?= site_url() ?>";
-                var data = $('#rtcl-login-form').serialize(); // get form data
-                // sending ajax request to login.php file, it will process login request and give response.
-
+                var data = $("#login-form").serialize();
                 $.ajax({
                     url: url + '/core/ajax/login.php',
                     type: "POST",
                     data: data,
                 }).done(function(res) {
                     res = JSON.parse(res);
-                    // if login successful redirect user to secure.php page.
-                    if (res['status']==200) 
+                    console.log(res);
+                    if (res.status==200) 
                     {
-                        location.href = "dashboard"; // redirect user to secure.php location/page.
-                    } else {
-                        
-                        // if there is any errors convert array of errors into html string, 
-                        //here we are wrapping errors into a paragraph tag.
-                        $.each(res['msg'], function(index, message) {
-                            Toast.fire({
-                               icon: res['icon'],
-                               title: res['message'],
-                            });
-                        });
-                        
-                        self.prop('disabled', false);
+                        location.href = "dashboard"; 
+                    } 
+                    else 
+                    {
+                        Toast.fire({
+                           icon: res.icon,
+                           title: res.message
+                        });                        
+                        self.prop("disabled", false);
                     }
+
                 }).fail(function() {
-                    alert("error");
+                    Toast.fire({
+                           icon: "error",
+                           title: "Undefined Error"
+                        }); 
                 }).always(function() {
-                    self.prop('disabled', false);
+                    self.prop("disabled", false);
                 });
             });
          });

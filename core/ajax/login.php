@@ -9,25 +9,30 @@ if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && !empty($_SERVER['HTTP_X_REQUESTED
 
   if (empty($_POST['username']) || empty($_POST['password'])) 
   {
-    $error[] = "İstifadəçi adı vəya şifrə daxil edilməyib";
-  }
-
-  if (count($error) > 0) 
-  {
-    $resp['msg']    = $error;
-    $resp['status'] = false;
+    $resp['message']    = translate("username_or_password_is_empty");
+    $resp['status']     = 404;
+    $resp['icon']       = 'error';
     echo json_encode($resp);
     exit;
   }
+
+  // if (count($error) > 0) 
+  // {
+  //   $resp['message']    = $error;
+  //   $resp['status']     = 404;
+  //   $resp['icon']       = 'error';
+  //   echo json_encode($resp);
+  //   exit;
+  // }
 
   $username       = clean($_POST['username']); 
   $password       = clean($_POST['password']); 
   $pass           = hash_password($password);
 
 
-  $statement  = "SELECT * FROM ads_users WHERE (username= '".$username."' OR email='".$username."') AND password = '".$pass."'";
+    $statement  = "SELECT * FROM ads_users WHERE (username= '".$username."' OR email='".$username."') AND password = '".$pass."'";
     $execute    = mysqli_query($conn,$statement);
-    $cnt    = mysqli_num_rows($execute);
+    $cnt        = mysqli_num_rows($execute);
     $bax        = mysqli_fetch_array($execute);
 
     if ($cnt === 1) 
@@ -45,8 +50,9 @@ if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && !empty($_SERVER['HTTP_X_REQUESTED
       set_userdata($sessionData);
       $data = [ 
         'status'     => 200,
-        'title'      => translate('success'),
-        'message'    => translate('registration_success'), 
+        'icon'       => 'success',
+        'title'      => translate("success"),
+        'message'    => translate("registration_success"), 
         'sorguNtc'   => true
       ];
       echo json_encode($data);
@@ -57,8 +63,9 @@ if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && !empty($_SERVER['HTTP_X_REQUESTED
     {
       $data = [ 
         'status'     => 404,
-        'title'      => translate('error'),
-        'message'    => translate('user_not_found'), 
+        'icon'       => 'error',
+        'title'      => translate("error"),
+        'message'    => translate("user_not_found"), 
         'sorguNtc'   => true
       ];
       echo json_encode($data);
@@ -68,8 +75,9 @@ if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && !empty($_SERVER['HTTP_X_REQUESTED
     {
       $data = [ 
         'status'     => 204,
-        'title'      => translate('error'),
-        'message'    => translate('unexpected_error'), 
+        'icon'       => 'error',
+        'title'      => translate("error"),
+        'message'    => translate("unexpected_error"), 
         'sorguNtc'   => true
       ];
       echo json_encode($data);

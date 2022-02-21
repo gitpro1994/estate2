@@ -5,7 +5,6 @@ session_start();
       header("location: home");
    }
 ?>
-
 <?php 
 // dd(hash("sha256", "Cavid123"));
 $title = settings('site_title');
@@ -54,7 +53,7 @@ $keyw  = settings('seo_keywords');
                                         <ul class="item-rating">
                                             <li class="rating-count">
                                             	<?php 
-                                            		$sel 			= "SELECT * FROM ads WHERE user_id='".$_SESSION['id']."'";
+                                            		$sel 			= "SELECT * FROM ads AS a INNER JOIN ads_users AS au ON a.user_id='".$_SESSION['id']."' INNER JOIN cities AS c ON a.city_id=c.id LEFT JOIN regions AS r ON a.regions=r.id INNER JOIN realty_kinds AS rk ON a.kind_id=rk.id INNER JOIN realty_types AS rt ON a.type_id=rt.id GROUP BY a.id ORDER BY a.id";
                                             		$run 			= mysqli_query($conn,$sel);
                                             		$count_listing	= mysqli_num_rows($run);
                                             		echo 'Bütün elanlarım: '. $count_listing; 
