@@ -144,7 +144,7 @@ $keyw  = settings('seo_keywords');
 <div class="mb-3 row" id="area_div">
   <label for="area" class="col-sm-4 col-form-label"><?= translate('area') ?> <span id="square"></span><span class="dec-icon"><i class="far fa-warehouse"></i></span></label>
   <div class="col-sm-8">
-   <input  name="area" type="text" id="area" class="form-control" placeholder="<?= translate("enter_area") ?>">
+   <input  name="area" required type="text" id="area" class="form-control" placeholder="<?= translate("enter_area") ?>">
 </div>
 </div>
 

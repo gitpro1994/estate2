@@ -21,7 +21,6 @@ $keyw  = settings('seo_keywords');
             </nav>
         </div>
     </div>
-
     <main class="site-main content-area">
         <div class="container">
             <div class="row">
@@ -35,16 +34,16 @@ $keyw  = settings('seo_keywords');
                                         <?= translate('phone_number_or_email') ?>
                                         <strong class="rtcl-required">*</strong>
                                     </label>
-                                    <input type="text" name="username" autocomplete="username" id="user-login" class="form-control" required/>
+                                    <input type="text" name="username" autocomplete="username" id="username" class="form-control" required/>
                                 </div>
                                 <div class="form-group">
                                     <label for="rtcl-user-pass" class="control-label">
                                         <?= translate('password'); ?> <strong class="rtcl-required">*</strong>
                                     </label>
-                                    <input type="password" name="password" id="user-pass" autocomplete="current-password" class="form-control" required/>
+                                    <input type="password" name="password" id="password" autocomplete="current-password" class="form-control" required/>
                                 </div>
                                 <div class="form-group d-flex align-items-center">
-                                <button type="submit" name="rtcl-login" class="btn btn-primary" value="login">
+                                <button type="submit" name="rtcl-login" id="login" class="btn btn-primary" value="login">
                                     <?= translate('login') ?>
                                 </button>
                                 <div class="form-check">

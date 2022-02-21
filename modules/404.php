@@ -10,37 +10,43 @@ $keyw  = settings('seo_keywords');
 <!-- START TOPBAR -->
 <?php include_once "partials/topbar.php"; ?>
 <!-- END TOPBAR -->
- <div id="wrapper">
-<!-- content --> 
-<div class="content">
-<!-- content -->	
-<div class="content">
-    <!--  section  -->
-    <section class="parallax-section color-bg" data-scrollax-parent="true">
-        <div class="container">
-            <div class="error-wrap">
-                <div class="hero-text-big">
-                    <h6>404</h6>
-                </div>
-                <p><?= translate('page_you_were_looking_for_could_not_be_found') ?>.</p>
-                <div class="clearfix"></div>
-                <form action="#">
-                    <input name="se" id="se" type="text" class="search" placeholder="Search..">
-                    <button class="search-submit" id="submit_btn"><i class="fal fa-search"></i> </button>
-                </form>
-                <div class="clearfix"></div>
-                <p>Or</p>
-                <a href="<?= site_url() ?>" class="btn color-bg"><?= translate('back_to_home_page') ?></a>
-            </div>
-        </div>
-        <div class="pwh_bg fw-pwh">
-            <div class="mrb_pin vis_mr mrb_pin3 "></div>
-            <div class="mrb_pin vis_mr mrb_pin4 "></div>
-        </div>
-    </section>
-    <!--  section  end-->
+
+
+<div class="breadcrumb-wrap">
+    <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="<?= site_url() ?>"><?= translate('home') ?></a></li>
+                <li class="breadcrumb-item active" aria-current="page"><?= translate('404_page') ?></li>
+            </ol>
+        </nav>
+    </div>
 </div>
-<!-- content end -->
+
+<section class="error-wrap">
+   <div class="container">
+      <div class="row">
+         <div class="col-lg-12">
+            <div class="error-box">
+               <div class="shape-img1">
+                  <img src="<?= site_url() ?>assets/uploads/backgrounds/error/<?= back_photo('error') ?>" alt="shape" width="709" height="285">
+               </div>
+               <h2 class="error-title"><?= translate('sorry!_this_page_is_not_available') ?></h2>
+               <div class="error-button">
+                  <a href="<?= site_url() ?>" class="item-btn"><?= translate('go_back_to_home_page') ?></a>
+               </div>
+            </div>
+            <div class="error-shape-list">
+               <ul>
+                  <li></li>
+                  <li></li>
+                  <li></li>
+               </ul>
+            </div>
+         </div>
+      </div>
+   </div>
+</section>
 
 <!-- START FOOTER -->
 <?php include_once "partials/footer.php"; ?>

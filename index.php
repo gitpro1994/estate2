@@ -2,12 +2,12 @@
 /**
  * @package      : KA Dashboard
  * @version      : v4.2
- * @developed by : Aghakarim Karimov Mahharam oghlu
+ * @developed by : Aghakarim Karimov Maharram oghlu
  * @developed by : Cavid Shixiyev Chapar oghlu
  * @support      : aghakarim.karimov@gmail.com
  * @phone        : +994998812999
  * @system       : index.php
- * @copyright    : Aghakarim Karimov Mahharam oghlu
+ * @copyright    : Aghakarim Karimov Maharram oghlu
  */
 
 define('BASEPATH', true);

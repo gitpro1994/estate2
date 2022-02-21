@@ -7,7 +7,7 @@ if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && !empty($_SERVER['HTTP_X_REQUESTED
   $error = [];
   $res   = [];
 
-  if (empty($_POST['login_email']) || empty($_POST['login_password'])) 
+  if (empty($_POST['username']) || empty($_POST['password'])) 
   {
     $error[] = "İstifadəçi adı vəya şifrə daxil edilməyib";
   }
@@ -20,12 +20,12 @@ if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && !empty($_SERVER['HTTP_X_REQUESTED
     exit;
   }
 
-  $login      = clean($_POST['login_email']); 
-  $pass       = clean($_POST['login_password']); 
-  $pass       = hash_password($pass);
+  $username       = clean($_POST['username']); 
+  $password       = clean($_POST['password']); 
+  $pass           = hash_password($password);
 
 
-  $statement  = "SELECT * FROM ads_users WHERE (username= '".$login."' OR email='".$login."') AND password = '".$pass."'";
+  $statement  = "SELECT * FROM ads_users WHERE (username= '".$username."' OR email='".$username."') AND password = '".$pass."'";
     $execute    = mysqli_query($conn,$statement);
     $cnt    = mysqli_num_rows($execute);
     $bax        = mysqli_fetch_array($execute);
@@ -52,6 +52,17 @@ if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && !empty($_SERVER['HTTP_X_REQUESTED
       echo json_encode($data);
 
       exit;
+    }
+    elseif($cnt===0)
+    {
+      $data = [ 
+        'status'     => 404,
+        'title'      => translate('error'),
+        'message'    => translate('user_not_found'), 
+        'sorguNtc'   => true
+      ];
+      echo json_encode($data);
+      exit; 
     }
     else
     {

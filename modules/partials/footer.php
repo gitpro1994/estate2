@@ -59,17 +59,30 @@
 
 <script type="text/javascript">
 
+    const Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+     toast.addEventListener('mouseenter', Swal.stopTimer)
+     toast.addEventListener('mouseleave', Swal.resumeTimer)
+  }
+})
+   
+let url = $("#base_url").val();
  //##################### LOGIN #####################
 
  
   $(document).ready(function() {
             $('#login').click(function(e) {
-               $("#error-msg").hide();
+                e.preventDefault();
                 let self = $(this);
                 e.preventDefault(); // prevent default submit behavior
                 self.prop('disabled', true);
                 let url = "<?= site_url() ?>";
-                var data = $('#login-form').serialize(); // get form data
+                var data = $('#rtcl-login-form').serialize(); // get form data
                 // sending ajax request to login.php file, it will process login request and give response.
 
                 $.ajax({
@@ -79,21 +92,21 @@
                 }).done(function(res) {
                     res = JSON.parse(res);
                     // if login successful redirect user to secure.php page.
-                    if (res['status']) 
+                    if (res['status']==200) 
                     {
                         location.href = "dashboard"; // redirect user to secure.php location/page.
                     } else {
-                        var errorMessage = '';
+                        
                         // if there is any errors convert array of errors into html string, 
                         //here we are wrapping errors into a paragraph tag.
                         $.each(res['msg'], function(index, message) {
-                            errorMessage += '<div>' + message + '</div>';
+                            Toast.fire({
+                               icon: res['icon'],
+                               title: res['message'],
+                            });
                         });
                         
-                        $("#error-msg").html(errorMessage);
-                        $("#error-msg").show();
                         self.prop('disabled', false);
-                        // location.reload(true);
                     }
                 }).fail(function() {
                     alert("error");
@@ -206,5 +219,7 @@ $("#modal-demo").iziModal({
 /******************************/
 })
 </script>
+
+
 </body>
 </html>
