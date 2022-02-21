@@ -79,8 +79,7 @@
 let url = $("#base_url").val();
  //##################### LOGIN #####################
 
- 
- $(document).ready(function() {
+  $(document).ready(function() {
             $("#login").click(function(e) {
                 e.preventDefault();
                 let self = $(this);

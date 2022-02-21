@@ -9,21 +9,19 @@ if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && !empty($_SERVER['HTTP_X_REQUESTED
 
   if (empty($_POST['username']) || empty($_POST['password'])) 
   {
-    $resp['message']    = translate("username_or_password_is_empty");
+
+    $error[] = translate("username_or_password_is_empty");
+  }
+
+  if (count($error) > 0) 
+  {
+    $resp['message']    = $error;
     $resp['status']     = 404;
     $resp['icon']       = 'error';
     echo json_encode($resp);
     exit;
   }
 
-  // if (count($error) > 0) 
-  // {
-  //   $resp['message']    = $error;
-  //   $resp['status']     = 404;
-  //   $resp['icon']       = 'error';
-  //   echo json_encode($resp);
-  //   exit;
-  // }
 
   $username       = clean($_POST['username']); 
   $password       = clean($_POST['password']); 

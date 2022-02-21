@@ -28,7 +28,7 @@ $keyw  = settings('seo_keywords');
                     <div class="page-content-block">
                         <div class="col-md-12 rtcl-login-form-wrap">
                             <h2><?= translate('login') ?></h2>
-                            <form id="rtcl-login-form" class="form-horizontal" id="login-form" method="post" >
+                            <form class="form-horizontal" id="login-form" method="post" >
                                 <div class="form-group">
                                     <label for="rtcl-user-login" class="control-label">
                                         <?= translate('phone_number_or_email') ?>
