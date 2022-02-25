@@ -57,7 +57,7 @@ $keyw  = settings('seo_keywords');
           <div class="form-group mb-3 row">
            <label for="type" class="col-sm-4 col-form-label">Əlaqədar şəxs</label>
            <div class="col-sm-8">
-              <select class="js-example-basic-single" id="type" name="user_kind" style="width:100%" >
+              <select class="js-example-basic-single form-control" id="type" name="user_kind" style="width:100%" required>
                  <option value=""><?= translate('please_select_one_item') ?></option>
                  <option value="0"><?= translate('share_my_listing') ?></option>
                  <option value="1"><?= translate('a_rielitor') ?></option>
