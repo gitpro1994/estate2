@@ -28,34 +28,52 @@ if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && !empty($_SERVER['HTTP_X_REQUESTED
   $pass           = hash_password($password);
 
 
-    $statement  = "SELECT * FROM ads_users WHERE (username= '".$username."' OR email='".$username."') AND password = '".$pass."'";
+  $statement  = "SELECT * FROM ads_users WHERE (username= '".$username."' OR email='".$username."') AND password = '".$pass."'";
     $execute    = mysqli_query($conn,$statement);
     $cnt        = mysqli_num_rows($execute);
     $bax        = mysqli_fetch_array($execute);
 
     if ($cnt === 1) 
     {
-      $sessionData = [
-        'id'                => $bax['id'],
-        'set_lang'          => settings('translation'),
-        'name'              => $bax['name'],
-        'surname'           => $bax['surname'],
-        'status'            => $bax['status'],
-        'kadi'              => $bax['username'],
-        'mail'              => $bax['email'],
-        'logged_in'         => true,
-      ];
-      set_userdata($sessionData);
-      $data = [ 
-        'status'     => 200,
-        'icon'       => 'success',
-        'title'      => translate("success"),
-        'message'    => translate("registration_success"), 
-        'sorguNtc'   => true
-      ];
-      echo json_encode($data);
+      if ($bax['status']==1) 
+      {
+        $sessionData = [
+          'id'                => $bax['id'],
+          'set_lang'          => settings('translation'),
+          'name'              => $bax['name'],
+          'surname'           => $bax['surname'],
+          'status'            => $bax['status'],
+          'kadi'              => $bax['username'],
+          'mail'              => $bax['email'],
+          'logged_in'         => true,
+        ];
+        set_userdata($sessionData);
+        $data = [ 
+          'status'     => 200,
+          'icon'       => 'success',
+          'title'      => translate("success"),
+          'message'    => translate("registration_success"), 
+          'sorguNtc'   => true
+        ];
+        echo json_encode($data);
 
-      exit;
+        exit;
+      }
+      else
+      {
+
+        $data = [ 
+          'status'     => 100,
+          'icon'       => 'warning',
+          'title'      => translate("info"),
+          'message'    => translate("Your_account_has_already_been_frozen_The_account_will_be_activated_while_it_is_included_continue?"), 
+          'sorguNtc'   => true
+        ];
+        echo json_encode($data);
+        exit;
+
+      }
+
     }
     elseif($cnt===0)
     {

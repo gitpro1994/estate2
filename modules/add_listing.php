@@ -57,7 +57,7 @@ $keyw  = settings('seo_keywords');
           <div class="form-group mb-3 row">
            <label for="type" class="col-sm-4 col-form-label">Əlaqədar şəxs</label>
            <div class="col-sm-8">
-              <select class="js-example-basic-single" id="type" name="user_kind" style="width:100%"  required>
+              <select class="js-example-basic-single" id="type" name="user_kind" style="width:100%" >
                  <option value=""><?= translate('please_select_one_item') ?></option>
                  <option value="0"><?= translate('share_my_listing') ?></option>
                  <option value="1"><?= translate('a_rielitor') ?></option>
@@ -78,7 +78,7 @@ $keyw  = settings('seo_keywords');
       <div class="mb-3 row">
         <label for="kind_id" class="col-sm-4 col-form-label"><?= translate('realty_kinds') ?></label>
         <div class="col-sm-8">
-         <select required name="kind_id" id="kind_id"  class="js-example-basic-single">
+         <select required name="kind_id" id="kind_id"  class="js-example-basic-single" style="width:100%">
             <option value=""><?= translate('please_select_one_item') ?></option>
             <?php 
             $rk  = "SELECT * FROM realty_kinds WHERE status=1";
@@ -96,7 +96,7 @@ $keyw  = settings('seo_keywords');
 <div class="mb-3 row">
   <label for="type_id" class="col-sm-4 col-form-label"><?= translate('realty_types') ?></label>
   <div class="col-sm-8">
-   <select required name="type_id" id="type_id"  class="js-example-basic-single" >
+   <select required name="type_id" id="type_id"  class="js-example-basic-single" style="width:100%">
       <option value=""><?= translate('please_select_one_item') ?></option>
       <?php 
       $rk  = "SELECT * FROM realty_types WHERE status=1";
@@ -114,7 +114,7 @@ $keyw  = settings('seo_keywords');
 <div class="mb-3 row" id="cities_div">
    <label for="city_id" class="col-sm-4 col-form-label"><?= translate('cities') ?></label>
    <div class="col-sm-8">
-      <select required name="city_id" id="city_id"  class="js-example-basic-single">
+      <select required name="city_id" id="city_id"  class="js-example-basic-single" style="width:100%">
          <option value=""><?= translate('please_select_one_item') ?></option>
          <?php 
          $rk  = "SELECT * FROM cities WHERE status=1";
@@ -132,7 +132,7 @@ $keyw  = settings('seo_keywords');
 <div class="mb-3 row" id="office_kind_div">
    <label for="office_kind" class="col-sm-4 col-form-label"><?= translate('office_kind') ?></label>
    <div class="col-sm-8">
-      <select required name="office_kind" id="office_kind" class="js-example-basic-single" >
+      <select required name="office_kind" id="office_kind" class="js-example-basic-single" style="width:100%">
          <option value=""><?= translate('please_select_one_item') ?></option>
          <option value="0">Biznes mərkəzi</option>
          <option value="1">Ev / Mənzil</option>
@@ -194,7 +194,7 @@ $keyw  = settings('seo_keywords');
 <div class="mb-3 row" id="payment_method_div">
    <label for="payment_method" class="col-sm-4 col-form-label"><?= translate('payment_method') ?></label>
    <div class="col-sm-8">
-      <select required name="payment_method" id="payment_method" class="form-control">
+      <select required name="payment_method" id="payment_method" class="js-example-basic-single" style="width:100%">
          <option value=""><?= translate('please_select_one_item') ?></option>
          <option value="0">Gündəlik</option>
          <option value="1">Aylıq</option>
@@ -227,7 +227,7 @@ $keyw  = settings('seo_keywords');
 <div class="mb-3 row" id="regions_div">
    <label for="region_id" class="col-sm-4 col-form-label"><?= translate('regions') ?></label>
    <div class="col-sm-8">
-      <select name="region_id" id="region_id" class="form-control">
+      <select name="region_id" id="region_id" class="js-example-basic-single" style="width:100%">
          <option value=""><?= translate('please_select_one_item') ?></option>
          <?php 
          $rk  = "SELECT * FROM regions WHERE status=1";
@@ -245,7 +245,7 @@ $keyw  = settings('seo_keywords');
 <div class="mb-3 row" id="hashtags_div">
    <label for="hashtags" class="col-sm-4 col-form-label"><?= translate('hashtags') ?></label>
    <div class="col-sm-8">
-      <select  name="hashtag_id" id="hashtag_id" class="form-control">
+      <select  name="hashtag_id" id="hashtag_id" class="form-control js-example-basic-single" style="width:100%">
          <option value=""><?= translate('please_select_one_item') ?></option>
       </select>
    </div>

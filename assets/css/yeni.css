@@ -293,3 +293,13 @@
 .rounded-25 {
     border-radius: 25%;
 }
+
+.tag {
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    background-color: #00c194;
+    padding: 10px;
+    font-weight: bold;
+    width: 100%;
+}

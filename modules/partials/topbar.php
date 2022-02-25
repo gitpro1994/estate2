@@ -7,6 +7,7 @@
 // echo $hash;
 // echo "</pre>";
 // die();
+// boynN4tq
 ?>
 <div class="wrapper" id="wrapper">
     <header class="rt-header sticky-on">
@@ -39,7 +40,7 @@
                                 
                                 <li class="action-item-style left-right-btn">
                                     <a href="<?= site_url() ?>contact" data-bs-toggle="tooltip" data-bs-placement="bottom"
-                                        title="<?= translate('contac') ?>">
+                                        title="<?= translate('contact') ?>">
                                         <i class="fa fa-address-book icon-round"></i>
                                     </a>
                                 </li>
