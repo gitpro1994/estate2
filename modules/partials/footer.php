@@ -59,7 +59,7 @@
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 <script type="text/javascript">
-    $(document).ready(function() {
+    $(document).ready(function() {        
         $('.js-example-basic-single').select2({
             placeholder: '<?= translate('select_an_option') ?>'
         });
@@ -68,19 +68,18 @@
             // tags: true
         });
     });
-    const Toast = Swal.mixin({
-        toast: true,
-        position: 'top-end',
-        showConfirmButton: false,
-        timer: 3000,
-        timerProgressBar: true,
-        didOpen: (toast) => {
-           toast.addEventListener('mouseenter', Swal.stopTimer)
-           toast.addEventListener('mouseleave', Swal.resumeTimer)
-       }
-   })
+   //  const Toast = Swal.mixin({
+   //      toast: true,
+   //      position: 'top-end',
+   //      showConfirmButton: false,
+   //      timer: 3000,
+   //      timerProgressBar: true,
+   //      didOpen: (toast) => {
+   //         toast.addEventListener('mouseenter', Swal.stopTimer)
+   //         toast.addEventListener('mouseleave', Swal.resumeTimer)
+   //     }
+   // })
 
-    let url = $("#base_url").val();
  //##################### LOGIN #####################
 
  $(document).ready(function() {
@@ -89,8 +88,9 @@
         let self = $(this);
         e.preventDefault(); 
         self.prop("disabled", true);
-        let url = "<?= site_url() ?>";
+        
         var data = $("#login-form").serialize();
+        var url = $("#base_url").val();
         $.ajax({
             url: url + '/core/ajax/login.php',
             type: "POST",
@@ -195,6 +195,7 @@
    form.addClass('was-validated');
    $("#estate_section").hide(1000);
    var phone_number = $('#phone_number').val();
+   var url = $("#base_url").val();
    $.ajax({
       url: url + "core/ajax/get_user.php",
       method: "POST",

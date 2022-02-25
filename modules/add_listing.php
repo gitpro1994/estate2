@@ -373,9 +373,10 @@ $keyw  = settings('seo_keywords');
     loadphoto();
  });
  $('body').on('click','.rotate',function () {
-  let url = "<?= site_url() ?>";
+  
   var file=$(this).parents('.dz-preview').children('.dz-image').children('.image').attr('alt');
   var box=$(this).parents('.dz-preview');
+  var url = $("#base_url").val();
    // $(box).html('<div class="dz-processing dz-image-preview"><img src="loading.gif" width="150px"></div>');
    $.ajax({
      url: url+'/file-control?rotate-img=ok',
@@ -414,7 +415,7 @@ error: function( jqXHR, textStatus, errorThrown ){
 }); 
 }); 
  $('body').on('click','.trash',function () {
-  let url = "<?= site_url() ?>";
+  var url = $("#base_url").val();
   var file=$(this).parents('.dz-preview').children('.dz-image').children('.image').attr('alt');
   var box=$(this).parents('.dz-preview');
   $(box).remove();
@@ -457,9 +458,7 @@ error: function( jqXHR, textStatus, errorThrown ){
      toast.addEventListener('mouseenter', Swal.stopTimer)
      toast.addEventListener('mouseleave', Swal.resumeTimer)
   }
-})
-   
-   let url = "<?= site_url() ?>";
+});
    
    $('#office_kind_div').hide();
    $('#rooms_div').hide();
@@ -477,6 +476,7 @@ error: function( jqXHR, textStatus, errorThrown ){
    /* CHECK PHONE NUMBER*/
    $("#add_listing_phone_number").focusout(function(){
     var phone_number = $('#add_listing_phone_number').val();
+    var url = $("#base_url").val();
     $.ajax({
      url: url + "core/ajax/get_user.php",
      method: "POST",
@@ -487,7 +487,7 @@ error: function( jqXHR, textStatus, errorThrown ){
     {
        data = JSON.parse(data);
        if(data['status']==200){
-         console.log(data.user_kind);
+        
          document.getElementById('add_listing_name').value               = data.name;
          document.getElementById('add_listing_email').value              = data.email;
          document.getElementById('add_listing_phone_number').value       = data.phone_number;
@@ -525,18 +525,21 @@ error: function( jqXHR, textStatus, errorThrown ){
    
    $('#kind_id').on("change", function(e) {
      var kind_id = $(this).val();
-     if (kind_id == 1) {
+     if (kind_id == 1) 
+     {
        $('#mortgage_div').fadeIn("slow");
        $('#mortgage').attr("required", true);
        $('#payment_method_div').hide();
        $('#payment_method').attr("required", false);
-    } else if (kind_id == 2) {
+     } 
+     else if (kind_id == 2) 
+     {
        $('#mortgage_div').hide();
        $('#mortgage').attr("required", false);
        $('#payment_method_div').fadeIn("slow");
        $('#payment_method').attr("required", true);
-    }
-    // he ela isledi nese deyirdin? yox ayqa daavam eliyim ?
+     }
+    
  });
    
    $('#type_id').on("change", function(e) {
@@ -548,7 +551,7 @@ error: function( jqXHR, textStatus, errorThrown ){
        $('#building_floor_div').fadeIn("slow");
        $('#office_kind_div').fadeOut("slow");
        $('#space_div').fadeOut("slow");
-       $('#settlement_div').fadeOut("slow");
+       $('#settlements_div').fadeOut("slow");
 
        $('#rooms').attr("required", true);
        $('#floor_no').attr("required", true);
@@ -567,7 +570,7 @@ error: function( jqXHR, textStatus, errorThrown ){
        $('#floor_div').fadeOut("slow");
        $('#building_floor_div').fadeOut("slow");
        $('#office_kind_div').fadeOut("slow");
-       $('#settlement_div').fadeOut("slow");
+       $('#settlements_div').fadeOut("slow");
        $('#square').html('(m<sup>2</sup>)');
 
        $('#rooms').attr("required", true);
@@ -583,7 +586,7 @@ error: function( jqXHR, textStatus, errorThrown ){
        $('#rooms_div').fadeOut("slow");
        $('#floor_div').fadeOut("slow");
        $('#building_floor_div').fadeOut("slow");
-       $('#settlement_div').fadeOut("slow");
+       $('#settlements_div').fadeOut("slow");
        $('#square').html('(m<sup>2</sup>)');
 
        $('#space').attr("required", true);
@@ -601,7 +604,7 @@ error: function( jqXHR, textStatus, errorThrown ){
        $('#space_div').fadeOut("slow");
        $('#floor_div').fadeOut("slow");
        $('#building_floor_div').fadeOut("slow");
-       $('#settlement_div').fadeOut("slow");
+       $('#settlements_div').fadeOut("slow");
        $('#square').html('(m<sup>2</sup>)');
 
        $('#office_kind').attr("required", true);
@@ -617,7 +620,7 @@ error: function( jqXHR, textStatus, errorThrown ){
        $('#space_div').fadeOut("slow");
        $('#floor_div').fadeOut("slow");
        $('#building_floor_div').fadeOut("slow");
-       $('#settlement_div').fadeOut("slow");
+       $('#settlements_div').fadeOut("slow");
        $('#square').html('(sot)');
 
        $('#rooms').attr("required", false);
@@ -632,7 +635,7 @@ error: function( jqXHR, textStatus, errorThrown ){
        $('#space_div').fadeOut("slow");
        $('#floor').fadeOut("slow");
        $('#building_floor_divui').fadeOut("slow");
-       $('#settlement_div').fadeOut("slow");
+       $('#settlements_div').fadeOut("slow");
        $('#square').html('(m<sup>2</sup>)');
 
        $('#rooms').attr("required", false);
@@ -645,7 +648,14 @@ error: function( jqXHR, textStatus, errorThrown ){
  });
    
    $('#city_id').on("change", function(e) {
+     $('#regions_div').fadeOut("slow");
+     $('#region_id').val("");
+     $('#settlements_div').fadeOut("slow");
+     $('#settlement_id').val("");
+     $('#hashtags_div').fadeOut("slow");
+     $('#hashtags_id').val("");
      var city_id = $(this).val();
+     var url = $("#base_url").val();
      if (city_id == 8) {
        $.ajax({
          url: url + '/core/ajax/get_regions.php',
@@ -665,16 +675,18 @@ error: function( jqXHR, textStatus, errorThrown ){
 
     });
 
-    } else {
+    } 
+    else 
+    {
        $('#regions_div').fadeOut("slow");
-       $('#settlement_div').fadeOut("slow");
+       $('#settlements_div').fadeOut("slow");
     }
  });
    
    $('#region_id').on("change", function(e) {
      var region_id = $(this).val();
      var settlement_id = $("#settlement_id").val("");
-    
+     var url = $("#base_url").val();
      $.ajax({
        url: url + '/core/ajax/get_settlements.php',
        method: "POST",
@@ -683,7 +695,7 @@ error: function( jqXHR, textStatus, errorThrown ){
       },
       success: function(data) {
          settlement = JSON.parse(data);
-         console.log(settlement);
+         
          if(settlement.length != 0)
          {
            $('#settlements_div').fadeIn("slow");
@@ -707,6 +719,7 @@ error: function( jqXHR, textStatus, errorThrown ){
    $('#region_id').on("change", function(e) {
      var region_id = $(this).val();
      var hashtag_id = $("#hashtag_id").val("");
+     var url = $("#base_url").val();
      $.ajax({
        url: url + '/core/ajax/get_hashtags.php',
        method: "POST",
@@ -715,7 +728,7 @@ error: function( jqXHR, textStatus, errorThrown ){
       },
       success: function(data) {
          hashtags = JSON.parse(data);
-         console.log(hashtags);
+         
          if(hashtags.length != 0)
          {
             $('#hashtags_div').fadeIn('slow');
@@ -748,6 +761,7 @@ error: function( jqXHR, textStatus, errorThrown ){
       e.preventDefault();
 
       var form = $("#add_new_listing");
+
    $.ajax
    ({
      type: "POST",
@@ -758,7 +772,7 @@ error: function( jqXHR, textStatus, errorThrown ){
         if(data.status == 200)
         {
           $('.loader').hide();
-          $.toast({
+          Toast.fire({
             heading: 'Uğurlu!',
             text: data.message,
             showHideTransition: 'slide',
@@ -770,7 +784,7 @@ error: function( jqXHR, textStatus, errorThrown ){
        else if(data.status == 204)
        {
         $('.loader').hide();
-        $.toast({
+        Toast.fire({
           heading: data.title,
           text: data.message,
           showHideTransition: 'slide',
@@ -786,8 +800,5 @@ else
 {
    console.log("BOSDUR");
 }
-});
-
-   
-   
+});   
 </script>

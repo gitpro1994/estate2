@@ -29,6 +29,7 @@ if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && !empty($_SERVER['HTTP_X_REQUESTED
 	$description    	  = (isset($_POST['description']) AND (!empty($_POST['description']))) ? clean($_POST['description']) : NULL;
 	$photo              = (isset($_POST['estate_photos']) AND (!empty($_POST['estate_photos']))) ? trim($_POST['estate_photos']) : NULL;
 
+	
 
 			$statement  = "SELECT * FROM ads_users WHERE phone_number = '".$phone_number."' AND status=1 ";
 		  $execute    = mysqli_query($conn,$statement);
