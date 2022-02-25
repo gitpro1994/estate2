@@ -8,14 +8,10 @@ if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && !empty($_SERVER['HTTP_X_REQUESTED
 
     $name     		= clean($_POST['name']);
     $surname    	= clean($_POST['surname']);
-    $email   		= clean($_POST['email']);
-    $phone_number   = clean($_POST['phone_number']);
-
-	// Loop over field names, make sure each one exists and is not empty
-
-    $sec    = "SELECT * FROM ads_users WHERE id='".$_SESSION['id']."'";
-	$runs   = mysqli_query($conn,$sec);
-	$bak    = mysqli_fetch_array($runs);
+	$username    	= clean($_POST['username']);
+	$phone_number   = clean($_POST['phone_number']);
+	$email   		= clean($_POST['email']);
+	$user_type		= clean($_POST['user_type']);
 
 	$error 		= false;
 	foreach($_POST as $key => $field) 
@@ -54,8 +50,10 @@ if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && !empty($_SERVER['HTTP_X_REQUESTED
 			$sql = "UPDATE ads_users SET 
 			name='".$name."', 
 			surname='".$surname."', 
+			username='".$username."',
 			email='".$email."',
-			phone_number='".$phone_number."'  WHERE id='".$_SESSION['id']."'";
+			user_type='".$user_type."',
+			phone_number='".$phone_number."'  WHERE id='".users_info($_SESSION['id'], 'id')."'";
 			$execute = mysqli_query($conn,$sql);
 
             $data = [ 
