@@ -9,18 +9,22 @@ if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && !empty($_SERVER['HTTP_X_REQUESTED
     $name     		= clean($_POST['name']);
     $surname    	= clean($_POST['surname']);
 	$username    	= clean($_POST['username']);
-	$phone_number   = clean($_POST['phone_number']);
 	$email   		= clean($_POST['email']);
-	$user_type		= clean($_POST['user_type']);
-
+	
 	$error 		= false;
+	
 	foreach($_POST as $key => $field) 
 	{
 	  if (empty($_POST[$key])) 
 	  {
 	  	$error = true;
 	  }
+	  else
+	  {
+		$error = false;
+	  }
 	}
+	
 	if ($error) 
 	{
 	  $data = [ 
@@ -30,6 +34,7 @@ if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && !empty($_SERVER['HTTP_X_REQUESTED
 	     		'message'    => translate('all_area_is_required'), 
 	     		'sorguNtc'   => true
     	     	];
+		
 	}
 	else
 	{
@@ -51,9 +56,8 @@ if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && !empty($_SERVER['HTTP_X_REQUESTED
 			name='".$name."', 
 			surname='".$surname."', 
 			username='".$username."',
-			email='".$email."',
-			user_type='".$user_type."',
-			phone_number='".$phone_number."'  WHERE id='".users_info($_SESSION['id'], 'id')."'";
+			email='".$email."'
+			WHERE id='".users_info($_SESSION['id'], 'id')."'";
 			$execute = mysqli_query($conn,$sql);
 
             $data = [ 

@@ -99,23 +99,13 @@ $count_listing  = mysqli_num_rows($run);
                             <div class="form-group row">
                                 <label for="staticEmail" class="col-sm-4 col-form-label"><i class="fas fa-phone-alt"></i> &nbsp; <?= translate('phone_number') ?></label>
                                 <div class="col-sm-8">
-                                    <input type="text" required class="form-control form-control-sm" id="phone_number" name="phone_number" value="<?= users_info($_SESSION['id'], 'phone_number')  ?>">
+                                    <input type="text" required class="form-control form-control-sm" readonly id="phone_number" name="phone_number" value="<?= users_info($_SESSION['id'], 'phone_number')  ?>">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="staticEmail" class="col-sm-4 col-form-label"><i class="fas fa-envelope"></i> &nbsp; <?= translate('email') ?></label>
                                 <div class="col-sm-8">
                                     <input type="text" required class="form-control form-control-sm" id="email" name="email" value="<?= users_info($_SESSION['id'], 'email')  ?>">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="staticEmail" class="col-sm-4 col-form-label"><i class="fas fa-address-card"></i> &nbsp; <?= translate('user_type') ?></label>
-                                <div class="col-sm-8">
-                                    <select class="form-control" name="user_type" id="user_type">
-                                        <option value=""><?= translate('please_select_one_item') ?></option>
-                                        <option value="0"><?= translate('share_my_listing') ?></option>
-                                        <option value="1"><?= translate('a_rielitor') ?></option>
-                                    </select>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -393,6 +383,18 @@ $count_listing  = mysqli_num_rows($run);
 
 <script type="text/javascript">
     $(document).ready(function() {
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+        });
+        
         $(document).on('click', '.freeze', function(event) {
             let id = $("#freeze_account").val();
             Swal.fire({
@@ -441,10 +443,9 @@ $count_listing  = mysqli_num_rows($run);
                 }
             });
         });
-    });
+  
 
 
-    $(document).ready(function() {
         $(document).on('click', '.delete', function(event) {
             let id = $("#delete_account").val();
 
@@ -493,10 +494,6 @@ $count_listing  = mysqli_num_rows($run);
                 }
             })
         });
-    });
-</script>
-
-<script type="text/javascript">
     $('#avatar').change(function() {
         var file_data = $('#avatar').prop('files')[0];
         var form_data = new FormData();
@@ -516,31 +513,22 @@ $count_listing  = mysqli_num_rows($run);
                 $("#for_avatar").load(" #for_avatar");
                 if (data.status == 200) {
                     Toast.fire({
-                        heading: 'Uğurlu!',
                         text: data.message,
-                        showHideTransition: 'slide',
                         icon: 'success',
-                        loaderBg: '#fff',
                         position: 'top-right'
                     })
                 } else if (data.status == 204) {
 
                     Toast.fire({
-                        heading: 'Xəta',
                         text: data.message,
-                        showHideTransition: 'slide',
                         icon: 'error',
-                        loaderBg: '#fff',
                         position: 'top-right'
                     })
                 }
             }
         });
     });
-</script>
-
-<script>
-    $(document).ready(function() {
+    
         $("#update_user_data").click(function(e) {
             e.preventDefault();
             var data = $("#update_profile").serialize();
@@ -554,24 +542,17 @@ $count_listing  = mysqli_num_rows($run);
                     if(data.status == 200)
                             {
                                 Toast.fire({
-                                  heading: 'Uğurlu!',
                                   text: data.message,
-                                  showHideTransition: 'slide',
                                   icon: data.icon,
-                                  loaderBg: '#fff',
                                   position: 'top-right'
                                 })
-                                location.href = "dashboard"; 
                             }
                             else if(data.status == 204)
                             {
 
                                 Toast.fire({
-                                  heading: 'Xəta',
                                   text: data.message,
-                                  showHideTransition: 'slide',
                                   icon: data.icon,
-                                  loaderBg: '#fff',
                                   position: 'top-right'
                               })
                             }
