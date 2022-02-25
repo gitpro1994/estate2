@@ -132,7 +132,7 @@ $keyw  = settings('seo_keywords');
 <div class="mb-3 row" id="office_kind_div">
    <label for="office_kind" class="col-sm-4 col-form-label"><?= translate('office_kind') ?></label>
    <div class="col-sm-8">
-      <select required name="office_kind" id="office_kind" class="js-example-basic-single" style="width:100%">
+      <select name="office_kind" id="office_kind" class="js-example-basic-single" style="width:100%">
          <option value=""><?= translate('please_select_one_item') ?></option>
          <option value="0">Biznes mərkəzi</option>
          <option value="1">Ev / Mənzil</option>
@@ -430,14 +430,15 @@ error: function( jqXHR, textStatus, errorThrown ){
  }); 
 });
 
- function loadphoto(){
-  var photos='';
-  var s='';
-  $('#my-dropzone .dz-preview .dz-image img').each(function () {
-    photos += s+$(this).attr('alt');
-    s=',';
- });
-  $('#foto').val(photos);
+ function loadphoto()
+ {
+     var photos='';
+     var s='';
+     $('#my-dropzone .dz-preview .dz-image img').each(function () {
+       photos += s+$(this).attr('alt');
+       s=',';
+    });
+     $('#foto').val(photos);
 }
 </script>
 <script type="text/javascript">
@@ -471,58 +472,7 @@ error: function( jqXHR, textStatus, errorThrown ){
    $('#hashtags_div').hide();
    $('#settlements_div').hide();
    $('#square').html('(m<sup>2</sup>)');
-   
-
-   /* CHECK PHONE NUMBER*/
-   $("#add_listing_phone_number").focusout(function(){
-    var phone_number = $('#add_listing_phone_number').val();
-    var url = $("#base_url").val();
-    $.ajax({
-     url: url + "core/ajax/get_user.php",
-     method: "POST",
-     data: {
-       phone_number:phone_number
-    },
-    success:function(data)
-    {
-       data = JSON.parse(data);
-       if(data['status']==200){
-        
-         document.getElementById('add_listing_name').value               = data.name;
-         document.getElementById('add_listing_email').value              = data.email;
-         document.getElementById('add_listing_phone_number').value       = data.phone_number;
-         $('#user_kind').find('option[value="'+data.user_kind+'"]').attr('selected', true);
-         document.getElementById('add_listing_name').disabled            = true;
-         document.getElementById('add_listing_email').disabled           = true;
-         Toast.fire({
-          icon: data['icon'],
-          title: data['message']
-       })
-      }  else if(data['status']==200){
-         document.getElementById('add_listing_name').value       = '';
-         document.getElementById('add_listing_email').value      = '';
-         document.getElementById('add_listing_name').disabled            = false;
-         document.getElementById('add_listing_email').disabled           = false;
-         Toast.fire({
-          icon: data['icon'],
-          title: data['message']
-       })
-      } else {
-         document.getElementById('add_listing_name').disabled            = false;
-         document.getElementById('add_listing_email').disabled           = false;
-         document.getElementById('add_listing_name').value       = '';
-         document.getElementById('add_listing_email').value      = '';
-         Toast.fire({
-          icon: data['icon'],
-          title: data['message']
-
-       })
-      }
-   }
-})
- });
-
-   
+      
    $('#kind_id').on("change", function(e) {
      var kind_id = $(this).val();
      if (kind_id == 1) 
@@ -755,46 +705,56 @@ error: function( jqXHR, textStatus, errorThrown ){
    $('[required]').each( function(idx, elem) {
        is_empty = is_empty || ($(elem).val() == '');
    });
-   if ( ! is_empty) {
-      $('#add_new').prop("disabled","true");
+   if($('.dz-preview').length>$('.dz-success').length){
+    Toast.fire({
+       icon: 'warning',
+       title: 'Zəhmət olmasa şəkillərin tam yüklənməsini gözləyin.'
+    })
+    return false;
+    }
+    loadphoto();
+   if ( ! is_empty) 
+   {
       loadphoto();
+      $('#add_new').prop("disabled","true");
       e.preventDefault();
 
       var form = $("#add_new_listing");
 
-   $.ajax
-   ({
-     type: "POST",
-     url: "core/ajax/add_listing.php",
-     data: form.serialize(),
-     dataType: "json",
-     success: function (data) {
-        if(data.status == 200)
-        {
-          $('.loader').hide();
-          Toast.fire({
-            heading: 'Uğurlu!',
-            text: data.message,
-            showHideTransition: 'slide',
-            icon: 'success',
-            loaderBg: '#fff',
-            position: 'top-right'
-         })
-       }
-       else if(data.status == 204)
-       {
-        $('.loader').hide();
-        Toast.fire({
-          heading: data.title,
-          text: data.message,
-          showHideTransition: 'slide',
-          icon: 'error',
-          loaderBg: '#fff',
-          position: 'top-right'
-       })
+      $.ajax
+      ({
+        type: "POST",
+        url: "core/ajax/add_listing.php",
+        data: form.serialize(),
+        // dataType: "json",
+        success: function (data) {
+         data = JSON.parse(data);
+           if(data.status == 200)
+           {
+             $('.loader').hide();
+             Toast.fire({
+               heading: 'Uğurlu!',
+               text: data.message,
+               showHideTransition: 'slide',
+               icon: 'success',
+               loaderBg: '#fff',
+               position: 'top-right'
+            })
+          }
+          else if(data.status == 204)
+          {
+           $('.loader').hide();
+           Toast.fire({
+             heading: data.title,
+             text: data.message,
+             showHideTransition: 'slide',
+             icon: 'error',
+             loaderBg: '#fff',
+             position: 'top-right'
+          })
+        }
      }
-  }
-});
+   });
 }
 else
 {
