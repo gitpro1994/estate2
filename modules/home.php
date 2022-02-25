@@ -42,15 +42,19 @@ $keyw  = settings('seo_keywords');
                     </div>
                     <div class="row featuredContainer">
                         <?php                         
-                        $sel = "SELECT * FROM ads AS a INNER JOIN cities AS c ON a.city_id=c.id LEFT JOIN regions AS r ON a.regions=r.id INNER JOIN realty_kinds AS rk ON a.kind_id=rk.id INNER JOIN realty_types AS rt ON a.type_id=rt.id GROUP BY a.id ORDER BY a.id DESC LIMIT 100";
+                        $sel = "SELECT * FROM ads AS a INNER JOIN cities AS c ON a.city_id=c.id LEFT JOIN regions AS r ON a.regions=r.id INNER JOIN realty_kinds AS rk ON a.kind_id=rk.id INNER JOIN realty_types AS rt ON a.type_id=rt.id WHERE a.status=1 ORDER BY a.id DESC LIMIT 100";
                         $run = mysqli_query($conn,$sel);
                         while ($nn = mysqli_fetch_array($run)) 
                         {
+                            // echo "<pre>";
+                            // print_r($nn);
+                            // echo "</pre>";
+                            // die();
                          ?>
                         <div class="col-xl-4 col-lg-6 col-md-6 <?= ($nn['kind_id']==1) ? 'for-sell' : 'for-rent' ?> ">
                             <div class="property-box2 wow animated fadeInUp" data-wow-delay=".3s">
                                 <div class="item-img">
-                                    <a href="single-listing1.html"><img src="<?= site_url() ?>assets/img/blog/blog4.jpg" alt="blog" width="510" height="340"></a>
+                                    <a href="salam.php?id=<?= $nn[0] ?>"><img src="<?= site_url() ?>assets/img/blog/blog4.jpg" alt="blog" width="510" height="340"></a>
                                     <div class="item-category-box1">
                                         <div class="item-category"><?= $nn['kind_name'] ?></div>
                                     </div>
@@ -60,8 +64,8 @@ $keyw  = settings('seo_keywords');
                                     <div class="react-icon">
                                         <ul>
                                             <li>
-                                                <a href="favourite.html" data-bs-toggle="tooltip" data-bs-placement="top"
-                                                    title="<?= translate('favourite') ?>">
+                                                <a data-id="<?= $nn[0] ?>" data-bs-toggle="tooltip" data-bs-placement="top"
+                                                    title="<?= translate('favourite') ?>" class="add_favourite">
                                                     <i class="flaticon-heart"></i>
                                                 </a>
                                             </li>
@@ -114,3 +118,38 @@ $keyw  = settings('seo_keywords');
 <!-- START FOOTER -->
 <?php include_once "partials/footer.php"; ?>
 <!-- END FOOTER -->
+<script type="text/javascript"> 
+$( document ).ready(function() {
+
+    let ads = $(".add_favourite").data("id");
+    
+
+    function setCookie(cname, cvalue, exdays) 
+    {
+      const d = new Date();
+      d.setTime(d.getTime() + (exdays*24*60*60*1000));
+      let expires = "expires="+ d.toUTCString();
+      document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+    }
+
+     $(document).on('click', '.add_favourite', function(event) {
+        let myClass = $(this).children('i').attr("class");
+        let data_id = $(this).data("id");
+        let url     = $("#base_url").val();
+        if (myClass=='flaticon-heart') 
+        {
+            $(this).children('i').removeClass('flaticon-heart').addClass('fa fa-heart');
+            setCookie("estates["+ data_id +"]", data_id, 30);
+        }
+        else
+        {
+            $(this).children('i').removeClass('fa fa-heart').addClass('flaticon-heart');
+        }
+
+
+        
+    });
+
+});
+</script>
+
