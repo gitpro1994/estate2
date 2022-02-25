@@ -69,8 +69,8 @@ $count_listing  = mysqli_num_rows($run);
                         </div>
                         <div class="item-contact-2">
                             <div class="item-phn-no"><i class="fas fa-phone-alt"></i><?= translate('phone_number') ?>: <span class="text-primary">
-                             <?= users_info($_SESSION['id'], 'phone_number')  ?></span></div>
-                             <div class="item-icon">
+                               <?= users_info($_SESSION['id'], 'phone_number')  ?></span></div>
+                               <div class="item-icon">
                                 <i class="far fa-envelope"></i><?= translate('email') ?> : <span class="text-primary"><?= users_info($_SESSION['id'], 'email') ?></span>
                             </div>
                             <div class="item-icon icon-style-2"><i class="fas fa-user"></i><?= translate('username') ?>: 
@@ -93,7 +93,7 @@ $count_listing  = mysqli_num_rows($run);
                                 </span>
                             </div>
                             <div class="item-icon icon-style-2">
-                               <div class="row">
+                             <div class="row">
                                 <div class="col-sm-12">
                                     <input type="hidden" name="freeze_account" id="freeze_account" value="<?= users_info($_SESSION['id'],'id'); ?>">
                                     <button class="btn btn-outline-primary btn-sm freeze" type="submit">
@@ -336,76 +336,33 @@ $count_listing  = mysqli_num_rows($run);
                         <div class="reviews-area">
                             <div class="reviews-comment">
                                 <div class="heading-layout">
-                                    <h4>02 Reviews</h4>
-                                </div>
-                                <div class="media d-flex">
-                                    <div class="flex-shrink-0">
-                                        <div class="item-img">
-                                            <img src="<?= site_url() ?>assets/img/team/team14.png" alt="team">
-                                        </div>
-                                    </div>
-
-                                    <div class="media-body flex-grow-1 ms-4">
-                                        <h5 class="item-title">Joker</h5>
-                                        <div class="rating-area">
-                                            <div class="item-date">April 2, 2020</div>
-                                            <ul class="item-rating">
-                                                <li><i class="fas fa-star"></i></li>
-                                                <li><i class="fas fa-star"></i></li>
-                                                <li><i class="fas fa-star"></i></li>
-                                                <li><i class="fas fa-star"></i></li>
-                                                <li><i class="fas fa-star"></i></li>
-                                            </ul>
-                                        </div>
-                                        <p>The second bedroom is a corner room with double windows. The kitchen has fabulo use
-                                            appliances, and a laundry area second bedroom.
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="media d-flex">
-                                    <div class="flex-shrink-0">
-                                        <div class="item-img">
-                                            <img src="<?= site_url() ?>assets/img/team/team15.png" alt="team">
-                                        </div>
-                                    </div>
-
-                                    <div class="media-body flex-grow-1 ms-4">
-                                        <h5 class="item-title">Maria Jaman</h5>
-                                        <div class="rating-area">
-                                            <div class="item-date">April 2, 2020</div>
-                                            <ul class="item-rating">
-                                                <li><i class="fas fa-star"></i></li>
-                                                <li><i class="fas fa-star"></i></li>
-                                                <li><i class="fas fa-star"></i></li>
-                                                <li><i class="fas fa-star"></i></li>
-                                                <li><i class="fas fa-star"></i></li>
-                                            </ul>
-                                        </div>
-                                        <p>The second bedroom is a corner room with double windows. The kitchen has fabulo use
-                                            appliances, and a laundry area second bedroom.
-                                        </p>
-                                    </div>
+                                    <h4><?= translate('profile_information') ?></h4>
                                 </div>
                             </div>
                             <div class="reviews-reply">
-                                <h4 class="item-title">Add a review</h4>
-                                <ul class="item-rating">
-                                    <li><i class="fas fa-star"></i></li>
-                                    <li><i class="fas fa-star"></i></li>
-                                    <li><i class="fas fa-star"></i></li>
-                                    <li><i class="fas fa-star"></i></li>
-                                    <li><i class="fas fa-star"></i></li>
-                                </ul>
                                 <form class="contact-box rt-contact-form" novalidate="true">
                                     <div class="row">
                                         <div class="form-group col-lg-6">
-                                            <input type="text" class="form-control" name="fname" placeholder="Your Full Name" data-error="First Name is required" required="">
+                                            <input type="text" class="form-control" name="name" id="name" value="<?= users_info($_SESSION['id'], 'name') ?>" data-error="First Name is required" required="">
                                         </div>
                                         <div class="form-group col-lg-6">
-                                            <input type="text" class="form-control" name="phone" placeholder="Phone" data-error="Phone is required" required="">
+                                            <input type="text" class="form-control" name="surname" id="surname" value="<?= users_info($_SESSION['id'], 'surname') ?>" data-error="First Name is required" required="">
                                         </div>
-                                        <div class="form-group col-lg-12">
-                                            <input type="text" class="form-control" name="phone" placeholder="E-mail" data-error="Phone is required" required="">
+                                        <div class="form-group col-lg-6">
+                                            <input type="text" class="form-control" name="surname" id="surname" value="<?= users_info($_SESSION['id'], 'username') ?>" data-error="First Name is required" required="">
+                                        </div>
+                                        <div class="form-group col-lg-6">
+                                            <input type="text" class="form-control" name="email" value="<?= users_info($_SESSION['id'], 'email') ?>" data-error="Phone is required" required="">
+                                        </div>
+                                        <div class="form-group col-lg-6">
+                                            <input type="text" class="form-control" name="phone_number" value="<?= users_info($_SESSION['id'], 'phone_number') ?>" data-error="Phone is required" required="">
+                                        </div>
+                                        <div class="form-group col-lg-6">
+                                            <select class="form-control" name="user_type" id="user_type">
+                                                <option value="" disabled><?= translate('please_select_one_item') ?></option>
+                                                <option value="0"><?= translate('share_my_listing') ?></option>
+                                                <option value="1"><?= translate('a_rielitor') ?></option>
+                                            </select>
                                         </div>
                                         <div class="form-group col-lg-12">
                                             <textarea name="comment" id="message" class="form-text" placeholder="Message" cols="30" rows="4" data-error="Message Name is required" required=""></textarea>
@@ -481,151 +438,151 @@ $count_listing  = mysqli_num_rows($run);
         $(document).on('click', '.freeze', function(event) {
             let id = $("#freeze_account").val();
             Swal.fire({
-                      title: 'Hesabı dondurmaq istədiyinizdən əminsiniz ?',
-                      text: "Qeyd edək ki, hesabın dondurulması zamanı hesaba aid olan elanların da paylaşılması dayandırılır. Hesaba təkrar daxil olarkən hesabın aktivləşdirilməsi təmin edilir.",
-                      icon: 'warning',
-                      showCancelButton: true,
-                      confirmButtonColor: '#3085d6',
-                      cancelButtonColor: '#d33',
-                      cancelButtonText: 'Ləğv et',
-                      confirmButtonText: 'Hesabı dondur!'
-                  }).then((result) => {
-                      if (result.isConfirmed) {
-                        $.ajax({
-                            url: "core/ajax/freeze_account.php",
-                            type: "POST",
-                            data: {id:id},
-                            success: function(data){
-                                data = JSON.parse(data);
-                                
-                              if(data.status == 200)
-                              {
-                                Toast.fire({
-                                  heading: 'Uğurlu!',
-                                  text: data.message,
-                                  showHideTransition: 'slide',
-                                  icon: data.icon,
-                                  loaderBg: '#fff',
-                                  position: 'top-right'
-                              })
-                            }
-                            else if(data.status == 204)
-                            {
+              title: 'Hesabı dondurmaq istədiyinizdən əminsiniz ?',
+              text: "Qeyd edək ki, hesabın dondurulması zamanı hesaba aid olan elanların da paylaşılması dayandırılır. Hesaba təkrar daxil olarkən hesabın aktivləşdirilməsi təmin edilir.",
+              icon: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              cancelButtonText: 'Ləğv et',
+              confirmButtonText: 'Hesabı dondur!'
+          }).then((result) => {
+              if (result.isConfirmed) {
+                $.ajax({
+                    url: "core/ajax/freeze_account.php",
+                    type: "POST",
+                    data: {id:id},
+                    success: function(data){
+                        data = JSON.parse(data);
 
-                                Toast.fire({
-                                  heading: 'Xəta',
-                                  text: data.message,
-                                  showHideTransition: 'slide',
-                                  icon: data.icon,
-                                  loaderBg: '#fff',
-                                  position: 'top-right'
-                              })
-                            }
-                        } 
-                    })
+                        if(data.status == 200)
+                        {
+                            Toast.fire({
+                              heading: 'Uğurlu!',
+                              text: data.message,
+                              showHideTransition: 'slide',
+                              icon: data.icon,
+                              loaderBg: '#fff',
+                              position: 'top-right'
+                          })
+                        }
+                        else if(data.status == 204)
+                        {
 
-                }
-            });
+                            Toast.fire({
+                              heading: 'Xəta',
+                              text: data.message,
+                              showHideTransition: 'slide',
+                              icon: data.icon,
+                              loaderBg: '#fff',
+                              position: 'top-right'
+                          })
+                        }
+                    } 
+                })
+
+            }
         });
+      });
     });    
 
 
-  $(document).ready(function() {  
+    $(document).ready(function() {  
         $(document).on('click', '.delete', function(event) {
             let id = $("#delete_account").val();
 
-        Swal.fire({
-          title: 'Hesabı silmək istədiyinizdən əminsiniz ?',
-          text: "Qeyd edək ki, hesabın silinməsi zamanı hesaba aid olan elanlar da silinir. Hesab silindikdən sonra məlumatların geri qaytarılması mümkün deyil.",
-          icon: 'warning',
-          showCancelButton: true,
-          confirmButtonColor: '#3085d6',
-          cancelButtonColor: '#d33',
-          cancelButtonText: 'Ləğv et',
-          confirmButtonText: 'Hesabı sil!'
-      }).then((result) => {
-          if (result.isConfirmed) {
-            $.ajax({
-                url: "core/ajax/delete_account.php",
-                type: "POST",
-                data: {id:id},
-                success: function(data){
-                    console.log(data);
-                  if(data.status == 200)
-                  {
-                    Toast.fire({
-                      heading: 'Uğurlu!',
-                      text: data.message,
-                      showHideTransition: 'slide',
-                      icon: data.icon,
-                      loaderBg: '#fff',
-                      position: 'top-right'
-                  })
-                }
-                else if(data.status == 204)
-                {
+            Swal.fire({
+              title: 'Hesabı silmək istədiyinizdən əminsiniz ?',
+              text: "Qeyd edək ki, hesabın silinməsi zamanı hesaba aid olan elanlar da silinir. Hesab silindikdən sonra məlumatların geri qaytarılması mümkün deyil.",
+              icon: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              cancelButtonText: 'Ləğv et',
+              confirmButtonText: 'Hesabı sil!'
+          }).then((result) => {
+              if (result.isConfirmed) {
+                $.ajax({
+                    url: "core/ajax/delete_account.php",
+                    type: "POST",
+                    data: {id:id},
+                    success: function(data){
+                        console.log(data);
+                        if(data.status == 200)
+                        {
+                            Toast.fire({
+                              heading: 'Uğurlu!',
+                              text: data.message,
+                              showHideTransition: 'slide',
+                              icon: data.icon,
+                              loaderBg: '#fff',
+                              position: 'top-right'
+                          })
+                        }
+                        else if(data.status == 204)
+                        {
 
-                    Toast.fire({
-                      heading: 'Xəta',
-                      text: data.message,
-                      showHideTransition: 'slide',
-                      icon: data.icon,
-                      loaderBg: '#fff',
-                      position: 'top-right'
-                  })
-                }
-            } 
+                            Toast.fire({
+                              heading: 'Xəta',
+                              text: data.message,
+                              showHideTransition: 'slide',
+                              icon: data.icon,
+                              loaderBg: '#fff',
+                              position: 'top-right'
+                          })
+                        }
+                    } 
+                })
+
+            }
         })
-
-    }
-})
-   });
+      });
     });   
 
-    </script>
+</script>
 
-    <script type="text/javascript">
-        $('#avatar').change(function(){
-            var file_data = $('#avatar').prop('files')[0];   
-            var form_data = new FormData();                  
-            form_data.append('avatar', file_data);
-            $.ajax({
-                url: "core/ajax/avatar.php",
-                type: "POST",
-                data: form_data,
-                dataType: "json",
-                contentType: false,
-                cache: false,
-                processData:false,
-                beforeSend:function(){
-                   $('.loader').show();
-               }, 
-               success: function(data){
-                  $("#for_avatar").load(" #for_avatar");
-                  if(data.status == 200)
-                  {
-                    Toast.fire({
-                      heading: 'Uğurlu!',
-                      text: data.message,
-                      showHideTransition: 'slide',
-                      icon: 'success',
-                      loaderBg: '#fff',
-                      position: 'top-right'
-                  })
-                }
-                else if(data.status == 204)
-                {
+<script type="text/javascript">
+    $('#avatar').change(function(){
+        var file_data = $('#avatar').prop('files')[0];   
+        var form_data = new FormData();                  
+        form_data.append('avatar', file_data);
+        $.ajax({
+            url: "core/ajax/avatar.php",
+            type: "POST",
+            data: form_data,
+            dataType: "json",
+            contentType: false,
+            cache: false,
+            processData:false,
+            beforeSend:function(){
+             $('.loader').show();
+         }, 
+         success: function(data){
+          $("#for_avatar").load(" #for_avatar");
+          if(data.status == 200)
+          {
+            Toast.fire({
+              heading: 'Uğurlu!',
+              text: data.message,
+              showHideTransition: 'slide',
+              icon: 'success',
+              loaderBg: '#fff',
+              position: 'top-right'
+          })
+        }
+        else if(data.status == 204)
+        {
 
-                    Toast.fire({
-                      heading: 'Xəta',
-                      text: data.message,
-                      showHideTransition: 'slide',
-                      icon: 'error',
-                      loaderBg: '#fff',
-                      position: 'top-right'
-                  })
-                }
-            }
-        });
-        });
-    </script>
+            Toast.fire({
+              heading: 'Xəta',
+              text: data.message,
+              showHideTransition: 'slide',
+              icon: 'error',
+              loaderBg: '#fff',
+              position: 'top-right'
+          })
+        }
+    }
+});
+    });
+</script>

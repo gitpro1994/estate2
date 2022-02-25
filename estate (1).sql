@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 21, 2022 at 10:37 PM
+-- Generation Time: Feb 25, 2022 at 10:43 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.0.13
 
@@ -58,34 +58,26 @@ CREATE TABLE `ads` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- RELATIONSHIPS FOR TABLE `ads`:
---
-
---
 -- Dumping data for table `ads`
 --
 
 INSERT INTO `ads` (`id`, `user_id`, `kind_id`, `type_id`, `city_id`, `office_kind`, `rooms`, `area`, `space`, `floor_no`, `building_floor_no`, `price`, `payment_method`, `mortgage`, `regions`, `metro_id`, `hashtags`, `settlements`, `address`, `description`, `seen`, `images`, `status`, `end_date`, `created_at`, `updated_at`, `deleted_at`) VALUES
 (1, 1, 1, 6, 8, 2, '5', '250', 'null', 'null', 'null', 25000, NULL, NULL, 1, NULL, 3, 1, 'jhjhghjgjh', 'jhhjjhghgj', 0, '1645132628-2.jpg\r\n,1645132628-3.jpg\r\n,1645132629-4.jpg', 1, '2022-03-20 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (2, 2, 1, 6, 8, 2, '1', '56', 'null', 'null', 'null', 28000, NULL, NULL, 1, NULL, 3, 1, 'jhjhghjgjh', 'jhhjjhghgj', 0, '1645132628-2.jpg\r\n,1645132628-3.jpg\r\n,1645132629-4.jpg', 1, '2022-03-20 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(3, 3, 1, 3, 8, NULL, '4', '62', 'null', '12', '20', 12000, NULL, 1, 3, NULL, NULL, NULL, 'This is an address', 'THis is a test content', 0, '1645353525-about2.jpg\r\n,1645353526-about2.png\r\n,1645353527-about3.jpg\r\n,1645353527-about4.jpg\r\n,1645353527-about5.jpg\r\n,1645353528-about6.jpg\r\n,1645353528-about7.jpg', 1, '2022-03-22 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(4, 4, 1, 1, 8, NULL, '4', '100', 'null', '20', '20', 120000, NULL, 1, 1, NULL, 3, 1, 'suleyman sani axundov 2', 'This is a test content', 0, '1645355666-about1.jpg\r\n,1645355666-about2.jpg\r\n,1645355666-about3.jpg', 1, '2022-03-22 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(5, 5, 2, 1, 26, NULL, '3', '76', 'null', '7', '10', 1000, 1, NULL, NULL, NULL, NULL, NULL, 'address salam admin necesen', 'ezsxdcfgvbhjnhbvgcfdxsexdcfvghbjnhbgvfcd', 0, '1645355977-about1.jpg\r\n,1645355977-about2.jpg\r\n,1645355977-about2.png\r\n,1645355977-about3.jpg\r\n,1645355977-about4.jpg\r\n,1645355978-about6.jpg', 1, '2022-03-22 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(4, 4, 1, 1, 8, NULL, '4', '100', 'null', '20', '20', 120000, NULL, 1, 1, NULL, 3, 1, 'suleyman sani axundov 2', 'This is a test content', 0, '1645355666-about1.jpg\r\n,1645355666-about2.jpg\r\n,1645355666-about3.jpg', 0, '2022-03-22 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(5, 5, 2, 1, 26, NULL, '3', '76', 'null', '7', '10', 1000, 1, NULL, NULL, NULL, NULL, NULL, 'address salam admin necesen', 'ezsxdcfgvbhjnhbvgcfdxsexdcfvghbjnhbgvfcd', 0, '1645355977-about1.jpg\r\n,1645355977-about2.jpg\r\n,1645355977-about2.png\r\n,1645355977-about3.jpg\r\n,1645355977-about4.jpg\r\n,1645355978-about6.jpg', 0, '2022-03-22 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (6, 1, 1, 6, 8, 2, '5', '250', 'null', 'null', 'null', 25000, NULL, NULL, 1, NULL, 3, 1, 'jhjhghjgjh', 'jhhjjhghgj', 0, '1645132628-2.jpg\r\n,1645132628-3.jpg\r\n,1645132629-4.jpg', 1, '2022-03-20 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (7, 2, 1, 6, 8, 2, '1', '56', 'null', 'null', 'null', 28000, NULL, NULL, 1, NULL, 3, 1, 'jhjhghjgjh', 'jhhjjhghgj', 0, '1645132628-2.jpg\r\n,1645132628-3.jpg\r\n,1645132629-4.jpg', 1, '2022-03-20 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(8, 3, 1, 3, 8, NULL, '4', '62', 'null', '12', '20', 12000, NULL, 1, 3, NULL, NULL, NULL, 'This is an address', 'THis is a test content', 0, '1645353525-about2.jpg\r\n,1645353526-about2.png\r\n,1645353527-about3.jpg\r\n,1645353527-about4.jpg\r\n,1645353527-about5.jpg\r\n,1645353528-about6.jpg\r\n,1645353528-about7.jpg', 1, '2022-03-22 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(9, 4, 1, 1, 8, NULL, '4', '100', 'null', '20', '20', 120000, NULL, 1, 1, NULL, 3, 1, 'suleyman sani axundov 2', 'This is a test content', 0, '1645355666-about1.jpg\r\n,1645355666-about2.jpg\r\n,1645355666-about3.jpg', 1, '2022-03-22 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(10, 5, 2, 1, 26, NULL, '3', '76', 'null', '7', '10', 1000, 1, NULL, NULL, NULL, NULL, NULL, 'address salam admin necesen', 'ezsxdcfgvbhjnhbvgcfdxsexdcfvghbjnhbgvfcd', 0, '1645355977-about1.jpg\r\n,1645355977-about2.jpg\r\n,1645355977-about2.png\r\n,1645355977-about3.jpg\r\n,1645355977-about4.jpg\r\n,1645355978-about6.jpg', 1, '2022-03-22 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(9, 4, 1, 1, 8, NULL, '4', '100', 'null', '20', '20', 120000, NULL, 1, 1, NULL, 3, 1, 'suleyman sani axundov 2', 'This is a test content', 0, '1645355666-about1.jpg\r\n,1645355666-about2.jpg\r\n,1645355666-about3.jpg', 0, '2022-03-22 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(10, 5, 2, 1, 26, NULL, '3', '76', 'null', '7', '10', 1000, 1, NULL, NULL, NULL, NULL, NULL, 'address salam admin necesen', 'ezsxdcfgvbhjnhbvgcfdxsexdcfvghbjnhbgvfcd', 0, '1645355977-about1.jpg\r\n,1645355977-about2.jpg\r\n,1645355977-about2.png\r\n,1645355977-about3.jpg\r\n,1645355977-about4.jpg\r\n,1645355978-about6.jpg', 0, '2022-03-22 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (11, 1, 1, 6, 8, 2, '5', '250', 'null', 'null', 'null', 25000, NULL, NULL, 1, NULL, 3, 1, 'jhjhghjgjh', 'jhhjjhghgj', 0, '1645132628-2.jpg\r\n,1645132628-3.jpg\r\n,1645132629-4.jpg', 1, '2022-03-20 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (12, 2, 1, 6, 8, 2, '1', '56', 'null', 'null', 'null', 28000, NULL, NULL, 1, NULL, 3, 1, 'jhjhghjgjh', 'jhhjjhghgj', 0, '1645132628-2.jpg\r\n,1645132628-3.jpg\r\n,1645132629-4.jpg', 1, '2022-03-20 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(13, 3, 1, 3, 8, NULL, '4', '62', 'null', '12', '20', 12000, NULL, 1, 3, NULL, NULL, NULL, 'This is an address', 'THis is a test content', 0, '1645353525-about2.jpg\r\n,1645353526-about2.png\r\n,1645353527-about3.jpg\r\n,1645353527-about4.jpg\r\n,1645353527-about5.jpg\r\n,1645353528-about6.jpg\r\n,1645353528-about7.jpg', 1, '2022-03-22 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(14, 4, 1, 1, 8, NULL, '4', '100', 'null', '20', '20', 120000, NULL, 1, 1, NULL, 3, 1, 'suleyman sani axundov 2', 'This is a test content', 0, '1645355666-about1.jpg\r\n,1645355666-about2.jpg\r\n,1645355666-about3.jpg', 1, '2022-03-22 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(15, 5, 2, 1, 26, NULL, '3', '76', 'null', '7', '10', 1000, 1, NULL, NULL, NULL, NULL, NULL, 'address salam admin necesen', 'ezsxdcfgvbhjnhbvgcfdxsexdcfvghbjnhbgvfcd', 0, '1645355977-about1.jpg\r\n,1645355977-about2.jpg\r\n,1645355977-about2.png\r\n,1645355977-about3.jpg\r\n,1645355977-about4.jpg\r\n,1645355978-about6.jpg', 1, '2022-03-22 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(14, 4, 1, 1, 8, NULL, '4', '100', 'null', '20', '20', 120000, NULL, 1, 1, NULL, 3, 1, 'suleyman sani axundov 2', 'This is a test content', 0, '1645355666-about1.jpg\r\n,1645355666-about2.jpg\r\n,1645355666-about3.jpg', 0, '2022-03-22 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(15, 5, 2, 1, 26, NULL, '3', '76', 'null', '7', '10', 1000, 1, NULL, NULL, NULL, NULL, NULL, 'address salam admin necesen', 'ezsxdcfgvbhjnhbvgcfdxsexdcfvghbjnhbgvfcd', 0, '1645355977-about1.jpg\r\n,1645355977-about2.jpg\r\n,1645355977-about2.png\r\n,1645355977-about3.jpg\r\n,1645355977-about4.jpg\r\n,1645355978-about6.jpg', 0, '2022-03-22 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (16, 1, 1, 6, 8, 2, '5', '250', 'null', 'null', 'null', 25000, NULL, NULL, 1, NULL, 3, 1, 'jhjhghjgjh', 'jhhjjhghgj', 0, '1645132628-2.jpg\r\n,1645132628-3.jpg\r\n,1645132629-4.jpg', 1, '2022-03-20 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (17, 2, 1, 6, 8, 2, '1', '56', 'null', 'null', 'null', 28000, NULL, NULL, 1, NULL, 3, 1, 'jhjhghjgjh', 'jhhjjhghgj', 0, '1645132628-2.jpg\r\n,1645132628-3.jpg\r\n,1645132629-4.jpg', 1, '2022-03-20 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(18, 3, 1, 3, 8, NULL, '4', '62', 'null', '12', '20', 12000, NULL, 1, 3, NULL, NULL, NULL, 'This is an address', 'THis is a test content', 0, '1645353525-about2.jpg\r\n,1645353526-about2.png\r\n,1645353527-about3.jpg\r\n,1645353527-about4.jpg\r\n,1645353527-about5.jpg\r\n,1645353528-about6.jpg\r\n,1645353528-about7.jpg', 1, '2022-03-22 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(19, 4, 1, 1, 8, NULL, '4', '100', 'null', '20', '20', 120000, NULL, 1, 1, NULL, 3, 1, 'suleyman sani axundov 2', 'This is a test content', 0, '1645355666-about1.jpg\r\n,1645355666-about2.jpg\r\n,1645355666-about3.jpg', 1, '2022-03-22 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(20, 5, 2, 1, 26, NULL, '3', '76', 'null', '7', '10', 1000, 1, NULL, NULL, NULL, NULL, NULL, 'address salam admin necesen', 'ezsxdcfgvbhjnhbvgcfdxsexdcfvghbjnhbgvfcd', 0, '1645355977-about1.jpg\r\n,1645355977-about2.jpg\r\n,1645355977-about2.png\r\n,1645355977-about3.jpg\r\n,1645355977-about4.jpg\r\n,1645355978-about6.jpg', 1, '2022-03-22 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
+(19, 4, 1, 1, 8, NULL, '4', '100', 'null', '20', '20', 120000, NULL, 1, 1, NULL, 3, 1, 'suleyman sani axundov 2', 'This is a test content', 0, '1645355666-about1.jpg\r\n,1645355666-about2.jpg\r\n,1645355666-about3.jpg', 0, '2022-03-22 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(20, 5, 2, 1, 26, NULL, '3', '76', 'null', '7', '10', 1000, 1, NULL, NULL, NULL, NULL, NULL, 'address salam admin necesen', 'ezsxdcfgvbhjnhbvgcfdxsexdcfvghbjnhbgvfcd', 0, '1645355977-about1.jpg\r\n,1645355977-about2.jpg\r\n,1645355977-about2.png\r\n,1645355977-about3.jpg\r\n,1645355977-about4.jpg\r\n,1645355978-about6.jpg', 0, '2022-03-22 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -107,19 +99,14 @@ CREATE TABLE `ads_users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- RELATIONSHIPS FOR TABLE `ads_users`:
---
-
---
 -- Dumping data for table `ads_users`
 --
 
 INSERT INTO `ads_users` (`id`, `name`, `surname`, `email`, `phone_number`, `avatar`, `username`, `user_type`, `password`, `status`) VALUES
 (1, 'null', '', 'null', 'null', 'default.png', 'null', 0, 'f031a92af175e40102e11ab0c3a366fef695b8fd990f45c99acf3668a2fb3130', 1),
 (2, 'jhgghjghjgjh', '', 'sgfjhgsdf@gmail.com', '0554561515', 'default.png', 'sgfjhgsdf', 0, 'e32863b1c083ada154b14f8a276fbe8e042da3750a1041ade188eded5aad976e', 1),
-(3, 'Kerim Mellim', '', 'general.department.of.sded@gmail.com', '0508221300', 'default.png', 'general.department.of.sded', 1, 'bc8ba378d11dd31f4f36de8d41a68e4b444ede4ebb6df056c5f5d3d0f155b2cd', 1),
 (4, 'Cavid Chaparoglu', '', 'csixiyev@gmail.com', '0552054132', 'default.png', 'csixiyev', 0, 'ee1a4e4bf860c1a4efa9a5df0ddeb85219ddef76355adebf15ede435a21e978f', 1),
-(5, 'Cavad', '', 'cavad@test.az', '0505506655', 'default.png', 'cavad', 0, 'c692fa7cfad0f18e3d2ad3a8c666a812f996557f8a3bcc39da49e116f6064a53', 1);
+(5, 'Cavad', '', 'cavad@test.az', '0505506655', 'avatar260.jpg', 'cavad', 0, 'c692fa7cfad0f18e3d2ad3a8c666a812f996557f8a3bcc39da49e116f6064a53', 1);
 
 -- --------------------------------------------------------
 
@@ -136,10 +123,6 @@ CREATE TABLE `apis_settings` (
   `left_shortcut_icons` text COLLATE utf8_unicode_ci NOT NULL,
   `updated_at` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- RELATIONSHIPS FOR TABLE `apis_settings`:
---
 
 --
 -- Dumping data for table `apis_settings`
@@ -159,10 +142,6 @@ CREATE TABLE `background_images` (
   `page` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `photo` varchar(255) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- RELATIONSHIPS FOR TABLE `background_images`:
---
 
 --
 -- Dumping data for table `background_images`
@@ -187,10 +166,6 @@ CREATE TABLE `cities` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- RELATIONSHIPS FOR TABLE `cities`:
---
 
 --
 -- Dumping data for table `cities`
@@ -284,10 +259,6 @@ CREATE TABLE `contact_settings` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- RELATIONSHIPS FOR TABLE `contact_settings`:
---
-
---
 -- Dumping data for table `contact_settings`
 --
 
@@ -306,10 +277,6 @@ CREATE TABLE `floors` (
   `status` int(11) NOT NULL DEFAULT 1,
   `updated_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- RELATIONSHIPS FOR TABLE `floors`:
---
 
 --
 -- Dumping data for table `floors`
@@ -342,10 +309,6 @@ CREATE TABLE `floor_numbers` (
   `status` int(11) NOT NULL DEFAULT 1,
   `updated_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- RELATIONSHIPS FOR TABLE `floor_numbers`:
---
 
 --
 -- Dumping data for table `floor_numbers`
@@ -400,10 +363,6 @@ CREATE TABLE `global_settings` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- RELATIONSHIPS FOR TABLE `global_settings`:
---
-
---
 -- Dumping data for table `global_settings`
 --
 
@@ -426,10 +385,6 @@ CREATE TABLE `hashtags` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- RELATIONSHIPS FOR TABLE `hashtags`:
---
 
 --
 -- Dumping data for table `hashtags`
@@ -456,10 +411,6 @@ CREATE TABLE `languages` (
   `italy` text COLLATE utf8_unicode_ci NOT NULL,
   `saudia_arabian` text COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- RELATIONSHIPS FOR TABLE `languages`:
---
 
 --
 -- Dumping data for table `languages`
@@ -939,7 +890,15 @@ INSERT INTO `languages` (`id`, `word`, `english`, `azerbaijan`, `turkish`, `russ
 (471, 'user_not_found', 'User not found', '', '', '', '', '', '', ''),
 (472, 'username_or_password_is_empty', 'Username or password is empty', '', '', '', '', '', '', ''),
 (473, 'select_an_option', 'Select an option', '', '', '', '', '', '', ''),
-(474, 'listings', 'Listings', '', '', '', '', '', '', '');
+(474, 'listings', 'Listings', '', '', '', '', '', '', ''),
+(475, 'upload_profile_photo', 'Upload profile photo', '', '', '', '', '', '', ''),
+(476, 'profile_information', 'Profile information', '', '', '', '', '', '', ''),
+(477, 'user_kind', 'User kind', '', '', '', '', '', '', ''),
+(478, 'user_dashboard', 'User dashboard', '', '', '', '', '', '', ''),
+(479, 'freeze_account', 'Freeze account', '', '', '', '', '', '', ''),
+(480, 'delete_account', 'Delete account', '', '', '', '', '', '', ''),
+(481, 'info', 'Info', '', '', '', '', '', '', ''),
+(482, 'Your_account_has_already_been_frozen_The_account_will_be_activated_while_it_is_included_continue?', 'Your account has already been frozen The account will be activated while it is included continue?', '', '', '', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -957,10 +916,6 @@ CREATE TABLE `language_list` (
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- RELATIONSHIPS FOR TABLE `language_list`:
---
 
 --
 -- Dumping data for table `language_list`
@@ -993,10 +948,6 @@ CREATE TABLE `login_attempts` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- RELATIONSHIPS FOR TABLE `login_attempts`:
---
-
---
 -- Dumping data for table `login_attempts`
 --
 
@@ -1027,10 +978,6 @@ CREATE TABLE `login_credentials` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- RELATIONSHIPS FOR TABLE `login_credentials`:
---
-
---
 -- Dumping data for table `login_credentials`
 --
 
@@ -1053,10 +1000,6 @@ CREATE TABLE `menus` (
   `status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
---
--- RELATIONSHIPS FOR TABLE `menus`:
---
-
 -- --------------------------------------------------------
 
 --
@@ -1072,10 +1015,6 @@ CREATE TABLE `metros` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- RELATIONSHIPS FOR TABLE `metros`:
---
 
 --
 -- Dumping data for table `metros`
@@ -1121,10 +1060,6 @@ CREATE TABLE `modul_functionalities` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- RELATIONSHIPS FOR TABLE `modul_functionalities`:
---
-
---
 -- Dumping data for table `modul_functionalities`
 --
 
@@ -1148,10 +1083,6 @@ CREATE TABLE `passwords_changes` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- RELATIONSHIPS FOR TABLE `passwords_changes`:
---
-
---
 -- Dumping data for table `passwords_changes`
 --
 
@@ -1170,10 +1101,6 @@ CREATE TABLE `password_blacklist` (
   `bad_pass` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `status` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- RELATIONSHIPS FOR TABLE `password_blacklist`:
---
 
 --
 -- Dumping data for table `password_blacklist`
@@ -1324,10 +1251,6 @@ CREATE TABLE `realty_kinds` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- RELATIONSHIPS FOR TABLE `realty_kinds`:
---
-
---
 -- Dumping data for table `realty_kinds`
 --
 
@@ -1350,10 +1273,6 @@ CREATE TABLE `realty_types` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- RELATIONSHIPS FOR TABLE `realty_types`:
---
 
 --
 -- Dumping data for table `realty_types`
@@ -1388,10 +1307,6 @@ CREATE TABLE `regions` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- RELATIONSHIPS FOR TABLE `regions`:
---
-
---
 -- Dumping data for table `regions`
 --
 
@@ -1423,10 +1338,6 @@ CREATE TABLE `rooms` (
   `updated_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
---
--- RELATIONSHIPS FOR TABLE `rooms`:
---
-
 -- --------------------------------------------------------
 
 --
@@ -1443,10 +1354,6 @@ CREATE TABLE `settlements` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- RELATIONSHIPS FOR TABLE `settlements`:
---
 
 --
 -- Dumping data for table `settlements`
@@ -1486,10 +1393,6 @@ CREATE TABLE `site_status` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- RELATIONSHIPS FOR TABLE `site_status`:
---
-
---
 -- Dumping data for table `site_status`
 --
 
@@ -1512,40 +1415,36 @@ CREATE TABLE `site_visitor` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- RELATIONSHIPS FOR TABLE `site_visitor`:
---
-
---
 -- Dumping data for table `site_visitor`
 --
 
 INSERT INTO `site_visitor` (`id`, `ip`, `soft`, `visit_date`, `visitor_info`, `count`) VALUES
-(1, '127.0.0.1', '', '2022-01-26 15:14:11', '{\"success\":false,\"error\":{\"code\":104,\"type\":\"usage_limit_reached\",\"info\":\"Your monthly usage limit has been reached. Please upgrade your Subscription Plan.\"}}', 4117),
-(2, '127.0.0.1', '', '2022-01-26 15:14:18', '{\"success\":false,\"error\":{\"code\":104,\"type\":\"usage_limit_reached\",\"info\":\"Your monthly usage limit has been reached. Please upgrade your Subscription Plan.\"}}', 4117),
-(3, '127.0.0.1', '', '2022-01-26 15:14:25', '{\"success\":false,\"error\":{\"code\":104,\"type\":\"usage_limit_reached\",\"info\":\"Your monthly usage limit has been reached. Please upgrade your Subscription Plan.\"}}', 4117),
-(4, '127.0.0.1', '', '2022-01-26 15:22:24', '{\"success\":false,\"error\":{\"code\":104,\"type\":\"usage_limit_reached\",\"info\":\"Your monthly usage limit has been reached. Please upgrade your Subscription Plan.\"}}', 4117),
-(5, '127.0.0.1', '', '2022-01-26 15:26:46', '{\"success\":false,\"error\":{\"code\":104,\"type\":\"usage_limit_reached\",\"info\":\"Your monthly usage limit has been reached. Please upgrade your Subscription Plan.\"}}', 4117),
-(6, '127.0.0.1', '', '2022-01-26 15:26:49', '{\"success\":false,\"error\":{\"code\":104,\"type\":\"usage_limit_reached\",\"info\":\"Your monthly usage limit has been reached. Please upgrade your Subscription Plan.\"}}', 4117),
-(7, '127.0.0.1', '', '2022-01-26 15:26:56', '{\"success\":false,\"error\":{\"code\":104,\"type\":\"usage_limit_reached\",\"info\":\"Your monthly usage limit has been reached. Please upgrade your Subscription Plan.\"}}', 4117),
-(8, '127.0.0.1', '', '2022-01-26 15:27:49', '{\"success\":false,\"error\":{\"code\":104,\"type\":\"usage_limit_reached\",\"info\":\"Your monthly usage limit has been reached. Please upgrade your Subscription Plan.\"}}', 4117),
-(9, '127.0.0.1', '', '2022-01-26 15:28:15', '{\"success\":false,\"error\":{\"code\":104,\"type\":\"usage_limit_reached\",\"info\":\"Your monthly usage limit has been reached. Please upgrade your Subscription Plan.\"}}', 4117),
-(10, '127.0.0.1', '', '2022-01-26 15:36:39', '{\"success\":false,\"error\":{\"code\":104,\"type\":\"usage_limit_reached\",\"info\":\"Your monthly usage limit has been reached. Please upgrade your Subscription Plan.\"}}', 4117),
-(11, '127.0.0.1', '', '2022-01-26 15:36:44', '{\"success\":false,\"error\":{\"code\":104,\"type\":\"usage_limit_reached\",\"info\":\"Your monthly usage limit has been reached. Please upgrade your Subscription Plan.\"}}', 4117),
-(12, '127.0.0.1', '', '2022-01-26 15:37:04', '{\"success\":false,\"error\":{\"code\":104,\"type\":\"usage_limit_reached\",\"info\":\"Your monthly usage limit has been reached. Please upgrade your Subscription Plan.\"}}', 4117),
-(13, '127.0.0.1', '', '2022-01-26 15:37:22', '{\"success\":false,\"error\":{\"code\":104,\"type\":\"usage_limit_reached\",\"info\":\"Your monthly usage limit has been reached. Please upgrade your Subscription Plan.\"}}', 4117),
-(14, '127.0.0.1', '', '2022-01-26 15:38:12', '{\"success\":false,\"error\":{\"code\":104,\"type\":\"usage_limit_reached\",\"info\":\"Your monthly usage limit has been reached. Please upgrade your Subscription Plan.\"}}', 4117),
-(15, '127.0.0.1', '', '2022-01-26 15:42:59', '{\"success\":false,\"error\":{\"code\":104,\"type\":\"usage_limit_reached\",\"info\":\"Your monthly usage limit has been reached. Please upgrade your Subscription Plan.\"}}', 4117),
-(16, '127.0.0.1', '', '2022-01-26 15:45:02', '{\"success\":false,\"error\":{\"code\":104,\"type\":\"usage_limit_reached\",\"info\":\"Your monthly usage limit has been reached. Please upgrade your Subscription Plan.\"}}', 4117),
-(17, '127.0.0.1', '', '2022-01-26 15:45:12', '{\"success\":false,\"error\":{\"code\":104,\"type\":\"usage_limit_reached\",\"info\":\"Your monthly usage limit has been reached. Please upgrade your Subscription Plan.\"}}', 4117),
-(18, '127.0.0.1', '', '2022-01-26 15:46:53', '{\"success\":false,\"error\":{\"code\":104,\"type\":\"usage_limit_reached\",\"info\":\"Your monthly usage limit has been reached. Please upgrade your Subscription Plan.\"}}', 4117),
-(19, '127.0.0.1', '', '2022-01-26 15:46:54', '{\"success\":false,\"error\":{\"code\":104,\"type\":\"usage_limit_reached\",\"info\":\"Your monthly usage limit has been reached. Please upgrade your Subscription Plan.\"}}', 4117),
-(20, '127.0.0.1', '', '2022-01-26 15:46:55', '{\"success\":false,\"error\":{\"code\":104,\"type\":\"usage_limit_reached\",\"info\":\"Your monthly usage limit has been reached. Please upgrade your Subscription Plan.\"}}', 4117),
-(21, '127.0.0.1', '', '2022-01-26 15:47:17', '{\"success\":false,\"error\":{\"code\":104,\"type\":\"usage_limit_reached\",\"info\":\"Your monthly usage limit has been reached. Please upgrade your Subscription Plan.\"}}', 4117),
-(22, '127.0.0.1', '', '2022-01-26 15:47:18', '{\"success\":false,\"error\":{\"code\":104,\"type\":\"usage_limit_reached\",\"info\":\"Your monthly usage limit has been reached. Please upgrade your Subscription Plan.\"}}', 4117),
-(23, '127.0.0.1', '', '2022-01-26 15:47:19', '{\"success\":false,\"error\":{\"code\":104,\"type\":\"usage_limit_reached\",\"info\":\"Your monthly usage limit has been reached. Please upgrade your Subscription Plan.\"}}', 4117),
-(24, '127.0.0.1', '', '2022-01-26 16:00:05', '{\"success\":false,\"error\":{\"code\":104,\"type\":\"usage_limit_reached\",\"info\":\"Your monthly usage limit has been reached. Please upgrade your Subscription Plan.\"}}', 4117),
-(25, '127.0.0.1', '', '2022-01-27 09:53:19', '{\"success\":false,\"error\":{\"code\":104,\"type\":\"usage_limit_reached\",\"info\":\"Your monthly usage limit has been reached. Please upgrade your Subscription Plan.\"}}', 4117),
-(26, '127.0.0.1', '', '2022-01-27 15:41:26', '{\"success\":false,\"error\":{\"code\":104,\"type\":\"usage_limit_reached\",\"info\":\"Your monthly usage limit has been reached. Please upgrade your Subscription Plan.\"}}', 4117);
+(1, '127.0.0.1', '', '2022-01-26 15:14:11', '{\"success\":false,\"error\":{\"code\":104,\"type\":\"usage_limit_reached\",\"info\":\"Your monthly usage limit has been reached. Please upgrade your Subscription Plan.\"}}', 4365),
+(2, '127.0.0.1', '', '2022-01-26 15:14:18', '{\"success\":false,\"error\":{\"code\":104,\"type\":\"usage_limit_reached\",\"info\":\"Your monthly usage limit has been reached. Please upgrade your Subscription Plan.\"}}', 4365),
+(3, '127.0.0.1', '', '2022-01-26 15:14:25', '{\"success\":false,\"error\":{\"code\":104,\"type\":\"usage_limit_reached\",\"info\":\"Your monthly usage limit has been reached. Please upgrade your Subscription Plan.\"}}', 4365),
+(4, '127.0.0.1', '', '2022-01-26 15:22:24', '{\"success\":false,\"error\":{\"code\":104,\"type\":\"usage_limit_reached\",\"info\":\"Your monthly usage limit has been reached. Please upgrade your Subscription Plan.\"}}', 4365),
+(5, '127.0.0.1', '', '2022-01-26 15:26:46', '{\"success\":false,\"error\":{\"code\":104,\"type\":\"usage_limit_reached\",\"info\":\"Your monthly usage limit has been reached. Please upgrade your Subscription Plan.\"}}', 4365),
+(6, '127.0.0.1', '', '2022-01-26 15:26:49', '{\"success\":false,\"error\":{\"code\":104,\"type\":\"usage_limit_reached\",\"info\":\"Your monthly usage limit has been reached. Please upgrade your Subscription Plan.\"}}', 4365),
+(7, '127.0.0.1', '', '2022-01-26 15:26:56', '{\"success\":false,\"error\":{\"code\":104,\"type\":\"usage_limit_reached\",\"info\":\"Your monthly usage limit has been reached. Please upgrade your Subscription Plan.\"}}', 4365),
+(8, '127.0.0.1', '', '2022-01-26 15:27:49', '{\"success\":false,\"error\":{\"code\":104,\"type\":\"usage_limit_reached\",\"info\":\"Your monthly usage limit has been reached. Please upgrade your Subscription Plan.\"}}', 4365),
+(9, '127.0.0.1', '', '2022-01-26 15:28:15', '{\"success\":false,\"error\":{\"code\":104,\"type\":\"usage_limit_reached\",\"info\":\"Your monthly usage limit has been reached. Please upgrade your Subscription Plan.\"}}', 4365),
+(10, '127.0.0.1', '', '2022-01-26 15:36:39', '{\"success\":false,\"error\":{\"code\":104,\"type\":\"usage_limit_reached\",\"info\":\"Your monthly usage limit has been reached. Please upgrade your Subscription Plan.\"}}', 4365),
+(11, '127.0.0.1', '', '2022-01-26 15:36:44', '{\"success\":false,\"error\":{\"code\":104,\"type\":\"usage_limit_reached\",\"info\":\"Your monthly usage limit has been reached. Please upgrade your Subscription Plan.\"}}', 4365),
+(12, '127.0.0.1', '', '2022-01-26 15:37:04', '{\"success\":false,\"error\":{\"code\":104,\"type\":\"usage_limit_reached\",\"info\":\"Your monthly usage limit has been reached. Please upgrade your Subscription Plan.\"}}', 4365),
+(13, '127.0.0.1', '', '2022-01-26 15:37:22', '{\"success\":false,\"error\":{\"code\":104,\"type\":\"usage_limit_reached\",\"info\":\"Your monthly usage limit has been reached. Please upgrade your Subscription Plan.\"}}', 4365),
+(14, '127.0.0.1', '', '2022-01-26 15:38:12', '{\"success\":false,\"error\":{\"code\":104,\"type\":\"usage_limit_reached\",\"info\":\"Your monthly usage limit has been reached. Please upgrade your Subscription Plan.\"}}', 4365),
+(15, '127.0.0.1', '', '2022-01-26 15:42:59', '{\"success\":false,\"error\":{\"code\":104,\"type\":\"usage_limit_reached\",\"info\":\"Your monthly usage limit has been reached. Please upgrade your Subscription Plan.\"}}', 4365),
+(16, '127.0.0.1', '', '2022-01-26 15:45:02', '{\"success\":false,\"error\":{\"code\":104,\"type\":\"usage_limit_reached\",\"info\":\"Your monthly usage limit has been reached. Please upgrade your Subscription Plan.\"}}', 4365),
+(17, '127.0.0.1', '', '2022-01-26 15:45:12', '{\"success\":false,\"error\":{\"code\":104,\"type\":\"usage_limit_reached\",\"info\":\"Your monthly usage limit has been reached. Please upgrade your Subscription Plan.\"}}', 4365),
+(18, '127.0.0.1', '', '2022-01-26 15:46:53', '{\"success\":false,\"error\":{\"code\":104,\"type\":\"usage_limit_reached\",\"info\":\"Your monthly usage limit has been reached. Please upgrade your Subscription Plan.\"}}', 4365),
+(19, '127.0.0.1', '', '2022-01-26 15:46:54', '{\"success\":false,\"error\":{\"code\":104,\"type\":\"usage_limit_reached\",\"info\":\"Your monthly usage limit has been reached. Please upgrade your Subscription Plan.\"}}', 4365),
+(20, '127.0.0.1', '', '2022-01-26 15:46:55', '{\"success\":false,\"error\":{\"code\":104,\"type\":\"usage_limit_reached\",\"info\":\"Your monthly usage limit has been reached. Please upgrade your Subscription Plan.\"}}', 4365),
+(21, '127.0.0.1', '', '2022-01-26 15:47:17', '{\"success\":false,\"error\":{\"code\":104,\"type\":\"usage_limit_reached\",\"info\":\"Your monthly usage limit has been reached. Please upgrade your Subscription Plan.\"}}', 4365),
+(22, '127.0.0.1', '', '2022-01-26 15:47:18', '{\"success\":false,\"error\":{\"code\":104,\"type\":\"usage_limit_reached\",\"info\":\"Your monthly usage limit has been reached. Please upgrade your Subscription Plan.\"}}', 4365),
+(23, '127.0.0.1', '', '2022-01-26 15:47:19', '{\"success\":false,\"error\":{\"code\":104,\"type\":\"usage_limit_reached\",\"info\":\"Your monthly usage limit has been reached. Please upgrade your Subscription Plan.\"}}', 4365),
+(24, '127.0.0.1', '', '2022-01-26 16:00:05', '{\"success\":false,\"error\":{\"code\":104,\"type\":\"usage_limit_reached\",\"info\":\"Your monthly usage limit has been reached. Please upgrade your Subscription Plan.\"}}', 4365),
+(25, '127.0.0.1', '', '2022-01-27 09:53:19', '{\"success\":false,\"error\":{\"code\":104,\"type\":\"usage_limit_reached\",\"info\":\"Your monthly usage limit has been reached. Please upgrade your Subscription Plan.\"}}', 4365),
+(26, '127.0.0.1', '', '2022-01-27 15:41:26', '{\"success\":false,\"error\":{\"code\":104,\"type\":\"usage_limit_reached\",\"info\":\"Your monthly usage limit has been reached. Please upgrade your Subscription Plan.\"}}', 4365);
 
 -- --------------------------------------------------------
 
@@ -1564,10 +1463,6 @@ CREATE TABLE `smtp_settings` (
   `receiver_email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `updated_at` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- RELATIONSHIPS FOR TABLE `smtp_settings`:
---
 
 --
 -- Dumping data for table `smtp_settings`
@@ -1592,10 +1487,6 @@ CREATE TABLE `social_media_settings` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- RELATIONSHIPS FOR TABLE `social_media_settings`:
---
-
---
 -- Dumping data for table `social_media_settings`
 --
 
@@ -1618,10 +1509,6 @@ CREATE TABLE `system_bans` (
   `status` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
---
--- RELATIONSHIPS FOR TABLE `system_bans`:
---
-
 -- --------------------------------------------------------
 
 --
@@ -1640,10 +1527,6 @@ CREATE TABLE `system_logs` (
   `status` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
---
--- RELATIONSHIPS FOR TABLE `system_logs`:
---
-
 -- --------------------------------------------------------
 
 --
@@ -1655,10 +1538,6 @@ CREATE TABLE `theme_settings` (
   `theme_mode` varchar(6) COLLATE utf8_unicode_ci NOT NULL,
   `updated_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- RELATIONSHIPS FOR TABLE `theme_settings`:
---
 
 --
 -- Dumping data for table `theme_settings`
@@ -1926,7 +1805,7 @@ ALTER TABLE `hashtags`
 -- AUTO_INCREMENT for table `languages`
 --
 ALTER TABLE `languages`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=475;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=483;
 
 --
 -- AUTO_INCREMENT for table `language_list`
