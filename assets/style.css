@@ -16003,3 +16003,14 @@ body.slidemenuon .sidebarBtn .bar:nth-child(4) {
     border-radius: 25%;
 }
 
+.show-number {
+  display: inline-block;
+  background-color: #eaf7f4;
+  border: none;
+  border-radius: 3px;
+  color: var(--rt-primary-color);
+  font-size: 15px;
+  font-weight: 700;
+  padding: 7px 18px;
+  transition: all 0.3s ease-in-out;
+}

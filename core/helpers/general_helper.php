@@ -9,6 +9,40 @@ if (!defined( 'BASEPATH' )) exit('No direct script access allowed');
         return $url;
     }
 
+    function unique_token()
+    {
+        $token = openssl_random_pseudo_bytes(16);
+        $token = bin2hex($token);
+        return $token;
+    }
+
+    function wish($token,$id)
+    {
+        global $conn;
+        $sql  = "SELECT * FROM wishlists WHERE session_id='".$token."' AND data_id='".$id."'";
+        $qryr = mysqli_query($conn,$sql);
+        $cn   = mysqli_num_rows($qryr);
+            if ($cn>0) 
+            {
+                $bax  = true;
+            }
+            else
+            {
+                $bax = false;
+            }
+        
+        return $bax;
+    }
+
+    function wish_count($token)
+    {
+        global $conn;
+        $sql  = "SELECT * FROM wishlists WHERE session_id='".$token."'";
+        $qryr = mysqli_query($conn,$sql);
+        $cn   = mysqli_num_rows($qryr);        
+        return $cn;
+    }
+
     function today_visitor($val = 'all'){
         global $conn;
         $result = [];

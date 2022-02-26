@@ -1,0 +1,18 @@
+STATUSLAR
+==========
+ELANLAR
+
+0 - silinmis
+1 - deaktiv
+2 - aktiv
+3 - yoxlanisda olan
+4 - vaxti bitmis
+5 - qebul edilmemis
+
+USERS
+
+0 - silinmis
+1 - deaktiv
+2 - aktiv
+3 - dondurulmus
+4 - bloklanmis
