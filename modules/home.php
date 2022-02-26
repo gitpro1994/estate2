@@ -2,11 +2,6 @@
 $title = settings('site_title');
 $desc  = settings('seo_description');
 $keyw  = settings('seo_keywords');
-// setcookie("cavid[1]", "10", time()+3600);
-// setcookie("cavid[2]", "20", time()+3600);
-// setcookie("cavid[3]", "30", time()+3600);
-// setcookie("cavid[4]", "40", time()+3600);
-// dd($_COOKIE['cavid']);
 ?>
 <!-- START HEAD -->
 <?php include_once "partials/head.php"; ?>
@@ -51,11 +46,12 @@ $keyw  = settings('seo_keywords');
                         $run = mysqli_query($conn,$sel);
                         while ($nn = mysqli_fetch_array($run)) 
                         {
+                            $wish = (wish($_SESSION['unique_session'],$nn[0])) ? 'fa fa-heart' : 'flaticon-heart';
                          ?>
                         <div class="col-xl-4 col-lg-6 col-md-6 <?= ($nn['kind_id']==1) ? 'for-sell' : 'for-rent' ?> ">
                             <div class="property-box2 wow  fadeInUp" data-wow-delay=".3s">
                                 <div class="item-img">
-                                    <a href="salam.php?id=<?= $nn[0] ?>"><img src="<?= site_url() ?>assets/img/blog/blog4.jpg" alt="blog" width="510" height="340"></a>
+                                    <a href="<?= site_url() ?>detail/<?= $nn['sef_url'] ?>"><img src="<?= site_url() ?>assets/img/blog/blog4.jpg" alt="blog" width="510" height="340"></a>
                                     <div class="item-category-box1">
                                         <div class="item-category"><?= $nn['kind_name'] ?></div>
                                     </div>
@@ -67,7 +63,7 @@ $keyw  = settings('seo_keywords');
                                             <li>
                                                 <a data-id="<?= $nn[0] ?>" data-bs-toggle="tooltip" data-bs-placement="top"
                                                     title="<?= translate('favourite') ?>" class="add_favourite">
-                                                    <i class="flaticon-heart"></i>
+                                                    <i class="<?= $wish; ?>"></i>
                                                 </a>
                                             </li>
                                            
@@ -133,20 +129,9 @@ $( document ).ready(function() {
                toast.addEventListener('mouseleave', Swal.resumeTimer)
            }
        });
-       function setCookie(cname,cvalue,exdays) 
-       {
-            var d = new Date();
-            d.setTime(d.getTime() + (exdays*24*60*60*1000));
-            var expires = "expires=" + d.toGMTString();
-            document.cookie = cname + "=" + cvalue + ";" + expires + ";";
-        }
-        function deleteCookie(name) 
-        {
-          document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-        }
+      
 
      $(document).on('click', '.add_favourite', function(event) {
-
         let myClass = $(this).children('i').attr("class");
         let data_id = $(this).data("id");
         let url     = $("#base_url").val();
@@ -170,12 +155,13 @@ $( document ).ready(function() {
                          if (parsed.action == "add") 
                          {
                             $(me).children("i").removeClass("flaticon-heart").addClass("fa fa-heart");
-                            setCookie("estates"+ data_id +"",data_id,15);  
+                            $(".item-count").html(parsed.all_count);
+                            
                          }
                          else
                          {
                             $(me).children("i").removeClass("fa fa-heart").addClass("flaticon-heart");
-                            deleteCookie("estates"+ data_id +""); 
+                            $(".item-count").html(parsed.all_count);
                          }
 
                     }

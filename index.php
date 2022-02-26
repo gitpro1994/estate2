@@ -14,9 +14,11 @@ define('BASEPATH', true);
 include_once("core/config/database.php");
 include_once("core/helpers/general_helper.php");
 
-
 (settings('timezone')) ?  date_default_timezone_set(settings('timezone')) : '';
 sayt_ziyaretci();
+
+$_SESSION['unique_session']  =  (!isset($_SESSION['unique_session'])) ? unique_token() : $_SESSION['unique_session'];
+
 
 if(site_status('status')==0)
 {

@@ -44,20 +44,14 @@
                                         <i class="fa fa-address-book icon-round"></i>
                                     </a>
                                 </li>
-                                <li class="action-item-style left-right-btn">
-                                    <a href="compare.html" data-bs-toggle="tooltip" data-bs-placement="bottom"
-                                    title="Compare">
-                                    <i class="flaticon-left-and-right-arrows icon-round"></i>
-                                    <div class="item-count">0</div>
-                                </a>
-                            </li>
-                            <li class="action-item-style wish-btn">
-                                <a href="favourite.html" data-bs-toggle="tooltip" data-bs-placement="bottom"
-                                title="Favourites">
-                                <i class="flaticon-heart icon-round"></i>
-                                <div class="item-count">0</div>
-                            </a>
-                        </li>
+                                
+                                <li class="action-item-style wish-btn">
+                                    <a href="favourite.html" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                    title="Favourites">
+                                        <i class="flaticon-heart icon-round"></i>
+                                        <div class="item-count"><?= wish_count($_SESSION['unique_session']) ?></div>
+                                    </a>
+                                </li>
                         <?php 
                         if(isset($_SESSION['mail']))
                         {
