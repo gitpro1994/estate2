@@ -256,7 +256,7 @@ $count_listing  = mysqli_num_rows($run);
                                                                         if ($bax_all_listings['payment_method']=="1") {
                                                                             echo '<span><i>/</i>'.translate('monthly').'</span>';
                                                                         }
-                                                                        elseif($bax_all_listings['payment_method']==0)
+                                                                        elseif($bax_all_listings['payment_method']=="0")
                                                                         {
                                                                             echo '<span><i>/</i>'.translate('daily').'</span>';
                                                                         }
