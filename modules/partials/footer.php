@@ -56,6 +56,7 @@
 <script src="<?= site_url() ?>assets/js/masked_input.js"></script>
 <script src="<?= site_url()?>assets/js/iziModal.min.js"></script>
 <script src="<?= site_url()?>/assets/js/dropzone.js"></script>
+<script src="<?= site_url()?>/assets/js/toast.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 <script type="text/javascript">
@@ -68,22 +69,12 @@
             // tags: true
         });
     });
-   //  const Toast = Swal.mixin({
-   //      toast: true,
-   //      position: 'top-end',
-   //      showConfirmButton: false,
-   //      timer: 3000,
-   //      timerProgressBar: true,
-   //      didOpen: (toast) => {
-   //         toast.addEventListener('mouseenter', Swal.stopTimer)
-   //         toast.addEventListener('mouseleave', Swal.resumeTimer)
-   //     }
-   // })
 
  //##################### LOGIN #####################
 
  $(document).ready(function() {
     $("#login").click(function(e) {
+      
         e.preventDefault();
         let self = $(this);
         e.preventDefault(); 
@@ -106,8 +97,8 @@
                   showCancelButton: true,
                   confirmButtonColor: '#3085d6',
                   cancelButtonColor: '#d33',
-                  cancelButtonText: 'Ləğv et',
-                  confirmButtonText: 'Hesabı aktivləşdir!'
+                  cancelButtonText: '<?= translate('cancel') ?>',
+                  confirmButtonText: '<?= translate('activate_account') ?>'
               }).then((result) => {
                   if (result.isConfirmed) {
                     $.ajax({
@@ -115,27 +106,27 @@
                         type: "POST",
                         data: data,
                         success: function(data){
-                            console.log(data);
-                            if(data.status == 200)
+                            response = JSON.parse(data);
+                            if(response.status == 200)
                             {
                                 Toast.fire({
                                   heading: 'Uğurlu!',
-                                  text: data.message,
+                                  text: response.message,
                                   showHideTransition: 'slide',
-                                  icon: data.icon,
+                                  icon: response.icon,
                                   loaderBg: '#fff',
                                   position: 'top-right'
-                                })
+                                });
                                 location.href = "dashboard"; 
                             }
-                            else if(data.status == 204)
+                            else if(response.status == 204)
                             {
 
                                 Toast.fire({
                                   heading: 'Xəta',
-                                  text: data.message,
+                                  text: response.message,
                                   showHideTransition: 'slide',
-                                  icon: data.icon,
+                                  icon: response.icon,
                                   loaderBg: '#fff',
                                   position: 'top-right'
                               })

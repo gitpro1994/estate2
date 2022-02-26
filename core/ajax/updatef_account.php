@@ -33,9 +33,10 @@ if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && !empty($_SERVER['HTTP_X_REQUESTED
 
   	$statement_user = "SELECT * FROM ads_users WHERE (username= '".$username."' OR email='".$username."') AND password = '".$pass."'";
 	$execute		= mysqli_query($conn,$statement_user);
+	$count 			= mysqli_num_rows($execute); 
 	$bax        	= mysqli_fetch_array($execute);
 
-	if ($execute) 
+	if ($count === 1) 
 	{
 		
 			$sessionData = [
@@ -72,4 +73,8 @@ if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && !empty($_SERVER['HTTP_X_REQUESTED
 		echo json_encode($data);
 		exit; 
 	}
+}
+else
+{
+    include_once("index.html");
 }

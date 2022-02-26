@@ -73,3 +73,7 @@ if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && !empty($_SERVER['HTTP_X_REQUESTED
 
   }
 }
+else
+{
+    include_once("index.html");
+}
