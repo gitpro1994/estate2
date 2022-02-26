@@ -31,21 +31,21 @@ $keyw  = settings('seo_keywords');
                      <h4><?= translate('add_listing') ?></h4>
                      <hr>
                      <div class="mb-3 row">
-                       <label for="name" class="col-sm-4 col-form-label">Əlaqədar şəxs</label>
+                       <label for="name" class="col-sm-4 col-form-label"><?= translate('relevant_person') ?></label>
                        <div class="col-sm-8">
                         <input  name="name" type="text" id="name" class="form-control form-control-sm" placeholder="<?= translate("enter_your_name_and_surname") ?>" required>
                      </div>
                   </div>
 
                   <div class="mb-3 row">
-                    <label for="phone_number" class="col-sm-4 col-form-label">Telefon</label>
+                    <label for="phone_number" class="col-sm-4 col-form-label"><?= translate('phone_number') ?></label>
                     <div class="col-sm-8">
                      <input  name="phone_number" type="text" id="phone_number" class="form-control form-control-sm" placeholder="<?= translate("enter_phone_number") ?>" required>
                   </div>
                </div>
 
                <div class="mb-3 row">
-                 <label for="email" class="col-sm-4 col-form-label">E-Poçt ünvanı</label>
+                 <label for="email" class="col-sm-4 col-form-label"><?= translate('email') ?></label>
                  <div class="col-sm-8">
                   <input  name="email" type="email" id="email" class="form-control form-control-sm" placeholder="<?= translate("enter_email_address") ?>" required>
                   <div class="invalid-feedback">

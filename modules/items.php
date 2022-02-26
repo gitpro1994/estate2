@@ -20,7 +20,7 @@ if (isset($_GET['kind']))
 		$allcount_fetch = mysqli_fetch_array($allcount_result);
 		$allcount = $allcount_fetch['allcount'];
 
-		$sel = "SELECT * FROM ads AS a INNER JOIN cities AS c ON a.city_id=c.id INNER JOIN realty_kinds AS rk ON a.kind_id=rk.id INNER JOIN realty_types AS rt ON a.type_id=rt.id WHERE a.kind_id='".$bax['id']."' ORDER BY a.id DESC LIMIT 0,".$rowperpage."";
+		$sel = "SELECT * FROM ads AS a INNER JOIN cities AS c ON a.city_id=c.id LEFT JOIN regions AS r ON a.regions=r.id INNER JOIN realty_kinds AS rk ON a.kind_id=rk.id INNER JOIN realty_types AS rt ON a.type_id=rt.id WHERE a.status=1 AND a.kind_id='".$bax['id']."' ORDER BY a.id DESC LIMIT 0,".$rowperpage."";
 		$run = mysqli_query($conn,$sel);
 		$run1 = mysqli_query($conn,$sel);
 		$count_r = mysqli_num_rows($run);
@@ -64,304 +64,128 @@ $keyw  = settings('seo_keywords');
 	</div>
 </div>
 
-<section class="grid-wrap3">
+<section class="grid-wrap1 grid-wrap2">
 	<div class="container">
-		<div class="row gutters-40">
-			<div class="col-lg-4 widget-break-lg sidebar-widget">
-				<div class="widget widget-advanced-search">
-					<h3 class="widget-subtitle"><?= translate('advanced_search') ?></h3>
-					<form action="#" class="map-forms map-form-style-2">
-						<input type="text" class="form-control" placeholder="What are you looking for?">
-						<input type="hidden" name="kind_adi" id="kind_adi" value="<?= $kind_adi ?>">
-						<div class="row">
-							<div class="col-lg-12 pl-15 mb-0">
-								<div class="rld-single-select">
-									<select class="select single-select mr-0">
-										<?php 
-										$rk  = "SELECT * FROM realty_kinds WHERE status=1";
-										$rkr = mysqli_query($conn,$rk);
-										while ($bax = mysqli_fetch_array($rkr)) {
-											?>
-											<option value="<?= $bax['id'] ?>">
-												<?= translate($bax['kind_name']) ?>
-											</option>
-										<?php } ?>
-									</select>
-								</div>
-							</div>
-							<div class="col-lg-12 pl-15 mb-0">
-								<div class="rld-single-select">
-									<select class="select single-select mr-0">
-										<?php 
-										$rk  = "SELECT * FROM realty_types WHERE status=1";
-										$rkr = mysqli_query($conn,$rk);
-										while ($bax = mysqli_fetch_array($rkr)) {
-											?>
-											<option value="<?= $bax['id'] ?>">
-												<?= translate($bax['type_name']) ?>
-											</option>
-										<?php } ?>
-									</select>
-								</div>
-							</div>
-							<div class="col-lg-12 pl-15">
-								<div class="rld-single-select">
-									<select class="select single-select mr-0">
-										<?php 
-										$rk  = "SELECT * FROM cities WHERE status=1";
-										$rkr = mysqli_query($conn,$rk);
-										while ($bax = mysqli_fetch_array($rkr)) {
-											?>
-											<option value="<?= $bax['id'] ?>">
-												<?= translate($bax['city_name']) ?>
-											</option>
-										<?php } ?>
-									</select>
-								</div>
-							</div>
-						</div>
-					</form>
-					<div class="banner-search-wrap banner-search-wrap-2">
-						<div class="rld-main-search rld-main-search3">
-							<div class="filter-button">
-								<a href="#" class="filter-btn1 search-btn"><?= translate('search') ?><i class="fas fa-search"></i></a>
-							</div>
-						</div>
-						<!--/ End Search Form -->
-					</div>
-				</div>
-				<div class="widget widget-listing-box1">
-					<h3 class="widget-subtitle"><?= translate('latest_listings') ?></h3>
-					<div class="widget-listing">
-						<div class="item-img">
-							<a href="single-listing1.html"><img src="<?= site_url() ?>/assets/img/blog/widget2.jpg" alt="widget" width="120" height="102"></a>
-						</div>
-						<div class="item-content">
-							<h5 class="item-title"><a href="single-listing1.html">House Highland Ave  Los Angeles</a></h5>
-							<div class="location-area"><i class="flaticon-maps-and-flags"></i>California</div>
-							<div class="item-price">$3,000<span>/mo</span></div>
-						</div>
-					</div>
-					<div class="widget-listing">
-						<div class="item-img">
-							<a href="single-listing1.html"><img src="<?= site_url() ?>/assets/img/blog/widget3.jpg" alt="widget" width="120" height="102"></a>
-						</div>
-						<div class="item-content">
-							<h5 class="item-title"><a href="single-listing1.html">House Highland Ave  Los Angeles</a></h5>
-							<div class="location-area"><i class="flaticon-maps-and-flags"></i>California</div>
-							<div class="item-price">$1,200<span>/mo</span></div>
-						</div>
-					</div>
-					<div class="widget-listing no-brd">
-						<div class="item-img">
-							<a href="single-listing1.html"><img src="<?= site_url() ?>/assets/img/blog/widget4.jpg" alt="widget" width="120" height="102"></a>
-						</div>
-						<div class="item-content">
-							<h5 class="item-title"><a href="single-listing1.html">House Highland Ave  Los Angeles</a></h5>
-							<div class="location-area"><i class="flaticon-maps-and-flags"></i>California</div>
-							<div class="item-price">$1,900<span>/mo</span></div>
-						</div>
-					</div>
-				</div>
-				<div class="widget widget-post">
-					<div class="item-img">
-						<img src="<?= site_url() ?>/assets/img/blog/widget5.jpg" alt="widget" width="690" height="850">
-						<div class="circle-shape">
-							<span class="item-shape"></span>
-						</div>
-					</div>
-					<div class="item-content">
-						<h4 class="item-title">Find Your  Dream House</h4>
-						<div class="item-price">$2,999</div>
-						<div class="post-button"><a href="single-listing1.html" class="item-btn">Shop Now</a></div>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-8">
-				<div class="property-wrap-9">
-					<div class="row justify-content-center">
-						<div class="col-lg-12 col-md-12">
-							<div class="item-shorting-box">
-								<div class="shorting-title">
-									<h4 class="item-title"><?= $allcount ?> <?= translate('search_results_found') ?></h4>
-								</div>
-								<div class="item-shorting-box-2">
-									<div class="by-shorting">
-										<div class="shorting"><?= translate('Sort_by') ?>:</div>
-										<select class="select single-select mr-0">
-											<option value="1"><?= translate('by_date') ?></option>
-											<option value="2"><?= translate('cheap_firstly') ?></option>
-											<option value="3"><?= translate('expensive_firstly') ?></option>
-										</select>
-									</div>
-									<div class="grid-button">
-										<ul class="nav nav-tabs" role="tablist">
-											<li class="nav-item">
-												<a class="listTab nav-link active" data-bs-toggle="tab" data-id="1" href="#mylisting"><i class="fas fa-th"></i></a>
-											</li>
-											<li class="nav-item">
-												<a class="listTab nav-link" data-bs-toggle="tab" data-id="2" href="#reviews"><i class="fas fa-list-ul"></i></a>
-											</li>
-										</ul>
-									</div>
-									</div>	
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="tab-style-1 tab-style-3">
-						<div class="tab-content" id="myTabContent">
-							<div class="tab-pane fade show active" id="mylisting" role="tabpanel">
-								<div class="row">
-									<?php while($nn = mysqli_fetch_array($run)) { ?>
-										<div class="col-lg-6 col-md-6 items">
-											<div class="property-box2 wow animated fadeInUp" data-wow-delay=".3s">
-												<div class="item-img">
-													<a href="single-listing1.html"><img src="<?= site_url() ?>/assets/img/blog/blog5.jpg" alt="blog" width="510" height="340"></a>
-													<div class="item-category-box1">
-														<div class="item-category">For Rent</div>
-													</div>
-													<div class="rent-price">
-			                                        <div class="item-price">₼ <?= $nn['price'] ?> <?php if($nn['payment_method']=="1"){ echo '<span><i>/</i>'.translate('monthly').'</span>'; }elseif($nn['payment_method']=="0"){ echo '<span><i>/</i>'.translate('monthly').'</span>'; } ?></div>
-			                                    </div>
-													<div class="react-icon">
-				                                        <ul>
-				                                            <li>
-				                                                <a href="favourite.html" data-bs-toggle="tooltip" data-bs-placement="top"
-				                                                    title="<?= translate('favourite') ?>">
-				                                                    <i class="flaticon-heart"></i>
-				                                                </a>
-				                                            </li>
-				                                           
-				                                           <?php if($nn['kind_id']==1 AND $nn['mortgage']!=NULL){ ?>
-				                                            <?php if ($nn['mortgage']==0) { ?>
-				                                                <li>
-				                                                    <a href="#" data-bs-toggle="tooltip" data-bs-placement="top"
-				                                                        title="<?= translate('mortgage') ?>">
-				                                                        <i class="fa fa-percent"></i>
-				                                                    </a>
-				                                                </li>
-				                                           <?php }elseif ($nn['mortgage']==1) { ?>
-				                                                <li>
-				                                                    <a href="#" data-bs-toggle="tooltip" data-bs-placement="top"
-				                                                        title="<?= translate('chixarish') ?>">
-				                                                        <i class="fa fa-file"></i>
-				                                                    </a>
-				                                                </li>
-				                                            <?php }else{ ?>
 
-				                                            <?php } ?>
-				                                            <?php } ?>
-				                                        </ul>
-				                                    </div>
-										</div>
-										<div class="item-category10"><a href="single-listing1.html">Appartment</a></div>
-										<div class="item-content">
-											<div class="verified-area">
-												<h3 class="item-title"><a href="single-listing1.html">Family House For Rent</a></h3>
-											</div>
-											<div class="location-area"><i class="flaticon-maps-and-flags"></i>Downey, California</div>
-											<div class="item-categoery3">
-												<ul>
-													<li><i class="flaticon-bed"></i>Beds: 03</li>
-													<li><i class="flaticon-shower"></i>Baths: 02</li>
-													<li><i class="flaticon-two-overlapping-square"></i>931 Sqft</li>
-												</ul>
-											</div>
-										</div>
-									</div>
-								</div>
-							<?php } ?>
-							<input type="hidden" id="row" value="0">
-							<input type="hidden" id="design" value="horizontal">
-							<input type="hidden" id="all" value="<?php echo $allcount; ?>">
-						</div>
 
-					</div>
+		<div class="row mt-5">
+			<div class="col-lg-12">
+				<div class="row justify-content-left">
+					<?php while($bax_listings = mysqli_fetch_array($run)){ 
+						$images_listings = $bax_listings['images'];
+						$image_listing = explode(',', $images_listings);
+					?>
+						<div class="col-lg-4 col-md-6">
+							<div class="property-box2 fadeInUp" data-wow-delay=".3s">
+                                <div class="item-img">
+                                    <a href="salam.php?id=<?= $nn[0] ?>"><img src="<?= site_url() ?>uploads/<?= $image_listing[0] ?>" alt="blog" width="510" height="340"></a>
+                                    <div class="item-category-box1">
+                                        <div class="item-category"><?= $bax_listings['kind_name'] ?></div>
+                                    </div>
+                                    <div class="rent-price">
+                                        <div class="item-price">₼ <?= $bax_listings['price'] ?> <?php if($bax_listings['payment_method']=="1"){ echo '<span><i>/</i>'.translate('monthly').'</span>'; }elseif($bax_listings['payment_method']=="0"){ echo '<span><i>/</i>'.translate('monthly').'</span>'; } ?></div>
+                                    </div>
+                                    <div class="react-icon">
+                                        <ul>
+                                            <li>
+                                                <a data-id="<?= $bax_listings[0] ?>" data-bs-toggle="tooltip" data-bs-placement="top"
+                                                    title="<?= translate('favourite') ?>" class="add_favourite">
+                                                    <i class="flaticon-heart"></i>
+                                                </a>
+                                            </li>
+                                           
+                                           <?php if($bax_listings['kind_id']==1 AND $bax_listings['mortgage']!=NULL){ ?>
+                                            <?php if ($bax_listings['mortgage']==0) { ?>
+                                                <li>
+                                                    <a href="#" data-bs-toggle="tooltip" data-bs-placement="top"
+                                                        title="<?= translate('mortgage') ?>">
+                                                        <i class="fa fa-percent"></i>
+                                                    </a>
+                                                </li>
+                                           <?php }elseif ($bax_listings['mortgage']==1) { ?>
+                                                <li>
+                                                    <a href="#" data-bs-toggle="tooltip" data-bs-placement="top"
+                                                        title="<?= translate('chixarish') ?>">
+                                                        <i class="fa fa-file"></i>
+                                                    </a>
+                                                </li>
+                                            <?php }else{ ?>
 
-					<div class="tab-pane fade" id="reviews" role="tabpanel">
-						<div class="row">
-						<?php while($bb = mysqli_fetch_array($run1)) { ?>
-						<div class="col-lg-12">
-							<div class="property-box2 property-box4 wow animated fadeInUp" data-wow-delay=".6s">
-								<div class="item-img">
-									<a href="single-listing1.html"><img src="<?= site_url() ?>/assets/img/blog/blog18.jpg" alt="blog" width="250" height="200"></a>
-									<div class="item-category-box1">
-										<div class="item-category">For Rent</div>
-									</div>
-								</div>
-								<div class="item-content item-content-property">
-									<div class="item-category10"><a href="single-listing1.html">Appartment</a></div>
-									<div class="react-icon react-icon-2">
-										<ul>
-											<li>
-												<a href="favourite.html" data-bs-toggle="tooltip" data-bs-placement="bottom"
-												title="Favourites">
-												<i class="flaticon-heart"></i>
-											</a>
-										</li>
-										<li>
-											<a href="compare.html" data-bs-toggle="tooltip" data-bs-placement="bottom"
-											title="Compare">
-											<i class="flaticon-left-and-right-arrows"></i>
-										</a>
-									</li>
-								</ul>
-							</div>
-							<div class="verified-area">
-								<h3 class="item-title"><a href="single-listing1.html">Family House For Rent</a></h3>
-							</div>
-							<div class="location-area"><i class="flaticon-maps-and-flags"></i>Downey, California</div>
-							<div class="item-categoery3">
-								<ul>
-									<li><i class="flaticon-bed"></i>Beds: 03</li>
-									<li><i class="flaticon-shower"></i>Baths: 02</li>
-									<li><i class="flaticon-two-overlapping-square"></i>931 Sqft</li>
-								</ul>
-							</div>
-						</div>
-						</div>
-						</div>
-					<?php } ?>
-					</div>
+                                            <?php } ?>
+                                            <?php } ?>
+                                           
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="item-category10"><a href="single-listing1.html"><?= $bax_listings['type_name'] ?></a></div>
+                                <div class="item-content">
+                                    <div class="verified-area">
+                                        <h3 class="item-title"><a href="single-listing1.html">Ofis satilir</a></h3>
+                                    </div>
+                                    <div class="location-area"><i class="flaticon-maps-and-flags"></i><?= $bax_listings['city_name'] ?> <?= (!empty($bax_listings['region_name'])) ? ',' : '' ?> <?= $bax_listings['region_name'] ?></div>
+                                    <div class="item-categoery3">
+                                        <ul>
+                                            <li><i class="flaticon-bed"></i><?= translate('room') ?>: <?= $bax_listings['rooms'] ?></li>
+                                            <li><i class="flaticon-shower"></i>Baths: 02</li>
+                                            <li><i class="flaticon-two-overlapping-square"></i><?= $bax_listings['area'] ?> m²</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
 				</div>
-			</div>
+			<?php } ?>
+		</div>
+		<div class="pagination-style-1">
+			<ul class="pagination">
+				<li class="page-item">
+					<a class="page-link" href="with-sidebar2.html" aria-label="Previous">
+						<span aria-hidden="true">&laquo;</span>
+						<span class="sr-only">Previous</span>
+					</a>
+				</li>
+				<li class="page-item"><a class="page-link active" href="with-sidebar2.html">1</a></li>
+				<li class="page-item"><a class="page-link" href="with-sidebar2.html">2</a></li>
+				<li class="page-item"><a class="page-link" href="with-sidebar2.html">3</a></li>
+				<li class="page-item"><a class="page-link" href="with-sidebar2.html">4</a></li>
+				<li class="page-item">
+					<a class="page-link" href="with-sidebar2.html" aria-label="Next">
+						<span aria-hidden="true">&raquo;</span>
+						<span class="sr-only">Next</span>
+					</a>
+				</li>
+			</ul>
 		</div>
 	</div>
-
-</div>
-</div>
-</div>
-</div>
 </div>
 </div>
 </section>
+
 
 <!-- START FOOTER -->
 <?php include_once "partials/footer.php"; ?>
 <!-- END FOOTER -->
 <script type="text/javascript">
-$(document).ready(function(){
-	 $(window).scroll(function(){
-	 	var position = $(window).scrollTop();
-        var bottom   = $(document).height() - $(window).height();
+	$(document).ready(function(){
+		$(window).scroll(function(){
+			var position = $(window).scrollTop();
+			var bottom   = $(document).height() - $(window).height();
 		    	// console.log(position);
-        if( position != bottom )
-        {
-        	let listTab  =  $("a.active").data("id");
-        	if (listTab==1) 
-        	{
-        		$("#design").val('horizontal');
-        	}
-        	else
-        	{
-        		$("#design").val('vertical');
-        	}
-        	let design = $("#design").val();
-		         console.log(design);
+		    	if( position != bottom )
+		    	{
+		    		let listTab  =  $("a.active").data("id");
+		    		if (listTab==1) 
+		    		{
+		    			$("#design").val('horizontal');
+		    		}
+		    		else
+		    		{
+		    			$("#design").val('vertical');
+		    		}
+		    		let design = $("#design").val();
+		    		console.log(design);
 
-		    let kind_adi = $("#kind_adi").val();
-		    
+		    		let kind_adi = $("#kind_adi").val();
+
 		    // console.log(design);
 		    var row = Number($('#row').val());
 		    var allcount = Number($('#all').val());
@@ -369,24 +193,24 @@ $(document).ready(function(){
 		    row = row + rowperpage;
 		    if(row <= allcount)
 		    {
-		        $('#row').val(row);
-		        $.ajax({
-		            url: url+ 'core/ajax/get_items.php',
-		            type: 'post',
-		            data: {row:row,kind_adi:kind_adi,design_type:design},
-		            success: function(response)
-		            {
-		            	
-		                	$(".items:last").after(response).show().fadeIn("slow");
-		            	
-		                	$(".vertical:last").after(response).show().fadeIn("slow");
-		            	
-		            }
-		        });
+		    	$('#row').val(row);
+		    	$.ajax({
+		    		url: url+ 'core/ajax/get_items.php',
+		    		type: 'post',
+		    		data: {row:row,kind_adi:kind_adi,design_type:design},
+		    		success: function(response)
+		    		{
+
+		    			$(".items:last").after(response).show().fadeIn("slow");
+
+		    			$(".vertical:last").after(response).show().fadeIn("slow");
+
+		    		}
+		    	});
 		    }
-    	}
+		}
 
 	});
 
-});
+	});
 </script>

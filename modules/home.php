@@ -53,7 +53,7 @@ $keyw  = settings('seo_keywords');
                         {
                          ?>
                         <div class="col-xl-4 col-lg-6 col-md-6 <?= ($nn['kind_id']==1) ? 'for-sell' : 'for-rent' ?> ">
-                            <div class="property-box2 wow animated fadeInUp" data-wow-delay=".3s">
+                            <div class="property-box2 wow  fadeInUp" data-wow-delay=".3s">
                                 <div class="item-img">
                                     <a href="salam.php?id=<?= $nn[0] ?>"><img src="<?= site_url() ?>assets/img/blog/blog4.jpg" alt="blog" width="510" height="340"></a>
                                     <div class="item-category-box1">
