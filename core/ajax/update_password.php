@@ -6,11 +6,12 @@ if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && !empty($_SERVER['HTTP_X_REQUESTED
     include_once "../../core/config/database.php";
     include_once "../../core/helpers/general_helper.php";
 
-    $name     		= clean($_POST['name']);
-    $surname    	= clean($_POST['surname']);
-	$username    	= clean($_POST['username']);
-	$email   		= clean($_POST['email']);
-	
+    $old_password     			= clean($_POST['old_password']);
+    $new_password   			= clean($_POST['new_password']);
+	$repeat_new_password   		= clean($_POST['repeat_new_password']);
+
+	$hash_password 				= hash_password($new_password);
+
 	$error 		= false;
 	
 	foreach($_POST as $key => $field) 
@@ -38,24 +39,31 @@ if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && !empty($_SERVER['HTTP_X_REQUESTED
 	}
 	else
 	{
-		if (!filter_var($email, FILTER_VALIDATE_EMAIL)) 
+		if ($new_password != $repeat_new_password) 
 		{
 			$data = [ 
  				'status'     => 204,
- 				'icon'       => 'error',
+ 				'icon'       => 'info',
  				'title'      => translate('error'),
-	     		'message'    => translate('email_is_not_valid_email_address'), 
+	     		'message'    => translate('passwords_are_not_same'), 
 	     		'sorguNtc'   => true
     	     	];
 		}
 		
+		elseif(users_info($_SESSION['id'], 'password')==hash_password($new_password))
+		{
+			$data = [ 
+				'status'     => 204,
+				'icon'       => 'info',
+				'title'      => translate('error'),
+				'message'    => translate('passwords_are_already_same'), 
+				'sorguNtc'   => true
+				];
+		}
 		else
 		{
 			$sql = "UPDATE ads_users SET 
-			name='".$name."', 
-			surname='".$surname."', 
-			username='".$username."',
-			email='".$email."'
+			password='".$hash_password."'
 			WHERE id='".users_info($_SESSION['id'], 'id')."'";
 			$execute = mysqli_query($conn,$sql);
 

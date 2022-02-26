@@ -74,3 +74,7 @@ if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && !empty($_SERVER['HTTP_X_REQUESTED
 		echo json_encode($data);
 	}
 }
+else
+{
+    include_once("index.html");
+}
