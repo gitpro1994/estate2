@@ -2,6 +2,11 @@
 $title = settings('site_title');
 $desc  = settings('seo_description');
 $keyw  = settings('seo_keywords');
+// setcookie("cavid[1]", "10", time()+3600);
+// setcookie("cavid[2]", "20", time()+3600);
+// setcookie("cavid[3]", "30", time()+3600);
+// setcookie("cavid[4]", "40", time()+3600);
+// dd($_COOKIE['cavid']);
 ?>
 <!-- START HEAD -->
 <?php include_once "partials/head.php"; ?>
@@ -46,10 +51,6 @@ $keyw  = settings('seo_keywords');
                         $run = mysqli_query($conn,$sel);
                         while ($nn = mysqli_fetch_array($run)) 
                         {
-                            // echo "<pre>";
-                            // print_r($nn);
-                            // echo "</pre>";
-                            // die();
                          ?>
                         <div class="col-xl-4 col-lg-6 col-md-6 <?= ($nn['kind_id']==1) ? 'for-sell' : 'for-rent' ?> ">
                             <div class="property-box2 wow animated fadeInUp" data-wow-delay=".3s">
@@ -121,30 +122,77 @@ $keyw  = settings('seo_keywords');
 <script type="text/javascript"> 
 $( document ).ready(function() {
 
-    let ads = $(".add_favourite").data("id");
-    
-
-    function setCookie(cname, cvalue, exdays) 
-    {
-      const d = new Date();
-      d.setTime(d.getTime() + (exdays*24*60*60*1000));
-      let expires = "expires="+ d.toUTCString();
-      document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-    }
+       const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+               toast.addEventListener('mouseenter', Swal.stopTimer)
+               toast.addEventListener('mouseleave', Swal.resumeTimer)
+           }
+       });
+       function setCookie(cname,cvalue,exdays) 
+       {
+            var d = new Date();
+            d.setTime(d.getTime() + (exdays*24*60*60*1000));
+            var expires = "expires=" + d.toGMTString();
+            document.cookie = cname + "=" + cvalue + ";" + expires + ";";
+        }
+        function deleteCookie(name) 
+        {
+          document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+        }
 
      $(document).on('click', '.add_favourite', function(event) {
+
         let myClass = $(this).children('i').attr("class");
         let data_id = $(this).data("id");
         let url     = $("#base_url").val();
-        if (myClass=='flaticon-heart') 
-        {
-            $(this).children('i').removeClass('flaticon-heart').addClass('fa fa-heart');
-            setCookie("estates["+ data_id +"]", data_id, 30);
-        }
-        else
-        {
-            $(this).children('i').removeClass('fa fa-heart').addClass('flaticon-heart');
-        }
+        
+            var class_name = $(this).children('i').attr('class');
+            var me = this;
+             $.ajax({ 
+                 url: url + '/core/ajax/add_favorite.php',
+                 method: "POST",
+                 data: { data_id:data_id,class_name:class_name },
+                 success: function(data) {
+                   parsed = JSON.parse(data);
+
+                    if(parsed.status == 200)
+                    { 
+                         Toast.fire({
+                           text: parsed.message,
+                           icon: parsed.icon,
+                           position: 'top-right'
+                        });
+                         if (parsed.action == "add") 
+                         {
+                            $(me).children("i").removeClass("flaticon-heart").addClass("fa fa-heart");
+                            setCookie("estates"+ data_id +"",data_id,15);  
+                         }
+                         else
+                         {
+                            $(me).children("i").removeClass("fa fa-heart").addClass("flaticon-heart");
+                            deleteCookie("estates"+ data_id +""); 
+                         }
+
+                    }
+                    else if(parsed.status == 204)
+                    {
+                       
+                       Toast.fire({
+                         text: parsed.message,
+                         icon: 'error',
+                         position: 'top-right'
+                      });
+                    }
+                  
+               }
+
+            });
+        
 
 
         
