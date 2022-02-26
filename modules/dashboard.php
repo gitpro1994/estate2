@@ -251,7 +251,7 @@ $count_listing  = mysqli_num_rows($run);
                                                                             <li><i class="flaticon-two-overlapping-square"></i>931 Sqft</li>
                                                                         </ul>
                                                                     </div>
-                                                                    <div class="item-price"><?= $bax_all_listings['price'] ?>
+                                                                    <div class="item-price">₼ <?= $bax_all_listings['price'] ?>
                                                                         <?php 
                                                                         if ($bax_all_listings['payment_method']=="1") {
                                                                             echo '<span><i>/</i>'.translate('monthly').'</span>';
@@ -338,7 +338,17 @@ $count_listing  = mysqli_num_rows($run);
                                                                             <li><i class="flaticon-two-overlapping-square"></i>931 Sqft</li>
                                                                         </ul>
                                                                     </div>
-                                                                    <div class="item-price">$40,000<i>/</i><span>yr</span></div>
+                                                                    <div class="item-price">₼ <?= $bax_inspection['price'] ?>
+                                                                        <?php 
+                                                                        if ($bax_inspection['payment_method']=="1") {
+                                                                            echo '<span><i>/</i>'.translate('monthly').'</span>';
+                                                                        }
+                                                                        elseif($bax_inspection['payment_method']=="0")
+                                                                        {
+                                                                            echo '<span><i>/</i>'.translate('daily').'</span>';
+                                                                        }
+                                                                        ?>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -411,7 +421,17 @@ $count_listing  = mysqli_num_rows($run);
                                                                             <li><i class="flaticon-two-overlapping-square"></i>931 Sqft</li>
                                                                         </ul>
                                                                     </div>
-                                                                    <div class="item-price">$40,000<i>/</i><span>yr</span></div>
+                                                                    <div class="item-price">₼ <?= $bax_expired['price'] ?>
+                                                                        <?php 
+                                                                        if ($bax_expired['payment_method']=="1") {
+                                                                            echo '<span><i>/</i>'.translate('monthly').'</span>';
+                                                                        }
+                                                                        elseif($bax_expired['payment_method']=="0")
+                                                                        {
+                                                                            echo '<span><i>/</i>'.translate('daily').'</span>';
+                                                                        }
+                                                                        ?>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -457,6 +477,7 @@ $count_listing  = mysqli_num_rows($run);
                         });
 
                         $(document).on('click', '.freeze', function(event) {
+                            let login_url = $("#base_url").val(); 
                             let id = $("#freeze_account").val();
                             Swal.fire({
                                 title: '<?= translate('Are_you_sure_you_want_to_freeze_your_account?') ?>',
@@ -487,7 +508,9 @@ $count_listing  = mysqli_num_rows($run);
                                                     loaderBg: '#fff',
                                                     position: 'top-right'
                                                 })
-                                                location.href('home');
+                                                window.setTimeout(function(){
+                                                    window.location.href = login_url + "login";
+                                                }, 2000);
                                             } else if (data.status == 204) {
 
                                                 Toast.fire({
@@ -539,7 +562,9 @@ $count_listing  = mysqli_num_rows($run);
                                                     loaderBg: '#fff',
                                                     position: 'top-right'
                                                 })
-                                                location.href('home');
+                                                window.setTimeout(function(){
+                                                    window.location.href = login_url + "login";
+                                                }, 2000);
                                             } else if (data.status == 204) {
 
                                                 Toast.fire({

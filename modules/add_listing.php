@@ -14,8 +14,8 @@ $keyw  = settings('seo_keywords');
    <div class="container">
      <nav aria-label="breadcrumb">
        <ol class="breadcrumb">
-         <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-         <li class="breadcrumb-item active" aria-current="page">My Account</li>
+         <li class="breadcrumb-item"><a href="index.html"><?= translate('home') ?></a></li>
+         <li class="breadcrumb-item active" aria-current="page"><?= translate('add_listing') ?></li>
       </ol>
    </nav>
 </div>
@@ -33,21 +33,21 @@ $keyw  = settings('seo_keywords');
                      <div class="mb-3 row">
                        <label for="name" class="col-sm-4 col-form-label">Əlaqədar şəxs</label>
                        <div class="col-sm-8">
-                        <input  name="name" type="text" id="name" class="form-control" placeholder="<?= translate("enter_your_name_and_surname") ?>" required>
+                        <input  name="name" type="text" id="name" class="form-control form-control-sm" placeholder="<?= translate("enter_your_name_and_surname") ?>" required>
                      </div>
                   </div>
 
                   <div class="mb-3 row">
                     <label for="phone_number" class="col-sm-4 col-form-label">Telefon</label>
                     <div class="col-sm-8">
-                     <input  name="phone_number" type="text" id="phone_number" class="form-control" placeholder="<?= translate("enter_phone_number") ?>" required>
+                     <input  name="phone_number" type="text" id="phone_number" class="form-control form-control-sm" placeholder="<?= translate("enter_phone_number") ?>" required>
                   </div>
                </div>
 
                <div class="mb-3 row">
                  <label for="email" class="col-sm-4 col-form-label">E-Poçt ünvanı</label>
                  <div class="col-sm-8">
-                  <input  name="email" type="email" id="email" class="form-control" placeholder="<?= translate("enter_email_address") ?>" required>
+                  <input  name="email" type="email" id="email" class="form-control form-control-sm" placeholder="<?= translate("enter_email_address") ?>" required>
                   <div class="invalid-feedback">
                    <?= translate('please_provide_a_valid_email') ?>
                 </div>
@@ -55,9 +55,9 @@ $keyw  = settings('seo_keywords');
           </div>
 
           <div class="form-group mb-3 row">
-           <label for="type" class="col-sm-4 col-form-label">Əlaqədar şəxs</label>
+           <label for="type" class="col-sm-4 col-form-label"><?= translate('i_am') ?></label>
            <div class="col-sm-8">
-              <select class="js-example-basic-single form-control" id="type" name="user_kind" style="width:100%" required>
+              <select class="js-example-basic-single form-control form-control-sm" id="type" name="user_kind" style="width:100%" required>
                  <option value=""><?= translate('please_select_one_item') ?></option>
                  <option value="0"><?= translate('share_my_listing') ?></option>
                  <option value="1"><?= translate('a_rielitor') ?></option>
@@ -144,49 +144,49 @@ $keyw  = settings('seo_keywords');
 <div class="mb-3 row" id="area_div">
   <label for="area" class="col-sm-4 col-form-label"><?= translate('area') ?> <span id="square"></span><span class="dec-icon"><i class="far fa-warehouse"></i></span></label>
   <div class="col-sm-8">
-   <input  name="area" required type="text" id="area" class="form-control" placeholder="<?= translate("enter_area") ?>">
+   <input  name="area" required type="text" id="area" class="form-control form-control-sm" placeholder="<?= translate("enter_area") ?>">
 </div>
 </div>
 
 <div class="mb-3 row" id="space_div">
   <label for="space" class="col-sm-4 col-form-label"><?= translate('space') ?> <span>(sot)</span><span class="dec-icon"><i class="far fa-warehouse"></i></span></label>
   <div class="col-sm-8">
-   <input  name="space" type="text" id="space" class="form-control" placeholder="<?= translate("enter_space") ?>">
+   <input  name="space" type="text" id="space" class="form-control form-control-sm" placeholder="<?= translate("enter_space") ?>">
 </div>
 </div>
 
 <div class="mb-3 row" id="rooms_div">
   <label for="rooms" class="col-sm-4 col-form-label"><?= translate('rooms') ?><span class="dec-icon"><i class="far fa-warehouse"></i></span></label>
   <div class="col-sm-8">
-   <input  name="rooms" type="text" id="rooms" class="form-control" placeholder="<?= translate("enter_room_count") ?>">
+   <input  name="rooms" type="text" id="rooms" class="form-control form-control-sm" placeholder="<?= translate("enter_room_count") ?>">
 </div>
 </div>
 
 <div class="mb-3 row" id="floor_div">
   <label for="floor_no" class="col-sm-4 col-form-label"><?= translate('floor_no') ?><span class="dec-icon"><i class="far fa-warehouse"></i></span></label>
   <div class="col-sm-8">
-   <input  name="floor_no" type="text" id="floor_no" class="form-control" placeholder="<?= translate("enter_floor_number") ?>">
+   <input  name="floor_no" type="text" id="floor_no" class="form-control form-control-sm" placeholder="<?= translate("enter_floor_number") ?>">
 </div>
 </div>
 
 <div class="mb-3 row" id="building_floor_div">
   <label for="building_floor_no" class="col-sm-4 col-form-label"><?= translate('building_floor_no') ?><span class="dec-icon"><i class="far fa-warehouse"></i></span></label>
   <div class="col-sm-8">
-   <input  name="building_floor_no" type="text" id="building_floor_no" class="form-control" placeholder="<?= translate("enter_building_floor_no") ?>" >
+   <input  name="building_floor_no" type="text" id="building_floor_no" class="form-control form-control-sm" placeholder="<?= translate("enter_building_floor_no") ?>" >
 </div>
 </div>
 
 <div class="mb-3 row">
   <label for="description" class="col-sm-4 col-form-label"><?= translate('description') ?><span class="dec-icon"><i class="far fa-warehouse"></i></span></label>
   <div class="col-sm-8">
-   <textarea class="form-control" id="description" name="description" required></textarea>
+   <textarea class="form-control form-control-sm" id="description" name="description" required></textarea>
 </div>
 </div>
 
 <div class="mb-3 row" id="price_div">
   <label for="price" class="col-sm-4 col-form-label"><?= translate('price') ?><span class="dec-icon"><i class="far fa-warehouse"></i></span></label>
   <div class="col-sm-8">
-   <input  name="price" type="text" id="price" class="form-control" placeholder="<?= translate("enter_price") ?>" required>
+   <input  name="price" type="text" id="price" class="form-control form-control-sm" placeholder="<?= translate("enter_price") ?>" required>
 
 </div>
 </div>
@@ -220,7 +220,7 @@ $keyw  = settings('seo_keywords');
 <div class="mb-3 row" id="address_div">
   <label for="address" class="col-sm-4 col-form-label"><?= translate('address') ?><span class="dec-icon"><i class="far fa-warehouse"></i></span></label>
   <div class="col-sm-8">
-   <input  name="address" type="text" id="address" class="form-control" placeholder="<?= translate("enter_address") ?>" required>
+   <input  name="address" type="text" id="address" class="form-control form-control-sm" placeholder="<?= translate("enter_address") ?>" required>
 </div>
 </div>
 
@@ -245,7 +245,7 @@ $keyw  = settings('seo_keywords');
 <div class="mb-3 row" id="hashtags_div">
    <label for="hashtags" class="col-sm-4 col-form-label"><?= translate('hashtags') ?></label>
    <div class="col-sm-8">
-      <select  name="hashtag_id" id="hashtag_id" class="form-control js-example-basic-single" style="width:100%">
+      <select  name="hashtag_id" id="hashtag_id" class="form-control form-control-sm js-example-basic-single" style="width:100%">
          <option value=""><?= translate('please_select_one_item') ?></option>
       </select>
    </div>
@@ -254,7 +254,7 @@ $keyw  = settings('seo_keywords');
 <div class="mb-3 row" id="settlements_div">
    <label for="settlements" class="col-sm-4 col-form-label"><?= translate('settlements') ?></label>
    <div class="col-sm-8">
-      <select name="settlement_id" id="settlement_id" class="form-control">
+      <select name="settlement_id" id="settlement_id" class="form-control form-control-sm">
          <option value=""><?= translate('please_select_one_item') ?></option>
       </select>
    </div>
@@ -449,17 +449,7 @@ error: function( jqXHR, textStatus, errorThrown ){
        return false;
     }
  });
-   const Toast = Swal.mixin({
-    toast: true,
-    position: 'top-end',
-    showConfirmButton: false,
-    timer: 3000,
-    timerProgressBar: true,
-    didOpen: (toast) => {
-     toast.addEventListener('mouseenter', Swal.stopTimer)
-     toast.addEventListener('mouseleave', Swal.resumeTimer)
-  }
-});
+  
    
    $('#office_kind_div').hide();
    $('#rooms_div').hide();

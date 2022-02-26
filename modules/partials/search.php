@@ -101,21 +101,16 @@
                                     <div class="col-lg-4 col-md-6 py-1 pr-30 pl-0">
                                        <div class="form-group bed">
                                           <label class="item-bedrooms">Bedrooms</label>
-                                          <div class="nice-select form-control wide" tabindex="0">
-                                             <span class="current">Any</span>
-                                             <ul class="list">
-                                                <li data-value="1" class="option selected ">For
-                                                   Sale
-                                                </li>
-                                                <li data-value="2" class="option">For Rent</li>
-                                             </ul>
-                                          </div>
+                                          <select class="js-example-basic-single">
+                                             <option>Salam</option>
+                                             <option>Salam 2</option>
+                                          </select>
                                        </div>
                                     </div>
                                     <div class="col-lg-4 col-md-6 py-1 pr-30 pl-0 ">
                                        <div class="form-group bath">
                                           <label class="item-bath">Bathrooms</label>
-                                          <div class="nice-select form-control wide" tabindex="0">
+                                          <div class="form-control wide" tabindex="0">
                                              <span class="current">Any</span>
                                              <ul class="list">
                                                 <li data-value="1" class="option selected">1
@@ -129,7 +124,7 @@
                                     <div class="col-lg-4 col-md-6 py-1 pl-0 pr-0">
                                        <div class="form-group garage">
                                           <label class="item-garage">Garage</label>
-                                          <div class="nice-select form-control wide" tabindex="0">
+                                          <div class="form-control wide" tabindex="0">
                                              <span class="current">Any</span>
                                              <ul class="list">
                                                 <li data-value="1" class="option selected">1
