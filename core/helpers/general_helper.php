@@ -43,6 +43,28 @@ if (!defined( 'BASEPATH' )) exit('No direct script access allowed');
         return $cn;
     }
 
+    function check_ads($sef)
+    {
+        global $conn;
+        $sql  = "SELECT * FROM ads WHERE sef_url='".$sef."'";
+        $qryr = mysqli_query($conn,$sql);
+        $cn   = mysqli_num_rows($qryr);        
+        return $cn;
+    }
+
+    function get_ads($sef,$par)
+    {
+         global $conn;
+        $sel = "SELECT * FROM ads AS a INNER JOIN cities AS c ON a.city_id=c.id LEFT JOIN regions AS r ON a.regions=r.id INNER JOIN realty_kinds AS rk ON a.kind_id=rk.id INNER JOIN realty_types AS rt ON a.type_id=rt.id INNER JOIN ads_users AS adsu ON a.user_id=adsu.id WHERE a.sef_url='".$sef."' ";
+        $run = mysqli_query($conn,$sel);
+        $cn  = mysqli_num_rows($run);
+        if ($cn!=0) 
+        {
+            $bax = mysqli_fetch_array($run);
+        }
+        return $bax[$par];
+    }
+
     function today_visitor($val = 'all'){
         global $conn;
         $result = [];

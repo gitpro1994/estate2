@@ -29,7 +29,7 @@ $keyw  = settings('seo_keywords');
          <div class="col-lg-12">
             <div class="error-box">
                <div class="shape-img1">
-                  <img src="<?= site_url() ?>assets/uploads/backgrounds/error/<?= back_photo('error') ?>" alt="shape" width="709" height="285">
+                  <img src="<?= site_url() ?>assets/img/figure/error1.png" alt="shape" width="709" height="285">
                </div>
                <h2 class="error-title"><?= translate('sorry!_this_page_is_not_available') ?></h2>
                <div class="error-button">

@@ -57,6 +57,10 @@ $keyw  = settings('seo_keywords');
                                     <div class="item-category-box1">
                                         <div class="item-category"><?= $nn['kind_name'] ?></div>
                                     </div>
+                                    <div class="rtcl-listing-badge-wrap">
+                                        <span class="badge rtcl-badge-featured"><i class="fa fa-percent"></i></span>
+                                        <span class="badge rtcl-badge-_top">VIP</span>
+                                        <span class="badge rtcl-badge-_bump_up"><i class="fa fa-star"></i></span></div>
                                     <div class="rent-price">
                                         <div class="item-price">₼ <?= $nn['price'] ?> <?php if($nn['payment_method']=="1"){ echo '<span><i>/</i>'.translate('monthly').'</span>'; }elseif($nn['payment_method']=="0"){ echo '<span><i>/</i>'.translate('monthly').'</span>'; } ?></div>
                                     </div>
@@ -92,10 +96,11 @@ $keyw  = settings('seo_keywords');
                                         </ul>
                                     </div>
                                 </div>
-                                <div class="item-category10"><a href="single-listing1.html"><?= $nn['type_name'] ?></a></div>
+                                <div class="item-category10"><a href="<?= site_url() ?>detail/<?= $nn['sef_url'] ?>"><?= $nn['type_name'] ?></a></div>
                                 <div class="item-content">
                                     <div class="verified-area">
-                                        <h3 class="item-title"><a href="single-listing1.html">Ofis satilir</a></h3>
+                                        <h3 class="item-title"><a href="<?= site_url() ?>detail/<?= $nn['sef_url'] ?>">Ofis satilir</a></h3>
+
                                     </div>
                                     <div class="location-area"><i class="flaticon-maps-and-flags"></i><?= $nn['city_name'] ?> <?= (!empty($nn['region_name'])) ? ',' : '' ?> <?= $nn['region_name'] ?></div>
                                     <div class="item-categoery3">

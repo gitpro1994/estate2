@@ -1,4 +1,16 @@
 <?php 
+$url = clean($_GET['sef_url']);
+
+if(check_ads($url)==0)
+{
+   redirect("".site_url()."404","refresh");
+   die();
+}
+else
+{
+
+}   
+$wish = (wish($_SESSION['unique_session'],get_ads($url,'id'))) ? 'fa fa-heart' : 'flaticon-heart';
 $title = settings('site_title');
 $desc  = settings('seo_description');
 $keyw  = settings('seo_keywords');
@@ -19,7 +31,7 @@ $keyw  = settings('seo_keywords');
 <div class="container">
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+      <li class="breadcrumb-item"><a href="<?= site_url() ?>"><?= translate('home') ?></a></li>
       <li class="breadcrumb-item">
         <a href="single-listing2.html">Comercial Property</a>
       </li>
@@ -36,8 +48,8 @@ $keyw  = settings('seo_keywords');
 
 
 <!--=====================================-->
-      <!--=   Single Listing     Start        =-->
-      <!--=====================================-->
+<!--=   Single Listing     Start        =-->
+<!--=====================================-->
 
       <section class="single-listing-wrap1">
         <div class="container">
@@ -47,11 +59,12 @@ $keyw  = settings('seo_keywords');
                 <div class="row">
                   <div class="col-lg-6 col-md-12">
                     <div class="single-list-cate">
-                      <div class="item-categoery">For Rent</div>
+                      <div class="item-categoery"><?= get_ads($url,'kind_name') ?></div>
+                      
                     </div>
                   </div>
                   <div class="col-lg-6 col-md-12">
-                    <div class="single-list-price">$12,500</div>
+                    <div class="single-list-price">₼ <?= number_format(get_ads($url,'price')) ?></div>
                   </div>
                 </div>
                 <div class="row align-items-center">
@@ -80,24 +93,30 @@ $keyw  = settings('seo_keywords');
                     <div class="side-button">
                       <ul>
                         <li>
-                          <a href="with-sidebar2.html" class="side-btn"
-                            ><i class="flaticon-share"></i
+                          <a id="share-btn" class="side-btn">
+                            <i class="flaticon-share"></i>
+                          </a>
+                          <div class="share-icon">
+                            <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.radiustheme.com/demo/wordpress/themes/homlisti/property/the-most-luxarious-fitted-sells-properties/" target="_blank" rel="nofollow"><span class="rtcl-icon rtcl-icon-facebook"></span></a>
+
+                            <a href="https://twitter.com/intent/tweet?text=The%2520Most%2520Luxarious%2520Fitted%2520Sells%2520Properties&amp;url=https://www.radiustheme.com/demo/wordpress/themes/homlisti/property/the-most-luxarious-fitted-sells-properties/" target="_blank" rel="nofollow"><span class="rtcl-icon rtcl-icon-twitter"></span></a>
+
+                            <a href="https://www.linkedin.com/shareArticle?url=https://www.radiustheme.com/demo/wordpress/themes/homlisti/property/the-most-luxarious-fitted-sells-properties/&amp;title=The%2520Most%2520Luxarious%2520Fitted%2520Sells%2520Properties" target="_blank" rel="nofollow"><span class="rtcl-icon rtcl-icon-linkedin"></span></a>
+
+                            <a href="https://pinterest.com/pin/create/button/?url=https://www.radiustheme.com/demo/wordpress/themes/homlisti/property/the-most-luxarious-fitted-sells-properties/&amp;media=&amp;description=The%2520Most%2520Luxarious%2520Fitted%2520Sells%2520Properties" target="_blank" rel="nofollow"><span class="rtcl-icon rtcl-icon-pinterest-circled"></span></a>
+
+                            <a href="https://wa.me/?text=The%2520Most%2520Luxarious%2520Fitted%2520Sells%2520Properties+https%3A%2F%2Fwww.radiustheme.com%2Fdemo%2Fwordpress%2Fthemes%2Fhomlisti%2Fproperty%2Fthe-most-luxarious-fitted-sells-properties%2F" data-action="share/whatsapp/share" target="_blank" rel="nofollow"><i class="rtcl-icon rtcl-icon-whatsapp"></i></a>
+                            </div>
+                        </li>
+                        <li>
+                          <a data-id="<?= get_ads($url,'id') ?>" class="side-btn add_favourite"
+                            ><i class="<?= $wish ?>"></i
                           ></a>
                         </li>
                         <li>
-                          <a href="with-sidebar2.html" class="side-btn"
-                            ><i class="flaticon-heart"></i
-                          ></a>
-                        </li>
-                        <li>
-                          <a href="with-sidebar2.html" class="side-btn"
-                            ><i class="flaticon-left-and-right-arrows"></i
-                          ></a>
-                        </li>
-                        <li>
-                          <a href="with-sidebar2.html" class="side-btn"
+                          <button onClick="window.print()" class="side-btn"
                             ><i class="flaticon-printer"></i
-                          ></a>
+                          ></button>
                         </li>
                       </ul>
                     </div>
@@ -426,28 +445,19 @@ $keyw  = settings('seo_keywords');
                         </div>
                       </div>
                       <div class="media-body flex-grow-1 ms-3">
-                        <h4 class="item-title">RadiusTheme</h4>
+                        <h4 class="item-title"><?= get_ads($url,'name') ?></h4>
                         <div class="item-phn">
-                            <button class="show-number">
-                                <i class="fas fa-phone"></i> <?= translate('show_number') ?>
+                            <button class="show-number shw_num_anime">
+                                <span id="ph_text"> <?= translate('show_number') ?></span>
+                                <span id="ph_number" style="display: none;"><i class="fas fa-phone"></i> <?= get_ads($url,'phone_number') ?></span>
                             </button>
+
                         </div>
-                        <div class="item-mail">agent@radiustheme.com</div>
+                        <div class="item-mail"><?= get_ads($url,'email') ?></div>
                        
                       </div>
                     </div>
-                   <!--  <ul class="wid-contact-button">
-                      <li>
-                        <a href="contact.html"
-                          ><i class="fas fa-comment"></i>Quick Chat</a
-                        >
-                      </li>
-                      <li>
-                        <a href="contact.html"
-                          ><i class="fas fa-share-alt"></i>Share</a
-                        >
-                      </li>
-                    </ul> -->
+                   
                   </div>
                
                   <div class="widget widget-contact-box widget-price-range">
@@ -703,3 +713,81 @@ $keyw  = settings('seo_keywords');
 <!-- START FOOTER -->
 <?php include_once "partials/footer.php"; ?>
 <!-- END FOOTER -->
+
+<script type="text/javascript"> 
+$( document ).ready(function() {
+
+       const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+               toast.addEventListener('mouseenter', Swal.stopTimer)
+               toast.addEventListener('mouseleave', Swal.resumeTimer)
+           }
+       });
+     $(document).on('click', '#share-btn', function(event) {
+        $(".share-icon").addClass("open");
+     });
+     $(document).on('click', '.show-number', function(event) {
+       $("#ph_text").css("display", "none");
+       $("#ph_number").css("display", "block");
+       $(this).removeClass("shw_num_anime");
+     });
+     $(document).on('click', '.add_favourite', function(event) {
+        let myClass = $(this).children('i').attr("class");
+        let data_id = $(this).data("id");
+        let url     = $("#base_url").val();
+        
+            var class_name = $(this).children('i').attr('class');
+            var me = this;
+             $.ajax({ 
+                 url: url + '/core/ajax/add_favorite.php',
+                 method: "POST",
+                 data: { data_id:data_id,class_name:class_name },
+                 success: function(data) {
+                   parsed = JSON.parse(data);
+
+                    if(parsed.status == 200)
+                    { 
+                         Toast.fire({
+                           text: parsed.message,
+                           icon: parsed.icon,
+                           position: 'top-right'
+                        });
+                         if (parsed.action == "add") 
+                         {
+                            $(me).children("i").removeClass("flaticon-heart").addClass("fa fa-heart");
+                            $(".item-count").html(parsed.all_count);
+                            
+                         }
+                         else
+                         {
+                            $(me).children("i").removeClass("fa fa-heart").addClass("flaticon-heart");
+                            $(".item-count").html(parsed.all_count);
+                         }
+
+                    }
+                    else if(parsed.status == 204)
+                    {
+                       
+                       Toast.fire({
+                         text: parsed.message,
+                         icon: 'error',
+                         position: 'top-right'
+                      });
+                    }
+                  
+               }
+
+            });
+        
+
+
+        
+    });
+
+});
+</script>
