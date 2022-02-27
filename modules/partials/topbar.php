@@ -18,7 +18,7 @@
                     <div class="col-xl-2 col-lg-2">
                         <div class="logo-area">
                             <a href="<?= site_url() ?>" class="temp-logo">
-                                <img src="<?= site_url()?>/assets/uploads/logo/<?= settings('logo') ?>" width="157" height="40" alt="logo" class="img-fluid">
+                                <img src="<?= site_url()?>assets/uploads/logo/<?= settings('logo') ?>" alt="logo">
                             </a>
                         </div>
                     </div>
@@ -95,7 +95,7 @@
 <div class="rt-header-menu mean-container position-relative" id="meanmenu">
  <div class="mean-bar">
   <a href="index.html">
-      <img src='<?= site_url()?>/assets/uploads/logo/<?= settings('logo') ?>' alt='logo' class='img-fluid'/>
+      <img src='<?= site_url()?>/assets/uploads/logo/<?= settings('logo') ?>' alt='logo' style="height: 70px; width:100%"/>
   </a>
   <div class="mean-bar--right">
    <div class="actions search">

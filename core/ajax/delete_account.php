@@ -34,7 +34,7 @@ if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && !empty($_SERVER['HTTP_X_REQUESTE
   } 
   elseif ($_SESSION['id'] === $data) 
   {
-    $ads_status = "UPDATE ads SET status=4 WHERE user_id='" . users_info($_SESSION['id'], 'id') . "'";
+    $ads_status = "UPDATE ads SET status=0 WHERE user_id='" . users_info($_SESSION['id'], 'id') . "'";
     $ads_run    = mysqli_query($conn, $ads_status);
 
 
