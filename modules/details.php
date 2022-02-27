@@ -22,7 +22,33 @@ $keyw  = settings('seo_keywords');
 <!-- START TOPBAR -->
 <?php include_once "partials/topbar.php"; ?>
 <!-- END TOPBAR -->
-
+<style type="text/css">
+    .share-icon {
+    position: absolute;
+    left: 0;
+    top: 100%;
+    visibility: hidden;
+    opacity: 0;
+    z-index: 99;
+    transition: all 0.3s ease-in-out;
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 4px;
+    box-shadow: 0 5px 10px 0 rgb(0 0 0 / 30%);
+    overflow: hidden;
+}
+.share-icon.open {
+    visibility: visible;
+    opacity: 1;
+}
+ul .share-icon.open a:nth-child(2n) {
+    transition-delay: 0.2s;
+}
+.share-icon a span {
+    transition: all 0.3s ease-in-out;
+    color: inherit;
+    }
+</style>
 <!--=====================================-->
 <!--=   Breadcrumb     Start            =-->
 <!--=====================================-->
@@ -92,9 +118,20 @@ $keyw  = settings('seo_keywords');
                     <div class="side-button">
                       <ul>
                         <li>
-                          <a href="with-sidebar2.html" class="side-btn"
-                            ><i class="flaticon-share"></i
-                          ></a>
+                          <a id="share-btn" class="side-btn">
+                            <i class="flaticon-share"></i>
+                          </a>
+                          <div class="share-icon">
+                            <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.radiustheme.com/demo/wordpress/themes/homlisti/property/the-most-luxarious-fitted-sells-properties/" target="_blank" rel="nofollow"><span class="rtcl-icon rtcl-icon-facebook"></span></a>
+
+                            <a href="https://twitter.com/intent/tweet?text=The%2520Most%2520Luxarious%2520Fitted%2520Sells%2520Properties&amp;url=https://www.radiustheme.com/demo/wordpress/themes/homlisti/property/the-most-luxarious-fitted-sells-properties/" target="_blank" rel="nofollow"><span class="rtcl-icon rtcl-icon-twitter"></span></a>
+
+                            <a href="https://www.linkedin.com/shareArticle?url=https://www.radiustheme.com/demo/wordpress/themes/homlisti/property/the-most-luxarious-fitted-sells-properties/&amp;title=The%2520Most%2520Luxarious%2520Fitted%2520Sells%2520Properties" target="_blank" rel="nofollow"><span class="rtcl-icon rtcl-icon-linkedin"></span></a>
+
+                            <a href="https://pinterest.com/pin/create/button/?url=https://www.radiustheme.com/demo/wordpress/themes/homlisti/property/the-most-luxarious-fitted-sells-properties/&amp;media=&amp;description=The%2520Most%2520Luxarious%2520Fitted%2520Sells%2520Properties" target="_blank" rel="nofollow"><span class="rtcl-icon rtcl-icon-pinterest-circled"></span></a>
+
+                            <a href="https://wa.me/?text=The%2520Most%2520Luxarious%2520Fitted%2520Sells%2520Properties+https%3A%2F%2Fwww.radiustheme.com%2Fdemo%2Fwordpress%2Fthemes%2Fhomlisti%2Fproperty%2Fthe-most-luxarious-fitted-sells-properties%2F" data-action="share/whatsapp/share" target="_blank" rel="nofollow"><i class="rtcl-icon rtcl-icon-whatsapp"></i></a>
+                            </div>
                         </li>
                         <li>
                           <a data-id="<?= get_ads($url,'id') ?>" class="side-btn add_favourite"
@@ -716,7 +753,9 @@ $( document ).ready(function() {
                toast.addEventListener('mouseleave', Swal.resumeTimer)
            }
        });
-    
+     $(document).on('click', '#share-btn', function(event) {
+        $(".share-icon").addClass("open");
+     });
      $(document).on('click', '.show-number', function(event) {
        $("#ph_text").css("display", "none");
        $("#ph_number").css("display", "block");
