@@ -35,7 +35,7 @@ if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && !empty($_SERVER['HTTP_X_REQUESTED
 
     if ($cnt === 1) 
     {
-      if ($bax['status']==1) 
+      if ($bax['status']==2) 
       {
         $sessionData = [
           'id'                => $bax['id'],
@@ -59,7 +59,7 @@ if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && !empty($_SERVER['HTTP_X_REQUESTED
 
         exit;
       }
-      else
+      elseif($bax['status']==3)
       {
 
         $data = [ 
@@ -72,6 +72,42 @@ if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && !empty($_SERVER['HTTP_X_REQUESTED
         echo json_encode($data);
         exit;
 
+      }
+      elseif($bax['status']==4)
+      {
+        $data = [ 
+          'status'     => 101,
+          'icon'       => 'warning',
+          'title'      => translate("info"),
+          'message'    => translate("your_account_has_been_blocked"), 
+          'sorguNtc'   => true
+        ];
+        echo json_encode($data);
+        exit;
+      }
+      elseif($bax['status']==1)
+      {
+        $data = [ 
+          'status'     => 101,
+          'icon'       => 'error',
+          'title'      => translate("info"),
+          'message'    => translate("your_account_is_inactive"), 
+          'sorguNtc'   => true
+        ];
+        echo json_encode($data);
+        exit;
+      }
+      else 
+      {
+        $data = [ 
+          'status'     => 404,
+          'icon'       => 'error',
+          'title'      => translate("error"),
+          'message'    => translate("user_not_found"), 
+          'sorguNtc'   => true
+        ];
+        echo json_encode($data);
+        exit; 
       }
 
     }

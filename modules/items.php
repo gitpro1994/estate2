@@ -77,7 +77,7 @@ $keyw  = settings('seo_keywords');
 						<div class="col-lg-4 col-md-6">
 							<div class="property-box2 fadeInUp" data-wow-delay=".3s">
                                 <div class="item-img">
-                                    <a href="<?= site_url() ?>detail/<?= $nn['sef_url'] ?>"><img src="<?= site_url() ?>uploads/<?= $image_listing[0] ?>" alt="blog" width="100%" height="340"></a>
+                                    <a href="<?= site_url() ?>detail/<?= $nn['sef_url'] ?>"><img src="<?= site_url() ?>uploads/<?= $image_listing[0] ?>" alt="blog" style="height: 330px; width:100%"></a>
                                     <div class="item-category-box1">
                                         <div class="item-category"><?= $nn['kind_name'] ?></div>
                                     </div>

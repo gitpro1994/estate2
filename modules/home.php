@@ -105,9 +105,9 @@ $keyw  = settings('seo_keywords');
                                     <div class="location-area"><i class="flaticon-maps-and-flags"></i><?= $nn['city_name'] ?> <?= (!empty($nn['region_name'])) ? ',' : '' ?> <?= $nn['region_name'] ?></div>
                                     <div class="item-categoery3">
                                         <ul>
-                                            <li><i class="flaticon-bed"></i><?= translate('room') ?>: <?= $nn['rooms'] ?></li>
-                                            <li><i class="flaticon-shower"></i>Baths: 02</li>
+                                        <li><i class="flaticon-bed"></i><?= translate('room') ?>: <?= $nn['rooms'] ?></li>
                                             <li><i class="flaticon-two-overlapping-square"></i><?= $nn['area'] ?> m²</li>
+                                            <li><i class="fas fa-eye"></i><?= $nn['seen'] ?></li>
                                         </ul>
                                     </div>
                                 </div>
