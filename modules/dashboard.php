@@ -189,6 +189,10 @@ $count_listing  = mysqli_num_rows($run);
                                                             <div class="item-shorting-box">
                                                                 <div class="shorting-title">
                                                                     <h4 class="item-title"><?= translate('Showing_' . $count_listings . '_results')  ?></h4>
+                                                                    <div class="rtcl-listing-badge-wrap">
+                                                                        <span class="badge rtcl-badge-_top">Top</span>
+                                                                        <span class="badge rtcl-badge-_bump_up">Bump Up</span>
+                                                                    </div>
                                                                 </div>
                                                                 <div class="item-shorting-box-2">
                                                                     <div class="by-shorting">

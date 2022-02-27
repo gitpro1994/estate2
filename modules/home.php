@@ -18,68 +18,7 @@ $keyw  = settings('seo_keywords');
 <!-- START HOME SLIDER -->
 <?php include_once "partials/home_slider.php"; ?>
 <!-- END HOME SLIDER -->
-<style type="text/css">
-    .rtcl-listing-badge-wrap {
-    position: absolute;
-    top: 28px;
-    right: 15px;
-    z-index: 10;
-    transition: 0.4s;
-}
-    .rtcl-listing-badge-wrap span.badge {
-    padding: 5px 10px;
-    border-radius: 3px;
-}
-.rtcl-listing-badge-wrap span.badge {
-    margin-right: 4px;
-    font-weight: 500;
-    font-size: 80%;
-}
-.badge.rtcl-badge-featured {
-    color: #ffffff;
-    background-color: #ff9642;
-}
 
-.badge.rtcl-badge-_top {
-    color: #ffffff;
-    background-color: #17a2b8;
-}
-.badge.rtcl-badge-_bump_up {
-    color: #ffffff;
-    background-color: #dc3545;
-}
-.item-img:after {
-    content: "\f0e7";
-    font-family: "Font Awesome 5 Free";
-    position: absolute;
-    left: 0;
-    top: 0;
-    color: #fff;
-    background-color: #00c194;
-    width: 40px;
-    height: 40px;
-    padding: 6px 8px;
-    font-size: 14px;
-    border-radius: 4px;
-    line-height: 1;
-    font-weight: 600;
-    z-index: 5;
-    -webkit-clip-path: polygon(0 0,100% 0,100% 0,0 100%);
-    clip-path: polygon(0 0,100% 0,100% 0,0 100%);
-}
-.badge {
-    display: inline-block;
-    padding: 0.25em 0.4em;
-    font-size: 75%;
-    font-weight: 700;
-    line-height: 1;
-    text-align: center;
-    white-space: nowrap;
-    vertical-align: baseline;
-    border-radius: 0.25rem;
-    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-}
-</style>
          <section class="property-wrap1">
             <div class="container">
                 <div class="isotope-wrap">
@@ -116,7 +55,10 @@ $keyw  = settings('seo_keywords');
                                     <div class="item-category-box1">
                                         <div class="item-category"><?= $nn['kind_name'] ?></div>
                                     </div>
-                                    <div class="rtcl-listing-badge-wrap"><span class="badge rtcl-badge-featured">Featured</span><span class="badge rtcl-badge-_top">Top</span><span class="badge rtcl-badge-_bump_up">Bump Up</span></div>
+                                    <div class="rtcl-listing-badge-wrap">
+                                        <span class="badge rtcl-badge-featured"><i class="fa fa-percent"></i></span>
+                                        <span class="badge rtcl-badge-_top">VIP</span>
+                                        <span class="badge rtcl-badge-_bump_up"><i class="fa fa-star"></i></span></div>
                                     <div class="rent-price">
                                         <div class="item-price">₼ <?= $nn['price'] ?> <?php if($nn['payment_method']=="1"){ echo '<span><i>/</i>'.translate('monthly').'</span>'; }elseif($nn['payment_method']=="0"){ echo '<span><i>/</i>'.translate('monthly').'</span>'; } ?></div>
                                     </div>

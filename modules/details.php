@@ -22,33 +22,7 @@ $keyw  = settings('seo_keywords');
 <!-- START TOPBAR -->
 <?php include_once "partials/topbar.php"; ?>
 <!-- END TOPBAR -->
-<style type="text/css">
-    .share-icon {
-    position: absolute;
-    left: 0;
-    top: 100%;
-    visibility: hidden;
-    opacity: 0;
-    z-index: 99;
-    transition: all 0.3s ease-in-out;
-    background-color: #fff;
-    padding: 10px;
-    border-radius: 4px;
-    box-shadow: 0 5px 10px 0 rgb(0 0 0 / 30%);
-    overflow: hidden;
-}
-.share-icon.open {
-    visibility: visible;
-    opacity: 1;
-}
-ul .share-icon.open a:nth-child(2n) {
-    transition-delay: 0.2s;
-}
-.share-icon a span {
-    transition: all 0.3s ease-in-out;
-    color: inherit;
-    }
-</style>
+
 <!--=====================================-->
 <!--=   Breadcrumb     Start            =-->
 <!--=====================================-->
@@ -86,6 +60,7 @@ ul .share-icon.open a:nth-child(2n) {
                   <div class="col-lg-6 col-md-12">
                     <div class="single-list-cate">
                       <div class="item-categoery"><?= get_ads($url,'kind_name') ?></div>
+                      
                     </div>
                   </div>
                   <div class="col-lg-6 col-md-12">
