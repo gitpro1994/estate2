@@ -107,7 +107,7 @@ $keyw  = settings('seo_keyword');
         <div class="d-table-cell">
             <div class="container">
                 <div class="error-content">
-                    <img src="<?= site_url()?>/assets/uploads/logo/<?= settings('main_logo') ?>" alt="İstediğiniz sayfa bulunamadı!">
+                    <img src="<?= site_url() ?>assets/img/figure/error1.png" alt="İstediğiniz sayfa bulunamadı!">
                     <h3><?= translate('page_not_found') ?></h3>
                     <p><?= word_to_trans_seo('The page you are looking for may have been removed or the URL may have been changed. You can return to the main page and try to reach the page you are looking for again.') ?></p>
                     <a href="<?= site_url() ?>" class="btn btn-primary"><?= word_to_trans_seo('Back to Homepage') ?> <i class="flaticon-next-1"></i></a>

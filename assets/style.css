@@ -16014,3 +16014,27 @@ body.slidemenuon .sidebarBtn .bar:nth-child(4) {
   padding: 7px 18px;
   transition: all 0.3s ease-in-out;
 }
+
+.shw_num_anime  {
+    transition: all .5s ease-in-out;
+    animation: animate 2s linear infinite;
+}
+
+
+@keyframes animate {
+    0% {  
+        box-shadow: 0 0 0 0 rgba(51, 122, 183, .7);
+    }
+
+    40% {
+        box-shadow: 0 0 0 25px rgba(51, 122, 183, 0);
+    }
+
+    80% {
+        box-shadow: 0 0 0 25px rgba(51, 122, 183, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 rgba(51, 122, 183, .8);
+    }
+}
