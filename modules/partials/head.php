@@ -66,6 +66,9 @@
     <link rel="stylesheet" href="<?= site_url()?>assets/style.css">   
     <link rel="stylesheet" href="<?= site_url()?>assets/css/yeni.css">   
     <link rel="stylesheet" href="<?= site_url()?>assets/css/dropzone.css"> 
+    <?php if ($page=="items") { ?>        
+    <link href="<?= site_url()?>assets/css/jquery.nice-select.min.js" rel="stylesheet" />  
+    <?php } ?>
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />  
     <link rel="preconnect" href="https://fonts.googleapis.com/">
 

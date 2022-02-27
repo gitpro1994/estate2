@@ -58,6 +58,9 @@
 <script src="<?= site_url()?>/assets/js/dropzone.js"></script>
 <script src="<?= site_url()?>/assets/js/jquery.cookie.js"></script>
 <script src="<?= site_url()?>/assets/js/toast.js"></script>
+<?php if ($page=="items") { ?>        
+<script src="<?= site_url()?>/assets/js/jquery.nice-select.min.js"></script>
+<?php } ?>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 <script type="text/javascript">
