@@ -3,12 +3,12 @@ if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && !empty($_SERVER['HTTP_X_REQUESTE
   define('BASEPATH', true);
   include_once("../../../core/config/database.php");
   include_once("../../../core/helpers/general_helper.php");
-
   $error = [];
   $res   = [];
 
-  if (empty($_POST['city_id'])) {
-    $error[] = "Zəhmət olmasa şəhər seçin.";
+
+  if (empty($_POST['region_id'])) {
+    $error[] = "Zəhmət olmasa rayon seçin.";
   }
 
   if (count($error) > 0) {
@@ -18,10 +18,9 @@ if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && !empty($_SERVER['HTTP_X_REQUESTE
     exit;
   }
 
-  $city_id      = clean($_POST['city_id']);
-
+  $region_id      = clean($_POST['region_id']);
   $data = [];
-  $statement  = "SELECT * FROM regions WHERE city_id = '" . $city_id . "' ";
+  $statement  = "SELECT * FROM settlements WHERE region_id = '" . $region_id . "' ";
   $execute    = mysqli_query($conn, $statement);
   $cnt        = mysqli_num_rows($execute);
 
@@ -29,8 +28,8 @@ if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && !empty($_SERVER['HTTP_X_REQUESTE
   if ($cnt > 0) {
     while ($bax = mysqli_fetch_array($execute)) {
       $data[] = [
-        'id'            => $bax['id'],
-        'region_name'   => $bax['region_name']
+        'id'                => $bax['id'],
+        'settlement_name'   => $bax['settlement_name']
       ];
     }
     echo json_encode($data);

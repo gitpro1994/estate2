@@ -304,11 +304,17 @@
 													</div>
 
 													<div class="form-group col-md-6" id="hashtag_div">
-														<label for="adi"><?= translate('hashtag') ?></label>
-														<select class="form-control form-control-sm" name="hashtag_id" id="hashtag_id">
-															<option><?= translate('please_select_one_item') ?></option>
+														<label for="tags"><?= translate('hashtags') ?> (Keywords) <small>(<?= translate('explode_hashtags_with_comma') ?>)</small></label>
+														<input name="hashtag_name" id="tags">
+													</div>
 
-														</select>
+													<div class="form-group col-md-6" id="hashtags_result">
+														<label for="tags"><?= translate('all_hashtags') ?> (Keywords) <small>(<?= translate('max_3_hashtags') ?>)</small></label>
+														<div class="tab-content tab-content-vertical p-4">
+															<div class="row" id="all_hashtags_result">
+
+															</div>
+														</div>
 													</div>
 												</div>
 

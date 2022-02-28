@@ -107,6 +107,7 @@
 	$('#region_div').hide();
 	$('#settlement_div').hide();
 	$('#hashtag_div').hide();
+	$('#hashtags_result').hide();
 
 	$('#kind_id').on("change", function(e) {
 		var kind_id = $(this).val();
@@ -188,7 +189,7 @@
 	});
 
 	$('#city_id').on("change", function(e) {
-		$('#regions_div').fadeOut("slow");
+		$('#region_div').fadeOut("slow");
 		$('#region_id').val("");
 		$('#settlement_div').fadeOut("slow");
 		$('#settlement_id').val("");
@@ -203,15 +204,76 @@
 					city_id: city_id
 				},
 				success: function(data) {
-					$("#region_div").fadeIn("slow");
-					for (var i = 0; i < data.length; i++) {
-						$("#region_id").append('<option value="' + data[i].id + '">' + data[i].region_name + '</option>');
+					var data_parsed = JSON.parse(data);
+					if (data_parsed.length > 0) {
+						jQuery('#region_div').fadeIn('slow');
+						jQuery.each(data_parsed, function(i, value) {
+							$('#region_id').append('<option value=' + value.id + '>' + value.region_name + '</option>');
+						});
+					} else {
+						$('#region_div').fadeOut('slow ');
 					}
 				}
 			});
 		}
 	});
+
+	$('#region_id').on("change", function(e) {
+		var region_id = $('#region_id').val();
+		$('#settlement_div').fadeOut("slow");
+
+		var url = $("#base_url").val();
+
+		$.ajax({
+			url: url + '/core/ajax/get_settlements.php',
+			method: "POST",
+			data: {
+				region_id: region_id
+			},
+			success: function(data) {
+				var data_parsed = JSON.parse(data);
+				if (data_parsed.length > 0) {
+					jQuery('#settlement_div').fadeIn('slow');
+					jQuery.each(data_parsed, function(i, value) {
+						$('#settlement_id').append('<option value=' + value.id + '>' + value.settlement_name + '</option>');
+					});
+				} else {
+					$('#settlement_div').fadeOut('slow ');
+				}
+			}
+		});
+	});
+
+	$('#region_id').on("change", function(e) {
+		var region_id = $('#region_id').val();
+		$('#hashtag_div').fadeOut("slow");
+
+		var url = $("#base_url").val();
+
+		$.ajax({
+			url: url + '/core/ajax/get_hashtags.php',
+			method: "POST",
+			data: {
+				region_id: region_id
+			},
+			success: function(data) {
+				var data_parsed = JSON.parse(data);
+				if (data_parsed.length > 0) {
+					jQuery('#hashtag_div').fadeIn('slow');
+					jQuery('#hashtags_result').fadeIn('slow');
+					jQuery.each(data_parsed, function(i, value) {
+						$('#all_hashtags_result').append('<div class="col-md-6"><label for="hashtag_name"><input type="checkbox" name="hashtag_name" value=' + value.hashtag_name + '>' + value.hashtag_name + '</label></div>');
+					});
+				} else {
+					jQuery('#hashtag_div').fadeOut('slow');
+					jQuery('#hashtags_result').fadeOut('slow');
+				}
+			}
+		});
+	});
 </script>
+
+
 <?php if ($page == 'logs') : ?>
 	<script>
 		$(document).ready(function() {
