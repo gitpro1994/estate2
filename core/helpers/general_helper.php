@@ -16,6 +16,45 @@ if (!defined( 'BASEPATH' )) exit('No direct script access allowed');
         return $token;
     }
 
+
+    function get_city_name($par)
+    {
+        global $conn;
+        $sql = "SELECT * FROM cities WHERE id='".$par."'";
+        $run = mysqli_query($conn,$sql);
+        $cn  = mysqli_num_rows($run);
+        $bax = mysqli_fetch_array($run);    
+        return $bax['city_name'];
+    }
+
+    function get_type_name($par)
+    {
+        global $conn;
+        $sql = "SELECT * FROM realty_types WHERE id='".$par."'";
+        $run = mysqli_query($conn,$sql);
+        $cn  = mysqli_num_rows($run);
+        $bax = mysqli_fetch_array($run);    
+        return $bax['type_name'];
+    }
+
+    function get_kind_name($par,$show='original')
+    {
+        global $conn;
+        $sql = "SELECT * FROM realty_kinds WHERE id='".$par."'";
+        $run = mysqli_query($conn,$sql);
+        $cn  = mysqli_num_rows($run);
+        $bax = mysqli_fetch_array($run); 
+        $val = ($bax['id']==1) ? 'satılır' : 'kirayə verilir';   
+        if ($show=='original') 
+        {
+            return $bax['type_name'];
+        }
+        else
+        {
+            return $val;
+        }
+    }
+    
     function wish($token,$id)
     {
         global $conn;
