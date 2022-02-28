@@ -1,6 +1,5 @@
 <?php 
 $url = clean($_GET['sef_url']);
-
 if(check_ads($url)==0)
 {
    redirect("".site_url()."404","refresh");
@@ -60,11 +59,10 @@ $keyw  = settings('seo_keywords');
                   <div class="col-lg-6 col-md-12">
                     <div class="single-list-cate">
                       <div class="item-categoery"><?= get_ads($url,'kind_name') ?></div>
-                      
                     </div>
                   </div>
                   <div class="col-lg-6 col-md-12">
-                    <div class="single-list-price">₼ <?= number_format(get_ads($url,'price')) ?></div>
+                    <div class="single-list-price">₼ <?= number_format(get_ads($url,'price')) ?> <?php if(get_ads($url,'payment_method')=="1"){ echo '<span class="badge rtcl-badge-_top">'.translate('monthly').'</span>'; }elseif(get_ads($url,'payment_method')=="0"){ echo '<span class="badge rtcl-badge-_top">'.translate('monthly').'</span>'; } ?></div>
                   </div>
                 </div>
                 <div class="row align-items-center">
@@ -72,20 +70,21 @@ $keyw  = settings('seo_keywords');
                     <div class="single-verified-area">
                       <div class="item-title">
                         <h3>
-                          <a href="single-listing2.html"
-                            >Family House For Rent</a
-                          >
+                          <a href="single-listing2.html">
+                            <?= get_city_name(get_ads($url,'city_id')).' şəhərində, '.get_ads($url,'area').' m² - '. get_type_name(get_ads($url,'kind_id')).' '.get_kind_name(get_ads($url,'type_id'),'no_original') ?>
+                              
+                            </a>
                         </h3>
                       </div>
                     </div>
                     <div class="single-item-address">
                       <ul>
                         <li>
-                          <i class="fas fa-map-marker-alt"></i>House#18,
-                          Road#07, Albany, New York, 08525 /
+                          <i class="fas fa-map-marker-alt"></i><?= get_type_name(get_ads($url,'kind_id')) ?>#<?= get_ads($url,0) ?>,
+                          <?= strtoupper(get_ads($url,'address')) ?>, <?= get_city_name(get_ads($url,'city_id')) ?>
                         </li>
-                        <li><i class="fas fa-clock"></i>7 months ago /</li>
-                        <li><i class="fas fa-eye"></i>Views: 1,230</li>
+                        <li><i class="fas fa-clock"></i><?= get_nicetime(get_ads($url,24)) ?> /</li>
+                        <li><i class="fas fa-eye"></i><?= translate('views') ?>: <?= get_ads($url,'seen') ?></li>
                       </ul>
                     </div>
                   </div>
@@ -246,15 +245,15 @@ $keyw  = settings('seo_keywords');
                   </div>
                   <div class="single-listing-box1">
                     <div class="overview-area">
-                      <h3 class="item-title">Overview</h3>
+                      <h3 class="item-title"><?= translate('overview') ?></h3>
                       <div class="gallery-icon-box">
                         <div class="item-icon-box">
                           <div class="item-icon">
                             <i class="flaticon-comment"></i>
                           </div>
                           <ul class="item-number">
-                            <li>ID No :</li>
-                            <li class="deep-clr">98560</li>
+                            <li><?= translate('ads_number') ?> :</li>
+                            <li class="deep-clr">#<?= get_ads($url,0) ?></li>
                           </ul>
                         </div>
                         <div class="item-icon-box">
@@ -262,8 +261,17 @@ $keyw  = settings('seo_keywords');
                             <i class="flaticon-home"></i>
                           </div>
                           <ul class="item-number">
-                            <li>Type :</li>
-                            <li class="deep-clr">Apartment</li>
+                            <li><?= translate('type') ?> :</li>
+                            <li class="deep-clr"><?= get_ads($url,'type_name') ?></li>
+                          </ul>
+                        </div>
+                         <div class="item-icon-box">
+                          <div class="item-icon">
+                            <i class="flaticon-pencil"></i>
+                          </div>
+                          <ul class="item-number">
+                            <li><?= translate('area') ?> :</li>
+                            <li class="deep-clr"><?= get_ads($url,'area') ?> m²</li>
                           </ul>
                         </div>
                         <div class="item-icon-box">
@@ -275,6 +283,9 @@ $keyw  = settings('seo_keywords');
                             <li class="deep-clr">04</li>
                           </ul>
                         </div>
+                        
+                      </div>
+                      <div class="gallery-icon-box">
                         <div class="item-icon-box">
                           <div class="item-icon">
                             <i class="flaticon-shower"></i>
@@ -284,8 +295,6 @@ $keyw  = settings('seo_keywords');
                             <li class="deep-clr">98560</li>
                           </ul>
                         </div>
-                      </div>
-                      <div class="gallery-icon-box">
                         <div class="item-icon-box">
                           <div class="item-icon">
                             <i class="flaticon-home"></i>
@@ -304,15 +313,7 @@ $keyw  = settings('seo_keywords');
                             <li class="deep-clr">1050 sqft</li>
                           </ul>
                         </div>
-                        <div class="item-icon-box">
-                          <div class="item-icon">
-                            <i class="flaticon-pencil"></i>
-                          </div>
-                          <ul class="item-number">
-                            <li>Land Size :</li>
-                            <li class="deep-clr">15,000 sqft</li>
-                          </ul>
-                        </div>
+                       
                         <div class="item-icon-box">
                           <div class="item-icon">
                             <i class="flaticon-two-overlapping-square"></i>
@@ -441,7 +442,11 @@ $keyw  = settings('seo_keywords');
                     <div class="media d-flex">
                       <div class="flex-shrink-0">
                         <div class="item-logo">
-                          <img src="<?= site_url() ?>assets/img/theme2.png" alt="logo" width="100" height="100"/>
+                          <?php if (get_ads($url,'avatar') == '') { ?>
+                          <img class="img-fluid" src="<?= site_url() ?>assets/img/avatar/default.png" width="100" height="100">
+                          <?php } else { ?>
+                          <img class="img-fluid" src="<?= site_url() ?>assets/img/avatar/<?= get_ads($url,'avatar') ?>" width="100" height="100" >
+                           <?php } ?>
                         </div>
                       </div>
                       <div class="media-body flex-grow-1 ms-3">

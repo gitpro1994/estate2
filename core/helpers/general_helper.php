@@ -3,6 +3,37 @@
 if (!defined( 'BASEPATH' )) exit('No direct script access allowed');
     
     
+    function translate($word = '')
+    {
+        global $conn;
+       if (isset($_SESSION['set_lang'])) {
+            $set_lang = isset($_SESSION['set_lang']) ? $_SESSION['set_lang'] : NULL;
+        } else {
+            $set_lang = settings('translation');
+        }
+
+        if ($set_lang == '') {
+            $set_lang = 'english';
+        }
+        $query  = "SELECT * FROM languages WHERE word='".$word."'";
+        $ayarr  = mysqli_query($conn,$query);
+        $row    = mysqli_fetch_array($ayarr);
+        if (mysqli_num_rows($ayarr) > 0) {
+            if (isset($row[$set_lang]) && $row[$set_lang] != '') {
+                return $row[$set_lang];
+            } else {
+                return $row['english'];
+            }
+        } else {
+            $arrayData = array(
+                'word'    => $word,
+                'english' => ucfirst(str_replace('_', ' ', $word)),
+            );
+            $qry = mysqli_query($conn,"INSERT INTO languages (word,english) VALUES ('".$arrayData['word']."','".$arrayData['english']."')");
+            return ucfirst(str_replace('_', ' ', $word));
+        }
+    }
+
     function url_origin()
     {
         $url = "http" . (($_SERVER['SERVER_PORT'] == 443) ? "s" : "") . "://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
@@ -14,6 +45,45 @@ if (!defined( 'BASEPATH' )) exit('No direct script access allowed');
         $token = openssl_random_pseudo_bytes(16);
         $token = bin2hex($token);
         return $token;
+    }
+
+
+    function get_city_name($par)
+    {
+        global $conn;
+        $sql = "SELECT * FROM cities WHERE id='".$par."'";
+        $run = mysqli_query($conn,$sql);
+        $cn  = mysqli_num_rows($run);
+        $bax = mysqli_fetch_array($run);    
+        return $bax['city_name'];
+    }
+
+    function get_type_name($par)
+    {
+        global $conn;
+        $sql = "SELECT * FROM realty_types WHERE id='".$par."'";
+        $run = mysqli_query($conn,$sql);
+        $cn  = mysqli_num_rows($run);
+        $bax = mysqli_fetch_array($run);    
+        return $bax['type_name'];
+    }
+
+    function get_kind_name($par,$show='original')
+    {
+        global $conn;
+        $sql = "SELECT * FROM realty_kinds WHERE id='".$par."'";
+        $run = mysqli_query($conn,$sql);
+        $cn  = mysqli_num_rows($run);
+        $bax = mysqli_fetch_array($run); 
+        $val = ($bax['id']==1) ? 'satılır' : 'kirayə verilir';   
+        if ($show=='original') 
+        {
+            return $bax['type_name'];
+        }
+        else
+        {
+            return $val;
+        }
     }
 
     function wish($token,$id)
@@ -54,15 +124,13 @@ if (!defined( 'BASEPATH' )) exit('No direct script access allowed');
 
     function get_ads($sef,$par)
     {
-         global $conn;
-        $sel = "SELECT * FROM ads AS a INNER JOIN cities AS c ON a.city_id=c.id LEFT JOIN regions AS r ON a.regions=r.id INNER JOIN realty_kinds AS rk ON a.kind_id=rk.id INNER JOIN realty_types AS rt ON a.type_id=rt.id INNER JOIN ads_users AS adsu ON a.user_id=adsu.id WHERE a.sef_url='".$sef."' ";
+        global $conn;
+        $sel = "SELECT * FROM ads AS a INNER JOIN cities AS c ON a.city_id=c.id INNER JOIN realty_kinds AS rk ON a.kind_id=rk.id INNER JOIN realty_types AS rt ON a.type_id=rt.id INNER JOIN ads_users AS adsu ON a.user_id=adsu.id WHERE a.sef_url='".$sef."' ";
         $run = mysqli_query($conn,$sel);
         $cn  = mysqli_num_rows($run);
-        if ($cn!=0) 
-        {
-            $bax = mysqli_fetch_array($run);
-        }
+        $bax = mysqli_fetch_array($run);
         return $bax[$par];
+        
     }
 
     function today_visitor($val = 'all'){
@@ -565,36 +633,7 @@ if (!defined( 'BASEPATH' )) exit('No direct script access allowed');
        return 'Bilinmir';
     }
 
-    function translate($word = '')
-    {
-        global $conn;
-       if (isset($_SESSION['set_lang'])) {
-            $set_lang = isset($_SESSION['set_lang']) ? $_SESSION['set_lang'] : NULL;
-        } else {
-            $set_lang = settings('translation');
-        }
-
-        if ($set_lang == '') {
-            $set_lang = 'english';
-        }
-        $query  = "SELECT * FROM languages WHERE word='".$word."'";
-        $ayarr  = mysqli_query($conn,$query);
-        $row    = mysqli_fetch_array($ayarr);
-        if (mysqli_num_rows($ayarr) > 0) {
-            if (isset($row[$set_lang]) && $row[$set_lang] != '') {
-                return $row[$set_lang];
-            } else {
-                return $row['english'];
-            }
-        } else {
-            $arrayData = array(
-                'word'    => $word,
-                'english' => ucfirst(str_replace('_', ' ', $word)),
-            );
-            $qry = mysqli_query($conn,"INSERT INTO languages (word,english) VALUES ('".$arrayData['word']."','".$arrayData['english']."')");
-            return ucfirst(str_replace('_', ' ', $word));
-        }
-    }
+   
 
     function base_url($uri = '', $protocol = NULL)
     {

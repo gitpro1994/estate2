@@ -42,10 +42,11 @@ $keyw  = settings('seo_keywords');
                     </div>
                     <div class="row featuredContainer">
                         <?php                         
-                        $sel = "SELECT * FROM ads AS a INNER JOIN cities AS c ON a.city_id=c.id LEFT JOIN regions AS r ON a.regions=r.id INNER JOIN realty_kinds AS rk ON a.kind_id=rk.id INNER JOIN realty_types AS rt ON a.type_id=rt.id WHERE a.status=1 ORDER BY a.id DESC LIMIT 100";
+                        $sel = "SELECT * FROM ads AS a INNER JOIN cities AS c ON a.city_id=c.id LEFT JOIN regions AS r ON a.regions=r.id INNER JOIN realty_kinds AS rk ON a.kind_id=rk.id INNER JOIN realty_types AS rt ON a.type_id=rt.id  ORDER BY a.id DESC LIMIT 100";
                         $run = mysqli_query($conn,$sel);
                         while ($nn = mysqli_fetch_array($run)) 
                         {
+                            // dd($nn);
                             $wish = (wish($_SESSION['unique_session'],$nn[0])) ? 'fa fa-heart' : 'flaticon-heart';
                          ?>
                         <div class="col-xl-4 col-lg-6 col-md-6 <?= ($nn['kind_id']==1) ? 'for-sell' : 'for-rent' ?> ">
@@ -56,9 +57,20 @@ $keyw  = settings('seo_keywords');
                                         <div class="item-category"><?= $nn['kind_name'] ?></div>
                                     </div>
                                     <div class="rtcl-listing-badge-wrap">
-                                        <span class="badge rtcl-badge-featured"><i class="fa fa-percent"></i></span>
-                                        <span class="badge rtcl-badge-_top">VIP</span>
-                                        <span class="badge rtcl-badge-_bump_up"><i class="fa fa-star"></i></span></div>
+                                    <?php if($nn['kind_id']==1 AND $nn['mortgage']!=NULL){ ?>
+                                            <?php if ($nn['mortgage']==0) { ?>
+                                                <span class="badge rtcl-badge-featured" data-bs-toggle="tooltip" data-bs-placement="top"
+                                                    title="<?= translate('mortgage') ?>"><i class="fa fa-percent"></i></span>
+                                           <?php }elseif ($nn['mortgage']==1) { ?>
+                                                <span class="badge rtcl-badge-_bump_up" data-bs-toggle="tooltip" data-bs-placement="top"
+                                                    title="<?= translate('khupchali') ?>"><i class="fa fa-file"></i></span>
+                                            <?php }else{ ?>
+
+                                            <?php } ?>
+
+                                        <?php } ?>
+                                         <?php if($nn['payment_method']=="1"){ echo '<span class="badge rtcl-badge-_top">'.translate('monthly').'</span>'; }elseif($nn['payment_method']=="0"){ echo '<span class="badge rtcl-badge-_top">'.translate('monthly').'</span>'; } ?>
+                                    </div>
                                     <div class="rent-price">
                                         <div class="item-price">₼ <?= $nn['price'] ?> <?php if($nn['payment_method']=="1"){ echo '<span><i>/</i>'.translate('monthly').'</span>'; }elseif($nn['payment_method']=="0"){ echo '<span><i>/</i>'.translate('monthly').'</span>'; } ?></div>
                                     </div>
@@ -71,25 +83,7 @@ $keyw  = settings('seo_keywords');
                                                 </a>
                                             </li>
                                            
-                                           <?php if($nn['kind_id']==1 AND $nn['mortgage']!=NULL){ ?>
-                                            <?php if ($nn['mortgage']==0) { ?>
-                                                <li>
-                                                    <a href="#" data-bs-toggle="tooltip" data-bs-placement="top"
-                                                        title="<?= translate('mortgage') ?>">
-                                                        <i class="fa fa-percent"></i>
-                                                    </a>
-                                                </li>
-                                           <?php }elseif ($nn['mortgage']==1) { ?>
-                                                <li>
-                                                    <a href="#" data-bs-toggle="tooltip" data-bs-placement="top"
-                                                        title="<?= translate('chixarish') ?>">
-                                                        <i class="fa fa-file"></i>
-                                                    </a>
-                                                </li>
-                                            <?php }else{ ?>
-
-                                            <?php } ?>
-                                            <?php } ?>
+                                           
                                            
                                         </ul>
                                     </div>

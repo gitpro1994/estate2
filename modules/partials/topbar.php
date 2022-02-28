@@ -77,7 +77,7 @@
                             </li>
                             <?php } ?>
                         <li class="listing-button">
-                            <a href="<?= site_url() ?>add_listing" class="listing-btn">
+                            <a href="<?= site_url() ?>add_listing" class="listing-btn shw_num_anime">
                                 <span>
                                     <i class="fas fa-plus-circle"></i>
                                 </span>
