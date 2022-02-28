@@ -42,17 +42,19 @@ $keyw  = settings('seo_keywords');
                     </div>
                     <div class="row featuredContainer">
                         <?php                         
-                        $sel = "SELECT * FROM ads AS a INNER JOIN cities AS c ON a.city_id=c.id LEFT JOIN regions AS r ON a.regions=r.id INNER JOIN realty_kinds AS rk ON a.kind_id=rk.id INNER JOIN realty_types AS rt ON a.type_id=rt.id  ORDER BY a.id DESC LIMIT 100";
+
+                        $sel = "SELECT * FROM ads AS a INNER JOIN cities AS c ON a.city_id=c.id LEFT JOIN regions AS r ON a.regions=r.id INNER JOIN realty_kinds AS rk ON a.kind_id=rk.id INNER JOIN realty_types AS rt ON a.type_id=rt.id WHERE a.status=2 ORDER BY a.id DESC LIMIT 100";
                         $run = mysqli_query($conn,$sel);
                         while ($nn = mysqli_fetch_array($run)) 
                         {
-                            // dd($nn);
+                            $images_all_listings = $nn['images'];
+                            $image_explode       = explode(",", $images_all_listings); 
                             $wish = (wish($_SESSION['unique_session'],$nn[0])) ? 'fa fa-heart' : 'flaticon-heart';
                          ?>
                         <div class="col-xl-4 col-lg-6 col-md-6 <?= ($nn['kind_id']==1) ? 'for-sell' : 'for-rent' ?> ">
                             <div class="property-box2 wow  fadeInUp" data-wow-delay=".3s">
                                 <div class="item-img">
-                                    <a href="<?= site_url() ?>detail/<?= $nn['sef_url'] ?>"><img src="<?= site_url() ?>assets/img/blog/blog4.jpg" alt="blog" width="510" height="340"></a>
+                                    <a href="<?= site_url() ?>detail/<?= $nn['sef_url'] ?>"><img src="<?= site_url() ?>uploads/<?= $image_explode[0] ?>" alt="blog" style="height: 330px; width:100%"></a>
                                     <div class="item-category-box1">
                                         <div class="item-category"><?= $nn['kind_name'] ?></div>
                                     </div>
@@ -97,9 +99,9 @@ $keyw  = settings('seo_keywords');
                                     <div class="location-area"><i class="flaticon-maps-and-flags"></i><?= $nn['city_name'] ?> <?= (!empty($nn['region_name'])) ? ',' : '' ?> <?= $nn['region_name'] ?></div>
                                     <div class="item-categoery3">
                                         <ul>
-                                            <li><i class="flaticon-bed"></i><?= translate('room') ?>: <?= $nn['rooms'] ?></li>
-                                            <li><i class="flaticon-shower"></i>Baths: 02</li>
+                                        <li><i class="flaticon-bed"></i><?= translate('room') ?>: <?= $nn['rooms'] ?></li>
                                             <li><i class="flaticon-two-overlapping-square"></i><?= $nn['area'] ?> m²</li>
+                                            <li><i class="fas fa-eye"></i><?= $nn['seen'] ?></li>
                                         </ul>
                                     </div>
                                 </div>

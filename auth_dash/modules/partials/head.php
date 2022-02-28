@@ -54,6 +54,7 @@
 			});
 		});
 	</script>
+	<input type="hidden" name="base_url" id="base_url" value="<?= base_url() ?>">
 </head>
 <div class="modal fade" id="session-expire-warning-modal" aria-hidden="true" data-keyboard="false" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
    <div class="modal-dialog" role="document">
