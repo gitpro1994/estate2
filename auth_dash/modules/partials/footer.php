@@ -9,6 +9,7 @@
 </div>
 </div>
 </div>
+
 <script src="<?= base_url() ?>/assets/js/tinymce.min.js" referrerpolicy="origin"></script>
 <script src="<?= base_url() ?>/assets/js/off-canvas.js"></script>
 <script src="<?= base_url() ?>/assets/js/hoverable-collapse.js"></script>
@@ -25,7 +26,6 @@
 <script src="<?= base_url() ?>/assets/js/dropify.js"></script>
 <script src="<?= base_url() ?>/assets/js/form-repeater.js"></script>
 <script src="<?= base_url() ?>/assets/js/bt-maxLength.js"></script>
-<script src="<?= base_url() ?>/assets/js/tooltips.js"></script>
 <script src="<?= base_url() ?>/assets/js/codeEditor_mirror.js"></script>
 <script src="<?= base_url() ?>/assets/js/editorDemo.js"></script>
 <script src="<?= site_url() ?>/assets/js/validator.min.js"></script>
@@ -34,245 +34,10 @@
 <script src="<?= base_url() ?>/assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
 <script src="<?= base_url() ?>/assets/js/jquery.popconfirm.js"></script>
 <script src="<?= base_url() ?>/assets/js/light-gallery.js"></script>
+<script src="<?= base_url() ?>/assets/js/toast.js"></script>
 <script src="<?= base_url() ?>/assets/vendors/datetimepicker/jquery.datetimepicker.js"></script>
+<script src="<?= base_url() ?>/assets/js/tooltips.js"></script>
 <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-
-<script type="text/javascript">
-	$("#check_number").click(function() {
-		$('#check_number').prop("disabled", true);
-		let url = $("#base_url").val();
-		var form = $("#add_new_listing");
-
-		var phone_number = $('#phone_number').val();
-		$.ajax({
-			url: url + "/core/ajax/get_user.php",
-			method: "POST",
-			data: {
-				phone_number: phone_number
-			},
-			success: function(data) {
-				data = JSON.parse(data);
-				if (data['status'] == 200) {
-					$("#name").val(data.name + ' ' + data.surname);
-					$("#email").val(data.email);
-					$("#phone_number").val(data.phone_number);
-					$("#name").attr("disabled", true);
-					$("#email").attr("disabled", true);
-					$("#phone_number").attr("disabled", true);
-					$('#user_kind').find('option[value="' + data.user_kind + '"]').attr('selected', true);
-					$('#check_number').prop("disabled", false);
-					$('#check_number').css("display", "none");
-					$("#emlak-ozellikleri").show(1000);
-					Toast.fire({
-						icon: data['icon'],
-						title: data['message']
-					})
-				} else if (data['status'] == 204) {
-					$("#name").val();
-					$("#email").val();
-					$("#name").attr("disabled", false);
-					$("#email").attr("disabled", false);
-					$('#check_number').prop("disabled", false);
-					$('#check_number').css("display", "none");
-					$("#emlak-ozellikleri").show(1000);
-					Toast.fire({
-						icon: data['icon'],
-						title: data['message']
-					})
-				} else {
-					$("#name").val();
-					$("#email").val();
-					$("#name").attr("disabled", false);
-					$("#email").attr("disabled", false);
-					$('#check_number').prop("disabled", false);
-					$("#emlak-ozellikleri").hide(1000);
-					Toast.fire({
-						icon: data['icon'],
-						title: data['message']
-					})
-				}
-			}
-		})
-
-	});
-
-
-	$('#area_div').hide();
-	$('#space_div').hide();
-	$('#office_kind_div').hide();
-	$('#number_of_floors_div').hide();
-	$('#located_on_the_floor_div').hide();
-	$('#payment_method_div').hide();
-	$('#mortgage_div').hide();
-	$('#region_div').hide();
-	$('#settlement_div').hide();
-	$('#hashtag_div').hide();
-	$('#hashtags_result').hide();
-
-	$('#kind_id').on("change", function(e) {
-		var kind_id = $(this).val();
-		if (kind_id == 1) {
-			$('#mortgage_div').fadeIn('slow');
-			$('#payment_method_div').fadeOut('slow');
-		} else if (kind_id == 2) {
-			$('#mortgage_div').fadeOut('slow');
-			$('#payment_method_div').fadeIn('slow');
-		}
-
-	});
-
-	$('#type_id').on("change", function(e) {
-		var type_id = $(this).val();
-
-		if (type_id == 1 || type_id == 2 || type_id == 3) {
-			$('#rooms_div').show();
-			$('#number_of_floors_div').show();
-			$('#located_on_the_floor_div').show();
-			$('#area_div').show();
-			$('#office_kind_div').hide();
-			$('#space_div').hide();
-			$('#settlement_div').hide();
-			$('#square_div').html('(m<sup>2</sup>)');
-		} else if (type_id == 4) {
-			$('#rooms_div').show();
-			$('#space_div').show();
-			$('#number_of_floors_div').hide();
-			$('#located_on_the_floor_div').hide();
-			$('#office_kind_div').hide();
-			$('#settlement_div').hide();
-			$('#square').html('(m<sup>2</sup>)');
-
-		} else if (type_id == 5) {
-
-			$('#space_div').show();
-			$('#office_kind_div').hide();
-			$('#rooms_div').hide();
-			$('#number_of_floors_div').hide();
-			$('#located_on_the_floor_div').hide();
-			$('#settlement_div').hide();
-			$('#square').html('(m<sup>2</sup>)');
-
-		} else if (type_id == 6) {
-
-			$('#office_kind_div').show();
-			$('#rooms_div').show();
-			$('#area').show();
-			$('#space_div').hide();
-			$('#number_of_floors_div').hide();
-			$('#located_on_the_floor_div').hide();
-			$('#settlement_div').hide();
-			$('#square').html('(m<sup>2</sup>)');
-
-		} else if (type_id == 8) {
-
-			$('#office_kind_div').hide();
-			$('#rooms_div').hide();
-			$('#space_div').hide();
-			$('#area_div').show();
-			$('#number_of_floors_div').hide();
-			$('#located_on_the_floor_div').hide();
-			$('#settlement_div').hide();
-			$('#square').html('(sot)');
-
-		} else {
-
-			$('#office_kind_div').hide();
-			$('#rooms_div').hide();
-			$('#space_div').hide();
-			$('#area_div').show();
-			$('#number_of_floors_div').hide();
-			$('#located_on_the_floor_div').hide();
-			$('#settlement_div').hide();
-			$('#square').html('(m<sup>2</sup>)');
-		}
-
-	});
-
-	$('#city_id').on("change", function(e) {
-		$('#region_div').fadeOut("slow");
-		$('#region_id').val("");
-		$('#settlement_div').fadeOut("slow");
-		$('#settlement_id').val("");
-
-		var city_id = $(this).val();
-		var url = $("#base_url").val();
-		if (city_id == 8) {
-			$.ajax({
-				url: url + '/core/ajax/get_regions.php',
-				method: "POST",
-				data: {
-					city_id: city_id
-				},
-				success: function(data) {
-					var data_parsed = JSON.parse(data);
-					if (data_parsed.length > 0) {
-						jQuery('#region_div').fadeIn('slow');
-						jQuery.each(data_parsed, function(i, value) {
-							$('#region_id').append('<option value=' + value.id + '>' + value.region_name + '</option>');
-						});
-					} else {
-						$('#region_div').fadeOut('slow ');
-					}
-				}
-			});
-		}
-	});
-
-	$('#region_id').on("change", function(e) {
-		var region_id = $('#region_id').val();
-		$('#settlement_div').fadeOut("slow");
-
-		var url = $("#base_url").val();
-
-		$.ajax({
-			url: url + '/core/ajax/get_settlements.php',
-			method: "POST",
-			data: {
-				region_id: region_id
-			},
-			success: function(data) {
-				var data_parsed = JSON.parse(data);
-				if (data_parsed.length > 0) {
-					jQuery('#settlement_div').fadeIn('slow');
-					jQuery.each(data_parsed, function(i, value) {
-						$('#settlement_id').append('<option value=' + value.id + '>' + value.settlement_name + '</option>');
-					});
-				} else {
-					$('#settlement_div').fadeOut('slow ');
-				}
-			}
-		});
-	});
-
-	$('#region_id').on("change", function(e) {
-		var region_id = $('#region_id').val();
-		$('#hashtag_div').fadeOut("slow");
-
-		var url = $("#base_url").val();
-
-		$.ajax({
-			url: url + '/core/ajax/get_hashtags.php',
-			method: "POST",
-			data: {
-				region_id: region_id
-			},
-			success: function(data) {
-				var data_parsed = JSON.parse(data);
-				if (data_parsed.length > 0) {
-					jQuery('#hashtag_div').fadeIn('slow');
-					jQuery('#hashtags_result').fadeIn('slow');
-					jQuery.each(data_parsed, function(i, value) {
-						$('#all_hashtags_result').append('<div class="col-md-6"><label for="hashtag_name"><input type="checkbox" name="hashtag_name" value=' + value.hashtag_name + '>' + value.hashtag_name + '</label></div>');
-					});
-				} else {
-					jQuery('#hashtag_div').fadeOut('slow');
-					jQuery('#hashtags_result').fadeOut('slow');
-				}
-			}
-		});
-	});
-</script>
-
 
 <?php if ($page == 'logs') : ?>
 	<script>
@@ -333,6 +98,31 @@
 	});
 </script>
 <script src="<?= base_url() ?>/assets/js/main.js"></script>
+
+<script>
+	function status_control(listing_id, status_code) {
+		let url = $("#base_url").val();
+
+		alert(id);
+		$.ajax({
+			url: url + "/core/ajax/status_control.php",
+			method: "POST",
+			data: {
+				listing_id: listing_id,
+				status_code: status_code
+			},
+			success: function(data) {
+				data_parsed = JSON.parse(data);
+				Toast.fire({
+					icon: data_parsed.icon,
+					title: data_parsed.message
+				});
+
+			}
+		})
+	}
+</script>
+
 
 </body>
 

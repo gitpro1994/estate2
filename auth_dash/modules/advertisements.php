@@ -56,7 +56,7 @@
                                  <th><?= translate('name_surname') ?></th>
                                  <th style="width:150px;"><?= translate('created_at') ?></th>
                                  <th style="width:70px;"><?= translate('status') ?></th>
-                                 <th style="width:115px;"><?= translate('operation') ?></th>
+                                 <th style=" width:115px;"><?= translate('operation') ?></th>
                               </tr>
                            </thead>
                            <tbody id="sortable"></tbody>
@@ -67,7 +67,15 @@
             </div>
          </form>
       </div>
+
       <!-- content-wrapper ends -->
+
+      <script type="text/javascript">
+         $(function() {
+            $("[rel='tooltip']").tooltip();
+         });
+      </script>
+
       <script>
          $(document).ready(function() {
             var dataTable = $('#order-listingg').DataTable({
@@ -140,5 +148,6 @@
             cursor: move;
          }
       </style>
+
       <script src="assets/js/jquery-ui.min.js"></script>
    </div>
