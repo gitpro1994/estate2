@@ -44,6 +44,7 @@ if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && !empty($_SERVER['HTTP_X_REQUESTE
 		$cnt    	  = mysqli_num_rows($execute);
 		$bax        = mysqli_fetch_array($execute);
 
+
 		if ($cnt < 1) {
 			$password   = password_generate();
 			$hash       = hash_password($password);

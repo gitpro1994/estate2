@@ -27,6 +27,7 @@ RewriteRule ^del_word/([0-9a-zA-Z-_]+)/([0-9a-zA-Z-_]+)(/?)$ core/data/control.p
 RewriteRule ^del_settlement/([0-9a-zA-Z-_]+)(/?)$ core/data/control.php?del_settlement=ok&id=$1 [QSA,L]
 RewriteRule ^del_hashtag/([0-9a-zA-Z-_]+)(/?)$ core/data/control.php?del_hashtag=ok&id=$1 [QSA,L]
 RewriteRule ^del_metro/([0-9a-zA-Z-_]+)(/?)$ core/data/control.php?del_metro=ok&id=$1 [QSA,L]
+RewriteRule ^del_advertisement/([0-9a-zA-Z-_]+)(/?)$ core/data/control.php?del_advertisement=ok&id=$1 [QSA,L]
 RewriteRule ^del_adstype/([0-9a-zA-Z-_]+)(/?)$ core/data/control.php?del_adstype=ok&id=$1 [QSA,L]
 RewriteRule ^del_service/([0-9a-zA-Z-_]+)(/?)$ core/data/control.php?del_service=ok&id=$1 [QSA,L]
 RewriteRule ^del_albums/([0-9a-zA-Z-_]+)(/?)$ core/data/control.php?albomdel=ok&id=$1 [QSA,L]

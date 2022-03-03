@@ -136,18 +136,14 @@
 
                         }
                     })
-                } 
-                else if (res.status == 101) 
-                {
+                } else if (res.status == 101) {
                     Toast.fire({
                         icon: res.icon,
                         text: res.message,
-                })
-                } else if (res.status == 200) 
-                {
+                    })
+                } else if (res.status == 200) {
                     location.href = "dashboard";
-                } else 
-                {
+                } else {
                     Toast.fire({
                         icon: res.icon,
                         title: res.message
