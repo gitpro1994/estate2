@@ -328,20 +328,7 @@ $keyw  = settings('seo_keywords');
                     <div class="overview-area listing-area">
                       <h3 class="item-title">About This Listing</h3>
                       <p>
-                        Praesent eros turpis, commodo vel justo at, pulvinar
-                        mollis eros. Mauris aliquet eu quam id ornareor bi ac
-                        quam enim. Cras vitae nulla condimentum, semper dolor
-                        non, faucibus dolor. Vivamus adip iscing eros quis orci
-                        fringilla, sed pretium lectus viverra. Pellentesque
-                        habitant morbi tristique senectus et netus et malesuada
-                        fames ac turpis egestas.
-                      </p>
-                      <p>
-                        Praesent eros turpis, commodo vel justo at, pulvinar
-                        mollis eros. Mauris aliquet eu quam id ornareor bi ac
-                        quam enim. Cras vitae nulla condimentum, semper dolor
-                        non, faucibus dolor. Vivamus adip iscing eros quis orci
-                        fringilla, sed pretium lectus viverra.
+                        <?= get_ads($url,'description') ?>
                       </p>
                     </div>
                     <div
