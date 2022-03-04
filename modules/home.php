@@ -44,6 +44,7 @@ $keyw  = settings('seo_keywords');
                         <?php                         
                         $sel = "
                         SELECT a.id AS ads_id,
+                        a.kind_id AS ads_kind_id,
                         a.rooms AS ads_rooms,
                         a.area AS ads_area,
                         a.floor_no AS ads_floor_no,
@@ -85,57 +86,53 @@ $keyw  = settings('seo_keywords');
                         {
                             $images_all_listings = $nn['ads_images'];
                             $image_explode       = explode(",", $images_all_listings); 
-                            $wish = (wish($_SESSION['unique_session'],$nn[0])) ? 'fa fa-heart' : 'flaticon-heart';
+                            $wish = (wish($_SESSION['unique_session'],$nn['ads_id'])) ? 'fa fa-heart' : 'flaticon-heart';
                          ?>
-                        <div class="col-xl-4 col-lg-6 col-md-6 <?= ($nn['kind_id']==1) ? 'for-sell' : 'for-rent' ?> ">
-                            <div class="property-box2 wow  fadeInUp" data-wow-delay=".3s">
+                        <div class="col-xl-4 col-lg-6 col-md-6 <?= ($nn['ads_kind_id']==1) ? 'for-sell' : 'for-rent' ?> ">
+                            <div class="property-box2 fadeInUp" data-wow-delay=".3s">
                                 <div class="item-img">
                                     <a href="<?= site_url() ?>detail/<?= $nn['ads_sef_url'] ?>"><img src="<?= site_url() ?>uploads/<?= $image_explode[0] ?>" alt="blog" style="height: 330px; width:100%"></a>
                                     <div class="item-category-box1">
                                         <div class="item-category"><?= $nn['kind_name'] ?></div>
                                     </div>
                                     <div class="rtcl-listing-badge-wrap">
-                                    <?php if($nn['kind_id']==1 AND $nn['mortgage']!=NULL){ ?>
-                                            <?php if ($nn['mortgage']==0) { ?>
-                                                <span class="badge rtcl-badge-featured" data-bs-toggle="tooltip" data-bs-placement="top"
-                                                    title="<?= translate('mortgage') ?>"><i class="fa fa-percent"></i></span>
-                                           <?php }elseif ($nn['mortgage']==1) { ?>
-                                                <span class="badge rtcl-badge-_bump_up" data-bs-toggle="tooltip" data-bs-placement="top"
-                                                    title="<?= translate('khupchali') ?>"><i class="fa fa-file"></i></span>
-                                            <?php }else{ ?>
-
-                                            <?php } ?>
+                                    <?php if($nn['ads_kind_id']==1 AND $nn['ads_mortgage']!=NULL){ ?>
+                                        <?php if ($nn['ads_mortgage']==0) { ?>
+                                            <span class="badge rtcl-badge-featured" data-bs-toggle="tooltip" data-bs-placement="top"
+                                                title="<?= translate('mortgage') ?>"><i class="fa fa-percent"></i></span>
+                                       <?php }elseif ($nn['ads_mortgage']==1) { ?>
+                                            <span class="badge rtcl-badge-_bump_up" data-bs-toggle="tooltip" data-bs-placement="top"
+                                                title="<?= translate('khupchali') ?>"><i class="fa fa-file"></i></span>
+                                        <?php }else{ ?>
 
                                         <?php } ?>
-                                         <?php if($nn['ads_payment_method']=="1"){ echo '<span class="badge rtcl-badge-_top">'.translate('monthly').'</span>'; }elseif($nn['ads_payment_method']=="0"){ echo '<span class="badge rtcl-badge-_top">'.translate('monthly').'</span>'; } ?>
+
+                                    <?php } ?>
+                                     <?php if($nn['ads_payment_method']=="1"){ echo '<span class="badge rtcl-badge-_top">'.translate('monthly').'</span>'; }elseif($nn['ads_payment_method']=="0"){ echo '<span class="badge rtcl-badge-_top">'.translate('daily').'</span>'; } ?>
                                     </div>
                                     <div class="rent-price">
-                                        <div class="item-price">₼ <?= $nn['ads_price'] ?> <?php if($nn['ads_payment_method']=="1"){ echo '<span><i>/</i>'.translate('monthly').'</span>'; }elseif($nn['ads_payment_method']=="0"){ echo '<span><i>/</i>'.translate('monthly').'</span>'; } ?></div>
+                                        <div class="item-price">₼ <?= $nn['ads_price'] ?> <?php if($nn['ads_payment_method']=="1"){ echo '<span><i>/</i>'.translate('monthly').'</span>'; }elseif($nn['ads_payment_method']=="0"){ echo '<span><i>/</i>'.translate('daily').'</span>'; } ?></div>
                                     </div>
                                     <div class="react-icon">
                                         <ul>
                                             <li>
-                                                <a data-id="<?= $nn[0] ?>" data-bs-toggle="tooltip" data-bs-placement="top"
+                                                <a data-id="<?= $nn['ads_id'] ?>" data-bs-toggle="tooltip" data-bs-placement="top"
                                                     title="<?= translate('favourite') ?>" class="add_favourite">
                                                     <i class="<?= $wish; ?>"></i>
                                                 </a>
-                                            </li>
-                                           
-                                           
-                                           
+                                            </li>                                           
                                         </ul>
                                     </div>
                                 </div>
-                                <div class="item-category10"><a href="<?= site_url() ?>detail/<?= $nn['sef_url'] ?>"><?= $nn['type_name'] ?></a></div>
+                                <div class="item-category10"><a href="single-listing1.html"><?= $nn['type_name'] ?></a></div>
                                 <div class="item-content">
                                     <div class="verified-area">
-                                        <h3 class="item-title"><a href="<?= site_url() ?>detail/<?= $nn['sef_url'] ?>">Ofis satilir</a></h3>
-
+                                        <h3 class="item-title"><a href="single-listing1.html">Ofis satilir</a></h3>
                                     </div>
                                     <div class="location-area"><i class="flaticon-maps-and-flags"></i><?= $nn['city_name'] ?> <?= (!empty($nn['region_name'])) ? ',' : '' ?> <?= $nn['region_name'] ?></div>
                                     <div class="item-categoery3">
                                         <ul>
-                                        <li><i class="flaticon-bed"></i><?= translate('room') ?>: <?= $nn['ads_rooms'] ?></li>
+                                            <li><i class="flaticon-bed"></i><?= translate('room') ?>: <?= $nn['ads_rooms'] ?></li>
                                             <li><i class="flaticon-two-overlapping-square"></i><?= $nn['ads_area'] ?> m²</li>
                                             <li><i class="fas fa-eye"></i><?= $nn['ads_seen'] ?></li>
                                         </ul>

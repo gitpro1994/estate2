@@ -12,21 +12,88 @@ if (isset($_GET['kind']))
 	$kind_adi = ($count!=0) ? $bax['seo_link'] : 'all';
 	if ($count != 0 AND $count == 1) 
 	{
-		$rowperpage = 5;
-
-		// counting total number of ADS
-		$allcount_query = "SELECT count(*) as allcount FROM ads WHERE kind_id='".$bax['id']."' AND status=1";
-		$allcount_result = mysqli_query($conn,$allcount_query);
-		$allcount_fetch = mysqli_fetch_array($allcount_result);
-		$allcount = $allcount_fetch['allcount'];
-
-		$sel = "SELECT * FROM ads AS a INNER JOIN cities AS c ON a.city_id=c.id LEFT JOIN regions AS r ON a.regions=r.id INNER JOIN realty_kinds AS rk ON a.kind_id=rk.id INNER JOIN realty_types AS rt ON a.type_id=rt.id WHERE a.status=2 AND a.kind_id='".$bax['id']."' ORDER BY a.id DESC LIMIT 0,".$rowperpage."";
+		
+		$sel = "
+			SELECT a.id AS ads_id,
+	        a.rooms AS ads_rooms,
+	        a.kind_id AS ads_kind_id,
+	        a.area AS ads_area,
+	        a.floor_no AS ads_floor_no,
+	        a.building_floor_no AS ads_building_floor_no,
+	        a.price AS ads_price,
+	        a.payment_method AS ads_payment_method,
+	        a.mortgage AS ads_mortgage,
+	        a.address AS ads_address,
+	        a.images AS ads_images,
+	        a.status AS ads_status,
+	        a.end_date AS ads_end_date,
+	        a.created_at AS ads_created_at,
+	        a.updated_at AS ads_updated_at,
+	        a.deleted_at AS ads_deleted_at,
+	        a.sef_url AS ads_sef_url,
+	        a.seen AS ads_seen,
+	        c.city_name,
+	        c.seo_link as city_seo_link,
+	        c.status as city_status,
+	        r.region_name,
+	        r.seo_link as region_seo_link,
+	        r.status as region_status,
+	        rk.kind_name,
+	        rk.seo_link as rk_seo_link,
+	        rk.status as rk_status,
+	        rt.type_name,
+	        rt.seo_link as rt_seo_link,
+	        rt.status as rt_status
+	        FROM ads AS a 
+	        LEFT JOIN cities AS c ON a.city_id=c.id 
+	        LEFT JOIN regions AS r ON a.regions=r.id 
+	        LEFT JOIN realty_kinds AS rk ON a.kind_id=rk.id
+	        LEFT JOIN realty_types AS rt ON a.type_id=rt.id 
+			WHERE a.status=2 AND a.kind_id='".$bax['id']."' 
+			ORDER BY a.id DESC";
 		$run = mysqli_query($conn,$sel);
 		$count_r = mysqli_num_rows($run);
 	}
 	else
 	{
-		$sel = "SELECT * FROM ads AS a INNER JOIN cities AS c ON a.city_id=c.id LEFT JOIN regions AS r ON a.regions=r.id INNER JOIN realty_kinds AS rk ON a.kind_id=rk.id INNER JOIN realty_types AS rt ON a.type_id=rt.id WHERE a.status=2  ORDER BY a.id DESC";
+		$sel = "
+		SELECT a.id AS ads_id,
+        a.rooms AS ads_rooms,
+        a.area AS ads_area,
+        a.floor_no AS ads_floor_no,
+        a.building_floor_no AS ads_building_floor_no,
+        a.price AS ads_price,
+        a.payment_method AS ads_payment_method,
+        a.mortgage AS ads_mortgage,
+        a.address AS ads_address,
+        a.images AS ads_images,
+        a.status AS ads_status,
+        a.end_date AS ads_end_date,
+        a.created_at AS ads_created_at,
+        a.updated_at AS ads_updated_at,
+        a.deleted_at AS ads_deleted_at,
+        a.sef_url AS ads_sef_url,
+        a.seen AS ads_seen,
+        c.city_name,
+        c.seo_link as city_seo_link,
+        c.status as city_status,
+        r.region_name,
+        r.seo_link as region_seo_link,
+        r.status as region_status,
+        rk.kind_name,
+        rk.seo_link as rk_seo_link,
+        rk.status as rk_status,
+        rt.type_name,
+        rt.seo_link as rt_seo_link,
+        rt.status as rt_status
+        FROM ads AS a 
+        LEFT JOIN cities AS c ON a.city_id=c.id 
+        LEFT JOIN regions AS r ON a.regions=r.id 
+        LEFT JOIN realty_kinds AS rk ON a.kind_id=rk.id
+        LEFT JOIN realty_types AS rt ON a.type_id=rt.id 
+		WHERE a.status=2  
+		ORDER BY a.id DESC
+		";
 		$run = mysqli_query($conn,$sel);
 		$count_r = mysqli_num_rows($run);
 	}
@@ -70,49 +137,43 @@ $keyw  = settings('seo_keywords');
 			<div class="col-lg-12">
 				<div class="row justify-content-left">
 					<?php while($nn = mysqli_fetch_array($run)){ 
-						$images_listings = $nn['images'];
+						$images_listings = $nn['ads_images'];
 						$image_listing = explode(',', $images_listings);
-						$wish = (wish($_SESSION['unique_session'],$nn[0])) ? 'fa fa-heart' : 'flaticon-heart';
+						$wish = (wish($_SESSION['unique_session'],$nn['ads_id'])) ? 'fa fa-heart' : 'flaticon-heart';
 					?>
 						<div class="col-lg-4 col-md-6">
 							<div class="property-box2 fadeInUp" data-wow-delay=".3s">
                                 <div class="item-img">
-                                    <a href="<?= site_url() ?>detail/<?= $nn['sef_url'] ?>"><img src="<?= site_url() ?>uploads/<?= $image_listing[0] ?>" alt="blog" style="height: 330px; width:100%"></a>
+                                    <a href="<?= site_url() ?>detail/<?= $nn['ads_sef_url'] ?>"><img src="<?= site_url() ?>uploads/<?= $image_listing[0] ?>" alt="blog" style="height: 330px; width:100%"></a>
                                     <div class="item-category-box1">
                                         <div class="item-category"><?= $nn['kind_name'] ?></div>
                                     </div>
+                                    <div class="rtcl-listing-badge-wrap">
+                                    <?php if($nn['ads_kind_id']==1 AND $nn['ads_mortgage']!=NULL){ ?>
+                                        <?php if ($nn['ads_mortgage']==0) { ?>
+                                            <span class="badge rtcl-badge-featured" data-bs-toggle="tooltip" data-bs-placement="top"
+                                                title="<?= translate('mortgage') ?>"><i class="fa fa-percent"></i></span>
+                                       <?php }elseif ($nn['ads_mortgage']==1) { ?>
+                                            <span class="badge rtcl-badge-_bump_up" data-bs-toggle="tooltip" data-bs-placement="top"
+                                                title="<?= translate('khupchali') ?>"><i class="fa fa-file"></i></span>
+                                        <?php }else{ ?>
+
+                                        <?php } ?>
+
+                                    <?php } ?>
+                                     <?php if($nn['ads_payment_method']=="1"){ echo '<span class="badge rtcl-badge-_top">'.translate('monthly').'</span>'; }elseif($nn['ads_payment_method']=="0"){ echo '<span class="badge rtcl-badge-_top">'.translate('daily').'</span>'; } ?>
+                                    </div>
                                     <div class="rent-price">
-                                        <div class="item-price">₼ <?= $nn['price'] ?> <?php if($nn['payment_method']=="1"){ echo '<span><i>/</i>'.translate('monthly').'</span>'; }elseif($nn['payment_method']=="0"){ echo '<span><i>/</i>'.translate('monthly').'</span>'; } ?></div>
+                                        <div class="item-price">₼ <?= $nn['ads_price'] ?> <?php if($nn['ads_payment_method']=="1"){ echo '<span><i>/</i>'.translate('monthly').'</span>'; }elseif($nn['ads_payment_method']=="0"){ echo '<span><i>/</i>'.translate('daily').'</span>'; } ?></div>
                                     </div>
                                     <div class="react-icon">
                                         <ul>
                                             <li>
-                                                <a data-id="<?= $nn[0] ?>" data-bs-toggle="tooltip" data-bs-placement="top"
+                                                <a data-id="<?= $nn['ads_id'] ?>" data-bs-toggle="tooltip" data-bs-placement="top"
                                                     title="<?= translate('favourite') ?>" class="add_favourite">
                                                     <i class="<?= $wish; ?>"></i>
                                                 </a>
-                                            </li>
-                                           
-                                           <?php if($nn['kind_id']==1 AND $nn['mortgage']!=NULL){ ?>
-                                            <?php if ($nn['mortgage']==0) { ?>
-                                                <li>
-                                                    <a href="#" data-bs-toggle="tooltip" data-bs-placement="top"
-                                                        title="<?= translate('mortgage') ?>">
-                                                        <i class="fa fa-percent"></i>
-                                                    </a>
-                                                </li>
-                                           <?php }elseif ($nn['mortgage']==1) { ?>
-                                                <li>
-                                                    <a href="#" data-bs-toggle="tooltip" data-bs-placement="top"
-                                                        title="<?= translate('chixarish') ?>">
-                                                        <i class="fa fa-file"></i>
-                                                    </a>
-                                                </li>
-                                            <?php }else{ ?>
-
-                                            <?php } ?>
-                                            <?php } ?>
-                                           
+                                            </li>                                           
                                         </ul>
                                     </div>
                                 </div>
@@ -124,9 +185,9 @@ $keyw  = settings('seo_keywords');
                                     <div class="location-area"><i class="flaticon-maps-and-flags"></i><?= $nn['city_name'] ?> <?= (!empty($nn['region_name'])) ? ',' : '' ?> <?= $nn['region_name'] ?></div>
                                     <div class="item-categoery3">
                                         <ul>
-                                            <li><i class="flaticon-bed"></i><?= translate('room') ?>: <?= $nn['rooms'] ?></li>
-                                            <li><i class="flaticon-two-overlapping-square"></i><?= $nn['area'] ?> m²</li>
-                                            <li><i class="fas fa-eye"></i><?= $nn['seen'] ?></li>
+                                            <li><i class="flaticon-bed"></i><?= translate('room') ?>: <?= $nn['ads_rooms'] ?></li>
+                                            <li><i class="flaticon-two-overlapping-square"></i><?= $nn['ads_area'] ?> m²</li>
+                                            <li><i class="fas fa-eye"></i><?= $nn['ads_seen'] ?></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -144,53 +205,6 @@ $keyw  = settings('seo_keywords');
 <?php include_once "partials/footer.php"; ?>
 <!-- END FOOTER -->
 <script type="text/javascript">
-	$(document).ready(function(){
-		$(window).scroll(function(){
-			var position = $(window).scrollTop();
-			var bottom   = $(document).height() - $(window).height();
-		    	// console.log(position);
-		    	if( position != bottom )
-		    	{
-		    		let listTab  =  $("a.active").data("id");
-		    		if (listTab==1) 
-		    		{
-		    			$("#design").val('horizontal');
-		    		}
-		    		else
-		    		{
-		    			$("#design").val('vertical');
-		    		}
-		    		let design = $("#design").val();
-		    		
-
-		    		let kind_adi = $("#kind_adi").val();
-
-		    var row      = Number($('#row').val());
-		    var allcount = Number($('#all').val());
-		    var rowperpage = 3;
-		    row = row + rowperpage;
-		    if(row <= allcount)
-		    {
-		    	$('#row').val(row);
-		    	$.ajax({
-		    		url: url+ 'core/ajax/get_items.php',
-		    		type: 'post',
-		    		data: {row:row,kind_adi:kind_adi,design_type:design},
-		    		success: function(response)
-		    		{
-
-		    			$(".items:last").after(response).show().fadeIn("slow");
-
-		    			$(".vertical:last").after(response).show().fadeIn("slow");
-
-		    		}
-		    	});
-		    }
-		}
-
-	});
-
-	});
 	$( document ).ready(function() {
 
        const Toast = Swal.mixin({
@@ -253,9 +267,6 @@ $keyw  = settings('seo_keywords');
                }
 
             });
-        
-
-
         
     });
 

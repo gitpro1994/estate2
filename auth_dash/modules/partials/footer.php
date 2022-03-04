@@ -102,8 +102,6 @@
 <script>
 	function status_control(listing_id, status_code) {
 		let url = $("#base_url").val();
-
-		alert(id);
 		$.ajax({
 			url: url + "/core/ajax/status_control.php",
 			method: "POST",
@@ -122,9 +120,6 @@
 		})
 	}
 </script>
-
-
 </body>
-
 </html>
 <?php mysqli_close($conn); ?>
