@@ -20,7 +20,6 @@ $keyw  = settings('seo_keywords');
    </nav>
 </div>
 </div>
-
 <main class="site-main content-area">
    <div class="container">
       <div class="row">
@@ -33,7 +32,7 @@ $keyw  = settings('seo_keywords');
                      <div class="mb-3 row">
                        <label for="name" class="col-sm-4 col-form-label"><?= translate('relevant_person') ?></label>
                        <div class="col-sm-8">
-                        <input  name="name" type="text" id="name" class="form-control form-control-sm" placeholder="<?= translate("enter_your_name_and_surname") ?>" required>
+                        <input  name="name" type="text" id="name" class="form-control form-control-sm" placeholder="<?= translate('enter_name_and_surname') ?>" required>
                      </div>
                   </div>
 

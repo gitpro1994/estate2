@@ -30,6 +30,7 @@ $massiv = [
 				'home',
 				'logout',
 				'login',
+				'register',
 				'items',
 				'dashboard',
 				'profile',

@@ -161,6 +161,51 @@
             });
         });
     });
+
+    //#################### REGISTER ####################
+
+
+    $(document).ready(function() {
+        $("#register").click(function(e) {
+
+            e.preventDefault();
+            let self = $(this);
+            e.preventDefault();
+            self.prop("disabled", true);
+
+            var data = $("#register-form").serialize();
+            var url = $("#base_url").val();
+            $.ajax({
+                url: url + '/core/ajax/register.php',
+                type: "POST",
+                data: data,
+            }).done(function(res) {
+                res = JSON.parse(res);
+                if (res.status == 204) {
+                    Toast.fire({
+                        icon: res.icon,
+                        title: res.message,
+                    })
+                } else if (res.status == 200) {
+                    location.href = "dashboard";
+                } else {
+                    Toast.fire({
+                        icon: res.icon,
+                        title: res.message
+                    });
+                    self.prop("disabled", false);
+                }
+
+            }).fail(function() {
+                Toast.fire({
+                    icon: "error",
+                    title: "Undefined Error"
+                });
+            }).always(function() {
+                self.prop("disabled", false);
+            });
+        });
+    });
 </script>
 
 <script type="text/javascript">
@@ -173,7 +218,7 @@
 
         //Form validation
         $("#check_number").click(function() {
-            $('#check_number').prop("disabled", true);
+            $('#check_number').prop("disabled", false);
 
             var form = $("#add_new_listing")
 
@@ -184,56 +229,70 @@
             form.addClass('was-validated');
             $("#estate_section").hide(1000);
             var phone_number = $('#phone_number').val();
+            var name = $('#name').val();
+            var email = $('#email').val();
+            var user_kind = $('#user_kind').val();
             var url = $("#base_url").val();
-            $.ajax({
-                url: url + "core/ajax/get_user.php",
-                method: "POST",
-                data: {
-                    phone_number: phone_number
-                },
-                success: function(data) {
-                    data = JSON.parse(data);
-                    if (data['status'] == 200) {
-                        $("#name").val(data.name + ' ' + data.surname);
-                        $("#email").val(data.email);
-                        $("#phone_number").val(data.phone_number);
-                        $("#name").attr("disabled", true);
-                        $("#email").attr("disabled", true);
-                        $("#phone_number").attr("disabled", true);
-                        $('#type').find('option[value="' + data.user_kind + '"]').attr('selected', true);
-                        $('#check_number').prop("disabled", false);
-                        $('#check_number').css("display", "none");
-                        $("#estate_section").show(1000);
-                        Toast.fire({
-                            icon: data['icon'],
-                            title: data['message']
-                        })
-                    } else if (data['status'] == 204) {
-                        $("#name").val();
-                        $("#email").val();
-                        $("#name").attr("disabled", false);
-                        $("#email").attr("disabled", false);
-                        $('#check_number').prop("disabled", false);
-                        $('#check_number').css("display", "none");
-                        $("#estate_section").show(1000);
-                        Toast.fire({
-                            icon: data['icon'],
-                            title: data['message']
-                        })
-                    } else {
-                        $("#name").val();
-                        $("#email").val();
-                        $("#name").attr("disabled", false);
-                        $("#email").attr("disabled", false);
-                        $('#check_number').prop("disabled", false);
-                        $("#estate_section").hide(1000);
-                        Toast.fire({
-                            icon: data['icon'],
-                            title: data['message']
-                        })
+            if (phone_number.length>0 && name.length>0 && email.length>0 && number.isInteger(user_kind)) 
+            {
+                $('#check_number').prop("disabled", true);
+                $.ajax({
+                    url: url + "core/ajax/get_user.php",
+                    method: "POST",
+                    data: {
+                        phone_number: phone_number
+                    },
+                    success: function(data) {
+                        data = JSON.parse(data);
+                        if (data['status'] == 200) {
+                            $("#name").val(data.name + ' ' + data.surname);
+                            $("#email").val(data.email);
+                            $("#phone_number").val(data.phone_number);
+                            $("#name").attr("disabled", true);
+                            $("#email").attr("disabled", true);
+                            $("#phone_number").attr("disabled", true);
+                            $('#type').find('option[value="' + data.user_kind + '"]').attr('selected', true);
+                            $('#check_number').prop("disabled", false);
+                            $('#check_number').css("display", "none");
+                            $("#estate_section").show(1000);
+                            Toast.fire({
+                                icon: data['icon'],
+                                title: data['message']
+                            })
+                        } else if (data['status'] == 204) {
+                            $("#name").val();
+                            $("#email").val();
+                            $("#name").attr("disabled", false);
+                            $("#email").attr("disabled", false);
+                            $('#check_number').prop("disabled", false);
+                            $('#check_number').css("display", "none");
+                            $("#estate_section").show(1000);
+                            Toast.fire({
+                                icon: data['icon'],
+                                title: data['message']
+                            })
+                        } else {
+                            $("#name").val();
+                            $("#email").val();
+                            $("#name").attr("disabled", false);
+                            $("#email").attr("disabled", false);
+                            $('#check_number').prop("disabled", false);
+                            $("#estate_section").hide(1000);
+                            Toast.fire({
+                                icon: data['icon'],
+                                title: data['message']
+                            })
+                        }
                     }
-                }
-            })
+                })
+            }
+            else 
+            {
+                Toast.fire({
+                    icon: 'error',
+                    title: '<?= translate('enter_all_the_information') ?>'
+                })
+            }
 
         })
 

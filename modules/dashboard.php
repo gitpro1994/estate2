@@ -64,6 +64,12 @@ $count_listing  = mysqli_num_rows($run);
                                 <i class="fas fa-trash"></i>
                                 <?= translate('delete_account') ?>
                             </button>
+                            <a href="logout">
+                                <button class="btn btn-outline-warning mt-3 btn-sm w-100 p-3 " type="button">
+                                <i class="fas fa-sign-out"></i>
+                                <?= translate('logout') ?>
+                            </button>
+                            </a>
                         </div>
                     </label>
                 </div>

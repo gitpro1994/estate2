@@ -75,6 +75,12 @@
                                     <i class="flaticon-user-1 icon-round"></i>
                                 </a>
                             </li>
+                            <li class="action-item-style my-account">
+                                <a href="<?= site_url() ?>register" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                    title="<?= translate('register') ?>">
+                                    <i class="fas fa-sign-in-alt icon-round"></i>
+                                </a>
+                            </li>
                             <?php } ?>
                         <li class="listing-button">
                             <a href="<?= site_url() ?>add_listing" class="listing-btn shw_num_anime">

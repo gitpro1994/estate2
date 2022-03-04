@@ -4,32 +4,48 @@ if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && !empty($_SERVER['HTTP_X_REQUESTED
   define('BASEPATH', true);
   include_once("../../core/config/database.php");
   include_once("../../core/helpers/general_helper.php");
+
+  $error = [];
+  $res   = [];
+  
+  if (empty($_POST['name']) || empty($_POST['surname']) || empty($_POST['email']) || empty($_POST['password']) || empty($_POST['confirm_password'])) 
+  {
+
+    $error[] = translate("please_fill_in_all_the_fields");
+  }
+
+  if (count($error) > 0) 
+  {
+    $resp['message']    = $error;
+    $resp['status']     = 404;
+    $resp['icon']       = 'error';
+    echo json_encode($resp);
+    exit;
+  }
+
+  if ($_POST['password'] != $_POST['confirm_password']) 
+  {
+
+    $error[] = translate("password_and_confirm_password_are_not_same");
+  }
+
+  if (count($error) > 0) 
+  {
+    $resp['message']    = $error;
+    $resp['status']     = 404;
+    $resp['icon']       = 'error';
+    echo json_encode($resp);
+    exit;
+  }
+
   
   $name         = clean($_POST['name']);
   $surname      = clean($_POST['surname']);
   $email        = clean($_POST['email']);
   $phone_number = clean($_POST['phone_number']);
   $password     = clean($_POST['password']);
-  $username     = clean($_POST['username']);
+  $username   = current(explode('@', $email));
 
-  $error    = false;
-  foreach($_POST as $key => $field) 
-  {
-    if (empty($_POST[$key])) 
-    {
-      $error = true;
-    }
-  }
-  
-  if ($error) 
-  {
-    $data = [ 
-        'status'     => 204,
-        'title'      => translate('error'),
-        'message'    => translate('all_area_is_required'), 
-        'sorguNtc'   => true
-            ];
-  }
 
   $user_check_query = "SELECT * FROM ads_users WHERE email='".$email."' OR phone_number='".$phone_number."' LIMIT 1";
   $result = mysqli_query($conn, $user_check_query);
@@ -40,11 +56,12 @@ if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && !empty($_SERVER['HTTP_X_REQUESTED
     if ($user['email'] === $email) 
     {
       $data = [ 
-        'status'     => 204,
-        'title'      => translate('error'),
-        'message'    => translate('this_email_already_used'), 
-        'sorguNtc'   => true
-            ];
+          'status'     => 204,
+          'icon'       => 'error',
+          'title'      => translate("error"),
+          'message'    => translate("this_email_already_used"), 
+          'sorguNtc'   => true
+        ];
         echo json_encode($data);
         exit;
     }
@@ -53,7 +70,7 @@ if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && !empty($_SERVER['HTTP_X_REQUESTED
     {
        $data = [ 
         'status'     => 204,
-        'title'      => translate('error'),
+        'icon'      => translate('error'),
         'message'    => translate('this_phone_number_is_used_please_register_other_phone_number'), 
         'sorguNtc'   => true
             ];
@@ -91,7 +108,7 @@ if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && !empty($_SERVER['HTTP_X_REQUESTED
           set_userdata($sessionData);
           $data = [ 
               'status'     => 200,
-              'title'      => translate('success'),
+              'icon'      => translate('success'),
               'message'    => translate('registration_success'), 
               'sorguNtc'   => true
             ];
@@ -103,7 +120,7 @@ if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && !empty($_SERVER['HTTP_X_REQUESTED
       {
           $data = [ 
               'status'     => 204,
-              'title'      => translate('error'),
+              'icon'      => translate('error'),
               'message'    => translate('unexpected_error'), 
               'sorguNtc'   => true
             ];

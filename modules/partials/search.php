@@ -7,7 +7,7 @@
    <div class="container">
       <div class="row">
          <div class="col-xl-12">
-            <div class="main-banner-box1">
+            <div class="main-banner-box1 ">
                <h1 class="item-title wow fadeInUp" data-wow-delay=".4s">Find the perfect place to Live
                   with your family
                </h1>
