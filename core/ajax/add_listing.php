@@ -4,6 +4,7 @@ if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && !empty($_SERVER['HTTP_X_REQUESTED
   define('BASEPATH', true);
   include_once("../../core/config/database.php");
   include_once("../../core/helpers/general_helper.php");
+  include_once("../../watermark.class.php");
 
 
 	$phone_number    	  = (isset($_POST['phone_number']) AND (!empty($_POST['phone_number']))) ? clean($_POST['phone_number']) : "NULL";
