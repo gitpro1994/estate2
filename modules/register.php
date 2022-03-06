@@ -79,7 +79,7 @@ $keyw  = settings('seo_keywords');
 
 							<div class="form-group d-flex align-items-center">
 								<button type="submit" name="register" id="register" class="btn btn-primary" value="register">
-									<?= translate('login') ?>
+									<?= translate('register') ?>
 								</button>
 							</div>
 							<div class="form-group">

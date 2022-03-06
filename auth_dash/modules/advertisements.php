@@ -25,16 +25,16 @@
                <div class="row mb-3">
                   <div class="col-lg-12">
                      <div class="btn-toolbar" role="toolbar">
-                        <a href="<?= base_url() ?>/city_add" class="btn btn-primary btn-sm mr-1">
-                           <i class="icon-plus font-12"></i> <?= translate("add_new_city") ?>
+                        <a href="<?= base_url() ?>/add_adertisement" class="btn btn-primary btn-sm mr-1">
+                           <i class="icon-plus font-12"></i> <?= translate("add_adertisement") ?>
                         </a>
                         <div class="dropdown mr-1">
                            <button class="btn btn-primary btn-sm dropdown-toggle" type="button" id="dropdownMenuSizeButton3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                               <i class="icon-options-vertical font-12"></i> <?= translate("apply_to_selected") ?>
                            </button>
                            <div class="dropdown-menu p-0 min-width-full" aria-labelledby="dropdownMenuSizeButton3">
-                              <button class="dropdown-item p-2 cursor-pointer" type="submit" name="city_active"><i class="icon-check"></i> <?= translate("activate_selected") ?></button>
-                              <button class="dropdown-item p-2 cursor-pointer" type="submit" name="city_deactive"><i class="icon-close"></i> <?= translate("deactivate_selected") ?></button>
+                              <button class="dropdown-item p-2 cursor-pointer" type="submit" name="advertisement_active"><i class="icon-check"></i> <?= translate("activate_selected") ?></button>
+                              <button class="dropdown-item p-2 cursor-pointer" type="submit" name="advertisement_deactive"><i class="icon-close"></i> <?= translate("deactivate_selected") ?></button>
                            </div>
                         </div>
                      </div>

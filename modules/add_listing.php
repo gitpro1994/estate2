@@ -57,7 +57,7 @@ $keyw  = settings('seo_keywords');
            <label for="type" class="col-sm-4 col-form-label"><?= translate('i_am') ?></label>
            <div class="col-sm-8">
               <select class="js-example-basic-single form-control form-control-sm" id="type" name="user_kind" style="width:100%" required>
-                 <option value=""><?= translate('please_select_one_item') ?></option>
+                 <option><?= translate('please_select_one_item') ?></option>
                  <option value="0"><?= translate('share_my_listing') ?></option>
                  <option value="1"><?= translate('a_rielitor') ?></option>
               </select>

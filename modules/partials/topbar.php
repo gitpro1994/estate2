@@ -56,10 +56,14 @@
                         if(isset($_SESSION['mail']))
                         {
                             ?>
-                            <li class="action-item-style my-account">
+                            <li class="action-item-style my-account" id="topbar-image">
                                 <a href="<?= site_url() ?>dashboard" data-bs-toggle="tooltip" data-bs-placement="bottom"
                                     title="<?= translate('dashboard') ?>">
-                                    <i class="flaticon-user-1 icon-round"></i>
+                                  <?php if(users_info($_SESSION['id'], 'avatar')){ ?>
+                                     <img class="img-fluid" src="<?= site_url() ?>assets/img/avatar/<?= users_info($_SESSION['id'], 'avatar') ?>" alt="" style="width: 40px; height: 40px; border-radius: 50%">
+                                 <?php }else{ ?>
+                                    <i class="fas fa-sign-out-alt icon-round"></i>
+                                <?php } ?>
                                 </a>
                             </li>
                             <li class="action-item-style my-account">

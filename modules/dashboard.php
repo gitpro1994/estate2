@@ -603,6 +603,7 @@ $count_listing  = mysqli_num_rows($run);
                 },
                 success: function(data) {
                     $("#for_avatar").load(" #for_avatar");
+                    $("#topbar-image").load(" #topbar-image");
                     if (data.status == 200) {
                         Toast.fire({
                             text: data.message,

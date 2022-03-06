@@ -231,9 +231,11 @@
             var phone_number = $('#phone_number').val();
             var name = $('#name').val();
             var email = $('#email').val();
-            var user_kind = $('#user_kind').val();
+            var user_kind = $('#type').val();
+            let user_kind_with_int = Number(user_kind);
+            console.log(user_kind_with_int);
             var url = $("#base_url").val();
-            if (phone_number.length>0 && name.length>0 && email.length>0 && number.isInteger(user_kind)) 
+            if (phone_number.length>0 && name.length>0 && email.length>0 && Number.isInteger(user_kind_with_int)) 
             {
                 $('#check_number').prop("disabled", true);
                 $.ajax({

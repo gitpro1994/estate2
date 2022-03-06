@@ -233,7 +233,7 @@ if (!empty($_SESSION['loggedin_id']) and !empty($_SESSION['username']) and ($_SE
             redirect(base_url() . '/cities', 'refresh');
         }
     }
-    ##################################################################################
+
 
     ######################### DEACTIVE CHECKED CITIES ##############################
 
@@ -255,6 +255,53 @@ if (!empty($_SESSION['loggedin_id']) and !empty($_SESSION['username']) and ($_SE
         }
     }
     ##################################################################################
+
+
+     ##################################################################################
+
+
+     if (isset($_POST['advertisement_active'])) {
+        if (isset($_POST['id']) and !empty($_POST['id'])) {
+            $id      = $_POST['id'];
+            $onearr  = array_combine(range(1, count($id)), $id);
+            $say     = count($id) + 1;
+            for ($i = 1; $i < $say; $i++) {
+                $guncelle = mysqli_query($conn, "UPDATE ads SET status=2  WHERE id = '" . $onearr[$i] . "'");
+                // $title   = $_SESSION['username']." Bloqun statusu aktiv olaraq dəyişdirdi";
+                // $content = "Bloqun statusu aktiv olaraq dəyişdirildi. Dəyişiklik edən IP adresi ".getIP()." , istifadə edilən Brauzer ".user_brauzer($_SERVER['HTTP_USER_AGENT'])." ";
+                // $logs    = "INSERT INTO logs (log_title,log_content) VALUES('".$title."','".$content."')";
+                // $log_run = mysqli_query($conn,$logs);
+            }
+            redirect(base_url() . '/advertisements', 'refresh');
+        } else {
+            redirect(base_url() . '/advertisements', 'refresh');
+        }
+    }
+    ##################################################################################
+
+     ##################################################################################
+
+
+     if (isset($_POST['advertisement_deactive'])) {
+        if (isset($_POST['id']) and !empty($_POST['id'])) {
+            $id      = $_POST['id'];
+            $onearr  = array_combine(range(1, count($id)), $id);
+            $say     = count($id) + 1;
+            for ($i = 1; $i < $say; $i++) {
+                $guncelle = mysqli_query($conn, "UPDATE ads SET status=1  WHERE id = '" . $onearr[$i] . "'");
+                // $title   = $_SESSION['username']." Bloqun statusu aktiv olaraq dəyişdirdi";
+                // $content = "Bloqun statusu aktiv olaraq dəyişdirildi. Dəyişiklik edən IP adresi ".getIP()." , istifadə edilən Brauzer ".user_brauzer($_SERVER['HTTP_USER_AGENT'])." ";
+                // $logs    = "INSERT INTO logs (log_title,log_content) VALUES('".$title."','".$content."')";
+                // $log_run = mysqli_query($conn,$logs);
+            }
+            redirect(base_url() . '/advertisements', 'refresh');
+        } else {
+            redirect(base_url() . '/advertisements', 'refresh');
+        }
+    }
+    ##################################################################################
+
+
 
     ######################### ACTIVE CHECKED ADS TYPE ##############################
 
