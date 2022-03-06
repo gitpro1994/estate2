@@ -33,44 +33,47 @@ if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && !empty($_SERVER['HTTP_X_REQUESTE
   $totalRecordwithFilter  = $records['allcount'];
 
   ## Cixan neticeler
-  $empQuery   = 
-  "SELECT a.id AS ads_id,
-   a.rooms AS ads_rooms,
-   a.kind_id AS ads_kind_id,
-   a.area AS ads_area,
-   a.floor_no AS ads_floor_no,
-   a.building_floor_no AS ads_building_floor_no,
-   a.price AS ads_price,
-   a.payment_method AS ads_payment_method,
-   a.mortgage AS ads_mortgage,
-   a.address AS ads_address,
-   a.images AS ads_images,
-   a.status AS ads_status,
-   a.end_date AS ads_end_date,
-   a.created_at AS ads_created_at,
-   a.updated_at AS ads_updated_at,
-   a.deleted_at AS ads_deleted_at,
-   a.sef_url AS ads_sef_url,
-   c.city_name as ads_city_name,
-   c.seo_link as city_seo_link,
-   c.status as city_status,
-   au.name as ads_username,
-   au.surname as ads_surname,
-   r.region_name,
-   r.seo_link as region_seo_link,
-   r.status as region_status,
-   rk.kind_name,
-   rk.seo_link as rk_seo_link,
-   rk.status as rk_status,
-   rt.type_name as ads_type_name,
-   rt.seo_link as rt_seo_link,
-   rt.status as rt_status
-   FROM ads AS a 
-   LEFT JOIN ads_users as au ON a.user_id=au.id
-   LEFT JOIN cities AS c ON a.city_id=c.id 
-   LEFT JOIN regions AS r ON a.regions=r.id 
-   LEFT JOIN realty_kinds AS rk ON a.kind_id=rk.id
-   LEFT JOIN realty_types AS rt ON a.type_id=rt.id WHERE 1 " . $searchQuery . " ORDER BY " . $columnName . " " . $columnSortOrder . " LIMIT " . $row . "," . $rowperpage;
+  $empQuery   = "
+  SELECT a.id AS ads_id,
+  a.rooms AS ads_rooms,
+  a.kind_id AS ads_kind_id,
+  a.type_id AS ads_type_id,
+  a.user_id AS ads_user_id,
+  a.area AS ads_area,
+  a.floor_no AS ads_floor_no,
+  a.building_floor_no AS ads_building_floor_no,
+  a.price AS ads_price,
+  a.payment_method AS ads_payment_method,
+  a.mortgage AS ads_mortgage,
+  a.address AS ads_address,
+  a.images AS ads_images,
+  a.status AS ads_status,
+  a.end_date AS ads_end_date,
+  a.created_at AS ads_created_at,
+  a.updated_at AS ads_updated_at,
+  a.deleted_at AS ads_deleted_at,
+  a.sef_url AS ads_sef_url,
+  c.city_name,
+  c.seo_link as city_seo_link,
+  c.status as city_status,
+  r.region_name,
+  r.seo_link as region_seo_link,
+  r.status as region_status,
+  rk.kind_name,
+  rk.seo_link as rk_seo_link,
+  rk.status as rk_status,
+  rt.type_name,
+  rt.seo_link as rt_seo_link,
+  rt.status as rt_status,
+  au.name as au_name,
+  au.surname as au_surname
+  FROM ads AS a 
+  LEFT JOIN cities AS c ON a.city_id=c.id 
+  LEFT JOIN regions AS r ON a.regions=r.id 
+  LEFT JOIN realty_kinds AS rk ON a.kind_id=rk.id
+  LEFT JOIN realty_types AS rt ON a.type_id=rt.id 
+  LEFT JOIN ads_users AS au ON a.user_id=au.id 
+  WHERE 1 " . $searchQuery . " ORDER BY " . $columnName . " " . $columnSortOrder . " LIMIT " . $row . "," . $rowperpage;
   $empRecords = mysqli_query($conn, $empQuery);
   $data       = array();
 
@@ -192,13 +195,13 @@ if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && !empty($_SERVER['HTTP_X_REQUESTE
     $sub_array = array();
     $sub_array[] = '<div class="form-check mb-0 mt-0"><label class="form-check-label"><input type="checkbox" name="id[]" value="' . $bax['ads_id'] . '" class="form-check-input checkbox"><i class="input-helper"></i></label></div>';
     $sub_array[] = $bax['ads_id'];
-    $sub_array[] = '<a href="">' . $bax['ads_city_name'] . ' şəhərində, ' . $bax["ads_area"] . ' m² - ' . $bax['ads_area'] . ' ' . $val . '</a>';
+    $sub_array[] = '<a href="">' . $bax['city_name'] . ' şəhərində, ' . $bax["ads_area"] . ' m² - ' . $bax['type_name'] . ' ' . $val . '</a>';
     $sub_array[] = $bax['ads_price'] . ' ₼';
-    $sub_array[] = $bax['ads_username'] . ' ' . $bax['ads_surnames'];
+    $sub_array[] = $bax['au_name'] . ' ' . $bax['au_surname'];
     $sub_array[] = '<div class="btn btn-inverse-warning btn-sm">' . ($bax['ads_updated_at']) ? $update : '---' . ' </div>';
     $sub_array[] = @$status;
     $sub_array[] = '<a href="' . base_url() . '/edit_cities/' . $bax['ads_id'] . '" class="btn btn-inverse-primary btn-sm"><i class="ti-pencil-alt" title="' . translate('edit') . '"></i></a>
-				<a href="del_advertisement/' . $bax['ads_id'] . '" class="btn btn-inverse-danger btn-sm popconfirm" title="' . translate('delete') . '"><i class="ti-trash"></i></a>';
+        <a href="del_advertisement/' . $bax['ads_id'] . '" class="btn btn-inverse-danger btn-sm popconfirm" title="' . translate('delete') . '"><i class="ti-trash"></i></a>';
 
     $data[] = $sub_array;
   }

@@ -1,14 +1,3 @@
-<?php 
-// $pass = password_generate();
-// $hash = hash_password($pass);
-// echo "<pre>";
-// echo $pass;
-// echo "<br>";
-// echo $hash;
-// echo "</pre>";
-// die();
-// boynN4tq
-?>
 <div class="wrapper" id="wrapper">
     <header class="rt-header sticky-on">
         <div id="sticky-placeholder"></div>
@@ -104,7 +93,7 @@
 
 <div class="rt-header-menu mean-container position-relative" id="meanmenu">
  <div class="mean-bar">
-  <a href="index.html">
+  <a href="<?= site_url() ?>">
       <img src='<?= site_url()?>/assets/uploads/logo/<?= settings('logo') ?>' alt='logo' style="height: 70px; width:100%"/>
   </a>
   <div class="mean-bar--right">
@@ -114,7 +103,7 @@
     </a>
 </div>
 <div class="actions user">
-    <a href="account.html"><i class="flaticon-user"></i></a>
+    <a href="<?= site_url() ?>login"><i class="flaticon-user"></i></a>
 </div>
 <span class="sidebarBtn">
    <span class="bar"></span>
@@ -136,67 +125,9 @@
        <li><a href="index3.html">Home 03</a></li>
        <li><a href="index4.html">Home 04</a></li>
        <li><a href="index5.html">Home 05</a></li>
-   </ul>
-</li>
-<li class="list menu-item-parent menu-item-has-children">
-  <a class="animation" href="with-sidebar2.html">Listing</a>
-  <ul class="main-menu__dropdown sub-menu">
-   <li>
-    <a href="half-map1.html">Properties Map Grid</a>
-</li>
-<li>
-    <a href="half-map2.html">Properties Map List</a>
-</li>
-<li>
-    <a href="without-sidebar.html">Properties Full Width</a>
-</li>
-<li>
-    <a href="with-sidebar.html">Properties Grid</a>
-</li>
-<li>
-    <a href="single-listing1.html">Single Property 1</a>
-</li>
-<li>
-    <a href="single-listing2.html">Single Property 2</a>
-</li>
-<li>
-    <a href="single-listing3.html">Single Property 3</a>
-</li>
-</ul>
-</li>
-<li class="list menu-item-parent menu-item-has-children">
-  <a class="animation" href="index.html">Pages</a>
-  <ul class="main-menu__dropdown sub-menu">
-   <li><a href="https://www.radiustheme.com/demo/html/homlisti/about.html">About Us</a></li>
-   <li><a href="404.html">Error page</a></li>
-   <li>
-    <a href="with-sidebar.html">Properties Grid</a>
-</li>
-<li><a href="without-sidebar.html">Properties Full Width</a></li>
-<li><a href="single-agency1.html">Single Agency page</a></li>
-<li><a href="single-agent1.html">Single-agent page</a></li>
-<li><a href="pricing-1.html">Pricing page</a></li>
-</ul>
-</li>
-<li class="list menu-item-parent menu-item-has-children">
-  <a class="animation" href="index.html">Blog</a>
-  <ul class="main-menu__dropdown sub-menu">
-   <li><a href="blog1.html">Blog 1</a></li>
-   <li><a href="blog2.html">Blog 2</a></li>
-   <li><a href="blog-details1.html">Blog Details Page</a></li>
-</ul>
-</li>
-<li class="list menu-item-parent menu-item-has-children">
-  <a class="animation" href="index.html">Agents</a>
-  <ul class="main-menu__dropdown sub-menu">
-   <li><a href="agency-lists1.html">Agency List page</a></li>
-   <li><a href="agent-lists1.html">Agent List Page</a></li>
-   <li><a href="agent-reviews1.html">Agent Reviews Page</a></li>
-</ul>
-</li>
-<li class="list menu-item-parent">
-  <a class="animation" href="contact.html">Contact us</a>
-</li>
+       </ul>
+    </li>
+    
 </ul>
 </nav>
 </div>
