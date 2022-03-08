@@ -150,8 +150,23 @@
                   <li class="nav-item ">
                      <a class="nav-link " href="<?= base_url() ?>/advertisements"><?= translate('all_advertisements') ?></a>
                   </li>
+               </ul>
+            </div>
+         </li>
+
+         <li class="nav-item  ">
+            <a class="nav-link" data-toggle="collapse" href="#users" aria-expanded="false" aria-controls="users">
+               <i class="icon-user menu-icon"></i>
+               <span class="menu-title"><?= translate('users') ?></span>
+               <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="users">
+               <ul class="nav flex-column sub-menu">
                   <li class="nav-item ">
-                     <a class="nav-link " href="<?= base_url() ?>/blog_list"><?= translate('blog_list') ?></a>
+                     <a class="nav-link " href="<?= base_url() ?>/add_user"><?= translate('add_user') ?></a>
+                  </li>
+                  <li class="nav-item ">
+                     <a class="nav-link " href="<?= base_url() ?>/users"><?= translate('all_users') ?></a>
                   </li>
                </ul>
             </div>

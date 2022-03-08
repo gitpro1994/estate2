@@ -257,10 +257,48 @@ if (!empty($_SESSION['loggedin_id']) and !empty($_SESSION['username']) and ($_SE
     ##################################################################################
 
 
-     ##################################################################################
+    ######################### ACTIVE CHECKED USERS ##############################
+
+    if (isset($_POST['user_activate'])) {
+        if (isset($_POST['id']) and !empty($_POST['id'])) {
+            $id      = $_POST['id'];
+            $onearr  = array_combine(range(1, count($id)), $id);
+            $say     = count($id) + 1;
+            for ($i = 1; $i < $say; $i++) {
+
+                $guncelle = mysqli_query($conn, "UPDATE ads_users SET status=2  WHERE id = '" . $onearr[$i] . "'");
+                $guncelle_ads = mysqli_query($conn, "UPDATE ads SET status=2 WHERE user_id='" . $onearr[$i] . "' ");
+            }
+            redirect(base_url() . '/users', 'refresh');
+        } else {
+            redirect(base_url() . '/users', 'refresh');
+        }
+    }
+
+    ##################################################################################
 
 
-     if (isset($_POST['advertisement_active'])) {
+    ######################### DEACTIVE CHECKED USERS ##############################
+
+    if (isset($_POST['user_deactive'])) {
+        if (isset($_POST['id']) and !empty($_POST['id'])) {
+            $id      = $_POST['id'];
+            $onearr  = array_combine(range(1, count($id)), $id);
+            $say     = count($id) + 1;
+            for ($i = 1; $i < $say; $i++) {
+                $guncelle = mysqli_query($conn, "UPDATE ads_users SET status=1  WHERE id = '" . $onearr[$i] . "'");
+                $guncelle_ads = mysqli_query($conn, "UPDATE ads SET status=1 WHERE user_id='" . $onearr[$i] . "' ");
+            }
+            redirect(base_url() . '/users', 'refresh');
+        } else {
+            redirect(base_url() . '/users', 'refresh');
+        }
+    }
+
+    ##################################################################################
+
+
+    if (isset($_POST['advertisement_active'])) {
         if (isset($_POST['id']) and !empty($_POST['id'])) {
             $id      = $_POST['id'];
             $onearr  = array_combine(range(1, count($id)), $id);
@@ -279,10 +317,10 @@ if (!empty($_SESSION['loggedin_id']) and !empty($_SESSION['username']) and ($_SE
     }
     ##################################################################################
 
-     ##################################################################################
+    ##################################################################################
 
 
-     if (isset($_POST['advertisement_deactive'])) {
+    if (isset($_POST['advertisement_deactive'])) {
         if (isset($_POST['id']) and !empty($_POST['id'])) {
             $id      = $_POST['id'];
             $onearr  = array_combine(range(1, count($id)), $id);
@@ -609,6 +647,27 @@ if (!empty($_SESSION['loggedin_id']) and !empty($_SESSION['username']) and ($_SE
             redirect(base_url() . '/metro_stations', 'refresh');
         } else {
             redirect(base_url() . '/metro_stations', 'refresh');
+        }
+    }
+
+    ####################################################################################
+
+
+
+    ############################# DELETE USERS BY ID #################################
+
+
+    if (isset($_GET['del_users']) and $_GET['del_users'] == "ok") {
+        if (isset($_GET['id']) and !empty($_GET['id'])) {
+            $id    =  mysqli_real_escape_string($conn, $_GET['id']);
+            $guncelle = mysqli_query($conn, "UPDATE ads_users SET status=0 WHERE id=" . $id . "");
+
+            $guncelle_ads = "UPDATE ads SET status=0 WHERE user_id='" . $id . "' ";
+            $run_guncelle = mysqli_query($conn, $guncelle_ads);
+
+            redirect(base_url() . '/users', 'refresh');
+        } else {
+            redirect(base_url() . '/users', 'refresh');
         }
     }
 

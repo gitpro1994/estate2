@@ -26,10 +26,10 @@ if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && !empty($_SERVER['HTTP_X_REQUESTE
 	$settlement_id    		= (isset($_POST['settlement_id']) and (!empty($_POST['settlement_id']))) ? (int)$_POST['settlement_id'] : "NULL";
 	$address    	  		= (isset($_POST['address']) and (!empty($_POST['address']))) ? clean($_POST['address']) : "NULL";
 	$description    	  	= (isset($_POST['description']) and (!empty($_POST['description']))) ? clean($_POST['description']) : "NULL";
-	$photo              	= (isset($_POST['estate_photos']) and (!empty($_POST['estate_photos']))) ? trim($_POST['estate_photos']) : "NULL";
+	// $photo              	= $_FILES['estate_photos']['name'];
 	$status              	= (isset($_POST['status']) and (!empty($_POST['status']))) ? trim($_POST['status']) : "NULL";
 	$shared              	= (isset($_POST['shared']) and (!empty($_POST['shared']))) ? trim($_POST['shared']) : "NULL";
-
+	dd($_FILES['estate_photos']);
 	if (empty($phone_number) || empty($name) || empty($email) || empty($user_kind)) {
 		$data = [
 			'icon'             => 'warning',
