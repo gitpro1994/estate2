@@ -128,7 +128,7 @@ $keyw  = settings('seo_keywords');
                                 <div class="item-category10"><a href="single-listing1.html"><?= $nn['type_name'] ?></a></div>
                                 <div class="item-content">
                                     <div class="verified-area">
-                                        <h3 class="item-title"><a href="single-listing1.html">Ofis satilir</a></h3>
+                                        <h3 class="item-title"><a href="<?= site_url() ?>detail/<?= $nn['ads_sef_url'] ?>">Ofis satilir</a></h3>
                                     </div>
                                     <div class="location-area"><i class="flaticon-maps-and-flags"></i><?= $nn['city_name'] ?> <?= (!empty($nn['region_name'])) ? ',' : '' ?> <?= $nn['region_name'] ?></div>
                                     <div class="item-categoery3">
