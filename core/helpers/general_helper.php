@@ -2,7 +2,79 @@
 
 if (!defined( 'BASEPATH' )) exit('No direct script access allowed');
     
-    
+    function addWatermark($watermark, $imageDirectory, $imageName, $x = 0, $y = 0)
+    {
+    if(file_exists($watermark))
+    {
+        $marge_right  = 0;
+        $marge_bottom = 0;
+
+        $stamp = imagecreatefrompng($watermark);
+
+        $image_extension = @end(explode(".", $imageName));
+        switch($image_extension)
+        {
+            case "jpg":
+                $im = imagecreatefromjpeg("$imageDirectory/$imageName");
+                break;
+            case "jpeg":
+                $im = imagecreatefromjpeg("$imageDirectory/$imageName");
+                break;
+            case "png":
+                $im = imagecreatefrompng("$imageDirectory/$imageName");
+                break;
+        }
+
+        $imageSize = getimagesize("$imageDirectory/$imageName");
+        $watermark_o_width = imagesx($stamp);
+        $watermark_o_height = imagesy($stamp);
+
+        $newWatermarkWidth = $imageSize[0];
+        $newWatermarkHeight = $watermark_o_height * $newWatermarkWidth / $watermark_o_width;
+
+
+        if((int)$x <= 0)
+            $x = $imageSize[0]/2 - $newWatermarkWidth/2;
+        if((int)$y <= 0)
+            $y = $imageSize[1]/2 - $newWatermarkHeight/2;
+
+        $sx = imagesx($stamp);
+        $sy = imagesy($stamp);
+
+        // top-left
+        // imagecopy($im, $stamp, -45, -5, 0, 0, imagesx($stamp), imagesy($stamp));
+
+        // top-right
+        // imagecopy($im, $stamp, imagesx($im) - $sx + 45, -5, 0, 0, imagesx($stamp), imagesy($stamp));
+
+        // bottom-left
+        // imagecopy($im, $stamp, -45, imagesy($im) - $sy + 5, 0, 0, imagesx($stamp), imagesy($stamp));
+
+        // bottom-right
+        // imagecopy($im, $stamp, imagesx($im) - $sx + 45, imagesy($im) - $sy + 5, 0, 0, imagesx($stamp), imagesy($stamp));
+
+        // center
+        imagecopy($im, $stamp, (imagesx($im) - $sx)/2, (imagesy($im) - $sy)/2, 0, 0, imagesx($stamp), imagesy($stamp));
+        // imagecopyresized($im, $stamp, $x, $y, 0, 0, $newWatermarkWidth, $newWatermarkHeight, imagesx($stamp), imagesy($stamp));
+
+
+        switch($image_extension)
+        {
+            case "jpg":
+                header('Content-type: image/jpeg');
+                imagejpeg($im, "$imageDirectory/$imageName", 100);
+                break;
+            case "jpeg":
+                header('Content-type: image/jpeg');
+                imagejpeg($im, "$imageDirectory/$imageName", 100);
+                break;
+            case "png":
+                header('Content-type: image/png');
+                imagepng($im, "$imageDirectory/$imageName");
+                break;
+        }
+    }
+}
     function translate($word = '')
     {
         global $conn;

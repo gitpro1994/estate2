@@ -25,6 +25,7 @@ $keyw  = settings('seo_keywords');
       <div class="row">
          <div class="col-lg-7 col-sm-12 col-12">
             <div class="page-content-block">
+
                <form id="add_new_listing" class="forms-sample" method="POST" enctype="multipart/form-data">
                   <div class="col-md-12 rtcl-login-form-wrap" id="contact_section">
                      <h4><?= translate('add_listing') ?></h4>

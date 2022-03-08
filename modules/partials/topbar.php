@@ -51,7 +51,7 @@
                                   <?php if(users_info($_SESSION['id'], 'avatar')){ ?>
                                      <img class="img-fluid" src="<?= site_url() ?>assets/img/avatar/<?= users_info($_SESSION['id'], 'avatar') ?>" alt="" style="width: 40px; height: 40px; border-radius: 50%">
                                  <?php }else{ ?>
-                                    <i class="fas fa-sign-out-alt icon-round"></i>
+                                    <i class="flaticon-user-1 icon-round"></i>
                                 <?php } ?>
                                 </a>
                             </li>
@@ -71,7 +71,7 @@
                             <li class="action-item-style my-account">
                                 <a href="<?= site_url() ?>register" data-bs-toggle="tooltip" data-bs-placement="bottom"
                                     title="<?= translate('register') ?>">
-                                    <i class="fas fa-sign-in-alt icon-round"></i>
+                                    <i class="fas fa-user-plus icon-round"></i>
                                 </a>
                             </li>
                             <?php } ?>
@@ -103,7 +103,14 @@
     </a>
 </div>
 <div class="actions user">
-    <a href="<?= site_url() ?>login"><i class="flaticon-user"></i></a>
+    <?php if(users_info($_SESSION['id'], 'avatar')){ ?>
+        <a href="<?= site_url() ?>dashboard" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                    title="<?= translate('dashboard') ?>">
+         <img class="img-fluid" src="<?= site_url() ?>assets/img/avatar/<?= users_info($_SESSION['id'], 'avatar') ?>" alt="" style="width: 40px; height: 40px; border-radius: 50%">
+        </a>
+     <?php }else{ ?>
+        <a href="<?= site_url() ?>login"><i class="flaticon-user"></i></a>
+    <?php } ?>
 </div>
 <span class="sidebarBtn">
    <span class="bar"></span>

@@ -36,8 +36,9 @@ if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && !empty($_SERVER['HTTP_X_REQUESTED
 	}   
 	elseif($_SESSION['id']===$data)
 	{
-		$update_status_user 	= "UPDATE ads_users SET status=0 WHERE  id= '".$data."' ";
+		$update_status_user   = "UPDATE ads_users SET status=1 WHERE  id= '".$data."' ";
 		$execute_qry          = mysqli_query($conn,$update_status_user);
+		
 		$update_status_elan   = "UPDATE ads SET status=1 WHERE  user_id= '".$data."' ";
 		$execute_qry_elan     = mysqli_query($conn,$update_status_elan);
 		

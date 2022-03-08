@@ -27,8 +27,8 @@ $count_listing  = mysqli_num_rows($run);
     <div class="container">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html"><?= translate('home') ?></a></li>
-                <li class="breadcrumb-item"><a href="agent-lists1.html"><?= translate('dashboard') ?></a></li>
+                <li class="breadcrumb-item"><a href="<?= site_url() ?>"><?= translate('home') ?></a></li>
+                <li class="breadcrumb-item"><a href="<?= site_url() ?>dashboard"><?= translate('dashboard') ?></a></li>
             </ol>
         </nav>
     </div>
@@ -482,6 +482,7 @@ $count_listing  = mysqli_num_rows($run);
 
         $(document).on('click', '.freeze', function(event) {
             let login_url = $("#base_url").val();
+             const red_url = $("#base_url").val();
             let id = $("#freeze_account").val();
             Swal.fire({
                 title: '<?= translate('Are_you_sure_you_want_to_freeze_your_account?') ?>',
@@ -512,9 +513,9 @@ $count_listing  = mysqli_num_rows($run);
                                     loaderBg: '#fff',
                                     position: 'top-right'
                                 })
-                                window.setTimeout(function() {
-                                    window.location.href = login_url + "login";
-                                }, 2000);
+                                
+                                document.location.href = red_url+'logout',true;
+                                
                             } else if (data.status == 204) {
 
                                 Toast.fire({
@@ -537,7 +538,7 @@ $count_listing  = mysqli_num_rows($run);
 
         $(document).on('click', '.delete', function(event) {
             let id = $("#delete_account").val();
-
+            const red_url = $("#base_url").val();
             Swal.fire({
                 title: '<?= translate('Are_you_sure_you_want_to_delete_your_account?') ?>',
                 text: "<?= translate('Note_that_during_the_deleting_of_the_account_the_sharing_of_ads_related_to_the_account_will_be_suspended_Deleted_data_is_not_returned') ?>",
@@ -566,9 +567,9 @@ $count_listing  = mysqli_num_rows($run);
                                     loaderBg: '#fff',
                                     position: 'top-right'
                                 })
-                                window.setTimeout(function() {
-                                    window.location.href = login_url + "login";
-                                }, 2000);
+                               
+                              document.location.href = red_url+'logout',true;
+                                
                             } else if (data.status == 204) {
 
                                 Toast.fire({

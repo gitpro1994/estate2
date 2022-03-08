@@ -202,14 +202,4 @@ class Watermark {
     }
 
 }
-
-// Example
-// define('ROOT',$_SERVER['DOCUMENT_ROOT']);
-$actual_link = 'http://'.$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']);
-$watermark = new Watermark($actual_link.'resim.jpg');
-$watermark->setWatermarkImage($actual_link.'logo.png');
-$watermark->setType(Watermark::CENTER);
-$a = $watermark->saveAs($actual_link.'test.jpg');
-print_r($watermark);
-die();
 ?>

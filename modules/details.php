@@ -8,7 +8,8 @@ if(check_ads($url)==0)
 else
 {
 
-}   
+} 
+$images = explode(",",get_ads($url,'images'));
 $wish = (wish($_SESSION['unique_session'],get_ads($url,'id'))) ? 'fa fa-heart' : 'flaticon-heart';
 $title = settings('site_title');
 $desc  = settings('seo_description');
@@ -131,115 +132,27 @@ $keyw  = settings('seo_keywords');
                   >
                     <div class="feature-box3 swiper-container">
                       <div class="swiper-wrapper">
+                        <?php foreach ($images as $key => $value) { ?>
                         <div class="swiper-slide">
                           <div class="feature-img1 zoom-image-hover">
-                            <img
-                              src="<?= site_url() ?>assets/img/blog/product1-1.jpg"
-                              alt="feature"
-                              width="798"
-                              height="420"
-                            />
+                            <img src="<?= site_url() ?>uploads/<?= $value; ?>"  style="width:798px;height: 420px;" alt="feature" width="798" height="420"/>
                           </div>
                         </div>
-                        <div class="swiper-slide">
-                          <div class="feature-img1 zoom-image-hover">
-                            <img
-                              src="<?= site_url() ?>assets/img/blog/product3.jpg"
-                              alt="feature"
-                              width="798"
-                              height="420"
-                            />
-                          </div>
-                        </div>
-
-                        <div class="swiper-slide">
-                          <div class="feature-img1 zoom-image-hover">
-                            <img
-                              src="<?= site_url() ?>assets/img/blog/product4.jpg"
-                              alt="feature"
-                              width="798"
-                              height="420"
-                            />
-                          </div>
-                        </div>
-
-                        <div class="swiper-slide">
-                          <div class="feature-img1 zoom-image-hover">
-                            <img
-                              src="<?= site_url() ?>assets/img/blog/product5.jpg"
-                              alt="feature"
-                              width="798"
-                              height="420"
-                            />
-                          </div>
-                        </div>
-
-                        <div class="swiper-slide">
-                          <div class="feature-img1 zoom-image-hover">
-                            <img
-                              src="<?= site_url() ?>assets/img/blog/product6.jpg"
-                              alt="feature"
-                              width="798"
-                              height="420"
-                            />
-                          </div>
-                        </div>
+                       <?php } ?>
                       </div>
                     </div>
                     <div class="featured-thum-slider2 swiper-container">
                       <div class="swiper-wrapper">
+                       
+                        
+                        <?php foreach ($images as $key => $value) { ?>
                         <div class="swiper-slide">
                           <div class="item-img">
-                            <img
-                              src="<?= site_url() ?>assets/img/blog/product2.jpg"
-                              alt="feature"
-                              width="154"
-                              height="100"
-                            />
+                            <img src="<?= site_url() ?>uploads/<?= $value; ?>" alt="feature" style="width:154px;height: 100px;" width="154" height="100"/>
                           </div>
                         </div>
-                        <div class="swiper-slide">
-                          <div class="item-img">
-                            <img
-                              src="<?= site_url() ?>assets/img/blog/product7.jpg"
-                              alt="feature"
-                              width="154"
-                              height="100"
-                            />
-                          </div>
-                        </div>
-                        <div class="swiper-slide">
-                          <div class="item-img">
-                            <img
-                              src="<?= site_url() ?>assets/img/blog/product8.jpg"
-                              alt="feature"
-                              width="154"
-                              height="100"
-                            />
-                          </div>
-                        </div>
-
-                        <div class="swiper-slide">
-                          <div class="item-img">
-                            <img
-                              src="<?= site_url() ?>assets/img/blog/product9.jpg"
-                              alt="feature"
-                              width="154"
-                              height="100"
-                            />
-                          </div>
-                        </div>
-
-                        <div class="swiper-slide">
-                          <div class="item-img">
-                            <img
-                              src="<?= site_url() ?>assets/img/blog/product10.jpg"
-                              alt="feature"
-                              width="154"
-                              height="100"
-                            />
-                          </div>
-                        </div>
+                       <?php } ?>
+                       
                       </div>
                     </div>
                   </div>
@@ -331,83 +244,7 @@ $keyw  = settings('seo_keywords');
                         <?= get_ads($url,'description') ?>
                       </p>
                     </div>
-                    <div
-                      class="overview-area single-details-box table-responsive"
-                    >
-                      <h3 class="item-title">Details</h3>
-                      <table class="table-box1">
-                        <tr>
-                          <td class="item-bold">Id No</td>
-                          <td>98560</td>
-                          <td class="item-bold">Price</td>
-                          <td>$12,500</td>
-                        </tr>
-                        <tr>
-                          <td class="item-bold">Property Type</td>
-                          <td>Apartment</td>
-                          <td class="item-bold">Parking</td>
-                          <td>Yes</td>
-                        </tr>
-                        <tr>
-                          <td class="item-bold">Rooms</td>
-                          <td>04</td>
-                          <td class="item-bold">Property Status</td>
-                          <td>For Rent</td>
-                        </tr>
-                        <tr>
-                          <td class="item-bold">Bath Rooms</td>
-                          <td>03</td>
-                          <td class="item-bold">Land Area</td>
-                          <td>15,000 sqft</td>
-                        </tr>
-                        <tr>
-                          <td class="item-bold">Size</td>
-                          <td>1050 sqft</td>
-                          <td class="item-bold">Year Build</td>
-                          <td>2022</td>
-                        </tr>
-                      </table>
-                    </div>
-                    <div class="overview-area ameniting-box">
-                      <h3 class="item-title">Features & Amenities</h3>
-                      <div class="row">
-                        <div class="col-lg-4">
-                          <ul class="ameniting-list">
-                            <li><i class="fas fa-check-circle"></i>TV Cable</li>
-                            <li>
-                              <i class="fas fa-check-circle"></i>Air
-                              Conditioning
-                            </li>
-                            <li><i class="fas fa-check-circle"></i>Barbeque</li>
-                            <li><i class="fas fa-check-circle"></i>Gym</li>
-                          </ul>
-                        </div>
-                        <div class="col-lg-4">
-                          <ul class="ameniting-list">
-                            <li>
-                              <i class="fas fa-check-circle"></i>Swimming Pool
-                            </li>
-                            <li><i class="fas fa-check-circle"></i>Laundry</li>
-                            <li>
-                              <i class="fas fa-check-circle"></i>Microwave
-                            </li>
-                            <li><i class="fas fa-check-circle"></i>Lawn</li>
-                          </ul>
-                        </div>
-                        <div class="col-lg-4">
-                          <ul class="ameniting-list">
-                            <li><i class="fas fa-check-circle"></i>Sauna</li>
-                            <li>
-                              <i class="fas fa-check-circle"></i>Window
-                              Coverings
-                            </li>
-                            <li>
-                              <i class="fas fa-check-circle"></i>CC Camera
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
+                  
                     <div class="overview-area map-box">
                       <h3 class="item-title">Map Location</h3>
                       <div class="item-map">
