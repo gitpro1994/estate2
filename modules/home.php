@@ -60,6 +60,7 @@ $keyw  = settings('seo_keywords');
                         a.updated_at AS ads_updated_at,
                         a.deleted_at AS ads_deleted_at,
                         a.sef_url AS ads_sef_url,
+                        a.seen AS ads_seen,
                         c.city_name,
                         c.seo_link as city_seo_link,
                         c.status as city_status,
