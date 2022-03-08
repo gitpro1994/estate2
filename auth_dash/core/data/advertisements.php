@@ -89,7 +89,7 @@ if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && !empty($_SERVER['HTTP_X_REQUESTE
              <span class="sr-only">Toggle Dropdown</span>
            </button>
            <div class="dropdown-menu">
-             <a class="dropdown-item" onclick="status_control(' . $bax['ads_id'] . ', 5)" ><div class="badge badge-primary w-100" >' . translate("non_accepted") . '</div></a>
+             <a class="dropdown-item" onclick="status_control(' . $bax['ads_id'] . ', 5)" ><div class="badge badge-primary w-100">' . translate("non_accepted") . '</div></a>
              <a class="dropdown-item" onclick="status_control(' . $bax['ads_id'] . ', 1)" ><div class="badge badge-danger w-100">' . translate("deactive") . '</div></a>
              <a class="dropdown-item" onclick="status_control(' . $bax['ads_id'] . ', 2)" ><div class="badge badge-success w-100">' . translate("active") . '</div></a>
              <a class="dropdown-item" onclick="status_control(' . $bax['ads_id'] . ', 3)" ><div class="badge badge-warning w-100">' . translate("under_inspection") . '</div></a>
