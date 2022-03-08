@@ -1,12 +1,12 @@
 <?php
-if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && !empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest')
+if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && !empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') 
 {
 	define('BASEPATH', true);
 	include_once("../../core/config/database.php");
 	include_once("../../core/helpers/general_helper.php");
 	$error = [];
 	$res   = [];
-	
+
 
 	if (empty($_POST['id'])) 
 	{
@@ -21,61 +21,61 @@ if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && !empty($_SERVER['HTTP_X_REQUESTED
 		echo json_encode($resp);
 		exit;
 	}
-	
-	$data                 = clean($_POST['id']);
 
-	if(users_info($_SESSION['id'],'status')==0)
+	$data_id                 = clean($_POST['id']);
+
+	if (users_info($_SESSION['id'], 'status') == 3) 
 	{
-		$data = [ 
+		$data = [
 			'status'     => 204,
 			'icon'       => 'warning',
-			'message'    => 'Hesabınız daha öncə dondurulub.', 
+			'message'    => 'Hesabınız daha öncə dondurulub.',
 			'sorguNtc'   => false
 		];
 		echo json_encode($data);
-	}   
-	elseif($_SESSION['id']===$data)
+
+	} 
+	elseif ($_SESSION['id'] === $data_id) 
 	{
-		$update_status_user   = "UPDATE ads_users SET status=1 WHERE  id= '".$data."' ";
-		$execute_qry          = mysqli_query($conn,$update_status_user);
-		
-		$update_status_elan   = "UPDATE ads SET status=1 WHERE  user_id= '".$data."' ";
-		$execute_qry_elan     = mysqli_query($conn,$update_status_elan);
-		
+		$update_status_user 	= "UPDATE ads_users SET status=3 WHERE  id= '" . $data_id . "' ";
+		$execute_qry          = mysqli_query($conn, $update_status_user);
+		$update_status_elan   = "UPDATE ads SET status=3 WHERE  user_id= '" . $data_id . "' ";
+		$execute_qry_elan     = mysqli_query($conn, $update_status_elan);
+
 
 		if ($execute_qry_elan) 
-		{ 
-			$data = [ 
+		{
+			$data = [
 				'status'     => 200,
 				'icon'     => 'success',
-				'message'    => 'Uğurla donduruldu!', 
+				'message'    => 'Uğurla donduruldu!',
 				'sorguNtc'   => true
 			];
 			echo json_encode($data);
-		}
-		else
+		} 
+		else 
 		{
-			$data = [ 
+			$data = [
 				'status'     => 204,
 				'icon'     => 'error',
-				'message'    => 'Xəta baş verdi', 
+				'message'    => 'Xəta baş verdi',
 				'sorguNtc'   => false
 			];
 			echo json_encode($data);
 		}
-	}
-	else
+	} 
+	else 
 	{
-		$data = [ 
+		$data = [
 			'status'     => 204,
 			'icon'       => 'warning',
-			'message'    => 'Yalnız şəxsi profiliniz üzərində dəyişiklik etmə hüququnuz var', 
+			'message'    => 'Yalnız şəxsi profiliniz üzərində dəyişiklik etmə hüququnuz var',
 			'sorguNtc'   => false
 		];
 		echo json_encode($data);
 	}
-}
-else
+} 
+else 
 {
-    include_once("index.html");
+	include_once("index.html");
 }

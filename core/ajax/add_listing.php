@@ -1,4 +1,5 @@
 <?php
+
 if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && !empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest')
 {
   define('BASEPATH', true);
@@ -28,49 +29,46 @@ if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && !empty($_SERVER['HTTP_X_REQUESTED
 	$description    	  = (isset($_POST['description']) AND (!empty($_POST['description']))) ? clean($_POST['description']) : "NULL";
 	$photo              = (isset($_POST['estate_photos']) AND (!empty($_POST['estate_photos']))) ? trim($_POST['estate_photos']) : "NULL";
 
-
-	
 	if (empty($phone_number) || empty($name) || empty($email) || empty($user_kind)) 
 	{
 		$data = [
-			        'icon'             => 'warning',
-			        'status'           => 204,
-			        'message'          => 'İstifadəçi məlumatları daxil edilməyib'
-			      ];
+			'icon'             => 'warning',
+			'status'           => 204,
+			'message'          => 'İstifadəçi məlumatları daxil edilməyib'
+		];
 
-      		echo json_encode($data);
-	}
-	
-	else
+		echo json_encode($data);
+	} 
+	else 
 	{
-			$statement  = "SELECT * FROM ads_users WHERE phone_number = '".$phone_number."' AND status=1 ";
-		  $execute    = mysqli_query($conn,$statement);
-		  $cnt    	  = mysqli_num_rows($execute);
-		  $bax        = mysqli_fetch_array($execute);
-		  
-	    if ($cnt < 1 ) 
-	    {
-		  	$password   = password_generate();
-		  	$hash       = hash_password($password);
-	    	$username 	= current(explode('@', $email));
-	    	$avatar     = 'default.png';
-	    	$status     = (int)1;
+		$statement  = "SELECT * FROM ads_users WHERE phone_number = '" . $phone_number . "' AND status=1 ";
+		$execute    = mysqli_query($conn, $statement);
+		$cnt    	  = mysqli_num_rows($execute);
+		$bax        = mysqli_fetch_array($execute);
 
-	    	
-	    	$insert_user = mysqli_query($conn,"INSERT INTO ads_users (name,email,phone_number,user_type,avatar,username,password,status)
-	    	VALUES ('".$name."','".$email."','".$phone_number."','".$user_kind."','".$avatar."','".$username."','".$hash."','".$status."') ");
-	    	$user_id = mysqli_insert_id($conn);
-	    }
-	    else
-	    {
-	    	$insert_user = true;
-	    	$user_id     = $bax['id'];
-	    }
-	    	if($insert_user)
-	    	{
-	    		$seen =(int)0;
-	    		$ads_status =(int)3;
-	    		$sql = "INSERT INTO ads (
+		if ($cnt < 1) 
+		{
+			$password   = password_generate();
+			$hash       = hash_password($password);
+			$username 	= current(explode('@', $email));
+			$avatar     = 'default.png';
+			$status     = (int)1;
+
+
+			$insert_user = mysqli_query($conn, "INSERT INTO ads_users (name,email,phone_number,user_type,avatar,username,password,status)
+	    	VALUES ('" . $name . "','" . $email . "','" . $phone_number . "','" . $user_kind . "','" . $avatar . "','" . $username . "','" . $hash . "','" . $status . "') ");
+			$user_id = mysqli_insert_id($conn);
+		} 
+		else 
+		{
+			$insert_user = true;
+			$user_id     = $bax['id'];
+		}
+		if ($insert_user) 
+		{
+			$seen = (int)0;
+			$ads_status = (int)3;
+			$sql = "INSERT INTO ads (
 			    			user_id,
 			    			kind_id,
 			    			type_id,
@@ -94,69 +92,68 @@ if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && !empty($_SERVER['HTTP_X_REQUESTED
 			    			status,
 			    			end_date) 
 						VALUES(
-							".$user_id.",
-							".$kind_id.",
-							".$type_id.",
-							".$city.",
-							".$office_kind.",
-							'".$rooms."',
-							'".$area."',
-							'".$space."',
-							'".$floor_no."',
-							'".$building_floor_no."',
-							".$price.",
-							".$payment_method.",
-							".$mortgage.",
-							".$region_id.",
-							".$hashtag_id.",
-							".$settlement_id.",
-							'".$address."',
-							'".$description."',
-							'".$seen."',
-							'".$photo."',
-							'".$ads_status."',
+							" . $user_id . ",
+							" . $kind_id . ",
+							" . $type_id . ",
+							" . $city . ",
+							" . $office_kind . ",
+							'" . $rooms . "',
+							'" . $area . "',
+							'" . $space . "',
+							'" . $floor_no . "',
+							'" . $building_floor_no . "',
+							" . $price . ",
+							" . $payment_method . ",
+							" . $mortgage . ",
+							" . $region_id . ",
+							" . $hashtag_id . ",
+							" . $settlement_id . ",
+							'" . $address . "',
+							'" . $description . "',
+							'" . $seen . "',
+							'" . $photo . "',
+							'" . $ads_status . "',
 							 ADDDATE(curdate(), INTERVAL 30 DAY) )";
-							 
-						$execute 	= mysqli_query($conn,$sql);
-						if ($execute) 
-						{
-							$data = [
-					        'icon'             => 'success',
-					        'status'           => 200,
-					        'message'          => 'Elan elave edildi'
-					      ];
 
-      				echo json_encode($data);
-						}
-						else
-						{
-							$data = [
-					        'icon'             => 'error',
-					        'status'           => 204,
-					        'message'          => 'Xəta baş verdi'
-					      ];
 
-      		echo json_encode($data);
-						}
-	    	}
-	    	else
-	    	{
-	    		$data = [
-					        'icon'             => 'warning',
-					        'status'           => 204,
-					        'message'          => 'Elan əlavə edilmədi'
-					      ];
+			$execute 	= mysqli_query($conn, $sql);
+			if ($execute) 
+			{
+				$data = [
+					'icon'             => 'success',
+					'status'           => 200,
+					'message'          => 'Elan elave edildi'
+				];
 
-      		echo json_encode($data);
-	    	}	 
-	
+				echo json_encode($data);
+			} 
+			else 
+			{
+				$data = [
+					'icon'             => 'error',
+					'status'           => 204,
+					'message'          => 'get isinle mesgul ol'
+				];
+
+
+				echo json_encode($data);
+			}
+		} 
+		else 
+		{
+			$data = [
+				'icon'             => 'warning',
+				'status'           => 204,
+				'message'          => 'Elan elave edilmedi'
+			];
+
+			echo json_encode($data);
+		}
+
 	}
 
-
-}     
-else
+} 
+else 
 {
-    include_once("index.html");
+	include_once("index.html");
 }
-
- ?>

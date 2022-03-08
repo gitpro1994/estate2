@@ -115,11 +115,30 @@
 					icon: data_parsed.icon,
 					title: data_parsed.message
 				});
+			}
+		})
+	}
 
+	function user_status_control(user_id, status_code) {
+		let url = $("#base_url").val();
+		$.ajax({
+			url: url + "/core/ajax/user_status_control.php",
+			method: "POST",
+			data: {
+				user_id: user_id,
+				status_code: status_code
+			},
+			success: function(data) {
+				data_parsed = JSON.parse(data);
+				Toast.fire({
+					icon: data_parsed.icon,
+					title: data_parsed.message
+				});
 			}
 		})
 	}
 </script>
 </body>
+
 </html>
 <?php mysqli_close($conn); ?>

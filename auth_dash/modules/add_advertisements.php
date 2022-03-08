@@ -318,7 +318,7 @@
 
 											<div class="form-group row col-md-6">
 												<label><?= translate('images') ?></label>
-												<input type="file" name="estate_photos" multiple class="file-upload-default">
+												<input type="file" name="estate_photos" id="estate_photos" multiple class="file-upload-default">
 												<div class="input-group col-xs-12">
 													<input type="text" class="form-control file-upload-info form-control-sm" disabled="" placeholder="Ürüne ait resimleri toplu şekilde buradan seçebilirsiniz.">
 													<span class="input-group-append">
@@ -620,7 +620,11 @@
 			$.ajax({
 				type: "POST",
 				url: "core/ajax/add_listing.php",
-				data: form.serialize(),
+				data: new FormData(this),
+				dataType: 'json',
+				contentType: false,
+				cache: false,
+				processData: false,
 				success: function(data) {
 					data = JSON.parse(data);
 					if (data.status == 200) {
@@ -646,6 +650,18 @@
 					}
 				}
 			});
+		});
+		$("#estate_photos").change(function() {
+			var file = this.files[0];
+			var imagefile = file.type;
+			var match = ['image/jpeg', 'image/png', 'image/jpg'];
+			if (!((imagefile == match[0]) ||
+					(imagefile == match[1]) ||
+					(imagefile == match[2]))) {
+				alert('Sorry, only JPG, JPEG, & PNG files are allowed to upload.');
+				$("#estate_photos").val('');
+				return false;
+			}
 		});
 	</script>
 
