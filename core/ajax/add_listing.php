@@ -1,36 +1,34 @@
 <?php
 
-if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && !empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest')
-{
-  define('BASEPATH', true);
-  include_once("../../core/config/database.php");
-  include_once("../../core/helpers/general_helper.php");
-  
-	$phone_number    	  = (isset($_POST['phone_number']) AND (!empty($_POST['phone_number']))) ? clean($_POST['phone_number']) : "NULL";
-	$name    	  				= (isset($_POST['name']) AND (!empty($_POST['name']))) ? clean($_POST['name']) : "NULL";
-	$email    	  			= (isset($_POST['email']) AND (!empty($_POST['email']))) ? clean($_POST['email']) : "NULL";
-	$user_kind    	  	= (isset($_POST['user_kind']) AND (!empty($_POST['user_kind']))) ? clean($_POST['user_kind']) : "NULL";
-	$kind_id    	  		= (isset($_POST['kind_id']) AND (!empty($_POST['kind_id']))) ? (int)$_POST['kind_id'] : "NULL";
-	$type_id    	  		= (isset($_POST['type_id']) AND (!empty($_POST['type_id']))) ? (int)$_POST['type_id'] : "NULL";
-	$city    	  				= (isset($_POST['city_id']) AND (!empty($_POST['city_id']))) ? (int)$_POST['city_id'] : "NULL";
-	$office_kind    	  = (isset($_POST['office_kind']) AND (!empty($_POST['office_kind']))) ? (int)$_POST['office_kind'] : "NULL";
-	$rooms    	  			= (isset($_POST['rooms']) AND (!empty($_POST['rooms']))) ? clean($_POST['rooms']) : "NULL";
-	$area    	  				= (isset($_POST['area']) AND (!empty($_POST['area']))) ? clean($_POST['area']) : "NULL";
-	$space    	  			= (isset($_POST['space']) AND (!empty($_POST['space']))) ? clean($_POST['space']) : "NULL";
-	$floor_no   	  		= (isset($_POST['floor_no']) AND (!empty($_POST['floor_no']))) ? clean($_POST['floor_no']) : "NULL";
-	$building_floor_no  = (isset($_POST['building_floor_no']) AND (!empty($_POST['building_floor_no']))) ? clean($_POST['building_floor_no']) : "NULL";
-	$price    	  			= (isset($_POST['price']) AND (!empty($_POST['price']))) ? (int)$_POST['price'] : "NULL";
-	$payment_method    	= (isset($_POST['payment_method']) AND (!empty($_POST['payment_method']))) ? (int)$_POST['payment_method'] : "NULL";
-	$mortgage    	  		= (isset($_POST['mortgage']) AND (!empty($_POST['mortgage']))) ? (int)$_POST['mortgage'] : "NULL";
-	$region_id    	  	= (isset($_POST['region_id']) AND (!empty($_POST['region_id']))) ? (int)$_POST['region_id'] : "NULL";
-	$hashtag_id    	  	= (isset($_POST['hashtag_id']) AND (!empty($_POST['hashtag_id']))) ? (int)$_POST['hashtag_id'] : "NULL";
-	$settlement_id    	= (isset($_POST['settlement_id']) AND (!empty($_POST['settlement_id']))) ? (int)$_POST['settlement_id'] : "NULL";
-	$address    	  		= (isset($_POST['address']) AND (!empty($_POST['address']))) ? clean($_POST['address']) : "NULL";
-	$description    	  = (isset($_POST['description']) AND (!empty($_POST['description']))) ? clean($_POST['description']) : "NULL";
-	$photo              = (isset($_POST['estate_photos']) AND (!empty($_POST['estate_photos']))) ? trim($_POST['estate_photos']) : "NULL";
+if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && !empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+	define('BASEPATH', true);
+	include_once("../../core/config/database.php");
+	include_once("../../core/helpers/general_helper.php");
 
-	if (empty($phone_number) || empty($name) || empty($email) || empty($user_kind)) 
-	{
+	$phone_number    	  = (isset($_POST['phone_number']) and (!empty($_POST['phone_number']))) ? clean($_POST['phone_number']) : "NULL";
+	$name    	  				= (isset($_POST['name']) and (!empty($_POST['name']))) ? clean($_POST['name']) : "NULL";
+	$email    	  			= (isset($_POST['email']) and (!empty($_POST['email']))) ? clean($_POST['email']) : "NULL";
+	$user_kind    	  	= (isset($_POST['user_kind']) and (!empty($_POST['user_kind']))) ? clean($_POST['user_kind']) : "NULL";
+	$kind_id    	  		= (isset($_POST['kind_id']) and (!empty($_POST['kind_id']))) ? (int)$_POST['kind_id'] : "NULL";
+	$type_id    	  		= (isset($_POST['type_id']) and (!empty($_POST['type_id']))) ? (int)$_POST['type_id'] : "NULL";
+	$city    	  				= (isset($_POST['city_id']) and (!empty($_POST['city_id']))) ? (int)$_POST['city_id'] : "NULL";
+	$office_kind    	  = (isset($_POST['office_kind']) and (!empty($_POST['office_kind']))) ? (int)$_POST['office_kind'] : "NULL";
+	$rooms    	  			= (isset($_POST['rooms']) and (!empty($_POST['rooms']))) ? clean($_POST['rooms']) : "NULL";
+	$area    	  				= (isset($_POST['area']) and (!empty($_POST['area']))) ? clean($_POST['area']) : "NULL";
+	$space    	  			= (isset($_POST['space']) and (!empty($_POST['space']))) ? clean($_POST['space']) : "NULL";
+	$floor_no   	  		= (isset($_POST['floor_no']) and (!empty($_POST['floor_no']))) ? clean($_POST['floor_no']) : "NULL";
+	$building_floor_no  = (isset($_POST['building_floor_no']) and (!empty($_POST['building_floor_no']))) ? clean($_POST['building_floor_no']) : "NULL";
+	$price    	  			= (isset($_POST['price']) and (!empty($_POST['price']))) ? (int)$_POST['price'] : "NULL";
+	$payment_method    	= (isset($_POST['payment_method']) and (!empty($_POST['payment_method']))) ? (int)$_POST['payment_method'] : "NULL";
+	$mortgage    	  		= (isset($_POST['mortgage']) and (!empty($_POST['mortgage']))) ? (int)$_POST['mortgage'] : "NULL";
+	$region_id    	  	= (isset($_POST['region_id']) and (!empty($_POST['region_id']))) ? (int)$_POST['region_id'] : "NULL";
+	$hashtag_id    	  	= (isset($_POST['hashtag_id']) and (!empty($_POST['hashtag_id']))) ? (int)$_POST['hashtag_id'] : "NULL";
+	$settlement_id    	= (isset($_POST['settlement_id']) and (!empty($_POST['settlement_id']))) ? (int)$_POST['settlement_id'] : "NULL";
+	$address    	  		= (isset($_POST['address']) and (!empty($_POST['address']))) ? clean($_POST['address']) : "NULL";
+	$description    	  = (isset($_POST['description']) and (!empty($_POST['description']))) ? clean($_POST['description']) : "NULL";
+	$photo              = (isset($_POST['estate_photos']) and (!empty($_POST['estate_photos']))) ? trim($_POST['estate_photos']) : "NULL";
+
+	if (empty($phone_number) || empty($name) || empty($email) || empty($user_kind)) {
 		$data = [
 			'icon'             => 'warning',
 			'status'           => 204,
@@ -38,16 +36,13 @@ if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && !empty($_SERVER['HTTP_X_REQUESTED
 		];
 
 		echo json_encode($data);
-	} 
-	else 
-	{
+	} else {
 		$statement  = "SELECT * FROM ads_users WHERE phone_number = '" . $phone_number . "' AND status=1 ";
 		$execute    = mysqli_query($conn, $statement);
 		$cnt    	  = mysqli_num_rows($execute);
 		$bax        = mysqli_fetch_array($execute);
 
-		if ($cnt < 1) 
-		{
+		if ($cnt < 1) {
 			$password   = password_generate();
 			$hash       = hash_password($password);
 			$username 	= current(explode('@', $email));
@@ -58,32 +53,26 @@ if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && !empty($_SERVER['HTTP_X_REQUESTED
 			$insert_user = mysqli_query($conn, "INSERT INTO ads_users (name,email,phone_number,user_type,avatar,username,password,status)
 	    	VALUES ('" . $name . "','" . $email . "','" . $phone_number . "','" . $user_kind . "','" . $avatar . "','" . $username . "','" . $hash . "','" . $status . "') ");
 			$user_id = mysqli_insert_id($conn);
-		} 
-		else 
-		{
+		} else {
 			$insert_user = true;
 			$user_id     = $bax['id'];
 		}
-		if ($insert_user) 
-		{
-			$city_name 				= "SELECT city_name FROM cities WHERE id='".$city."' ";
-			$run_query_result = mysqli_query($conn,$city_name);
+		if ($insert_user) {
+			$city_name 				= "SELECT city_name FROM cities WHERE id='" . $city . "' ";
+			$run_query_result = mysqli_query($conn, $city_name);
 			$bax_city_name = mysqli_fetch_array($run_query_result);
 
-			$type_name = "SELECT type_name FROM realty_types WHERE id='".$type_id."' ";
+			$type_name = "SELECT type_name FROM realty_types WHERE id='" . $type_id . "' ";
 			$run_type_query = mysqli_query($conn, $type_name);
 			$bax_type_name = mysqli_fetch_array($run_type_query);
 
-			if($kind_id == 1)
-			{
+			if ($kind_id == 1) {
 				$val = 'satılır';
-			}
-			else
-			{
+			} else {
 				$val = 'kirayə verilir';
 			}
-			$par = $bax_city_name['city_name'] . ' şəhərində ' . $area . ' m² - ' . $bax_type_name['type_name'] .' ' . $val;
-			$sef_url = word_to_trans_seo($par);
+			$par = $bax_city_name['city_name'] . ' şəhərində ' . $area . ' m² - ' . $bax_type_name['type_name'] . ' ' . $val;
+			$sef_url = seo($par);
 			$seen = (int)0;
 			$ads_status = (int)3;
 			$sql = "INSERT INTO ads (
@@ -133,12 +122,11 @@ if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && !empty($_SERVER['HTTP_X_REQUESTED
 							'" . $photo . "',
 							'" . $ads_status . "',
 							 ADDDATE(curdate(), INTERVAL 30 DAY),
-							 '".$sef_url."' )";
+							 '" . $sef_url . "' )";
 
 
 			$execute 	= mysqli_query($conn, $sql);
-			if ($execute) 
-			{
+			if ($execute) {
 				$data = [
 					'icon'             => 'success',
 					'status'           => 200,
@@ -146,9 +134,7 @@ if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && !empty($_SERVER['HTTP_X_REQUESTED
 				];
 
 				echo json_encode($data);
-			} 
-			else 
-			{
+			} else {
 				$data = [
 					'icon'             => 'error',
 					'status'           => 204,
@@ -158,9 +144,7 @@ if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && !empty($_SERVER['HTTP_X_REQUESTED
 
 				echo json_encode($data);
 			}
-		} 
-		else 
-		{
+		} else {
 			$data = [
 				'icon'             => 'warning',
 				'status'           => 204,
@@ -169,11 +153,7 @@ if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && !empty($_SERVER['HTTP_X_REQUESTED
 
 			echo json_encode($data);
 		}
-
 	}
-
-} 
-else 
-{
+} else {
 	include_once("index.html");
 }
