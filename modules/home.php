@@ -25,10 +25,10 @@ $keyw  = settings('seo_keywords');
                     <div class="row">
                         <div class="col-lg-6 col-md-5 col-sm-12">
                             <div class="item-heading-left">
-                                <span class="section-subtitle">Our PROPERTIES</span>
-                                <h2 class="section-title">Latest Properties</h2>
+                                <span class="section-subtitle">Our PROPERTIES  | <span></span> </span>
+                                <h4 class="section-title">5 Elan</h4> 
                                 <div class="bg-title-wrap" style="display: block;">
-                                    <span class="background-title solid">Properties</span>
+                                    <span class="background-title solid">estate.az</span>
                                 </div>
                             </div>
                         </div>
