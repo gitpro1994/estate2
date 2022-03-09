@@ -126,6 +126,16 @@ function get_ads($sef, $par)
     return $bax[$par];
 }
 
+function get_ads_user_information($sef, $parameter)
+{
+    global $conn;
+    $sel_user = "SELECT * FROM ads AS a INNER JOIN ads_users AS au ON a.user_id=au.id WHERE a.sef_url='".$sef."' ";
+    $run = mysqli_query($conn, $sel_user);
+    $cn  = mysqli_num_rows($run);
+    $bax = mysqli_fetch_array($run);
+    return $bax[$parameter];
+}
+
 function today_visitor($val = 'all')
 {
     global $conn;
@@ -725,8 +735,8 @@ function seo($str, $options = array())
 function word_to_trans_seo($par)
 {
     $a = strtolower(seo($par));
-    $a = str_replace("-", "_", $a);
-    return translate($a);
+    $a = str_replace(" ", "-", $a);
+    return $a;
 }
 
 function admin_info($id, $par)

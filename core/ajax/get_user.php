@@ -29,7 +29,7 @@ if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && !empty($_SERVER['HTTP_X_REQUESTE
 
   if ($cnt === 1) {
 
-    $check_ads_number = "SELECT COUNT(user_id) FROM ads WHERE user_id='" . $bax['id'] . "' ";
+    $check_ads_number = "SELECT COUNT(*) FROM ads WHERE user_id='" . $bax['id'] . "' ";
     $run_query =  mysqli_query($conn, $check_ads_number);
     $count_listings = mysqli_num_rows($run_query);
 

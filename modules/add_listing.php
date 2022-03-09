@@ -8,15 +8,6 @@ $keyw  = settings('seo_keywords');
 <!-- END HEAD -->
 <!-- START TOPBAR -->
 <?php include_once "partials/topbar.php"; ?>
-<?php
-
-if (users_info($_SESSION['id'], 'name')) {
-   $disabled = "disabled=\"disabled\" readonly";
-} else {
-   $disabled = "";
-}
-
-?>
 
 <div class="breadcrumb-wrap">
    <div class="container">
@@ -41,21 +32,21 @@ if (users_info($_SESSION['id'], 'name')) {
                      <div class="mb-3 row">
                         <label for="name" class="col-sm-4 col-form-label"><?= translate('relevant_person') ?></label>
                         <div class="col-sm-8">
-                           <input name="name" type="text" id="name" value="<?= users_info($_SESSION['id'], 'name') ?>" <?= $disabled ?> class="form-control form-control-sm" placeholder="<?= translate('enter_name_and_surname') ?>" required>
+                           <input name="name" type="text" id="name"  class="form-control form-control-sm" placeholder="<?= translate('enter_name_and_surname') ?>" required>
                         </div>
                      </div>
 
                      <div class="mb-3 row">
                         <label for="phone_number" class="col-sm-4 col-form-label"><?= translate('phone_number') ?></label>
                         <div class="col-sm-8">
-                           <input name="phone_number" type="text" value="<?= users_info($_SESSION['id'], 'phone_number') ?>" <?= $disabled ?> id="phone_number" class="form-control form-control-sm" placeholder="<?= translate("enter_phone_number") ?>" required>
+                           <input name="phone_number" type="text"  id="phone_number" class="form-control form-control-sm" placeholder="<?= translate("enter_phone_number") ?>" required>
                         </div>
                      </div>
 
                      <div class="mb-3 row">
                         <label for="email" class="col-sm-4 col-form-label"><?= translate('email') ?></label>
                         <div class="col-sm-8">
-                           <input name="email" type="email" id="email" value="<?= users_info($_SESSION['id'], 'email') ?>" <?= $disabled ?> class="form-control form-control-sm" placeholder="<?= translate("enter_email_address") ?>" required>
+                           <input name="email" type="email" id="email" class="form-control form-control-sm" placeholder="<?= translate("enter_email_address") ?>" required>
                            <div class="invalid-feedback">
                               <?= translate('please_provide_a_valid_email') ?>
                            </div>
@@ -89,7 +80,7 @@ if (users_info($_SESSION['id'], 'name')) {
                            <select required name="kind_id" id="kind_id" class="js-example-basic-single" style="width:100%">
                               <option value=""><?= translate('please_select_one_item') ?></option>
                               <?php
-                              $rk  = "SELECT * FROM realty_kinds WHERE status=1";
+                              $rk  = "SELECT * FROM realty_kinds WHERE status=2";
                               $rkr = mysqli_query($conn, $rk);
                               while ($bax = mysqli_fetch_array($rkr)) {
                               ?>
@@ -107,7 +98,7 @@ if (users_info($_SESSION['id'], 'name')) {
                            <select required name="type_id" id="type_id" class="js-example-basic-single" style="width:100%">
                               <option value=""><?= translate('please_select_one_item') ?></option>
                               <?php
-                              $rk  = "SELECT * FROM realty_types WHERE status=1";
+                              $rk  = "SELECT * FROM realty_types WHERE status=2";
                               $rkr = mysqli_query($conn, $rk);
                               while ($bax = mysqli_fetch_array($rkr)) {
                               ?>
@@ -125,7 +116,7 @@ if (users_info($_SESSION['id'], 'name')) {
                            <select required name="city_id" id="city_id" class="js-example-basic-single" style="width:100%">
                               <option value=""><?= translate('please_select_one_item') ?></option>
                               <?php
-                              $rk  = "SELECT * FROM cities WHERE status=1";
+                              $rk  = "SELECT * FROM cities WHERE status=2";
                               $rkr = mysqli_query($conn, $rk);
                               while ($bax = mysqli_fetch_array($rkr)) {
                               ?>
@@ -238,7 +229,7 @@ if (users_info($_SESSION['id'], 'name')) {
                            <select name="region_id" id="region_id" class="js-example-basic-single" style="width:100%">
                               <option value=""><?= translate('please_select_one_item') ?></option>
                               <?php
-                              $rk  = "SELECT * FROM regions WHERE status=1";
+                              $rk  = "SELECT * FROM regions WHERE status=2";
                               $rkr = mysqli_query($conn, $rk);
                               while ($rayon = mysqli_fetch_array($rkr)) {
                               ?>

@@ -81,10 +81,11 @@ $keyw  = settings('seo_keywords');
                     <div class="single-item-address">
                       <ul>
                         <li>
-                          <i class="fas fa-map-marker-alt"></i><?= get_type_name(get_ads($url,'kind_id')) ?>#<?= get_ads($url,0) ?>,
+                          <i class="fas fa-map-marker-alt"></i><?= get_type_name(get_ads($url,'kind_id')) ?> #<?= get_ads($url,0) ?>,
                           <?= strtoupper(get_ads($url,'address')) ?>, <?= get_city_name(get_ads($url,'city_id')) ?>
                         </li>
-                        <li><i class="fas fa-clock"></i><?= get_nicetime(get_ads($url,24)) ?> /</li>
+                        <li><i class="fas fa-clock"></i><?= get_nicetime(get_ads($url,'created_at')) ?> /</li>
+                        <li><i class="fas fa-hourglass"></i><?= get_nicetime(get_ads($url,'end_date')) ?> /</li>
                         <li><i class="fas fa-eye"></i><?= translate('views') ?>: <?= get_ads($url,'seen') ?></li>
                       </ul>
                     </div>
@@ -266,23 +267,23 @@ $keyw  = settings('seo_keywords');
                     <div class="media d-flex">
                       <div class="flex-shrink-0">
                         <div class="item-logo">
-                          <?php if (get_ads($url,'avatar') == '') { ?>
+                          <?php if (get_ads_user_information($url,'avatar') == '') { ?>
                           <img class="img-fluid" src="<?= site_url() ?>assets/img/avatar/default.png" width="100" height="100">
                           <?php } else { ?>
-                          <img class="img-fluid" src="<?= site_url() ?>assets/img/avatar/<?= get_ads($url,'avatar') ?>" width="100" height="100" >
+                          <img class="img-fluid" src="<?= site_url() ?>assets/img/avatar/<?= get_ads_user_information($url,'avatar') ?>" width="100" height="100" >
                            <?php } ?>
                         </div>
                       </div>
                       <div class="media-body flex-grow-1 ms-3">
-                        <h4 class="item-title"><?= get_ads($url,'name') ?></h4>
+                        <h4 class="item-title"><?= get_ads_user_information($url,'name') . ' ' . get_ads_user_information($url,'surname') ?></h4>
                         <div class="item-phn">
                             <button class="show-number shw_num_anime">
                                 <span id="ph_text"> <?= translate('show_number') ?></span>
-                                <span id="ph_number" style="display: none;"><i class="fas fa-phone"></i> <?= get_ads($url,'phone_number') ?></span>
+                                <span id="ph_number" style="display: none;"><i class="fas fa-phone"></i> <?= get_ads_user_information($url,'phone_number') ?></span>
                             </button>
 
                         </div>
-                        <div class="item-mail"><?= get_ads($url,'email') ?></div>
+                        <div class="item-mail"><?= get_ads_user_information($url,'email') ?></div>
                        
                       </div>
                     </div>

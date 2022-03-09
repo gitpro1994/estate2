@@ -52,7 +52,7 @@ if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && !empty($_SERVER['HTTP_X_REQUESTED
 			$hash       = hash_password($password);
 			$username 	= current(explode('@', $email));
 			$avatar     = 'default.png';
-			$status     = (int)1;
+			$status     = (int)2;
 
 
 			$insert_user = mysqli_query($conn, "INSERT INTO ads_users (name,email,phone_number,user_type,avatar,username,password,status)
@@ -66,6 +66,24 @@ if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && !empty($_SERVER['HTTP_X_REQUESTED
 		}
 		if ($insert_user) 
 		{
+			$city_name 				= "SELECT city_name FROM cities WHERE id='".$city."' ";
+			$run_query_result = mysqli_query($conn,$city_name);
+			$bax_city_name = mysqli_fetch_array($run_query_result);
+
+			$type_name = "SELECT type_name FROM realty_types WHERE id='".$type_id."' ";
+			$run_type_query = mysqli_query($conn, $type_name);
+			$bax_type_name = mysqli_fetch_array($run_type_query);
+
+			if($kind_id == 1)
+			{
+				$val = 'satılır';
+			}
+			else
+			{
+				$val = 'kirayə verilir';
+			}
+			$par = $bax_city_name['city_name'] . ' şəhərində ' . $area . ' m² - ' . $bax_type_name['type_name'] .' ' . $val;
+			$sef_url = word_to_trans_seo($par);
 			$seen = (int)0;
 			$ads_status = (int)3;
 			$sql = "INSERT INTO ads (
@@ -90,7 +108,8 @@ if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && !empty($_SERVER['HTTP_X_REQUESTED
 			    			seen,
 			    			images,
 			    			status,
-			    			end_date) 
+			    			end_date,
+			    			sef_url) 
 						VALUES(
 							" . $user_id . ",
 							" . $kind_id . ",
@@ -113,7 +132,8 @@ if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && !empty($_SERVER['HTTP_X_REQUESTED
 							'" . $seen . "',
 							'" . $photo . "',
 							'" . $ads_status . "',
-							 ADDDATE(curdate(), INTERVAL 30 DAY) )";
+							 ADDDATE(curdate(), INTERVAL 30 DAY),
+							 '".$sef_url."' )";
 
 
 			$execute 	= mysqli_query($conn, $sql);

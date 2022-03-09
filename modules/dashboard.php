@@ -66,9 +66,9 @@ $count_listing  = mysqli_num_rows($run);
                             </button>
                             <a href="logout">
                                 <button class="btn btn-outline-warning mt-3 btn-sm w-100 p-3 " type="button">
-                                <i class="fas fa-sign-out"></i>
-                                <?= translate('logout') ?>
-                            </button>
+                                    <i class="fas fa-sign-out"></i>
+                                    <?= translate('logout') ?>
+                                </button>
                             </a>
                         </div>
                     </label>
@@ -482,7 +482,7 @@ $count_listing  = mysqli_num_rows($run);
 
         $(document).on('click', '.freeze', function(event) {
             let login_url = $("#base_url").val();
-             const red_url = $("#base_url").val();
+            const red_url = $("#base_url").val();
             let id = $("#freeze_account").val();
             Swal.fire({
                 title: '<?= translate('Are_you_sure_you_want_to_freeze_your_account?') ?>',
@@ -513,9 +513,9 @@ $count_listing  = mysqli_num_rows($run);
                                     loaderBg: '#fff',
                                     position: 'top-right'
                                 })
-                                
-                                document.location.href = red_url+'logout',true;
-                                
+
+                                document.location.href = red_url + 'logout', true;
+
                             } else if (data.status == 204) {
 
                                 Toast.fire({
@@ -567,9 +567,9 @@ $count_listing  = mysqli_num_rows($run);
                                     loaderBg: '#fff',
                                     position: 'top-right'
                                 })
-                               
-                              document.location.href = red_url+'logout',true;
-                                
+
+                                document.location.href = red_url + 'logout', true;
+
                             } else if (data.status == 204) {
 
                                 Toast.fire({

@@ -15,12 +15,12 @@
                         <div class="header-action-layout1">
                             <ul class="action-list">
                                 <?php 
-                                $rk  = "SELECT * FROM realty_kinds WHERE status=1";
+                                $rk  = "SELECT * FROM realty_kinds WHERE status=2";
                                 $rkr = mysqli_query($conn,$rk);
                                 while ($bax = mysqli_fetch_array($rkr)) {
                                     ?>
                                     <li class="action-item-style left-right-btn">
-                                        <a href="<?= site_url() ?>items/<?= $bax['seo_link'] ?>" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                        <a href="<?= site_url() ?>kinds/<?= $bax['seo_link'] ?>" data-bs-toggle="tooltip" data-bs-placement="bottom"
                                             title="<?= translate($bax['kind_name']) ?>">
                                             <i class="<?= $bax['icons'] ?>"></i>
                                         </a>

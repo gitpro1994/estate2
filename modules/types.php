@@ -1,4 +1,110 @@
 <?php 
+error_reporting(E_ALL);
+ini_set('display_errors', TRUE);
+ini_set('display_startup_errors', TRUE);
+if (isset($_GET['type']))
+{
+	$var = clean($_GET['type']);
+	$select_kind = "SELECT * FROM realty_types WHERE seo_link='".$var."' AND status=2";
+	$run_select = mysqli_query($conn,$select_kind);
+	$bax = mysqli_fetch_array($run_select);
+	$count = mysqli_num_rows($run_select);
+	$kind_adi = ($count!=0) ? $bax['seo_link'] : 'all';
+	if ($count != 0 AND $count == 1) 
+	{
+		
+		$sel = "
+			SELECT a.id AS ads_id,
+	        a.rooms AS ads_rooms,
+	        a.kind_id AS ads_kind_id,
+	        a.area AS ads_area,
+	        a.floor_no AS ads_floor_no,
+	        a.building_floor_no AS ads_building_floor_no,
+	        a.price AS ads_price,
+	        a.payment_method AS ads_payment_method,
+	        a.mortgage AS ads_mortgage,
+	        a.address AS ads_address,
+	        a.images AS ads_images,
+	        a.status AS ads_status,
+	        a.end_date AS ads_end_date,
+	        a.created_at AS ads_created_at,
+	        a.updated_at AS ads_updated_at,
+	        a.deleted_at AS ads_deleted_at,
+	        a.sef_url AS ads_sef_url,
+	        a.seen AS ads_seen,
+	        c.city_name,
+	        c.seo_link as city_seo_link,
+	        c.status as city_status,
+	        r.region_name,
+	        r.seo_link as region_seo_link,
+	        r.status as region_status,
+	        rk.kind_name,
+	        rk.seo_link as rk_seo_link,
+	        rk.status as rk_status,
+	        rt.type_name,
+	        rt.seo_link as rt_seo_link,
+	        rt.status as rt_status
+	        FROM ads AS a 
+	        LEFT JOIN cities AS c ON a.city_id=c.id 
+	        LEFT JOIN regions AS r ON a.regions=r.id 
+	        LEFT JOIN realty_kinds AS rk ON a.kind_id=rk.id
+	        LEFT JOIN realty_types AS rt ON a.type_id=rt.id 
+			WHERE a.status=2 AND a.type_id='".$bax['id']."' 
+			ORDER BY a.id DESC";
+		$run = mysqli_query($conn,$sel);
+		$count_r = mysqli_num_rows($run);
+	}
+	else
+	{
+		$sel = "
+		SELECT a.id AS ads_id,
+        a.rooms AS ads_rooms,
+        a.kind_id AS ads_kind_id,
+        a.area AS ads_area,
+        a.floor_no AS ads_floor_no,
+        a.building_floor_no AS ads_building_floor_no,
+        a.price AS ads_price,
+        a.payment_method AS ads_payment_method,
+        a.mortgage AS ads_mortgage,
+        a.address AS ads_address,
+        a.images AS ads_images,
+        a.status AS ads_status,
+        a.end_date AS ads_end_date,
+        a.created_at AS ads_created_at,
+        a.updated_at AS ads_updated_at,
+        a.deleted_at AS ads_deleted_at,
+        a.sef_url AS ads_sef_url,
+        a.seen AS ads_seen,
+        c.city_name,
+        c.seo_link as city_seo_link,
+        c.status as city_status,
+        r.region_name,
+        r.seo_link as region_seo_link,
+        r.status as region_status,
+        rk.kind_name,
+        rk.seo_link as rk_seo_link,
+        rk.status as rk_status,
+        rt.type_name,
+        rt.seo_link as rt_seo_link,
+        rt.status as rt_status
+        FROM ads AS a 
+        LEFT JOIN cities AS c ON a.city_id=c.id 
+        LEFT JOIN regions AS r ON a.regions=r.id 
+        LEFT JOIN realty_kinds AS rk ON a.kind_id=rk.id
+        LEFT JOIN realty_types AS rt ON a.type_id=rt.id 
+		WHERE a.status=2  
+		ORDER BY a.id DESC
+		";
+		$run = mysqli_query($conn,$sel);
+		$count_r = mysqli_num_rows($run);
+	}
+	
+}	
+else
+{
+	echo "kind tapilmadi"; 
+}
+
 $title = settings('site_title');
 $desc  = settings('seo_description');
 $keyw  = settings('seo_keywords');
@@ -11,88 +117,35 @@ $keyw  = settings('seo_keywords');
 <?php include_once "partials/topbar.php"; ?>
 <!-- END TOPBAR -->
 
-<!-- START SEARCH -->
-<?php include_once "partials/search.php"; ?>
-<!-- END SEARCH -->
+<div class="breadcrumb-wrap breadcrumb-wrap-2">
+	<div class="container">
+		<nav aria-label="breadcrumb">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item"><a href="index.html"><?= translate('home') ?></a></li>
+				<li class="breadcrumb-item active" aria-current="page">
+					<?= translate($var) ?>
+				</li>
+			</ol>
+		</nav>
+	</div>
+</div>
 
-<!-- START HOME SLIDER -->
-<?php include_once "partials/home_slider.php"; ?>
-<!-- END HOME SLIDER -->
+<section class="grid-wrap1 grid-wrap2">
+	<div class="container">
 
-         <section class="property-wrap1">
-            <div class="container">
-                <div class="isotope-wrap">
-                    <div class="row">
-                        <div class="col-lg-6 col-md-5 col-sm-12">
-                            <div class="item-heading-left">
-                                <span class="section-subtitle">Our PROPERTIES</span>
-                                <h2 class="section-title">Latest Properties</h2>
-                                <div class="bg-title-wrap" style="display: block;">
-                                    <span class="background-title solid">Properties</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-7 col-sm-12">
-                            <div class="isotope-classes-tab">
-                                <a class="current nav-item" data-filter="*"><?= translate('all_types') ?></a>
-                                <a class="nav-item" data-filter=".for-sell"><?= translate('for_sell') ?></a>
-                                <a class="nav-item" data-filter=".for-rent"><?= translate('for_rent') ?></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row featuredContainer">
-                        <?php                         
-                        $sel = "
-                        SELECT a.id AS ads_id,
-                        a.kind_id AS ads_kind_id,
-                        a.rooms AS ads_rooms,
-                        a.area AS ads_area,
-                        a.floor_no AS ads_floor_no,
-                        a.building_floor_no AS ads_building_floor_no,
-                        a.price AS ads_price,
-                        a.payment_method AS ads_payment_method,
-                        a.mortgage AS ads_mortgage,
-                        a.address AS ads_address,
-                        a.images AS ads_images,
-                        a.status AS ads_status,
-                        a.end_date AS ads_end_date,
-                        a.created_at AS ads_created_at,
-                        a.updated_at AS ads_updated_at,
-                        a.deleted_at AS ads_deleted_at,
-                        a.sef_url AS ads_sef_url,
-                        a.seen AS ads_seen,
-                        c.city_name,
-                        c.seo_link as city_seo_link,
-                        c.status as city_status,
-                        r.region_name,
-                        r.seo_link as region_seo_link,
-                        r.status as region_status,
-                        rk.kind_name,
-                        rk.seo_link as rk_seo_link,
-                        rk.status as rk_status,
-                        rt.type_name,
-                        rt.seo_link as rt_seo_link,
-                        rt.status as rt_status
-                        FROM ads AS a 
-                        LEFT JOIN cities AS c ON a.city_id=c.id 
-                        LEFT JOIN regions AS r ON a.regions=r.id 
-                        LEFT JOIN realty_kinds AS rk ON a.kind_id=rk.id
-                        LEFT JOIN realty_types AS rt ON a.type_id=rt.id 
-                       -- GROUP BY a.id 
-                        ORDER BY a.id 
-                        DESC LIMIT 100
-                        ";
-                        $run = mysqli_query($conn,$sel);
-                        while ($nn = mysqli_fetch_array($run)) 
-                        {
-                            $images_all_listings = $nn['ads_images'];
-                            $image_explode       = explode(",", $images_all_listings); 
-                            $wish = (wish($_SESSION['unique_session'],$nn['ads_id'])) ? 'fa fa-heart' : 'flaticon-heart';
-                         ?>
-                        <div class="col-xl-4 col-lg-6 col-md-6 <?= ($nn['ads_kind_id']==1) ? 'for-sell' : 'for-rent' ?> ">
-                            <div class="property-box2 fadeInUp" data-wow-delay=".3s">
+
+		<div class="row mt-5">
+			<div class="col-lg-12">
+				<div class="row justify-content-left">
+					<?php while($nn = mysqli_fetch_array($run)){ 
+						$images_listings = $nn['ads_images'];
+						$image_listing = explode(',', $images_listings);
+						$wish = (wish($_SESSION['unique_session'],$nn['ads_id'])) ? 'fa fa-heart' : 'flaticon-heart';
+					?>
+						<div class="col-lg-4 col-md-6">
+							<div class="property-box2 fadeInUp" data-wow-delay=".3s">
                                 <div class="item-img">
-                                    <a href="<?= site_url() ?>detail/<?= $nn['ads_sef_url'] ?>"><img src="<?= site_url() ?>uploads/<?= $image_explode[0] ?>" alt="blog" style="height: 330px; width:100%"></a>
+                                    <a href="<?= site_url() ?>detail/<?= $nn['ads_sef_url'] ?>"><img src="<?= site_url() ?>uploads/<?= $image_listing[0] ?>" alt="blog" style="height: 330px; width:100%"></a>
                                     <div class="item-category-box1">
                                         <div class="item-category"><?= $nn['kind_name'] ?></div>
                                     </div>
@@ -110,7 +163,7 @@ $keyw  = settings('seo_keywords');
 
                                     <?php } 
 
-                                    $val = ($bax['ads_kind_id'] == 1) ? 'satılır' : 'kirayə verilir';?>
+                                    $val = ($nn['ads_kind_id'] == 1) ? 'satılır' : 'kirayə verilir';?>
                                      <?php if($nn['ads_payment_method']=="1"){ echo '<span class="badge rtcl-badge-_top">'.translate('monthly').'</span>'; }elseif($nn['ads_payment_method']=="0"){ echo '<span class="badge rtcl-badge-_top">'.translate('daily').'</span>'; } ?>
                                     </div>
                                     <div class="rent-price">
@@ -146,18 +199,20 @@ $keyw  = settings('seo_keywords');
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <?php } ?>
-                    </div>
-                </div>
-            </div>
-        </section>
+				</div>
+			<?php } ?>
+		</div>
+	</div>
+</div>
+</div>
+</section>
+
 
 <!-- START FOOTER -->
 <?php include_once "partials/footer.php"; ?>
 <!-- END FOOTER -->
-<script type="text/javascript"> 
-$( document ).ready(function() {
+<script type="text/javascript">
+	$( document ).ready(function() {
 
        const Toast = Swal.mixin({
             toast: true,
@@ -220,11 +275,7 @@ $( document ).ready(function() {
 
             });
         
-
-
-        
     });
 
 });
 </script>
-

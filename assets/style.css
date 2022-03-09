@@ -12333,11 +12333,9 @@ body.slidemenuon .sidebarBtn .bar:nth-child(4) {
   align-items: center;
 }
 .property-box2 .item-content .verified-area .item-title {
-  font-size: 22px;
+  font-size: 18px;
   font-weight: 500;
-  margin-bottom: 7px;
   line-height: 32px;
-  overflow: hidden !important;
   text-overflow: ellipsis !important;
   display: -webkit-box !important;
   -webkit-line-clamp: 1 !important;

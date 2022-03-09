@@ -5,7 +5,7 @@ ini_set('display_startup_errors', TRUE);
 if (isset($_GET['kind']))
 {
 	$var = clean($_GET['kind']);
-	$select_kind = "SELECT * FROM realty_kinds WHERE seo_link='".$var."' AND status=1";
+	$select_kind = "SELECT * FROM realty_kinds WHERE seo_link='".$var."' AND status=2";
 	$run_select = mysqli_query($conn,$select_kind);
 	$bax = mysqli_fetch_array($run_select);
 	$count = mysqli_num_rows($run_select);
@@ -59,6 +59,7 @@ if (isset($_GET['kind']))
 		$sel = "
 		SELECT a.id AS ads_id,
         a.rooms AS ads_rooms,
+        a.kind_id AS ads_kind_id,
         a.area AS ads_area,
         a.floor_no AS ads_floor_no,
         a.building_floor_no AS ads_building_floor_no,
@@ -160,7 +161,9 @@ $keyw  = settings('seo_keywords');
 
                                         <?php } ?>
 
-                                    <?php } ?>
+                                    <?php } 
+
+                                    $val = ($nn['ads_kind_id'] == 1) ? 'satılır' : 'kirayə verilir';?>
                                      <?php if($nn['ads_payment_method']=="1"){ echo '<span class="badge rtcl-badge-_top">'.translate('monthly').'</span>'; }elseif($nn['ads_payment_method']=="0"){ echo '<span class="badge rtcl-badge-_top">'.translate('daily').'</span>'; } ?>
                                     </div>
                                     <div class="rent-price">
@@ -177,12 +180,16 @@ $keyw  = settings('seo_keywords');
                                         </ul>
                                     </div>
                                 </div>
-                                <div class="item-category10"><a href="single-listing1.html"><?= $nn['type_name'] ?></a></div>
+                                <div class="item-category10"><a href="types/<?= $nn['rt_seo_link'] ?>"><?= $nn['type_name'] ?></a></div>
                                 <div class="item-content">
                                     <div class="verified-area">
-                                        <h3 class="item-title"><a href="single-listing1.html">Ofis satilir</a></h3>
+                                        <p class="item-title">
+                                            <a href="<?= site_url() ?>detail/<?= $nn['ads_sef_url'] ?>">
+                                            <?= $nn['city_name'] . ' şəhərində ' . $nn["ads_area"] . ' m² - ' . $nn['type_name'] . ' ' . $val ?>
+                                            </a>
+                                        </p>
                                     </div>
-                                    <div class="location-area"><i class="flaticon-maps-and-flags"></i><?= $nn['city_name'] ?> <?= (!empty($nn['region_name'])) ? ',' : '' ?> <?= $nn['region_name'] ?></div>
+                                    <div class="location-area mt-4"><i class="flaticon-maps-and-flags"></i><?= $nn['city_name'] ?> <?= (!empty($nn['region_name'])) ? ',' : '' ?> <?= $nn['region_name'] ?></div>
                                     <div class="item-categoery3">
                                         <ul>
                                             <li><i class="flaticon-bed"></i><?= translate('room') ?>: <?= $nn['ads_rooms'] ?></li>

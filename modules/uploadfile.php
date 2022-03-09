@@ -17,11 +17,11 @@
         $filename = time().'-'. $_FILES['file']['name'];
 
         move_uploaded_file($tmpFile,$uploadDir.'/'.$filename);
-        $image->setImage($uploadDir.'/'.$filename);
-        $image->resize(500,500);
+        // $image->setImage($uploadDir.'/'.$filename);
+        // $image->resize(500,500);
         // $image->watermark("logo.png",[]);
-        $image->save($uploadDir.'/'.$filename);
-        $image->clean();
+        // $image->save($uploadDir.'/'.$filename);
+        // $image->clean();
 
         echo $filename;
     }
