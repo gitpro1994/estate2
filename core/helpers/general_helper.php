@@ -121,6 +121,9 @@ function get_ads($sef, $par)
     global $conn;
     $sel = "SELECT a.id AS ads_id,
                         a.kind_id AS ads_kind_id,
+                        a.type_id AS ads_type_id,
+                        a.city_id AS ads_city_id,
+                        a.user_id AS ads_user_id,
                         a.rooms AS ads_rooms,
                         a.area AS ads_area,
                         a.floor_no AS ads_floor_no,
@@ -155,8 +158,7 @@ function get_ads($sef, $par)
                         LEFT JOIN realty_kinds AS rk ON a.kind_id=rk.id
                         LEFT JOIN realty_types AS rt ON a.type_id=rt.id 
                         LEFT JOIN ads_users AS au ON a.user_id=au.id 
-                        ON a.user_id=au.id 
-                        WHERE a.ads_sef_url='" . $sef . "' ";
+                        WHERE a.sef_url='" . $sef . "' ";
     $run = mysqli_query($conn, $sel);
     $cn  = mysqli_num_rows($run);
     $bax = mysqli_fetch_array($run);
@@ -772,8 +774,8 @@ function seo($str, $options = array())
 function word_to_trans_seo($par)
 {
     $a = strtolower(seo($par));
-    $a = str_replace(" ", "-", $a);
-    return $a;
+    $a = str_replace("-", "_", $a);
+    return translate($a);
 }
 
 function admin_info($id, $par)
