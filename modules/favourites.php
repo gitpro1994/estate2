@@ -51,7 +51,7 @@ $sel = "
 			WHERE a.status=2 AND a.id IN ($d) 
 			ORDER BY a.id DESC";
 $run = mysqli_query($conn, $sel);
-$count_r = mysqli_num_rows($run);
+$count_r = count($data_id_while);
 
 $title = settings('site_title');
 $desc  = settings('seo_description');
@@ -84,77 +84,87 @@ $keyw  = settings('seo_keywords');
 
         <div class="row mt-5">
             <div class="col-lg-12">
-                <div class="row justify-content-left">
-                    <?php while ($nn = mysqli_fetch_array($run)) {
-                        $images_listings = $nn['ads_images'];
-                        $image_listing = explode(',', $images_listings);
-                        $wish = (wish($_SESSION['unique_session'], $nn['ads_id'])) ? 'fa fa-heart' : 'flaticon-heart';
-                    ?>
-                        <div class="col-lg-4 col-md-6">
-                            <div class="property-box2 fadeInUp" data-wow-delay=".3s">
-                                <div class="item-img">
-                                    <a href="<?= site_url() ?>detail/<?= $nn['ads_sef_url'] ?>"><img src="<?= site_url() ?>uploads/<?= $image_listing[0] ?>" alt="blog" style="height: 330px; width:100%"></a>
-                                    <div class="item-category-box1">
-                                        <div class="item-category"><?= $nn['kind_name'] ?></div>
-                                    </div>
-                                    <div class="rtcl-listing-badge-wrap">
-                                        <?php if ($nn['ads_kind_id'] == 1 and $nn['ads_mortgage'] != NULL) { ?>
-                                            <?php if ($nn['ads_mortgage'] == 0) { ?>
-                                                <span class="badge rtcl-badge-featured" data-bs-toggle="tooltip" data-bs-placement="top" title="<?= translate('mortgage') ?>"><i class="fa fa-percent"></i></span>
-                                            <?php } elseif ($nn['ads_mortgage'] == 1) { ?>
-                                                <span class="badge rtcl-badge-_bump_up" data-bs-toggle="tooltip" data-bs-placement="top" title="<?= translate('khupchali') ?>"><i class="fa fa-file"></i></span>
-                                            <?php } else { ?>
+                <?php if ($count_r > 0) { ?>
+                    <div class="row justify-content-left">
+                        <?php while ($nn = mysqli_fetch_array($run)) {
+                            $images_listings = $nn['ads_images'];
+                            $image_listing = explode(',', $images_listings);
+                            $wish = (wish($_SESSION['unique_session'], $nn['ads_id'])) ? 'fa fa-heart' : 'flaticon-heart';
+                        ?>
+                            <div class="col-lg-4 col-md-6" id="ri_<?= $nn['ads_id']; ?>">
+                                <div class="property-box2 fadeInUp" data-wow-delay=".3s">
+                                    <div class="item-img">
+                                        <a href="<?= site_url() ?>detail/<?= $nn['ads_sef_url'] ?>"><img src="<?= site_url() ?>uploads/<?= $image_listing[0] ?>" alt="blog" style="height: 330px; width:100%"></a>
+                                        <div class="item-category-box1">
+                                            <div class="item-category"><?= $nn['kind_name'] ?></div>
+                                        </div>
+                                        <div class="rtcl-listing-badge-wrap">
+                                            <?php if ($nn['ads_kind_id'] == 1 and $nn['ads_mortgage'] != NULL) { ?>
+                                                <?php if ($nn['ads_mortgage'] == 0) { ?>
+                                                    <span class="badge rtcl-badge-featured" data-bs-toggle="tooltip" data-bs-placement="top" title="<?= translate('mortgage') ?>"><i class="fa fa-percent"></i></span>
+                                                <?php } elseif ($nn['ads_mortgage'] == 1) { ?>
+                                                    <span class="badge rtcl-badge-_bump_up" data-bs-toggle="tooltip" data-bs-placement="top" title="<?= translate('khupchali') ?>"><i class="fa fa-file"></i></span>
+                                                <?php } else { ?>
 
-                                            <?php } ?>
+                                                <?php } ?>
 
-                                        <?php }
+                                            <?php }
 
-                                        $val = ($nn['ads_kind_id'] == 1) ? 'satılır' : 'kirayə verilir'; ?>
-                                        <?php if ($nn['ads_payment_method'] == "1") {
-                                            echo '<span class="badge rtcl-badge-_top">' . translate('monthly') . '</span>';
-                                        } elseif ($nn['ads_payment_method'] == "0") {
-                                            echo '<span class="badge rtcl-badge-_top">' . translate('daily') . '</span>';
-                                        } ?>
+                                            $val = ($nn['ads_kind_id'] == 1) ? 'satılır' : 'kirayə verilir'; ?>
+                                            <?php if ($nn['ads_payment_method'] == "1") {
+                                                echo '<span class="badge rtcl-badge-_top">' . translate('monthly') . '</span>';
+                                            } elseif ($nn['ads_payment_method'] == "0") {
+                                                echo '<span class="badge rtcl-badge-_top">' . translate('daily') . '</span>';
+                                            } ?>
+                                            <span class="badge rtcl-badge-_bump_up" onclick="remove_item(<?= $nn['ads_id'] ?>)" data-bs-toggle="tooltip" data-bs-placement="top" title="<?= translate('remove') ?>"><i class="fa fa-times"></i></span>
+                                        </div>
+
+                                        <div class="rent-price">
+                                            <div class="item-price">₼ <?= $nn['ads_price'] ?> <?php if ($nn['ads_payment_method'] == "1") {
+                                                                                                    echo '<span><i>/</i>' . translate('monthly') . '</span>';
+                                                                                                } elseif ($nn['ads_payment_method'] == "0") {
+                                                                                                    echo '<span><i>/</i>' . translate('daily') . '</span>';
+                                                                                                } ?></div>
+                                        </div>
+                                        <div class="react-icon">
+                                            <ul>
+                                                <li>
+                                                    <a data-id="<?= $nn['ads_id'] ?>" data-bs-toggle="tooltip" data-bs-placement="top" title="<?= translate('favourite') ?>" class="add_favourite">
+                                                        <i class="<?= $wish; ?>"></i>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
                                     </div>
-                                    <div class="rent-price">
-                                        <div class="item-price">₼ <?= $nn['ads_price'] ?> <?php if ($nn['ads_payment_method'] == "1") {
-                                                                                                echo '<span><i>/</i>' . translate('monthly') . '</span>';
-                                                                                            } elseif ($nn['ads_payment_method'] == "0") {
-                                                                                                echo '<span><i>/</i>' . translate('daily') . '</span>';
-                                                                                            } ?></div>
-                                    </div>
-                                    <div class="react-icon">
-                                        <ul>
-                                            <li>
-                                                <a data-id="<?= $nn['ads_id'] ?>" data-bs-toggle="tooltip" data-bs-placement="top" title="<?= translate('favourite') ?>" class="add_favourite">
-                                                    <i class="<?= $wish; ?>"></i>
+                                    <div class="item-category10"><a href="types/<?= $nn['rt_seo_link'] ?>"><?= $nn['type_name'] ?></a></div>
+                                    <div class="item-content">
+                                        <div class="verified-area">
+                                            <p class="item-title">
+                                                <a href="<?= site_url() ?>detail/<?= $nn['ads_sef_url'] ?>">
+                                                    <?= $nn['city_name'] . ' şəhərində ' . $nn["ads_area"] . ' m² - ' . $nn['type_name'] . ' ' . $val ?>
                                                 </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="item-category10"><a href="types/<?= $nn['rt_seo_link'] ?>"><?= $nn['type_name'] ?></a></div>
-                                <div class="item-content">
-                                    <div class="verified-area">
-                                        <p class="item-title">
-                                            <a href="<?= site_url() ?>detail/<?= $nn['ads_sef_url'] ?>">
-                                                <?= $nn['city_name'] . ' şəhərində ' . $nn["ads_area"] . ' m² - ' . $nn['type_name'] . ' ' . $val ?>
-                                            </a>
-                                        </p>
-                                    </div>
-                                    <div class="location-area mt-4"><i class="flaticon-maps-and-flags"></i><?= $nn['city_name'] ?> <?= (!empty($nn['region_name'])) ? ',' : '' ?> <?= $nn['region_name'] ?></div>
-                                    <div class="item-categoery3">
-                                        <ul>
-                                            <li><i class="flaticon-bed"></i><?= translate('room') ?>: <?= $nn['ads_rooms'] ?></li>
-                                            <li><i class="flaticon-two-overlapping-square"></i><?= $nn['ads_area'] ?> m²</li>
-                                            <li><i class="fas fa-eye"></i><?= $nn['ads_seen'] ?></li>
-                                        </ul>
+                                            </p>
+                                        </div>
+                                        <div class="location-area mt-4"><i class="flaticon-maps-and-flags"></i><?= $nn['city_name'] ?> <?= (!empty($nn['region_name'])) ? ',' : '' ?> <?= $nn['region_name'] ?></div>
+                                        <div class="item-categoery3">
+                                            <ul>
+                                                <li><i class="flaticon-bed"></i><?= translate('room') ?>: <?= $nn['ads_rooms'] ?></li>
+                                                <li><i class="flaticon-two-overlapping-square"></i><?= $nn['ads_area'] ?> m²</li>
+                                                <li><i class="fas fa-eye"></i><?= $nn['ads_seen'] ?></li>
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+                        <?php } ?>
+                    </div>
+                <?php } else { ?>
+                    <div class="row justify-content-center">
+                        <div class="alert alert-info">
+                            <b><?= translate('there_is_no_ad_attached_to_the_favorites') ?></b>
                         </div>
-                    <?php } ?>
-                </div>
+                    </div>
+                <?php } ?>
             </div>
         </div>
     </div>
@@ -228,4 +238,25 @@ $keyw  = settings('seo_keywords');
         });
 
     });
+
+    function remove_item(id) {
+        let url = $("#base_url").val();
+        $.ajax({
+            url: url + "core/ajax/remove_item.php",
+            method: "POST",
+            data: {
+                id: id
+            },
+            success: function(data) {
+                parsed = JSON.parse(data);
+                Toast.fire({
+                    text: parsed.message,
+                    icon: 'success',
+                    position: 'top-right'
+                })
+                $("#ri_" + id).fadeOut('slow');
+                $(".item-count").html(parsed.count);
+            }
+        })
+    }
 </script>
