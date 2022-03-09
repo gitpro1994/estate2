@@ -80,22 +80,21 @@
 
         /* SEARCH FORM */
         $("#search_button").click(function(e) {
-            $(".home_default").hide();
-            let city        = $("#city").val(); 
-            let keyword     = $("#keyword").val(); 
-            let bedroom     = $("#bedroom").val(); 
-            let menzil_type = $("#menzil_type").val();
-            console.log(city+' '+menzil_type+' '+keyword+' '+bedroom);
-            var data = $("#search-form").serialize();
-            console.log(data);
-            var url = $("#base_url").val();
+            e.preventDefault();
+            // $(".home_default").hide();
+            // let city        = $("#city").val(); 
+            // let keyword     = $("#keyword").val(); 
+            // let bedroom     = $("#bedroom").val(); 
+            // let menzil_type = $("#menzil_type").val();
+            var form = $("#search-form").serialize();
+            var url  = $("#base_url").val();
             $.ajax({
                  url: url + '/core/ajax/search.php',
-                 method: "GET",
-                 data: { data: data },
+                 method: "POST",
+                 data: form,
                  success: function(data) {
-                    parsed_data = JSON.parse(data);
-
+                    // parsed_data = JSON.parse(data);
+                    // console.log(parsed_data);
                     // if (settlement.length != 0) {
                     //    $('#settlements_div').fadeIn("slow");
                     //    for (var i = 0; i < settlement.length; i++) {

@@ -149,6 +149,7 @@ $keyw  = settings('seo_keywords');
                         </div>
                         <?php } ?>
                     </div>
+                    <div class="row featuredContainer search_result" style="display:none;"></div>
                 </div>
             </div>
         </section>
