@@ -77,8 +77,42 @@
     //##################### LOGIN #####################
 
     $(document).ready(function() {
-        $("#login").click(function(e) {
 
+        /* SEARCH FORM */
+        $("#search_button").click(function(e) {
+            $(".home_default").hide();
+            let city        = $("#city").val(); 
+            let keyword     = $("#keyword").val(); 
+            let bedroom     = $("#bedroom").val(); 
+            let menzil_type = $("#menzil_type").val();
+            console.log(city+' '+menzil_type+' '+keyword+' '+bedroom);
+            var data = $("#search-form").serialize();
+            console.log(data);
+            var url = $("#base_url").val();
+            $.ajax({
+                 url: url + '/core/ajax/search.php',
+                 method: "GET",
+                 data: { data: data },
+                 success: function(data) {
+                    parsed_data = JSON.parse(data);
+
+                    // if (settlement.length != 0) {
+                    //    $('#settlements_div').fadeIn("slow");
+                    //    for (var i = 0; i < settlement.length; i++) {
+                    //       $('#settlement_id').append('<option value=' + settlement[i].settlement_id + '>' + settlement[i].settlement_name + '</option>');
+                    //    }
+
+                    // } else {
+                    //    $('#settlement_id').val("");
+                    //    $('#settlement_id').attr("required", false);
+                    //    $('#settlements_div').fadeOut("slow");
+                    // }
+                 }
+              });
+        });
+
+
+        $("#login").click(function(e) {
             e.preventDefault();
             let self = $(this);
             e.preventDefault();

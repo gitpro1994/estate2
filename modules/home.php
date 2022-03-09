@@ -40,7 +40,7 @@ $keyw  = settings('seo_keywords');
                             </div>
                         </div>
                     </div>
-                    <div class="row featuredContainer">
+                    <div class="row featuredContainer home_default">
                         <?php                         
                         $sel = "
                         SELECT a.id AS ads_id,

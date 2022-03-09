@@ -1,16 +1,15 @@
 <?php 
+error_reporting(1);
 $url = clean($_GET['sef_url']);
 if(check_ads($url)==0)
 {
    redirect("".site_url()."404","refresh");
    die();
 }
-else
-{
+ 
+$images = explode(",",get_ads($url,'ads_images'));
 
-} 
-$images = explode(",",get_ads($url,'images'));
-$wish = (wish($_SESSION['unique_session'],get_ads($url,'id'))) ? 'fa fa-heart' : 'flaticon-heart';
+$wish = (wish($_SESSION['unique_session'],get_ads($url,'ads_id'))) ? 'fa fa-heart' : 'flaticon-heart';
 $title = settings('site_title');
 $desc  = settings('seo_description');
 $keyw  = settings('seo_keywords');
@@ -59,11 +58,11 @@ $keyw  = settings('seo_keywords');
                 <div class="row">
                   <div class="col-lg-6 col-md-12">
                     <div class="single-list-cate">
-                      <div class="item-categoery"><?= get_ads($url,'kind_name') ?></div>
+                      <div class="item-categoery"><?= get_ads($url,'ads_kind_name') ?></div>
                     </div>
                   </div>
                   <div class="col-lg-6 col-md-12">
-                    <div class="single-list-price">₼ <?= number_format(get_ads($url,'price')) ?> <?php if(get_ads($url,'payment_method')=="1"){ echo '<span class="badge rtcl-badge-_top">'.translate('monthly').'</span>'; }elseif(get_ads($url,'payment_method')=="0"){ echo '<span class="badge rtcl-badge-_top">'.translate('monthly').'</span>'; } ?></div>
+                    <div class="single-list-price">₼ <?= number_format(get_ads($url,'ads_price')) ?> <?php if(get_ads($url,'ads_payment_method')=="1"){ echo '<span class="badge rtcl-badge-_top">'.translate('monthly').'</span>'; }elseif(get_ads($url,'ads_payment_method')=="0"){ echo '<span class="badge rtcl-badge-_top">'.translate('monthly').'</span>'; } ?></div>
                   </div>
                 </div>
                 <div class="row align-items-center">
@@ -72,7 +71,7 @@ $keyw  = settings('seo_keywords');
                       <div class="item-title">
                         <h3>
                           <a href="single-listing2.html">
-                            <?= get_city_name(get_ads($url,'city_id')).' şəhərində, '.get_ads($url,'area').' m² - '. get_type_name(get_ads($url,'kind_id')).' '.get_kind_name(get_ads($url,'type_id'),'no_original') ?>
+                            <?= get_city_name(get_ads($url,'ads_city_id')).' şəhərində, '.get_ads($url,'ads_area').' m² - '. get_type_name(get_ads($url,'ads_kind_id')).' '.get_kind_name(get_ads($url,'ads_type_id'),'no_original') ?>
                               
                             </a>
                         </h3>
@@ -81,12 +80,12 @@ $keyw  = settings('seo_keywords');
                     <div class="single-item-address">
                       <ul>
                         <li>
-                          <i class="fas fa-map-marker-alt"></i><?= get_type_name(get_ads($url,'kind_id')) ?> #<?= get_ads($url,0) ?>,
-                          <?= strtoupper(get_ads($url,'address')) ?>, <?= get_city_name(get_ads($url,'city_id')) ?>
+                          <i class="fas fa-map-marker-alt"></i><?= get_type_name(get_ads($url,'ads_kind_id')) ?> #<?= get_ads($url,0) ?>,
+                          <?= strtoupper(get_ads($url,'ads_address')) ?>, <?= get_city_name(get_ads($url,'ads_city_id')) ?>
                         </li>
-                        <li><i class="fas fa-clock"></i><?= get_nicetime(get_ads($url,'created_at')) ?> /</li>
-                        <li><i class="fas fa-hourglass"></i><?= get_nicetime(get_ads($url,'end_date')) ?> /</li>
-                        <li><i class="fas fa-eye"></i><?= translate('views') ?>: <?= get_ads($url,'seen') ?></li>
+                        <li><i class="fas fa-clock"></i><?= get_nicetime(get_ads($url,'ads_created_at')) ?> /</li>
+                        <li><i class="fas fa-hourglass"></i><?= get_nicetime(get_ads($url,'ads_end_date')) ?> /</li>
+                        <li><i class="fas fa-eye"></i><?= translate('views') ?>: <?= get_ads($url,'ads_seen') ?></li>
                       </ul>
                     </div>
                   </div>
@@ -110,7 +109,7 @@ $keyw  = settings('seo_keywords');
                             </div>
                         </li>
                         <li>
-                          <a data-id="<?= get_ads($url,'id') ?>" class="side-btn add_favourite"
+                          <a data-id="<?= get_ads($url,'ads_id') ?>" class="side-btn add_favourite"
                             ><i class="<?= $wish ?>"></i
                           ></a>
                         </li>
@@ -167,7 +166,7 @@ $keyw  = settings('seo_keywords');
                           </div>
                           <ul class="item-number">
                             <li><?= translate('ads_number') ?> :</li>
-                            <li class="deep-clr">#<?= get_ads($url,0) ?></li>
+                            <li class="deep-clr">#<?= get_ads($url,'ads_id') ?></li>
                           </ul>
                         </div>
                         <div class="item-icon-box">
@@ -176,7 +175,7 @@ $keyw  = settings('seo_keywords');
                           </div>
                           <ul class="item-number">
                             <li><?= translate('type') ?> :</li>
-                            <li class="deep-clr"><?= get_ads($url,'type_name') ?></li>
+                            <li class="deep-clr"><?= get_ads($url,'ads_type_name') ?></li>
                           </ul>
                         </div>
                          <div class="item-icon-box">
@@ -185,7 +184,7 @@ $keyw  = settings('seo_keywords');
                           </div>
                           <ul class="item-number">
                             <li><?= translate('area') ?> :</li>
-                            <li class="deep-clr"><?= get_ads($url,'area') ?> m²</li>
+                            <li class="deep-clr"><?= get_ads($url,'ads_area') ?> m²</li>
                           </ul>
                         </div>
                         <div class="item-icon-box">
@@ -242,7 +241,7 @@ $keyw  = settings('seo_keywords');
                     <div class="overview-area listing-area">
                       <h3 class="item-title">About This Listing</h3>
                       <p>
-                        <?= get_ads($url,'description') ?>
+                        <?= get_ads($url,'ads_description') ?>
                       </p>
                     </div>
                   
@@ -275,7 +274,7 @@ $keyw  = settings('seo_keywords');
                         </div>
                       </div>
                       <div class="media-body flex-grow-1 ms-3">
-                        <h4 class="item-title"><?= get_ads_user_information($url,'name') . ' ' . get_ads_user_information($url,'surname') ?></h4>
+                        <h4 class="item-title"><?= get_ads_user_information($url,'name') . ' ' . get_ads_user_information($url,'ads_surname') ?></h4>
                         <div class="item-phn">
                             <button class="show-number shw_num_anime">
                                 <span id="ph_text"> <?= translate('show_number') ?></span>
