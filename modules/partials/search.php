@@ -11,7 +11,7 @@
                <h1 class="item-title wow fadeInUp" data-wow-delay=".4s">Find the perfect place to Live
                   with your family
                </h1>
-               <form method="GET" id="search-form">
+               <form method="POST" id="search-form" enctype="multipart/form-data">
                <div class="listing-category-list wow fadeInUp" data-wow-delay=".6s">
                   <div class="search-radio">
                      <ul class="list-inline">
@@ -19,42 +19,42 @@
                            <label for="apartments" class="active">
                            <i class="far fa-building active"></i>
                            <span>Apartments</span>
-                           <input checked="" type="radio" name="rtcl_category" id="apartments" value="apartments">
+                           <input checked="" type="radio" name="estate_type" id="apartments" value="apartments">
                            </label>
                         </li>
                         <li class="home">
                            <label for="home">
                            <i class="fas fa-home"></i>
                            <span>Home</span>
-                           <input checked="" type="radio" name="rtcl_category" id="home" value="home">
+                           <input checked="" type="radio" name="estate_type" id="home" value="home">
                            </label>
                         </li>
                         <li class="office">
                            <label for="office">
                            <i class="fas fa-briefcase"></i>
                            <span>Office</span>
-                           <input checked="" type="radio" name="rtcl_category" id="office" value="office">
+                           <input checked="" type="radio" name="estate_type" id="office" value="office">
                            </label>
                         </li>
                         <li class="shop">
                            <label for="shop">
                            <i class="fas fa-shopping-basket"></i>
                            <span>Shop</span>
-                           <input checked="" type="radio" name="rtcl_category" id="shop" value="shop">
+                           <input checked="" type="radio" name="estate_type" id="shop" value="shop">
                            </label>
                         </li>
                         <li class="villa">
                            <label for="villa">
                            <i class="fas fa-building"></i>
                            <span>Villa</span>
-                           <input checked="" type="radio" name="rtcl_category" id="villa" value="villa">
+                           <input checked="" type="radio" name="estate_type" id="villa" value="villa">
                            </label>
                         </li>
                         <li class="restaurant">
                            <label for="restaurant">
                            <i class="fas fa-utensils"></i>
                            <span>Restaurant</span>
-                           <input checked="" type="radio" name="rtcl_category" id="restaurant" value="restaurant">
+                           <input checked="" type="radio" name="estate_type" id="restaurant" value="restaurant">
                            </label>
                         </li>
                      </ul>
@@ -148,56 +148,7 @@
                                           </div>
                                        </div>
                                     </div>
-                                    <div class="main-search-field-2 col-12">
-                                       <div class="row">
-                                          <div class="col-md-6 pl-0">
-                                             <div class="price-range-wrapper">
-                                                <div class="range-box">
-                                                   <div class="price-label">Flat Size:</div>
-                                                   <div id="price-range-filter-3"
-                                                      class="price-range-filter"></div>
-                                                   <div
-                                                      class="price-filter-wrap d-flex align-items-center">
-                                                      <div class="price-range-select">
-                                                         <div class="price-range"
-                                                            id="price-range-min-3"></div>
-                                                         <div class="price-range">-</div>
-                                                         <div class="price-range"
-                                                            id="price-range-max-3"></div>
-                                                         <div
-                                                            class="price-range range-title">
-                                                            sft
-                                                         </div>
-                                                      </div>
-                                                   </div>
-                                                </div>
-                                             </div>
-                                          </div>
-                                          <div class="col-md-6 pl-0">
-                                             <div class="price-range-wrapper">
-                                                <div class="range-box">
-                                                   <div class="price-label">Distance:</div>
-                                                   <div id="price-range-filter-2"
-                                                      class="price-range-filter"></div>
-                                                   <div
-                                                      class="price-filter-wrap d-flex align-items-center">
-                                                      <div class="price-range-select">
-                                                         <div class="price-range"
-                                                            id="price-range-min-2"></div>
-                                                         <div class="price-range">-</div>
-                                                         <div class="price-range"
-                                                            id="price-range-max-2"></div>
-                                                         <div
-                                                            class="price-range range-title">
-                                                            km
-                                                         </div>
-                                                      </div>
-                                                   </div>
-                                                </div>
-                                             </div>
-                                          </div>
-                                       </div>
-                                    </div>
+                                   
                                     <div class="row">
                                        <div class="col-lg-12 col-md-12 col-sm-12">
                                           <h4 class="text-dark">Amenities</h4>
