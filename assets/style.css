@@ -12372,7 +12372,6 @@ body.slidemenuon .sidebarBtn .bar:nth-child(4) {
 }
 .property-box2 .item-content .item-categoery3 ul {
   display: flex;
-  justify-content: space-between;
 }
 .property-box2 .item-content .item-categoery3 ul li {
   display: flex;
@@ -13521,7 +13520,6 @@ body.slidemenuon .sidebarBtn .bar:nth-child(4) {
 .single-property .single-listing-box1 .overview-area .gallery-icon-box {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   flex-wrap: wrap;
   margin-bottom: 40px;
 }

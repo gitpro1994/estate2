@@ -32,14 +32,14 @@ $keyw  = settings('seo_keywords');
                      <div class="mb-3 row">
                         <label for="name" class="col-sm-4 col-form-label"><?= translate('relevant_person') ?></label>
                         <div class="col-sm-8">
-                           <input name="name" type="text" id="name"  class="form-control form-control-sm" placeholder="<?= translate('enter_name_and_surname') ?>" required>
+                           <input name="name" type="text" id="name" class="form-control form-control-sm" placeholder="<?= translate('enter_name_and_surname') ?>" required>
                         </div>
                      </div>
 
                      <div class="mb-3 row">
                         <label for="phone_number" class="col-sm-4 col-form-label"><?= translate('phone_number') ?></label>
                         <div class="col-sm-8">
-                           <input name="phone_number" type="text"  id="phone_number" class="form-control form-control-sm" placeholder="<?= translate("enter_phone_number") ?>" required>
+                           <input name="phone_number" type="text" id="phone_number" class="form-control form-control-sm" placeholder="<?= translate("enter_phone_number") ?>" required>
                         </div>
                      </div>
 
@@ -523,16 +523,16 @@ $keyw  = settings('seo_keywords');
 
       } else if (type_id == 6) {
 
-         $('#office_kind_div').fadeIn("slow");
          $('#rooms_div').fadeIn("slow");
+         $('#office_kind_div').fadeIn("slow");
          $('#space_div').fadeOut("slow");
          $('#floor_div').fadeOut("slow");
          $('#building_floor_div').fadeOut("slow");
          $('#settlements_div').fadeOut("slow");
          $('#square').html('(m<sup>2</sup>)');
 
-         $('#office_kind').attr("required", true);
          $('#rooms').attr("required", true);
+         $('#office_kind').attr("required", true);
          $('#space').attr("required", false);
          $('#floor_no').attr("required", false);
          $('#building_floor_no').attr("required", false);

@@ -6,6 +6,8 @@ if (check_ads($url) == 0) {
   die();
 }
 
+update_seen($url, get_ads($url, 'ads_seen'));
+
 $images = explode(",", get_ads($url, 'ads_images'));
 
 $wish = (wish($_SESSION['unique_session'], get_ads($url, 'ads_id'))) ? 'fa fa-heart' : 'flaticon-heart';
@@ -67,8 +69,8 @@ $keyw  = settings('seo_keywords');
               <div class="single-verified-area">
                 <div class="item-title">
                   <h3>
-                    <a href="single-listing2.html">
-                      <?= get_city_name(get_ads($url, 'ads_city_id')) . ' şəhərində, ' . get_ads($url, 'ads_area') . ' m² - ' . get_type_name(get_ads($url, 'ads_kind_id')) . ' ' . get_kind_name(get_ads($url, 'ads_type_id'), 'no_original') ?>
+                    <a href="<?= site_url() ?>detail/<?= get_ads($url, 'ads_sef_url') ?>">
+                      <?= get_city_name(get_ads($url, 'ads_city_id')) . ' şəhərində, ' . get_ads($url, 'ads_area') . ' m² - ' . get_type_name(get_ads($url, 'ads_type_id')) . ' ' . get_kind_name(get_ads($url, 'ads_kind_id'), 'no_original') ?>
                     </a>
                   </h3>
                 </div>
@@ -143,7 +145,7 @@ $keyw  = settings('seo_keywords');
                 <div class="gallery-icon-box">
                   <div class="item-icon-box">
                     <div class="item-icon">
-                      <i class="flaticon-comment"></i>
+                      <i class="flaticon-home"></i>
                     </div>
                     <ul class="item-number">
                       <li><?= translate('ads_number') ?> :</li>
@@ -155,66 +157,93 @@ $keyw  = settings('seo_keywords');
                       <i class="flaticon-home"></i>
                     </div>
                     <ul class="item-number">
-                      <li><?= translate('type') ?> :</li>
-                      <li class="deep-clr"><?= get_ads($url, 'ads_type_name') ?></li>
+                      <li><?= translate('ads_type') ?> :</li>
+                      <li class="deep-clr"><?= get_ads($url, 'type_name') ?></li>
                     </ul>
                   </div>
                   <div class="item-icon-box">
                     <div class="item-icon">
-                      <i class="flaticon-pencil"></i>
+                      <i class="flaticon-home"></i>
                     </div>
                     <ul class="item-number">
-                      <li><?= translate('area') ?> :</li>
-                      <li class="deep-clr"><?= get_ads($url, 'ads_area') ?> m²</li>
+                      <li><?= translate('ads_kind') ?> :</li>
+                      <li class="deep-clr"><?= get_ads($url, 'kind_name') ?></li>
                     </ul>
                   </div>
                   <div class="item-icon-box">
                     <div class="item-icon">
-                      <i class="flaticon-bed"></i>
+                      <i class="flaticon-home"></i>
                     </div>
                     <ul class="item-number">
-                      <li>Bed Room :</li>
-                      <li class="deep-clr">04</li>
+                      <li><?= translate('price') ?> :</li>
+                      <li class="deep-clr"><?= get_ads($url, 'ads_price') ?>₼</li>
                     </ul>
                   </div>
                 </div>
                 <div class="gallery-icon-box">
                   <div class="item-icon-box">
                     <div class="item-icon">
-                      <i class="flaticon-shower"></i>
+                      <i class="flaticon-pencil"></i>
                     </div>
                     <ul class="item-number">
-                      <li>ID No :</li>
-                      <li class="deep-clr">98560</li>
+                      <li><?= translate('area') ?> :</li>
+                      <li class="deep-clr"><?= get_ads($url, 'ads_area') ?> <?= (get_ads($url, 'ads_type_id') == 8 ? '<span>sot</span>' : '<span>m<sup>2</sup></span>') ?> </li>
                     </ul>
                   </div>
-                  <div class="item-icon-box">
-                    <div class="item-icon">
-                      <i class="flaticon-home"></i>
+                  <?php if (get_ads($url, 'ads_type_id') > 0 and get_ads($url, 'ads_type_id') < 7) { ?>
+                    <div class="item-icon-box">
+                      <div class="item-icon">
+                        <i class="flaticon-bed"></i>
+                      </div>
+                      <ul class="item-number">
+                        <li><?= translate('rooms') ?> :</li>
+                        <li class="deep-clr"><?= get_ads($url, 'ads_rooms') . ' ' . translate('rooms') ?></li>
+                      </ul>
                     </div>
-                    <ul class="item-number">
-                      <li>Parking :</li>
-                      <li class="deep-clr">Yes</li>
-                    </ul>
-                  </div>
-                  <div class="item-icon-box">
-                    <div class="item-icon">
-                      <i class="flaticon-home"></i>
+                  <?php } ?>
+                  <?php if (get_ads($url, 'ads_type_id') > 0 and get_ads($url, 'ads_type_id') < 4) { ?>
+                    <div class="item-icon-box">
+                      <div class="item-icon">
+                        <i class="flaticon-two-overlapping-square"></i>
+                      </div>
+                      <ul class="item-number">
+                        <li><?= translate('floor_no') ?> :</li>
+                        <li class="deep-clr"><?= get_ads($url, 'ads_floor_no') . ' ' . translate('floor') ?></li>
+                      </ul>
                     </div>
-                    <ul class="item-number">
-                      <li>Area :</li>
-                      <li class="deep-clr">1050 sqft</li>
-                    </ul>
-                  </div>
-                  <div class="item-icon-box">
-                    <div class="item-icon">
-                      <i class="flaticon-two-overlapping-square"></i>
+                    <div class="item-icon-box">
+                      <div class="item-icon">
+                        <i class="flaticon-two-overlapping-square"></i>
+                      </div>
+                      <ul class="item-number">
+                        <li><?= translate('building_floor_no') ?> :</li>
+                        <li class="deep-clr"><?= get_ads($url, 'ads_building_floor_no') . ' ' . translate('floor') ?></li>
+                      </ul>
                     </div>
-                    <ul class="item-number">
-                      <li>Year Build :</li>
-                      <li class="deep-clr">2022</li>
-                    </ul>
-                  </div>
+                  <?php } ?>
+
+                  <?php if (get_ads($url, 'ads_type_id') == 6) { ?>
+                    <div class="item-icon-box">
+                      <div class="item-icon">
+                        <i class="flaticon-bed"></i>
+                      </div>
+                      <ul class="item-number">
+                        <li><?= translate('office_kind') ?> :</li>
+                        <li class="deep-clr">
+                          <?php if (get_ads($url, 'ads_office_kind') == 1) {
+                            echo "Biznes mərkəzi";
+                          } elseif (get_ads($url, 'ads_office_kind') == 2) {
+                            echo "Ev / Mənzil";
+                          } else {
+                            echo "Villa";
+                          }
+
+                          ?>
+                        </li>
+                      </ul>
+                    </div>
+                  <?php } ?>
+
                 </div>
               </div>
               <div class="overview-area listing-area">
@@ -327,143 +356,157 @@ $keyw  = settings('seo_keywords');
     <div class="row align-items-center">
       <div class="col-lg-6 col-md-7 col-sm-7">
         <div class="item-heading-left">
-          <span class="section-subtitle">Our PROPERTIES</span>
-          <h2 class="section-title">Latest Properties</h2>
+          <span class="section-subtitle"><?= translate('shared_listings') ?> |</span>
+          <h4 class="btn btn-outline-info"><?= get_ads($url, 'type_name')  ?> üçün paylaşılan son elanlar</h4>
           <div class="bg-title-wrap" style="display: block">
-            <span class="background-title solid">Properties</span>
+            <span class="background-title solid"><?= translate() ?></span>
           </div>
         </div>
       </div>
       <div class="col-lg-6 col-md-5 col-sm-5">
         <div class="heading-button">
-          <a href="single-listing2.html" class="heading-btn item-btn2">All Properties</a>
+          <a href="types/<?= get_ads($url, 'rt_seo_link') ?>" class="heading-btn item-btn2"><?= get_ads($url, 'type_name') ?> - üçün bütün elanlara bax</a>
         </div>
       </div>
     </div>
-    <div class="row justify-content-center">
-      <div class="col-xl-4 col-lg-6 col-md-6">
-        <div class="property-box2 wow animated fadeInUp" data-wow-delay=".3s">
-          <div class="item-img">
-            <a href="single-listing1.html"><img src="<?= site_url() ?>assets/img/blog/blog4.jpg" alt="blog" width="510" height="340"></a>
-            <div class="item-category-box1">
-              <div class="item-category">For Sell</div>
+    <div class="row justify-content-left">
+      <?php
+      $sel = "
+                        SELECT a.id AS ads_id,
+                        a.kind_id AS ads_kind_id,
+                        a.rooms AS ads_rooms,
+                        a.area AS ads_area,
+                        a.floor_no AS ads_floor_no,
+                        a.building_floor_no AS ads_building_floor_no,
+                        a.price AS ads_price,
+                        a.payment_method AS ads_payment_method,
+                        a.mortgage AS ads_mortgage,
+                        a.address AS ads_address,
+                        a.images AS ads_images,
+                        a.status AS ads_status,
+                        a.end_date AS ads_end_date,
+                        a.created_at AS ads_created_at,
+                        a.updated_at AS ads_updated_at,
+                        a.deleted_at AS ads_deleted_at,
+                        a.sef_url AS ads_sef_url,
+                        a.seen AS ads_seen,
+                        c.city_name,
+                        c.seo_link as city_seo_link,
+                        c.status as city_status,
+                        r.region_name,
+                        r.seo_link as region_seo_link,
+                        r.status as region_status,
+                        rk.kind_name,
+                        rk.seo_link as rk_seo_link,
+                        rk.status as rk_status,
+                        rt.type_name,
+                        rt.seo_link as rt_seo_link,
+                        rt.status as rt_status
+                        FROM ads AS a 
+                        LEFT JOIN cities AS c ON a.city_id=c.id 
+                        LEFT JOIN regions AS r ON a.regions=r.id 
+                        LEFT JOIN realty_kinds AS rk ON a.kind_id=rk.id
+                        LEFT JOIN realty_types AS rt ON a.type_id=rt.id 
+                        WHERE a.type_id='" . get_ads($url, 'ads_type_id') . "' 
+                        AND a.sef_url != '" . $url . "'
+                        ORDER BY a.id 
+                        DESC LIMIT 3
+                        ";
+      $run = mysqli_query($conn, $sel);
+      while ($nn = mysqli_fetch_array($run)) {
+        $images_all_listings = $nn['ads_images'];
+        $image_explode       = explode(",", $images_all_listings);
+        $wish = (wish($_SESSION['unique_session'], $nn['ads_id'])) ? 'fa fa-heart' : 'flaticon-heart';
+
+      ?>
+        <div class="col-lg-4 col-md-6" id="ri_<?= $nn['ads_id']; ?>">
+          <div class="property-box2 fadeInUp" data-wow-delay=".3s">
+            <div class="item-img">
+              <a href="<?= site_url() ?>detail/<?= $nn['ads_sef_url'] ?>"><img src="<?= site_url() ?>uploads/<?= $image_explode[0] ?>" alt="blog" style="height: 330px; width:100%"></a>
+              <div class="item-category-box1">
+                <div class="item-category"><?= $nn['kind_name'] ?></div>
+              </div>
+              <div class="rtcl-listing-badge-wrap">
+                <?php if ($nn['ads_kind_id'] == 1 and $nn['ads_mortgage'] != NULL) { ?>
+                  <?php if ($nn['ads_mortgage'] == 0) { ?>
+                    <span class="badge rtcl-badge-featured" data-bs-toggle="tooltip" data-bs-placement="top" title="<?= translate('mortgage') ?>"><i class="fa fa-percent"></i></span>
+                  <?php } elseif ($nn['ads_mortgage'] == 1) { ?>
+                    <span class="badge rtcl-badge-_bump_up" data-bs-toggle="tooltip" data-bs-placement="top" title="<?= translate('khupchali') ?>"><i class="fa fa-file"></i></span>
+                  <?php } else { ?>
+
+                  <?php } ?>
+
+                <?php }
+
+                $val = ($nn['ads_kind_id'] == 1) ? 'satılır' : 'kirayə verilir'; ?>
+                <?php if ($nn['ads_payment_method'] == "1") {
+                  echo '<span class="badge rtcl-badge-_top">' . translate('monthly') . '</span>';
+                } elseif ($nn['ads_payment_method'] == "0") {
+                  echo '<span class="badge rtcl-badge-_top">' . translate('daily') . '</span>';
+                } ?>
+              </div>
+
+              <div class="rent-price">
+                <div class="item-price">₼ <?= $nn['ads_price'] ?> <?php if ($nn['ads_payment_method'] == "1") {
+                                                                    echo '<span><i>/</i>' . translate('monthly') . '</span>';
+                                                                  } elseif ($nn['ads_payment_method'] == "0") {
+                                                                    echo '<span><i>/</i>' . translate('daily') . '</span>';
+                                                                  } ?></div>
+              </div>
+              <div class="react-icon">
+                <ul>
+                  <li>
+                    <a data-id="<?= $nn['ads_id'] ?>" data-bs-toggle="tooltip" data-bs-placement="top" title="<?= translate('favourite') ?>" class="add_favourite">
+                      <i class="<?= $wish; ?>"></i>
+                    </a>
+                  </li>
+                </ul>
+              </div>
             </div>
-            <div class="rent-price">
-              <div class="item-price">$15,000<span><i>/</i>mo</span></div>
-            </div>
-            <div class="react-icon">
-              <ul>
-                <li>
-                  <a href="favourite.html" data-bs-toggle="tooltip" data-bs-placement="top" title="Favourites">
-                    <i class="flaticon-heart"></i>
+            <div class="item-category10"><a href="types/<?= $nn['rt_seo_link'] ?>"><?= $nn['type_name'] ?></a></div>
+            <div class="item-content">
+              <div class="verified-area">
+                <p class="item-title">
+                  <a href="<?= site_url() ?>detail/<?= $nn['ads_sef_url'] ?>">
+                    <?= $nn['city_name'] . ' şəhərində ' . $nn["ads_area"] . ' m² - ' . $nn['type_name'] . ' ' . $val ?>
                   </a>
-                </li>
-                <li>
-                  <a href="compare.html" data-bs-toggle="tooltip" data-bs-placement="top" title="Compare">
-                    <i class="flaticon-left-and-right-arrows"></i>
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div class="item-category10"><a href="single-listing1.html">Appartment</a></div>
-          <div class="item-content">
-            <div class="verified-area">
-              <h3 class="item-title"><a href="single-listing1.html">Family House For Sell</a></h3>
-            </div>
-            <div class="location-area"><i class="flaticon-maps-and-flags"></i>Downey, California</div>
-            <div class="item-categoery3">
-              <ul>
-                <li><i class="flaticon-bed"></i>Beds: 03</li>
-                <li><i class="flaticon-shower"></i>Baths: 02</li>
-                <li><i class="flaticon-two-overlapping-square"></i>931 Sqft</li>
-              </ul>
+                </p>
+              </div>
+              <div class="location-area mt-4"><i class="flaticon-maps-and-flags"></i><?= $nn['city_name'] ?> <?= (!empty($nn['region_name'])) ? ',' : '' ?> <?= $nn['region_name'] ?></div>
+              <div class="item-categoery3">
+                <ul>
+                  <li><i class="flaticon-two-overlapping-square"></i><?= $nn['ads_area'] ?>
+                    <?php if ($nn['ads_type_id'] == 7) {
+                      echo ' <span>sot<span>';
+                    } else {
+                      echo ' <span>m<sup>2</sup></span>';
+                    } ?>
+                  </li>
+                  <?php
+                  if ($nn['ads_type_id'] > 0 and $nn['ads_type_id'] < 4) { ?>
+                    <li><i class="flaticon-two-overlapping-square"></i><?= $nn['ads_floor_no'] ?>/<?= $nn['ads_building_floor_no'] ?></li>
+                  <?php } elseif ($nn['ads_type_id'] == 6) { ?>
+                    <li><i class="flaticon-two-overlapping-square"></i>
+                      <?php if ($nn['ads_office_kind'] == 1) {
+                        echo "Biznes mərkəzi";
+                      } elseif ($nn['ads_office_kind'] == 2) {
+                        echo "Ev / Mənzil";
+                      } else {
+                        echo "Villa";
+                      }
+                      ?>
+                    </li>
+                  <?php } ?>
+                  <?php if ($nn['ads_type_id'] < 7) { ?>
+                    <li><i class="flaticon-two-overlapping-square"></i><?= $nn['ads_rooms'] ?></li>
+                  <?php } ?>
+                  <li><i class="fas fa-eye"></i><?= $nn['ads_seen'] ?></li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="col-xl-4 col-lg-6 col-md-6">
-        <div class="property-box2 wow animated fadeInUp" data-wow-delay=".2s">
-          <div class="item-img">
-            <a href="single-listing1.html"><img src="<?= site_url() ?>assets/img/blog/blog5.jpg" alt="blog" width="510" height="340"></a>
-            <div class="item-category-box1">
-              <div class="item-category">For Rent</div>
-            </div>
-            <div class="rent-price">
-              <div class="item-price">$12,000<span><i>/</i>mo</span></div>
-            </div>
-            <div class="react-icon">
-              <ul>
-                <li>
-                  <a href="favourite.html" data-bs-toggle="tooltip" data-bs-placement="top" title="Favourites">
-                    <i class="flaticon-heart"></i>
-                  </a>
-                </li>
-                <li>
-                  <a href="compare.html" data-bs-toggle="tooltip" data-bs-placement="top" title="Compare">
-                    <i class="flaticon-left-and-right-arrows"></i>
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div class="item-category10"><a href="single-listing1.html">Villa</a></div>
-          <div class="item-content">
-            <div class="verified-area">
-              <h3 class="item-title"><a href="single-listing1.html">Countryside Modern Lake View</a></h3>
-            </div>
-            <div class="location-area"><i class="flaticon-maps-and-flags"></i>Downey, California</div>
-            <div class="item-categoery3">
-              <ul>
-                <li><i class="flaticon-bed"></i>Beds: 03</li>
-                <li><i class="flaticon-shower"></i>Baths: 02</li>
-                <li><i class="flaticon-two-overlapping-square"></i>931 Sqft</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-xl-4 col-lg-6 col-md-6">
-        <div class="property-box2 wow animated fadeInUp" data-wow-delay=".1s">
-          <div class="item-img">
-            <a href="single-listing1.html"><img src="<?= site_url() ?>assets/img/blog/blog6.jpg" alt="blog" width="510" height="340"></a>
-            <div class="item-category-box1">
-              <div class="item-category">For Sell</div>
-            </div>
-            <div class="rent-price">
-              <div class="item-price">$18,000<span><i>/</i>mo</span></div>
-            </div>
-            <div class="react-icon">
-              <ul>
-                <li>
-                  <a href="favourite.html" data-bs-toggle="tooltip" data-bs-placement="top" title="Favourites">
-                    <i class="flaticon-heart"></i>
-                  </a>
-                </li>
-                <li>
-                  <a href="compare.html" data-bs-toggle="tooltip" data-bs-placement="top" title="Compare">
-                    <i class="flaticon-left-and-right-arrows"></i>
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div class="item-category10"><a href="single-listing1.html">Office</a></div>
-          <div class="item-content">
-            <div class="verified-area">
-              <h3 class="item-title"><a href="single-listing1.html">Gorgeous Apartment Building </a></h3>
-            </div>
-            <div class="location-area"><i class="flaticon-maps-and-flags"></i>Downey, California</div>
-            <div class="item-categoery3">
-              <ul>
-                <li><i class="flaticon-bed"></i>Beds: 03</li>
-                <li><i class="flaticon-shower"></i>Baths: 02</li>
-                <li><i class="flaticon-two-overlapping-square"></i>931 Sqft</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
+      <?php } ?>
     </div>
   </div>
 </section>

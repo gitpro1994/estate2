@@ -116,6 +116,14 @@ function check_ads($sef)
     return $cn;
 }
 
+function update_seen($url, $par)
+{
+    global $conn;
+    $new_seen   = (int)$par + 1;
+    $update     = "UPDATE ads SET seen='" . $new_seen . "' WHERE sef_url='" . $url . "' ";
+    $run        = mysqli_query($conn, $update);
+}
+
 function get_ads($sef, $par)
 {
     global $conn;
@@ -125,7 +133,9 @@ function get_ads($sef, $par)
     a.city_id AS ads_city_id,
     a.user_id AS ads_user_id,
     a.rooms AS ads_rooms,
+    a.office_kind AS ads_office_kind,
     a.area AS ads_area,
+    a.description AS ads_description,
     a.floor_no AS ads_floor_no,
     a.building_floor_no AS ads_building_floor_no,
     a.price AS ads_price,

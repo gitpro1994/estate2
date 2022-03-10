@@ -16,7 +16,9 @@ $sel = "
 			SELECT a.id AS ads_id,
 	        a.rooms AS ads_rooms,
 	        a.kind_id AS ads_kind_id,
+	        a.type_id AS ads_type_id,
 	        a.area AS ads_area,
+	        a.office_kind AS ads_office_kind,
 	        a.floor_no AS ads_floor_no,
 	        a.building_floor_no AS ads_building_floor_no,
 	        a.price AS ads_price,
@@ -148,8 +150,31 @@ $keyw  = settings('seo_keywords');
                                         <div class="location-area mt-4"><i class="flaticon-maps-and-flags"></i><?= $nn['city_name'] ?> <?= (!empty($nn['region_name'])) ? ',' : '' ?> <?= $nn['region_name'] ?></div>
                                         <div class="item-categoery3">
                                             <ul>
-                                                <li><i class="flaticon-bed"></i><?= translate('room') ?>: <?= $nn['ads_rooms'] ?></li>
-                                                <li><i class="flaticon-two-overlapping-square"></i><?= $nn['ads_area'] ?> m²</li>
+                                                <li><i class="flaticon-two-overlapping-square"></i><?= $nn['ads_area'] ?>
+                                                    <?php if ($nn['ads_type_id'] == 7) {
+                                                        echo ' <span>sot<span>';
+                                                    } else {
+                                                        echo ' <span>m<sup>2</sup></span>';
+                                                    } ?>
+                                                </li>
+                                                <?php
+                                                if ($nn['ads_type_id'] > 0 and $nn['ads_type_id'] < 4) { ?>
+                                                    <li><i class="flaticon-two-overlapping-square"></i><?= $nn['ads_floor_no'] ?>/<?= $nn['ads_building_floor_no'] ?></li>
+                                                <?php } elseif ($nn['ads_type_id'] == 6) { ?>
+                                                    <li><i class="flaticon-two-overlapping-square"></i>
+                                                        <?php if ($nn['ads_office_kind'] == 1) {
+                                                            echo "Biznes mərkəzi";
+                                                        } elseif ($nn['ads_office_kind'] == 2) {
+                                                            echo "Ev / Mənzil";
+                                                        } else {
+                                                            echo "Villa";
+                                                        }
+                                                        ?>
+                                                    </li>
+                                                <?php } ?>
+                                                <?php if ($nn['ads_type_id'] < 7) { ?>
+                                                    <li><i class="flaticon-two-overlapping-square"></i><?= $nn['ads_rooms'] ?></li>
+                                                <?php } ?>
                                                 <li><i class="fas fa-eye"></i><?= $nn['ads_seen'] ?></li>
                                             </ul>
                                         </div>
